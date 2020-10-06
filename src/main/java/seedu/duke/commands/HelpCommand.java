@@ -4,7 +4,7 @@ import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 /**
- * Shows help instructions
+ * Shows help instructions.
  */
 public class HelpCommand extends Command {
 

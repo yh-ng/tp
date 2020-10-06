@@ -1,7 +1,7 @@
 package seedu.duke.common;
 
 /**
- * Utility methods
+ * Utility methods.
  */
 public class Utils {
 

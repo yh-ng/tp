@@ -39,6 +39,8 @@ public abstract class Task {
     }
 
     /**
+     * Retrieves whether the task in done.
+     *
      * @return true if the task is done already, false otherwise
      */
     public boolean getIsDone() {

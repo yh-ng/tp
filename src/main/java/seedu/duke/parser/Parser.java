@@ -28,7 +28,7 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeException {
         String[] words = fullCommand.split(" ", 2);
-        String wordparts[];
+        String[] wordparts;
         switch (words[0].toLowerCase()) {
         case "todo":
             try {

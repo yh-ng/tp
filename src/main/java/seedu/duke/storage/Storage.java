@@ -52,10 +52,14 @@ public class Storage {
                 tasks.add(new Todo(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim())));
                 break;
             case "E":
-                tasks.add(new Event(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()), taskParts[3].trim()));
+                tasks.add(new Event(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()),
+                        taskParts[3].trim()));
                 break;
             case "D":
-                tasks.add(new Deadline(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()), taskParts[3].trim()));
+                tasks.add(new Deadline(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()),
+                        taskParts[3].trim()));
+                break;
+            default:
                 break;
             }
         }
