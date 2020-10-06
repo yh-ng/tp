@@ -44,8 +44,8 @@ public class TaskList {
     public void addTodo(String description) {
         Todo newTodo = new Todo(description);
         tasks.add(newTodo);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newTodo.toString() + Messages.MESSAGE_STATUS_FIRST +
-                tasks.size() + Messages.MESSAGE_STATUS_LAST);
+        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newTodo.toString() + Messages.MESSAGE_STATUS_FIRST
+                + tasks.size() + Messages.MESSAGE_STATUS_LAST);
     }
 
     /**
@@ -57,8 +57,8 @@ public class TaskList {
     public void addDeadline(String description, String deadline) {
         Deadline newDeadline = new Deadline(description, deadline);
         tasks.add(newDeadline);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newDeadline.toString() + Messages.MESSAGE_STATUS_FIRST +
-                tasks.size() + Messages.MESSAGE_STATUS_LAST);
+        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newDeadline.toString() + Messages.MESSAGE_STATUS_FIRST
+                + tasks.size() + Messages.MESSAGE_STATUS_LAST);
     }
 
     /**
@@ -70,8 +70,8 @@ public class TaskList {
     public void addEvent(String description, String time) {
         Event newEvent = new Event(description, time);
         tasks.add(newEvent);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newEvent.toString() + Messages.MESSAGE_STATUS_FIRST +
-                tasks.size() + Messages.MESSAGE_STATUS_LAST);
+        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newEvent.toString() + Messages.MESSAGE_STATUS_FIRST
+                + tasks.size() + Messages.MESSAGE_STATUS_LAST);
     }
 
     /**
@@ -84,8 +84,8 @@ public class TaskList {
             Ui.dukePrint(Messages.WARNING_NO_TASK);
         } else {
             Task taskRemoved = tasks.get(index - 1);
-            Ui.dukePrint(Messages.MESSAGE_DELETE + taskRemoved.toString() + Messages.MESSAGE_STATUS_FIRST +
-                    (tasks.size() - 1) + Messages.MESSAGE_STATUS_LAST);
+            Ui.dukePrint(Messages.MESSAGE_DELETE + taskRemoved.toString() + Messages.MESSAGE_STATUS_FIRST
+                    + (tasks.size() - 1) + Messages.MESSAGE_STATUS_LAST);
             tasks.remove(index - 1);
         }
     }
