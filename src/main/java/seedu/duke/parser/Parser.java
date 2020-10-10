@@ -1,6 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.DukeException;
+import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ByeCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
@@ -108,6 +109,12 @@ public class Parser {
             return new HelpCommand();
         case "bye":
             return new ByeCommand();
+        case "add":
+            String commandString = fullCommand.replaceFirst("add", "").trim();
+            HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
+            String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
+
+            return new AddCommand(description, argumentsMap);
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
