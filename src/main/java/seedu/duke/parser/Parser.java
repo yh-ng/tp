@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * Parses use input.
  */
 public class Parser {
-    public static final String ARGUMENT_REGEX = "([\\s]+[a-z]+/[:a-z0-9-]+)";
+    public static final String ARGUMENT_REGEX = "([a-z]+/[:a-z0-9-]+)";
 
     /**
      * Parses user input into command for execution.
@@ -147,7 +147,12 @@ public class Parser {
      * @param argumentRegex Regex to match the String.
      * @return String with matched patterns removed.
      */
-    public static String removeRegexFromArguments(String fullCommand, String argumentRegex) {
-        return fullCommand.replaceAll(argumentRegex, "").trim();
+    public static String removeRegexFromArguments(String fullCommand, String argumentRegex) throws DukeException {
+        String description = fullCommand.split(argumentRegex)[0].trim();
+        if (description.equals("")) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+        }
+
+        return description;
     }
 }
