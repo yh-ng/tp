@@ -6,6 +6,7 @@ import seedu.duke.DukeException;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ParserTest {
 
@@ -24,5 +25,13 @@ class ParserTest {
         String parsedString = Parser.removeRegexFromArguments(testCommand, Parser.ARGUMENT_REGEX);
         String expectedString = "add tP meeting";
         assertEquals(expectedString, parsedString);
+    }
+
+    @Test
+    void removeRegexFromArguments_noDescription_throwsException() {
+        String testCommand = " by/16-09-23:59 at/15-09-2020-11:00 p/1 ";
+        assertThrows(DukeException.class, () -> {
+            System.out.println(Parser.removeRegexFromArguments(testCommand, Parser.ARGUMENT_REGEX));
+        });
     }
 }
