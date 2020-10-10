@@ -1,6 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.DukeException;
+import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ByeCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
@@ -14,10 +15,15 @@ import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.TodoCommand;
 import seedu.duke.common.Messages;
 
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Parses use input.
  */
 public class Parser {
+    public static final String ARGUMENT_REGEX = "([a-z]+/[:a-z0-9-]+)";
 
     /**
      * Parses user input into command for execution.
@@ -103,8 +109,50 @@ public class Parser {
             return new HelpCommand();
         case "bye":
             return new ByeCommand();
+        case "add":
+            String commandString = fullCommand.replaceFirst("add", "").trim();
+            HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
+            String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
+
+            return new AddCommand(description, argumentsMap);
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
+    }
+
+    /**
+     * Parses the command and obtain arguments in the form (keyword)/(argument).
+     *
+     * @param argumentString Command substring to be parsed.
+     * @param argumentRegex The regex to match arguments against.
+     * @return A HashMap of keyword-argument pairs containing the matched arguments.
+     */
+    public static HashMap<String, String> getArgumentsFromRegex(String argumentString, String argumentRegex) {
+        HashMap<String, String> argumentsMap = new HashMap<>();
+        Pattern argumentPattern = Pattern.compile(argumentRegex);
+        Matcher matcher = argumentPattern.matcher(argumentString);
+
+        while (matcher.find()) {
+            String[] currentArgument = matcher.group().trim().split("/");
+            argumentsMap.put(currentArgument[0], currentArgument[1]);
+        }
+
+        return argumentsMap;
+    }
+
+    /**
+     * Removes the matching regex patterns from the input String.
+     *
+     * @param argumentString Command substring to remove regex patterns from.
+     * @param argumentRegex Regex to match the String.
+     * @return String with matched patterns removed.
+     */
+    public static String removeRegexFromArguments(String argumentString, String argumentRegex) throws DukeException {
+        String description = argumentString.split(argumentRegex)[0].trim();
+        if (description.equals("")) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+        }
+
+        return description;
     }
 }
