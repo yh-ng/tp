@@ -5,14 +5,11 @@ import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ByeCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
-import seedu.duke.commands.DeadlineCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DoneCommand;
-import seedu.duke.commands.EventCommand;
 import seedu.duke.commands.FindCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.ListCommand;
-import seedu.duke.commands.TodoCommand;
 import seedu.duke.common.Messages;
 
 import java.util.HashMap;
@@ -34,51 +31,12 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeException {
         String[] words = fullCommand.split(" ", 2);
-        String[] wordparts;
         switch (words[0].toLowerCase()) {
-        case "todo":
-            try {
-                if (words[1].trim().equals("")) {
-                    throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-                }
-                return new TodoCommand(words[1]);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-            }
-        case "deadline":
-            try {
-                wordparts = words[1].split(" /by ");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-            }
-            if (wordparts[0].trim().equals("")) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-            }
-            try {
-                if (wordparts[1].trim().equals("")) {
-                    throw new DukeException(Messages.EXCEPTION_EMPTY_DEADLINE);
-                }
-                return new DeadlineCommand(wordparts[0], wordparts[1]);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_DEADLINE);
-            }
-        case "event":
-            try {
-                wordparts = words[1].split(" /at ");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-            }
-            if (wordparts[0].trim().equals("")) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-            }
-            try {
-                if (wordparts[1].trim().equals("")) {
-                    throw new DukeException(Messages.EXCEPTION_EMPTY_TIME);
-                }
-                return new EventCommand(wordparts[0], wordparts[1]);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_EVENT);
-            }
+        case "add":
+            String commandString = fullCommand.replaceFirst("add", "").trim();
+            HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
+            String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
+            return new AddCommand(description, argumentsMap);
         case "delete":
             try {
                 return new DeleteCommand(Integer.parseInt(words[1]));
@@ -109,12 +67,6 @@ public class Parser {
             return new HelpCommand();
         case "bye":
             return new ByeCommand();
-        case "add":
-            String commandString = fullCommand.replaceFirst("add", "").trim();
-            HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
-            String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
-
-            return new AddCommand(description, argumentsMap);
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
