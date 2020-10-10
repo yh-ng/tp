@@ -14,10 +14,15 @@ import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.TodoCommand;
 import seedu.duke.common.Messages;
 
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Parses use input.
  */
 public class Parser {
+    public static final String ARGUMENT_REGEX = "([\\s]+[a-z]+/[:a-z0-9-]+)";
 
     /**
      * Parses user input into command for execution.
@@ -106,5 +111,36 @@ public class Parser {
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
+    }
+
+    /**
+     * Parses the command and obtain arguments in the form (keyword)/(argument).
+     *
+     * @param fullCommand Command to be parsed.
+     * @param argumentRegex The regex to match arguments against.
+     * @return A HashMap of keyword-argument pairs containing the matched arguments.
+     */
+    public static HashMap<String, String> getArgumentsFromRegex(String fullCommand, String argumentRegex) {
+        HashMap<String, String> argumentsMap = new HashMap<>();
+        Pattern argumentPattern = Pattern.compile(argumentRegex);
+        Matcher matcher = argumentPattern.matcher(fullCommand);
+
+        while (matcher.find()) {
+            String[] currentArgument = matcher.group().trim().split("/");
+            argumentsMap.put(currentArgument[0], currentArgument[1]);
+        }
+
+        return argumentsMap;
+    }
+
+    /**
+     * Removes the matching regex patterns from the input String.
+     *
+     * @param fullCommand String to remove regex patterns from.
+     * @param argumentRegex Regex to match the String.
+     * @return String with matched patterns removed.
+     */
+    public static String removeRegexFromArguments(String fullCommand, String argumentRegex) {
+        return fullCommand.replaceAll(argumentRegex, "").trim();
     }
 }
