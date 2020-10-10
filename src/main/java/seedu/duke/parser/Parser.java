@@ -123,14 +123,14 @@ public class Parser {
     /**
      * Parses the command and obtain arguments in the form (keyword)/(argument).
      *
-     * @param fullCommand Command to be parsed.
+     * @param argumentString Command substring to be parsed.
      * @param argumentRegex The regex to match arguments against.
      * @return A HashMap of keyword-argument pairs containing the matched arguments.
      */
-    public static HashMap<String, String> getArgumentsFromRegex(String fullCommand, String argumentRegex) {
+    public static HashMap<String, String> getArgumentsFromRegex(String argumentString, String argumentRegex) {
         HashMap<String, String> argumentsMap = new HashMap<>();
         Pattern argumentPattern = Pattern.compile(argumentRegex);
-        Matcher matcher = argumentPattern.matcher(fullCommand);
+        Matcher matcher = argumentPattern.matcher(argumentString);
 
         while (matcher.find()) {
             String[] currentArgument = matcher.group().trim().split("/");
@@ -143,12 +143,12 @@ public class Parser {
     /**
      * Removes the matching regex patterns from the input String.
      *
-     * @param fullCommand String to remove regex patterns from.
+     * @param argumentString Command substring to remove regex patterns from.
      * @param argumentRegex Regex to match the String.
      * @return String with matched patterns removed.
      */
-    public static String removeRegexFromArguments(String fullCommand, String argumentRegex) throws DukeException {
-        String description = fullCommand.split(argumentRegex)[0].trim();
+    public static String removeRegexFromArguments(String argumentString, String argumentRegex) throws DukeException {
+        String description = argumentString.split(argumentRegex)[0].trim();
         if (description.equals("")) {
             throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
         }
