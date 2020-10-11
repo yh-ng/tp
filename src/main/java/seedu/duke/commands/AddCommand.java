@@ -16,16 +16,6 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Represents a general command.
-     *
-     * @return whether to exit Duke application.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * Executes the command.
      *
      * @param tasks a TaskList object containing all tasks

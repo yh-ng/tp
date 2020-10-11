@@ -49,32 +49,6 @@ public class TaskList {
     }
 
     /**
-     * Adds a deadline task to the task list.
-     *
-     * @param description the description of the deadline task
-     * @param deadline the deadline of the task
-     */
-    public void addDeadline(String description, String deadline) {
-        Deadline newDeadline = new Deadline(description, deadline);
-        tasks.add(newDeadline);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newDeadline.toString() + Messages.MESSAGE_STATUS_FIRST
-                + tasks.size() + Messages.MESSAGE_STATUS_LAST);
-    }
-
-    /**
-     * Adds an event task to the task list.
-     *
-     * @param description the description of the event task
-     * @param time the time of the task to be done
-     */
-    public void addEvent(String description, String time) {
-        Event newEvent = new Event(description, time);
-        tasks.add(newEvent);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newEvent.toString() + Messages.MESSAGE_STATUS_FIRST
-                + tasks.size() + Messages.MESSAGE_STATUS_LAST);
-    }
-
-    /**
      * Deletes a task from the list, identified by the index of the task in the task list.
      *
      * @param index the index of the task in the task list

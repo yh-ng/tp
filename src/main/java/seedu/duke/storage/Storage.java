@@ -3,8 +3,6 @@ package seedu.duke.storage;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
-import seedu.duke.task.Deadline;
-import seedu.duke.task.Event;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
@@ -50,14 +48,6 @@ public class Storage {
             switch (taskParts[0].trim()) {
             case "T":
                 tasks.add(new Todo(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim())));
-                break;
-            case "E":
-                tasks.add(new Event(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()),
-                        taskParts[3].trim()));
-                break;
-            case "D":
-                tasks.add(new Deadline(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()),
-                        taskParts[3].trim()));
                 break;
             default:
                 break;

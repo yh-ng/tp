@@ -13,7 +13,9 @@ public abstract class Command {
      *
      * @return whether to exit Duke application.
      */
-    public abstract boolean isExit();
+    public boolean isExit() {
+        return false;
+    }
 
     /**
      * Executes the command.
