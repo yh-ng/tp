@@ -13,11 +13,6 @@ public class HelpCommand extends Command {
             + "     Example: " + COMMAND_WORD;
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public void execute(TaskList tasks) {
         String message = DeleteCommand.MESSAGE_USAGE
                 + "\n\n     " + ListCommand.MESSAGE_USAGE
