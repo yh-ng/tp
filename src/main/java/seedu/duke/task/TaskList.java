@@ -154,8 +154,8 @@ public class TaskList {
         if (index > tasks.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_TASK);
         } else {
-            tasks.get(index).setPriority(priority);
-            Ui.dukePrint(Messages.MESSAGE_SET_PRIORITY + priority);
+            tasks.get(index - 1).setPriority(priority);
+            Ui.dukePrint(Messages.MESSAGE_SET_PRIORITY + tasks.get(index - 1).getPriority());
         }
     }
 }
