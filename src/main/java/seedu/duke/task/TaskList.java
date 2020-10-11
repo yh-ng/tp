@@ -143,4 +143,19 @@ public class TaskList {
     public Task get(int index) {
         return tasks.get(index);
     }
+
+    /**
+     * Sets the priority of a task at the given index.
+     *
+     * @param index the index of the task to set priority.
+     * @param priority the priority to set the task at.
+     */
+    public void setPriority(int index, int priority) {
+        if (index > tasks.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            tasks.get(index).setPriority(priority);
+            Ui.dukePrint(Messages.MESSAGE_SET_PRIORITY + priority);
+        }
+    }
 }
