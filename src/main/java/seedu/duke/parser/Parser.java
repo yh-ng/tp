@@ -10,6 +10,7 @@ import seedu.duke.commands.DoneCommand;
 import seedu.duke.commands.FindCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.SetCommand;
 import seedu.duke.common.Messages;
 
 import java.util.HashMap;
@@ -31,10 +32,11 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeException {
         String[] words = fullCommand.split(" ", 2);
+        String commandString = fullCommand.replaceFirst(words[0], "").trim();
+        HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
+
         switch (words[0].toLowerCase()) {
         case AddCommand.COMMAND_WORD:
-            String commandString = fullCommand.replaceFirst("add", "").trim();
-            HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
             String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
             return new AddCommand(description, argumentsMap);
         case DeleteCommand.COMMAND_WORD:
@@ -65,6 +67,13 @@ public class Parser {
             }
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case SetCommand.COMMAND_WORD:
+            try {
+                return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]),
+                        Integer.parseInt(argumentsMap.get("p")));
+            } catch (NumberFormatException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+            }
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
         default:
