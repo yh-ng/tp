@@ -37,9 +37,9 @@ public class Todo extends Task {
     @Override
     public String toString() {
         if (this.isDone) {
-            return "[T][Y] " + this.description;
+            return "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
         } else {
-            return "[T][N] " + this.description;
+            return "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
         }
     }
 }
