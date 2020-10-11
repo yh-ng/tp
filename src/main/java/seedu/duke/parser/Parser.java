@@ -32,12 +32,12 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         String[] words = fullCommand.split(" ", 2);
         switch (words[0].toLowerCase()) {
-        case "add":
+        case AddCommand.COMMAND_WORD:
             String commandString = fullCommand.replaceFirst("add", "").trim();
             HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
             String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
             return new AddCommand(description, argumentsMap);
-        case "delete":
+        case DeleteCommand.COMMAND_WORD:
             try {
                 return new DeleteCommand(Integer.parseInt(words[1]));
             } catch (NumberFormatException e) {
@@ -45,11 +45,11 @@ public class Parser {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             }
-        case "list":
+        case ListCommand.COMMAND_WORD:
             return new ListCommand();
-        case "clear":
+        case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-        case "done":
+        case DoneCommand.COMMAND_WORD:
             try {
                 return new DoneCommand(Integer.parseInt(words[1]));
             } catch (NumberFormatException e) {
@@ -57,15 +57,15 @@ public class Parser {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             }
-        case "find":
+        case FindCommand.COMMAND_WORD:
             try {
                 return new FindCommand(words[1].trim());
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.EXCEPTION_FIND);
             }
-        case "help":
+        case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        case "bye":
+        case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
