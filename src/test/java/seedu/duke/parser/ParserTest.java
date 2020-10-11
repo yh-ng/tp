@@ -29,7 +29,7 @@ class ParserTest {
 
     @Test
     void removeRegexFromArguments_noDescription_throwsException() {
-        String testCommand = " by/16-09-23:59 at/15-09-2020-11:00 p/1 ";
+        String testCommand = "by/16-09-23:59";
         assertThrows(DukeException.class, () -> {
             System.out.println(Parser.removeRegexFromArguments(testCommand, Parser.ARGUMENT_REGEX));
         });

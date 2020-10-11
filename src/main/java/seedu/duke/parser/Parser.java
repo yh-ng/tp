@@ -100,7 +100,7 @@ public class Parser {
      * @return String with matched patterns removed.
      */
     public static String removeRegexFromArguments(String argumentString, String argumentRegex) throws DukeException {
-        String description = argumentString.split(argumentRegex)[0].trim();
+        String description = argumentString.replaceAll(argumentRegex, "").trim();
         if (description.equals("")) {
             throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
         }
