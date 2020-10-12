@@ -37,6 +37,17 @@ public class TaskList {
     }
 
     /**
+     * Adds a task to the task list from the parameters.
+     *
+     * @param task Task to be added to the task list.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+        Ui.dukePrint(Messages.MESSAGE_ADDTASK + task.toString() + Messages.MESSAGE_STATUS_FIRST
+                + tasks.size() + Messages.MESSAGE_STATUS_LAST);
+    }
+
+    /**
      * Adds a todo task to the task list.
      *
      * @param description the description of the todo task
