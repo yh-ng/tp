@@ -21,25 +21,35 @@ public class Todo extends Task {
      * @param description the description of the todo task
      * @param isDone true if the todo task is done already, false otherwise
      */
-    public Todo(String description, boolean isDone) {
-        super(description, isDone);
+    public Todo(String description, boolean isDone, int priority) {
+        super(description, isDone, priority);
     }
 
     @Override
     public String toFile() {
+        String fileString = "";
         if (isDone) {
-            return "T | 1 | " + description;
+            fileString = "T | 1 | " + description + " | " + priority;
         } else {
-            return "T | 0 | " + description;
+            fileString = "T | 0 | " + description + " | " + priority;
         }
+        if (category != null) {
+            fileString += " | " + category;
+        }
+        return fileString;
     }
 
     @Override
     public String toString() {
+        String returnString = "";
         if (this.isDone) {
-            return "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
+            returnString =  "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
         } else {
-            return "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
+            returnString =  "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
         }
+        if (category != null) {
+            returnString += " (category: " + category + ")";
+        }
+        return returnString;
     }
 }

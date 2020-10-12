@@ -42,15 +42,15 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
         ArrayList<Task> tasks = new ArrayList<>();
+        Task task;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
             String[] taskParts = line.split(" \\| ");
-            switch (taskParts[0].trim()) {
-            case "T":
-                tasks.add(new Todo(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim())));
-                break;
-            default:
-                break;
+            task = new Todo(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()),
+                    Integer.parseInt(taskParts[3].trim()));
+            tasks.add(task);
+            if (taskParts.length > 4) {
+                task.setCategory(taskParts[4]);
             }
         }
         return tasks;

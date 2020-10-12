@@ -3,6 +3,7 @@ package seedu.duke.parser;
 import seedu.duke.DukeException;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ByeCommand;
+import seedu.duke.commands.CategoryCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DeleteCommand;
@@ -47,6 +48,26 @@ public class Parser {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             }
+        case CategoryCommand.COMMAND_WORD:
+            String categoryCommand = "";
+            try {
+                categoryCommand = words[1];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY_BODY);
+            }
+            int index;
+            try {
+                index = Integer.parseInt(categoryCommand.replaceAll("[\\D]", ""));
+            } catch (NumberFormatException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+            }
+            if (argumentsMap.get("c") == null) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_CATEGORY);
+            }
+            if (argumentsMap.get("c").trim().equals("")) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
+            }
+            return new CategoryCommand(index, argumentsMap.get("c"));
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case ClearCommand.COMMAND_WORD:

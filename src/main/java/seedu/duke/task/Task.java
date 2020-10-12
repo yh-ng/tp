@@ -7,6 +7,7 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
     protected int priority;
+    protected String category;
 
     /**
      * Constructor used when adding a new task.
@@ -26,9 +27,10 @@ public abstract class Task {
      * @param description the description of the task
      * @param isDone true if the task is done already, false otherwise
      */
-    public Task(String description, boolean isDone) {
+    public Task(String description, boolean isDone, int priority) {
         this.description = description;
         this.isDone = isDone;
+        this.priority = priority;
     }
 
     /**
@@ -87,5 +89,9 @@ public abstract class Task {
     public void setPriority(int priority) {
         assert priority >= 0 : "priority should be non-negative";
         this.priority = priority;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
