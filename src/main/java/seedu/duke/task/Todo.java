@@ -28,9 +28,9 @@ public class Todo extends Task {
     @Override
     public String toFile() {
         if (isDone) {
-            return "T | 1 | " + description;
+            return "T | 1 | " + description + " | " + this.getPriority() + " | ";
         } else {
-            return "T | 0 | " + description;
+            return "T | 0 | " + description + " | " + this.getPriority() + " | ";
         }
     }
 
