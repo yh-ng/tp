@@ -113,6 +113,20 @@ public class TaskList {
     }
 
     /**
+     * Sets the category of a task identified by the task index number in the task list.
+     *
+     * @param index the index of the task in the task list
+     */
+    public void setCategory(int index, String category) {
+        if (index > tasks.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            tasks.get(index - 1).setCategory(category);
+            Ui.dukePrint(Messages.MESSAGE_CATEGORY + tasks.get(index - 1).toString());
+        }
+    }
+
+    /**
      * Finds and lists all tasks in the task list whose description contains the argument keywords.
      * Keyword matching is case-insensitive.
      *
