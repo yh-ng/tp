@@ -33,7 +33,7 @@ class TodoTest {
     void toFile_getToFile_returnsCorrectString() {
         Todo todo = new Todo("test description");
         String fileString = todo.toFile();
-        String expectedString = "T | 0 | test description";
+        String expectedString = "T | 0 | test description | 0";
         assertEquals(expectedString, fileString);
     }
 

@@ -27,19 +27,29 @@ public class Todo extends Task {
 
     @Override
     public String toFile() {
+        String fileString = "";
         if (isDone) {
-            return "T | 1 | " + description + " | " + this.getPriority() + " | ";
+            fileString = "T | 1 | " + description + " | " + priority;
         } else {
-            return "T | 0 | " + description + " | " + this.getPriority() + " | ";
+            fileString = "T | 0 | " + description + " | " + priority;
         }
+        if (category != null) {
+            fileString += " | " + category;
+        }
+        return fileString;
     }
 
     @Override
     public String toString() {
+        String returnString = "";
         if (this.isDone) {
-            return "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
+            returnString =  "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
         } else {
-            return "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
+            returnString =  "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
         }
+        if (category != null) {
+            returnString += " (category: " + category + ")";
+        }
+        return returnString;
     }
 }

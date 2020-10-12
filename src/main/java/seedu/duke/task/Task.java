@@ -7,6 +7,7 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
     protected int priority;
+    protected String category;
 
     /**
      * Constructor used when adding a new task.
@@ -82,6 +83,15 @@ public abstract class Task {
     }
 
     /**
+     * Retrieves the category of a task.
+     *
+     * @return Category of the task.
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
      * Sets the priority of a task.
      *
      * @param priority New priority of the task.
@@ -89,5 +99,9 @@ public abstract class Task {
     public void setPriority(int priority) {
         assert priority >= 0 : "priority should be non-negative";
         this.priority = priority;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
