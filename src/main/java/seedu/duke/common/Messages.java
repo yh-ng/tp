@@ -20,6 +20,7 @@ public class Messages {
     public static final String MESSAGE_CLEAR = "Noted. I've cleared all your tasks.";
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
+    public static final String MESSAGE_SET_PRIORITY = "I've set the priority of this task to: ";
     public static final String EXCEPTION_INVALID_COMMAND = ":( OOPS!!! I'm sorry, but I don't know what that means. "
             + "Please enter valid commands :-(";
     public static final String EXCEPTION_EMPTY_DESCRIPTION = ":( OOPS!!! The description of a task cannot be empty.";
@@ -30,6 +31,7 @@ public class Messages {
     public static final String EXCEPTION_INVALID_EVENT = "Please enter your event in the correct format.\n     "
             + "Example: event project meeting /at Mon 2-4pm";
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
+    public static final String EXCEPTION_INVALID_PRIORITY = "Priority cannot be less than 0!";
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
             + "Maybe this is your first time using Duke?";
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";

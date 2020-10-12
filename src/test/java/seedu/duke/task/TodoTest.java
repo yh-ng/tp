@@ -41,7 +41,20 @@ class TodoTest {
     void testToString_toString_returnsCorrectString() {
         Todo todo = new Todo("test description");
         String todoString = todo.toString();
-        String expectedString = "[T][N] test description";
+        String expectedString = "[T][N] test description (p:0)";
         assertEquals(expectedString, todoString);
+    }
+
+    @Test
+    void todo_noInputPriority_setsDefaultPriority() {
+        Todo todo = new Todo("test description");
+        assertEquals(0, todo.getPriority());
+    }
+
+    @Test
+    void setPriority_validPriority_setsCorrectPriority() {
+        Todo todo = new Todo("test description");
+        todo.setPriority(5);
+        assertEquals(5, todo.getPriority());
     }
 }

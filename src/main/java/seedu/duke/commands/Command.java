@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.DukeException;
 import seedu.duke.task.TaskList;
 
 /**
@@ -22,5 +23,5 @@ public abstract class Command {
      *
      * @param tasks a TaskList object containing all tasks
      */
-    public abstract void execute(TaskList tasks);
+    public abstract void execute(TaskList tasks) throws DukeException;
 }

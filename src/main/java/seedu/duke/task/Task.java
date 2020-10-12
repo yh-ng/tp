@@ -6,6 +6,7 @@ package seedu.duke.task;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected int priority;
 
     /**
      * Constructor used when adding a new task.
@@ -16,6 +17,7 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.setPriority(0);
     }
 
     /**
@@ -67,4 +69,23 @@ public abstract class Task {
      * @return the formatted string to be displayed to the user
      */
     public abstract String toString();
+
+    /**
+     * Retrieves the priority of a task.
+     *
+     * @return Priority of the task.
+     */
+    public int getPriority() {
+        return priority;
+    }
+
+    /**
+     * Sets the priority of a task.
+     *
+     * @param priority New priority of the task.
+     */
+    public void setPriority(int priority) {
+        assert priority >= 0 : "priority should be non-negative";
+        this.priority = priority;
+    }
 }
