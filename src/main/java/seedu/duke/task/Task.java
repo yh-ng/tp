@@ -82,6 +82,15 @@ public abstract class Task {
     }
 
     /**
+     * Retrieves the category of a task.
+     *
+     * @return Category of the task.
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
      * Sets the priority of a task.
      *
      * @param priority New priority of the task.
