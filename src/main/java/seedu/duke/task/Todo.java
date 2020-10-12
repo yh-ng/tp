@@ -21,8 +21,8 @@ public class Todo extends Task {
      * @param description the description of the todo task
      * @param isDone true if the todo task is done already, false otherwise
      */
-    public Todo(String description, boolean isDone) {
-        super(description, isDone);
+    public Todo(String description, boolean isDone, int priority) {
+        super(description, isDone, priority);
     }
 
     @Override

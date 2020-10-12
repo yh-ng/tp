@@ -25,10 +25,12 @@ public abstract class Task {
      *
      * @param description the description of the task
      * @param isDone true if the task is done already, false otherwise
+     * @param priority the priority of the task
      */
-    public Task(String description, boolean isDone) {
+    public Task(String description, boolean isDone, int priority) {
         this.description = description;
         this.isDone = isDone;
+        this.priority = priority;
     }
 
     /**
