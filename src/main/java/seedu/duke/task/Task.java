@@ -85,6 +85,7 @@ public abstract class Task {
      * @param priority New priority of the task.
      */
     public void setPriority(int priority) {
+        assert priority >= 0 : "priority should be non-negative";
         this.priority = priority;
     }
 }
