@@ -40,6 +40,12 @@ public class AddCommand extends Command {
             newTodo.setPriority(newPriority);
         }
 
+        if (argumentsMap.containsKey("c")) {
+            if (argumentsMap.get("c") != null) {
+                newTodo.setCategory(argumentsMap.get("c"));
+            }
+        }
+
         tasks.addTask(newTodo);
     }
 }
