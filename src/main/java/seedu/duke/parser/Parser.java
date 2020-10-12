@@ -48,7 +48,12 @@ public class Parser {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             }
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            if (words.length == 1) {
+                return new ListCommand();
+            } else {
+                int priority = Integer.parseInt(words[1]);
+                return new ListCommand(priority);
+            }
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
         case DoneCommand.COMMAND_WORD:
