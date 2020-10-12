@@ -21,7 +21,7 @@ public class ListCommand extends Command {
 
     public ListCommand() {
         this.hasPriority = false;
-    };
+    }
 
     public ListCommand(int priority) {
         this.hasPriority = true;
