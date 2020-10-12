@@ -46,7 +46,8 @@ public class Storage {
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
             String[] taskParts = line.split(" \\| ");
-            task = new Todo(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()), Integer.parseInt(taskParts[3].trim()));
+            task = new Todo(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()),
+                    Integer.parseInt(taskParts[3].trim()));
             tasks.add(task);
             if (taskParts.length > 4) {
                 task.setCategory(taskParts[4]);
