@@ -21,16 +21,16 @@ public class Todo extends Task {
      * @param description the description of the todo task
      * @param isDone true if the todo task is done already, false otherwise
      */
-    public Todo(String description, boolean isDone) {
-        super(description, isDone);
+    public Todo(String description, boolean isDone, int priority) {
+        super(description, isDone, priority);
     }
 
     @Override
     public String toFile() {
         if (isDone) {
-            return "T | 1 | " + description;
+            return "T | 1 | " + description + " | " + this.getPriority() + " | ";
         } else {
-            return "T | 0 | " + description;
+            return "T | 0 | " + description + " | " + this.getPriority() + " | ";
         }
     }
 

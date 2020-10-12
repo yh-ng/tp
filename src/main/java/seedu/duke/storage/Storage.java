@@ -47,7 +47,8 @@ public class Storage {
             String[] taskParts = line.split(" \\| ");
             switch (taskParts[0].trim()) {
             case "T":
-                tasks.add(new Todo(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim())));
+                tasks.add(new Todo(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()),
+                        Integer.parseInt(taskParts[3].trim())));
                 break;
             default:
                 break;
