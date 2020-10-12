@@ -28,11 +28,16 @@ public class AddCommand extends Command {
         Todo newTodo = new Todo(description);
 
         if (argumentsMap.containsKey("p")) {
+            int newPriority;
             try {
-                newTodo.setPriority(Integer.parseInt(argumentsMap.get("p")));
+                newPriority = Integer.parseInt(argumentsMap.get("p"));
             } catch (NumberFormatException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
             }
+            if (newPriority < 0) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
+            }
+            newTodo.setPriority(newPriority);
         }
 
         tasks.addTask(newTodo);

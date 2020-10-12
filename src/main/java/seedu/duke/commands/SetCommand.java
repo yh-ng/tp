@@ -1,5 +1,7 @@
 package seedu.duke.commands;
 
+import seedu.duke.DukeException;
+import seedu.duke.common.Messages;
 import seedu.duke.task.TaskList;
 
 public class SetCommand extends Command {
@@ -23,7 +25,10 @@ public class SetCommand extends Command {
      * @param tasks a TaskList object containing all tasks
      */
     @Override
-    public void execute(TaskList tasks) {
+    public void execute(TaskList tasks) throws DukeException {
+        if (priority < 0) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
+        }
         tasks.setPriority(index, priority);
     }
 }
