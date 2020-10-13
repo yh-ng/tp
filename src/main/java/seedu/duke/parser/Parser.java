@@ -72,15 +72,6 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new DukeException(Messages.EXCEPTION_EMPTY_SPACE);
             }
-
-
-//            if (words.length == 1) {
-//                return new ListCommand();
-//            } else {
-//                int priority = Integer.parseInt(words[1]);
-//                return new ListCommand(priority);
-//            }
-
         case DeleteCommand.COMMAND_WORD:
             try {
                 if (words[1].contains("p")) {

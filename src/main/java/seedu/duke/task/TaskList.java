@@ -77,25 +77,15 @@ public class TaskList {
     }
 
     public void deletePriorityTask(int taskIndex) {
-        //ArrayList<Task> taskDeleted = new ArrayList<Task>(); //create a new arraylist
-
-        //taskDeleted.add(tasks.get(taskIndex)); //all the tasks thats gonna be deleted
         tasks.remove(taskIndex); // task is the arraylist that is actually the newDeleteTaskList
-
-
-//        Ui.dukePrint(Messages.MESSAGE_DELETE + taskRemoved.toString() + Messages.MESSAGE_STATUS_FIRST
-//                + (tasks.size() - 1) + Messages.MESSAGE_STATUS_LAST);
-
-
     }
 
     public void displayDeletedPriorityTask(ArrayList<Task> taskDeleted) {
-
         Ui.showLine();
         Ui.dukePrintMultiple(Messages.MESSAGE_DELETE_TASK_WITH_PRIORITY);
         Ui.showLine();
         for (Task task : taskDeleted) {
-            Ui.dukePrintMultiple(task.toString() );
+            Ui.dukePrintMultiple(task.toString());
         }
         Ui.showLine();
         Ui.dukePrintMultiple(Messages.MESSAGE_STATUS_FIRST
@@ -118,7 +108,7 @@ public class TaskList {
         Ui.dukePrint(Messages.MESSAGE_LIST + message);
     }
 
-    public void listTask(int priority) { // (JUST TO LIST THE TASK according to priority )need to follow this but for DELETE!!
+    public void listTask(int priority) {
         String message = "";
         if (tasks.size() == 0) {
             Ui.dukePrint(Messages.MESSAGE_EMPTY_LIST_WITH_PRIORITY);
