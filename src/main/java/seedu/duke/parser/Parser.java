@@ -65,13 +65,15 @@ public class Parser {
             if (words.length == 1) {
                 return new ListCommand();
             }
-            String listCommand = "";
             int priority;
-            if (argumentsMap.get("p") == null) {
+            if (!commandString.contains("p/")) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
             }
+            if (argumentsMap.get("p") == null) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
+            }
             try {
-                priority = Integer.parseInt(listCommand.replaceAll("[\\D]", ""));
+                priority = Integer.parseInt(argumentsMap.get("p"));
             } catch (NumberFormatException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
             }
