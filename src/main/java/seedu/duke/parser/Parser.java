@@ -34,20 +34,17 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         String[] words = fullCommand.split(" ", 2);
         String commandString = fullCommand.replaceFirst(words[0], "").trim();
+        //System.out.println(commandString); // edited
+        //System.out.println(words[1]); //same thing
+
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
 
-        switch (words[0].toLowerCase()) {
+        switch (words[0].toLowerCase()) { // the first word <delete>
         case AddCommand.COMMAND_WORD:
             String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
             return new AddCommand(description, argumentsMap);
-        case DeleteCommand.COMMAND_WORD:
-            try {
-                return new DeleteCommand(Integer.parseInt(words[1]));
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.WARNING_NO_TASK);
-            }
+
+
         case CategoryCommand.COMMAND_WORD:
             int index;
             try {
@@ -61,8 +58,9 @@ public class Parser {
             if (argumentsMap.get("c").trim().equals("")) {
                 throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
             }
-            System.out.println(index);
             return new CategoryCommand(index, argumentsMap.get("c"));
+
+
         case ListCommand.COMMAND_WORD:
             if (words.length == 1) {
                 return new ListCommand();
@@ -78,8 +76,27 @@ public class Parser {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
             }
             return new ListCommand(priority);
+
+            
+        case DeleteCommand.COMMAND_WORD:
+            try {
+                if (words[1].contains("p")) {
+                    return new DeleteCommand(words[1]);
+                } else {
+                    return new DeleteCommand(Integer.parseInt(words[1]));
+                }
+            } catch (NumberFormatException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException(Messages.WARNING_NO_TASK);
+            }
+  
+  
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+
+
         case DoneCommand.COMMAND_WORD:
             try {
                 return new DoneCommand(Integer.parseInt(words[1]));
@@ -114,7 +131,7 @@ public class Parser {
      * Parses the command and obtain arguments in the form (keyword)/(argument).
      *
      * @param argumentString Command substring to be parsed.
-     * @param argumentRegex The regex to match arguments against.
+     * @param argumentRegex  The regex to match arguments against.
      * @return A HashMap of keyword-argument pairs containing the matched arguments.
      */
     public static HashMap<String, String> getArgumentsFromRegex(String argumentString, String argumentRegex) {
@@ -134,7 +151,7 @@ public class Parser {
      * Removes the matching regex patterns from the input String.
      *
      * @param argumentString Command substring to remove regex patterns from.
-     * @param argumentRegex Regex to match the String.
+     * @param argumentRegex  Regex to match the String.
      * @return String with matched patterns removed.
      */
     public static String removeRegexFromArguments(String argumentString, String argumentRegex) throws DukeException {
