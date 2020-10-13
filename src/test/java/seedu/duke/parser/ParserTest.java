@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ParserTest {
 
     @Test
-    void getArgumentsFromRegex_validCommand_parseArgumentsCorrectly() {
+    void getArgumentsFromRegex_validCommand_parseArgumentsCorrectly() throws DukeException {
         String testCommand = "add tP meeting by/16-09-23:59 at/15-09-2020-11:00 p/1";
         HashMap<String, String> argumentsMap = Parser.getArgumentsFromRegex(testCommand, Parser.ARGUMENT_REGEX);
         assertEquals("16-09-23:59", argumentsMap.get("by"));
@@ -20,18 +20,33 @@ class ParserTest {
     }
 
     @Test
-    void removeRegexFromArguments_validCommand_returnsDescription() throws DukeException {
+    void getArgumentsFromRegex_duplicateArguments_throwsException() {
+        String testCommand = "add tP meeting c/cs2113 p/1 p/2";
+        assertThrows(DukeException.class, () -> {
+            Parser.getArgumentsFromRegex(testCommand, Parser.ARGUMENT_REGEX);
+        });
+    }
+
+    @Test
+    void removeArgumentsFromCommand_validCommand_returnsDescription() {
         String testCommand = "add tP meeting by/16-09-23:59 at/15-09-2020-11:00 p/1";
-        String parsedString = Parser.removeRegexFromArguments(testCommand, Parser.ARGUMENT_REGEX);
+        String parsedString = Parser.removeArgumentsFromCommand(testCommand, Parser.ARGUMENT_REGEX);
         String expectedString = "add tP meeting";
         assertEquals(expectedString, parsedString);
     }
 
     @Test
-    void removeRegexFromArguments_noDescription_throwsException() {
-        String testCommand = "by/16-09-23:59";
-        assertThrows(DukeException.class, () -> {
-            System.out.println(Parser.removeRegexFromArguments(testCommand, Parser.ARGUMENT_REGEX));
-        });
+    void removeArgumentsFromCommand_noArguments_returnsDescription() {
+        String testCommand = "tP meeting";
+        String parsedString = Parser.removeArgumentsFromCommand(testCommand, Parser.ARGUMENT_REGEX);
+        assertEquals(testCommand, parsedString);
+    }
+
+    @Test
+    void removeArgumentsFromCommand_extraSpaces_trimsSpaces() {
+        String testCommand = "     tP meeting   c/cs2113  p/1 ";
+        String parsedString = Parser.removeArgumentsFromCommand(testCommand, Parser.ARGUMENT_REGEX);
+        String expectedString = "tP meeting";
+        assertEquals(expectedString, parsedString);
     }
 }
