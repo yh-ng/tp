@@ -59,16 +59,20 @@ public class Parser {
 
 
         case ListCommand.COMMAND_WORD:
-            try {
-                if (words.length == 1) {
-                    return new ListCommand();
-                } else {
-                    int priority = Integer.parseInt(words[1]);
-                    return new ListCommand(priority);
-                }
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_SPACE);
+            if (words.length == 1) {
+                return new ListCommand();
             }
+            String listCommand = "";
+            int priority;
+            if (argumentsMap.get("p") == null) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
+            }
+            try {
+                priority = Integer.parseInt(listCommand.replaceAll("[\\D]", ""));
+            } catch (NumberFormatException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+            }
+            return new ListCommand(priority);
 
 
         case DeleteCommand.COMMAND_WORD:
@@ -84,8 +88,8 @@ public class Parser {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             }
-
-
+  
+  
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
