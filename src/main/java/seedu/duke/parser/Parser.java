@@ -34,12 +34,9 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         String[] words = fullCommand.split(" ", 2);
         String commandString = fullCommand.replaceFirst(words[0], "").trim();
-        //System.out.println(commandString); // edited
-        //System.out.println(words[1]); //same thing
-
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
 
-        switch (words[0].toLowerCase()) { // the first word <delete>
+        switch (words[0].toLowerCase()) {
         case AddCommand.COMMAND_WORD:
             String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
             return new AddCommand(description, argumentsMap);
@@ -77,7 +74,7 @@ public class Parser {
             }
             return new ListCommand(priority);
 
-            
+
         case DeleteCommand.COMMAND_WORD:
             try {
                 if (words[1].contains("p")) {
@@ -105,14 +102,20 @@ public class Parser {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             }
+
+
         case FindCommand.COMMAND_WORD:
             try {
                 return new FindCommand(words[1].trim());
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.EXCEPTION_FIND);
             }
+
+
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+
         case SetCommand.COMMAND_WORD:
             try {
                 return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]),
@@ -120,8 +123,12 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
             }
+
+
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
+
+
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
