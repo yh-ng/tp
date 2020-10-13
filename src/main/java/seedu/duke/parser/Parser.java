@@ -34,9 +34,6 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         String[] words = fullCommand.split(" ", 2);
         String commandString = fullCommand.replaceFirst(words[0], "").trim();
-        //System.out.println(commandString); // edited
-        //System.out.println(words[1]); //same thing
-
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
 
         switch (words[0].toLowerCase()) { // the first word <delete>

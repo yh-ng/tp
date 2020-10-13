@@ -77,7 +77,7 @@ public class TaskList {
     }
 
     public void deletePriorityTask(int taskIndex) {
-        tasks.remove(taskIndex); // task is the arraylist that is actually the newDeleteTaskList
+        tasks.remove(taskIndex);
     }
 
     public void displayDeletedPriorityTask(ArrayList<Task> taskDeleted) {

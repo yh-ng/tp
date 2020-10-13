@@ -31,12 +31,12 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(String priorityValue) {
         this.hasPriorityValue = true;
-        this.priorityIndex = Integer.parseInt(priorityValue.substring(1)); // eg. priorityIndex = 2
+        this.priorityIndex = Integer.parseInt(priorityValue.substring(1));
     }
 
     @Override
     public void execute(TaskList tasks) throws DukeException {
-        ArrayList<Task> taskDeleted = new ArrayList<Task>(); //create a new arraylist
+        ArrayList<Task> taskDeleted = new ArrayList<Task>();
 
         if (hasPriorityValue) {
             if (priorityIndex < 0) {
