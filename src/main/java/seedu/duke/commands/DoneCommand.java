@@ -20,11 +20,6 @@ public class DoneCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public void execute(TaskList tasks) {
         tasks.markAsDone(index);
     }

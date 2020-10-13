@@ -1,6 +1,9 @@
 package seedu.duke.commands;
 
+import seedu.duke.DukeException;
+import seedu.duke.common.Messages;
 import seedu.duke.task.TaskList;
+import seedu.duke.task.Todo;
 
 import java.util.HashMap;
 
@@ -16,22 +19,33 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Represents a general command.
-     *
-     * @return whether to exit Duke application.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * Executes the command.
      *
      * @param tasks a TaskList object containing all tasks
      */
     @Override
-    public void execute(TaskList tasks) {
-        tasks.addTodo(description);
+    public void execute(TaskList tasks) throws DukeException {
+        Todo newTodo = new Todo(description);
+
+        if (argumentsMap.containsKey("p")) {
+            int newPriority;
+            try {
+                newPriority = Integer.parseInt(argumentsMap.get("p"));
+            } catch (NumberFormatException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+            }
+            if (newPriority < 0) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
+            }
+            newTodo.setPriority(newPriority);
+        }
+
+        if (argumentsMap.containsKey("c")) {
+            if (argumentsMap.get("c") != null) {
+                newTodo.setCategory(argumentsMap.get("c"));
+            }
+        }
+
+        tasks.addTask(newTodo);
     }
 }

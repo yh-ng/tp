@@ -18,18 +18,6 @@
     ____________________________________________________________
 
     ____________________________________________________________
-     todo: Adds a todo task to the task list.
-     Parameters: DESCRIPTION
-     Example: todo read book
-
-     deadline: Adds a deadline task to the task list. 
-     Parameters: DESCRIPTION /by DEADLINE
-     Example: deadline return book /by 2021-06-06 12:00
-
-     event: Adds an event task to the task list.
-     Parameters: DESCRIPTION at/ TIME
-     Example: event project meeting /at 2021-08-06 14:00
-
      delete: Deletes the task identified by the index number used in the task listing.
      Parameters: INDEX
      Example: delete 1
@@ -54,102 +42,41 @@
 
     ____________________________________________________________
      Got it. I've added this task:
-       [T][N] read book
+       [T][N] iP meeting (p:0)
      Now you have 1 tasks in the list.
     ____________________________________________________________
 
     ____________________________________________________________
      Got it. I've added this task:
-       [D][N] return book (by: Jun 06 2021 12:00)
+       [T][N] tP meeting (p:0)
      Now you have 2 tasks in the list.
     ____________________________________________________________
 
     ____________________________________________________________
+     Here are the tasks in your list:
+     1.[T][N] iP meeting (p:0)
+     2.[T][N] tP meeting (p:0)
+    ____________________________________________________________
+
+    ____________________________________________________________
+     Nice! I've marked this task as done:
+       [Y] iP meeting
+    ____________________________________________________________
+
+    ____________________________________________________________
+     You do not have this task in the list.
+    ____________________________________________________________
+
+    ____________________________________________________________
+     Here are the tasks in your list:
+     1.[T][Y] iP meeting (p:0)
+     2.[T][N] tP meeting (p:0)
+    ____________________________________________________________
+
+    ____________________________________________________________
      Got it. I've added this task:
-       [E][N] project meeting (at: Aug 06 2021 14:00)
+       [T][N] tP meeting (p:1)
      Now you have 3 tasks in the list.
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Got it. I've added this task:
-       [T][N] join sports club
-     Now you have 4 tasks in the list.
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Got it. I've added this task:
-       [T][N] borrow book
-     Now you have 5 tasks in the list.
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Here are the tasks in your list:
-     1.[T][N] read book
-     2.[D][N] return book (by: Jun 06 2021 12:00)
-     3.[E][N] project meeting (at: Aug 06 2021 14:00)
-     4.[T][N] join sports club
-     5.[T][N] borrow book
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Nice! I've marked this task as done:
-       [Y] read book
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Nice! I've marked this task as done:
-       [Y] join sports club
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Here are the tasks in your list:
-     1.[T][Y] read book
-     2.[D][N] return book (by: Jun 06 2021 12:00)
-     3.[E][N] project meeting (at: Aug 06 2021 14:00)
-     4.[T][Y] join sports club
-     5.[T][N] borrow book
-    ____________________________________________________________
-
-    ____________________________________________________________
-     If you want your DateTime to be formatted, you can input in this format: yyyy-MM-dd HH:mm
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Got it. I've added this task:
-       [D][N] return book (by: Sunday)
-     Now you have 6 tasks in the list.
-    ____________________________________________________________
-
-    ____________________________________________________________
-     If you want your DateTime to be formatted, you can input in this format: yyyy-MM-dd HH:mm
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Got it. I've added this task:
-       [E][N] project meeting (at: Mon 2-4pm)
-     Now you have 7 tasks in the list.
-    ____________________________________________________________
-
-    ____________________________________________________________
-     If you want your DateTime to be formatted, you can input in this format: yyyy-MM-dd HH:mm
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Got it. I've added this task:
-       [D][N] do homework (by: no idea :-p)
-     Now you have 8 tasks in the list.
-    ____________________________________________________________
-
-    ____________________________________________________________
-     Here are the tasks in your list:
-     1.[T][Y] read book
-     2.[D][N] return book (by: Jun 06 2021 12:00)
-     3.[E][N] project meeting (at: Aug 06 2021 14:00)
-     4.[T][Y] join sports club
-     5.[T][N] borrow book
-     6.[D][N] return book (by: Sunday)
-     7.[E][N] project meeting (at: Mon 2-4pm)
-     8.[D][N] do homework (by: no idea :-p)
     ____________________________________________________________
 
     ____________________________________________________________
@@ -158,27 +85,18 @@
 
     ____________________________________________________________
      Noted. I've removed this task:
-       [T][Y] join sports club
-     Now you have 7 tasks in the list.
+       [T][N] tP meeting (p:0)
+     Now you have 2 tasks in the list.
     ____________________________________________________________
 
     ____________________________________________________________
      Here are the tasks in your list:
-     1.[T][Y] read book
-     2.[D][N] return book (by: Jun 06 2021 12:00)
-     3.[E][N] project meeting (at: Aug 06 2021 14:00)
-     4.[T][N] borrow book
-     5.[D][N] return book (by: Sunday)
-     6.[E][N] project meeting (at: Mon 2-4pm)
-     7.[D][N] do homework (by: no idea :-p)
+     1.[T][Y] iP meeting (p:0)
+     2.[T][N] tP meeting (p:1)
     ____________________________________________________________
 
     ____________________________________________________________
-     Here are the matching tasks in your list:
-     1.[T][Y] read book
-     2.[D][N] return book (by: Jun 06 2021 12:00)
-     3.[T][N] borrow book
-     4.[D][N] return book (by: Sunday)
+     There are no matching tasks in your list.
     ____________________________________________________________
 
     ____________________________________________________________

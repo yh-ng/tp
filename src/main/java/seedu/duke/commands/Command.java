@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.DukeException;
 import seedu.duke.task.TaskList;
 
 /**
@@ -13,12 +14,14 @@ public abstract class Command {
      *
      * @return whether to exit Duke application.
      */
-    public abstract boolean isExit();
+    public boolean isExit() {
+        return false;
+    }
 
     /**
      * Executes the command.
      *
      * @param tasks a TaskList object containing all tasks
      */
-    public abstract void execute(TaskList tasks);
+    public abstract void execute(TaskList tasks) throws DukeException;
 }

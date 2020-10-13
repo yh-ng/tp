@@ -37,6 +37,17 @@ public class TaskList {
     }
 
     /**
+     * Adds a task to the task list from the parameters.
+     *
+     * @param task Task to be added to the task list.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+        Ui.dukePrint(Messages.MESSAGE_ADDTASK + task.toString() + Messages.MESSAGE_STATUS_FIRST
+                + tasks.size() + Messages.MESSAGE_STATUS_LAST);
+    }
+
+    /**
      * Adds a todo task to the task list.
      *
      * @param description the description of the todo task
@@ -45,32 +56,6 @@ public class TaskList {
         Todo newTodo = new Todo(description);
         tasks.add(newTodo);
         Ui.dukePrint(Messages.MESSAGE_ADDTASK + newTodo.toString() + Messages.MESSAGE_STATUS_FIRST
-                + tasks.size() + Messages.MESSAGE_STATUS_LAST);
-    }
-
-    /**
-     * Adds a deadline task to the task list.
-     *
-     * @param description the description of the deadline task
-     * @param deadline the deadline of the task
-     */
-    public void addDeadline(String description, String deadline) {
-        Deadline newDeadline = new Deadline(description, deadline);
-        tasks.add(newDeadline);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newDeadline.toString() + Messages.MESSAGE_STATUS_FIRST
-                + tasks.size() + Messages.MESSAGE_STATUS_LAST);
-    }
-
-    /**
-     * Adds an event task to the task list.
-     *
-     * @param description the description of the event task
-     * @param time the time of the task to be done
-     */
-    public void addEvent(String description, String time) {
-        Event newEvent = new Event(description, time);
-        tasks.add(newEvent);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newEvent.toString() + Messages.MESSAGE_STATUS_FIRST
                 + tasks.size() + Messages.MESSAGE_STATUS_LAST);
     }
 
@@ -105,6 +90,18 @@ public class TaskList {
         Ui.dukePrint(Messages.MESSAGE_LIST + message);
     }
 
+    public void listTask(int priority) {
+        String message = "";
+        if (tasks.size() == 0) {
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_LIST_WITH_PRIORITY);
+            return;
+        }
+        for (int i = 0; i < tasks.size(); i++) {
+            message = message + "\n     " + (i + 1) + "." + tasks.get(i).toString();
+        }
+        Ui.dukePrint(Messages.MESSAGE_LIST_WITH_PRIORITY + message);
+    }
+
     /**
      * Clears all the tasks in the task list.
      */
@@ -124,6 +121,20 @@ public class TaskList {
         } else {
             tasks.get(index - 1).markAsDone();
             Ui.dukePrint(Messages.MESSAGE_DONE + tasks.get(index - 1).getDescription());
+        }
+    }
+
+    /**
+     * Sets the category of a task identified by the task index number in the task list.
+     *
+     * @param index the index of the task in the task list
+     */
+    public void setCategory(int index, String category) {
+        if (index > tasks.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            tasks.get(index - 1).setCategory(category);
+            Ui.dukePrint(Messages.MESSAGE_CATEGORY + tasks.get(index - 1).toString());
         }
     }
 
@@ -168,5 +179,20 @@ public class TaskList {
      */
     public Task get(int index) {
         return tasks.get(index);
+    }
+
+    /**
+     * Sets the priority of a task at the given index.
+     *
+     * @param index the index of the task to set priority.
+     * @param priority the priority to set the task at.
+     */
+    public void setPriority(int index, int priority) {
+        if (index > tasks.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            tasks.get(index - 1).setPriority(priority);
+            Ui.dukePrint(Messages.MESSAGE_SET_PRIORITY + tasks.get(index - 1).getPriority());
+        }
     }
 }

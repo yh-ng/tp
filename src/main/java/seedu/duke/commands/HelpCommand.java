@@ -13,16 +13,8 @@ public class HelpCommand extends Command {
             + "     Example: " + COMMAND_WORD;
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public void execute(TaskList tasks) {
-        String message = TodoCommand.MESSAGE_USAGE
-                + "\n\n     " + DeadlineCommand.MESSAGE_USAGE
-                + "\n\n     " + EventCommand.MESSAGE_USAGE
-                + "\n\n     " + DeleteCommand.MESSAGE_USAGE
+        String message = DeleteCommand.MESSAGE_USAGE
                 + "\n\n     " + ListCommand.MESSAGE_USAGE
                 + "\n\n     " + FindCommand.MESSAGE_USAGE
                 + "\n\n     " + DoneCommand.MESSAGE_USAGE
