@@ -91,7 +91,6 @@ public class TaskList {
         for (Task task : taskDeleted) {
             Ui.dukePrintMultiple(task.toString());
         }
-        //Ui.showLine();
         Ui.dukePrintMultiple(Messages.MESSAGE_STATUS_FIRST
                 + (tasks.size()) + Messages.MESSAGE_STATUS_LAST);
         Ui.showLine();
