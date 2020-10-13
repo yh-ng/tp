@@ -59,6 +59,67 @@ Output:
     ____________________________________________________________
 ```
 
+### Deleting a task: `delete`
+Deletes a task from the list
+
+Format `delete <taskIndexNumber>`
+
+Example of usage:
+
+'delete 2'
+
+Output: 
+
+```
+    ____________________________________________________________
+     Noted. I've removed this task:
+       [T][N] meeting (p:2)
+     Now you have 5 tasks in the list.
+    ____________________________________________________________
+
+```
+
+### Deleting all tasks of a certain priority: `delete`
+Delete tasks of the same priority
+
+Format `delete p/<number>`
+
+Example of usage:
+
+`delete p/2`
+
+Output:
+
+```    
+    ____________________________________________________________
+     Noted. I've removed all these task(s) from the same priority:
+    ____________________________________________________________
+     [T][N] bottle (p:2)
+     [T][N] whatever (p:2)
+     
+     Now you have 3 tasks in the list.
+    ____________________________________________________________
+
+```
+
+### Deleting all tasks of a certain priority: `clear`
+Clears all tasks from the list 
+
+Format `clear`
+
+Example of usage:
+
+`clear`
+
+Output:
+
+```
+    ____________________________________________________________
+     Noted. I've cleared all your tasks.
+    ____________________________________________________________
+
+```
+
 ### Exiting the program: `bye`
 Terminates the program.
 
