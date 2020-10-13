@@ -52,4 +52,7 @@ public class Messages {
     public static final String MESSAGE_EMPTY_LIST = "There are no tasks in your list. "
             + "Your task list is empty.";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "There are no tasks of this priority in your list. ";
+    public static final String EXCEPTION_INVALID_LIST_COMMAND = ":( OOPS!!! Please input a valid list command "
+            + "using the format \"list p/PRIORITY\", or \"list\".";
+
 }
