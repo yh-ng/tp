@@ -2,7 +2,7 @@
 
 ## Introduction
 
-termiNus is a task manager for student projects.
+termiNus is an interactive task manager for students in NUS.
 
 ## Quick Start
 
