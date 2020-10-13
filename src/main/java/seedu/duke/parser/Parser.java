@@ -69,7 +69,12 @@ public class Parser {
             }
             return new CategoryCommand(index, argumentsMap.get("c"));
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            if (words.length == 1) {
+                return new ListCommand();
+            } else {
+                int priority = Integer.parseInt(words[1]);
+                return new ListCommand(priority);
+            }
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
         case DoneCommand.COMMAND_WORD:

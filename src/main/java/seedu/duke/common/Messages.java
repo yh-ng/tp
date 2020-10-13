@@ -16,6 +16,7 @@ public class Messages {
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_STATUS_LAST = " tasks in the list.";
     public static final String MESSAGE_LIST = "Here are the tasks in your list:";
+    public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the tasks of this priority in your list:";
     public static final String MESSAGE_DELETE = "Noted. I've removed this task:\n       ";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared all your tasks.";
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
@@ -50,4 +51,5 @@ public class Messages {
     public static final String EXCEPTION_FIND = ":( OOPS!!! The keyword of a find command cannot be empty.";
     public static final String MESSAGE_EMPTY_LIST = "There are no tasks in your list. "
             + "Your task list is empty.";
+    public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "There are no tasks of this priority in your list. ";
 }
