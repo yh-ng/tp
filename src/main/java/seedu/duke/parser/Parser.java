@@ -34,14 +34,14 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         String[] words = fullCommand.split(" ", 2);
         String commandString = fullCommand.replaceFirst(words[0], "").trim();
-        //System.out.println(commandString); // edited
-        //System.out.println(words[1]); //same thing
-
+        String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
 
         switch (words[0].toLowerCase()) { // the first word <delete>
         case AddCommand.COMMAND_WORD:
-            String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
+            if (description.equals("")) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+            }
             return new AddCommand(description, argumentsMap);
 
 
@@ -152,16 +152,20 @@ public class Parser {
     }
 
     /**
-     * Removes the matching regex patterns from the input String.
+     * Removes arguments from the command string.
      *
-     * @param argumentString Command substring to remove regex patterns from.
-     * @param argumentRegex  Regex to match the String.
+     * @param argumentString Command substring to remove arguments from.
+     * @param argumentRegex  Regex to match the arguments.
      * @return String with matched patterns removed.
      */
-    public static String removeRegexFromArguments(String argumentString, String argumentRegex) throws DukeException {
+    public static String removeArgumentsFromCommand(String argumentString, String argumentRegex) {
+        Pattern argumentPattern = Pattern.compile(argumentRegex);
+        Matcher matcher = argumentPattern.matcher(argumentString);
         String description = argumentString.replaceAll(argumentRegex, "").trim();
-        if (description.equals("")) {
-            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+
+        if (matcher.find()) {
+            int argumentStartIndex = matcher.start();
+            description = argumentString.substring(0, argumentStartIndex).trim();
         }
 
         return description;
