@@ -30,18 +30,18 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(TaskList tasks) throws DukeException {
-        ArrayList<Task> newTasks = new ArrayList<Task>();
+        ArrayList<Task> newTasks = new ArrayList<Task>(); //create a new arraylist
 
-        if (hasPriority == true) {
+        if (hasPriority) {
             if (priority < 0) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
             for (int i = 0; i < tasks.size(); i++) {
-                if (tasks.get(i).getPriority() == priority) {
-                    newTasks.add(tasks.get(i));
+                if (tasks.get(i).getPriority() == priority) { //if the task matches the same priority input by user
+                    newTasks.add(tasks.get(i)); // add the task into arraylist (newTasks)
                 }
             }
-            TaskList newTaskList = new TaskList(newTasks);
+            TaskList newTaskList = new TaskList(newTasks); //created a new object called newTaskList
             newTaskList.listTask(priority);
         } else {
             tasks.listTask();

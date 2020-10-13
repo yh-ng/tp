@@ -18,6 +18,7 @@ public class Messages {
     public static final String MESSAGE_LIST = "Here are the tasks in your list:";
     public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the tasks of this priority in your list:";
     public static final String MESSAGE_DELETE = "Noted. I've removed this task:\n       ";
+    public static final String MESSAGE_DELETE_TASK_WITH_PRIORITY = "Noted. I've removed all these task(s) from the same priority:";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared all your tasks.";
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
@@ -25,6 +26,7 @@ public class Messages {
     public static final String MESSAGE_SET_PRIORITY = "Nice! I've set the priority of this task to: ";
     public static final String EXCEPTION_INVALID_COMMAND = ":( OOPS!!! I'm sorry, but I don't know what that means. "
             + "Please enter valid commands :-(";
+    public static final String EXCEPTION_EMPTY_SPACE = ";( OOPS!! Detected an empty spacing. Please remove any unwanted spaces";
     public static final String EXCEPTION_EMPTY_DESCRIPTION = ":( OOPS!!! The description of a task cannot be empty.";
     public static final String EXCEPTION_INVALID_CATEGORY = ":( OOPS!!! Please input a valid category using the format "
             + "c/CATEGORY.";

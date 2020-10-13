@@ -1,6 +1,12 @@
 package seedu.duke.commands;
 
+import seedu.duke.DukeException;
+import seedu.duke.common.Messages;
+import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
+import seedu.duke.ui.Ui;
+
+import java.util.ArrayList;
 
 /**
  * Deletes a Task identified by its index in the task list.
@@ -13,14 +19,41 @@ public class DeleteCommand extends Command {
             + "     Parameters: INDEX\n"
             + "     Example: " + COMMAND_WORD + " 1";
 
+    private final boolean hasPriorityValue;
     private int index;
+    private int priorityIndex;
+
 
     public DeleteCommand(int index) {
+        this.hasPriorityValue = false;
         this.index = index;
+        System.out.println("this is the index: " + index);
+    }
+
+    public DeleteCommand(String priorityValue) {
+        this.hasPriorityValue = true;
+        this.priorityIndex = Integer.parseInt(priorityValue.substring(1)); // eg. priorityIndex = 2
     }
 
     @Override
-    public void execute(TaskList tasks) {
-        tasks.deleteTask(index);
+    public void execute(TaskList tasks) throws DukeException {
+        ArrayList<Task> taskDeleted = new ArrayList<Task>(); //create a new arraylist
+
+        if (hasPriorityValue) {
+            if (priorityIndex < 0) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
+            }
+            for (int i = tasks.size() - 1; i > 0; i--) {
+                if (tasks.get(i).getPriority() == priorityIndex) {
+                    taskDeleted.add(tasks.get(i));
+                    tasks.deletePriorityTask(i);
+                }
+            }
+            TaskList taskDeletedList = new TaskList(taskDeleted); //created a new object called newTaskList
+            taskDeletedList.displayDeletedPriorityTask(taskDeleted);
+
+        } else {
+            tasks.deleteTask(index);
+        }
     }
 }

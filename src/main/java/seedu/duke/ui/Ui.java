@@ -34,6 +34,10 @@ public class Ui {
         System.out.println();
     }
 
+    public static void dukePrintMultiple(String message) {
+        System.out.println("     " + message);
+    }
+
     /**
      * Generates and prints the welcome message upon the start of the application.
      */
