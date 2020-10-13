@@ -49,24 +49,19 @@ public class Parser {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             }
         case CategoryCommand.COMMAND_WORD:
-            String categoryCommand = "";
-            try {
-                categoryCommand = words[1];
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY_BODY);
-            }
             int index;
             try {
-                index = Integer.parseInt(categoryCommand.replaceAll("[\\D]", ""));
+                index = Integer.parseInt(commandString.split(" ")[0]);
             } catch (NumberFormatException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
             }
-            if (argumentsMap.get("c") == null) {
+            if (!argumentsMap.containsKey("c")) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_CATEGORY);
             }
             if (argumentsMap.get("c").trim().equals("")) {
                 throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
             }
+            System.out.println(index);
             return new CategoryCommand(index, argumentsMap.get("c"));
         case ListCommand.COMMAND_WORD:
             if (words.length == 1) {

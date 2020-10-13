@@ -19,6 +19,7 @@ public class ListCommand extends Command {
     private final boolean hasPriority;
     private int priority;
     public static int listSize;
+    public static int newListSize;
 
     public ListCommand() {
         this.hasPriority = false;
@@ -32,6 +33,7 @@ public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks) throws DukeException {
         ArrayList<Task> newTasks = new ArrayList<Task>();
+        listSize = tasks.size();
 
         if (hasPriority == true) {
             if (priority < 0) {
@@ -50,8 +52,15 @@ public class ListCommand extends Command {
             }
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask();
-            //tasks.listTask();
         }
-        listSize = newTasks.size();
+        newListSize = newTasks.size();
+    }
+
+    public int getSize(Boolean isNew) {
+        if (isNew) {
+            return newListSize;
+        } else {
+            return listSize;
+        }
     }
 }
