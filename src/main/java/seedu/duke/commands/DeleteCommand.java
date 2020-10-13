@@ -4,7 +4,6 @@ import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
-import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
@@ -31,7 +30,8 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(String priorityValue) {
         this.hasPriorityValue = true;
-        this.priorityIndex = Integer.parseInt(priorityValue.substring(1));
+        this.priorityIndex = Integer.parseInt(priorityValue.substring(2));
+
     }
 
     @Override
@@ -42,14 +42,16 @@ public class DeleteCommand extends Command {
             if (priorityIndex < 0) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
-            for (int i = tasks.size() - 1; i > 0; i--) {
+            for (int i = tasks.size() - 1; i >= 0; i--) {
                 if (tasks.get(i).getPriority() == priorityIndex) {
                     taskDeleted.add(tasks.get(i));
                     tasks.deletePriorityTask(i);
                 }
             }
-            TaskList taskDeletedList = new TaskList(taskDeleted); //created a new object called newTaskList
-            taskDeletedList.displayDeletedPriorityTask(taskDeleted);
+            if (taskDeleted.isEmpty()) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
+            }
+            tasks.displayDeletedPriorityTask(taskDeleted);
 
         } else {
             tasks.deleteTask(index);

@@ -34,11 +34,14 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         String[] words = fullCommand.split(" ", 2);
         String commandString = fullCommand.replaceFirst(words[0], "").trim();
+        String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
 
-        switch (words[0].toLowerCase()) { // the first word <delete>
+        switch (words[0].toLowerCase()) {
         case AddCommand.COMMAND_WORD:
-            String description = removeRegexFromArguments(commandString, ARGUMENT_REGEX);
+            if (description.equals("")) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+            }
             return new AddCommand(description, argumentsMap);
 
 
@@ -74,7 +77,7 @@ public class Parser {
             }
             return new ListCommand(priority);
 
-            
+
         case DeleteCommand.COMMAND_WORD:
             try {
                 if (words[1].contains("p")) {
@@ -102,14 +105,20 @@ public class Parser {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             }
+
+
         case FindCommand.COMMAND_WORD:
             try {
                 return new FindCommand(words[1].trim());
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.EXCEPTION_FIND);
             }
+
+
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+
         case SetCommand.COMMAND_WORD:
             try {
                 return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]),
@@ -117,8 +126,12 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
             }
+
+
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
+
+
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
@@ -131,13 +144,17 @@ public class Parser {
      * @param argumentRegex  The regex to match arguments against.
      * @return A HashMap of keyword-argument pairs containing the matched arguments.
      */
-    public static HashMap<String, String> getArgumentsFromRegex(String argumentString, String argumentRegex) {
+    public static HashMap<String, String> getArgumentsFromRegex(String argumentString, String argumentRegex)
+            throws DukeException {
         HashMap<String, String> argumentsMap = new HashMap<>();
         Pattern argumentPattern = Pattern.compile(argumentRegex);
         Matcher matcher = argumentPattern.matcher(argumentString);
 
         while (matcher.find()) {
             String[] currentArgument = matcher.group().trim().split("/");
+            if (argumentsMap.containsKey(currentArgument[0])) {
+                throw new DukeException(Messages.EXCEPTION_DUPLICATE_ARGUMENTS);
+            }
             argumentsMap.put(currentArgument[0], currentArgument[1]);
         }
 
@@ -145,16 +162,20 @@ public class Parser {
     }
 
     /**
-     * Removes the matching regex patterns from the input String.
+     * Removes arguments from the command string.
      *
-     * @param argumentString Command substring to remove regex patterns from.
-     * @param argumentRegex  Regex to match the String.
+     * @param argumentString Command substring to remove arguments from.
+     * @param argumentRegex  Regex to match the arguments.
      * @return String with matched patterns removed.
      */
-    public static String removeRegexFromArguments(String argumentString, String argumentRegex) throws DukeException {
+    public static String removeArgumentsFromCommand(String argumentString, String argumentRegex) {
+        Pattern argumentPattern = Pattern.compile(argumentRegex);
+        Matcher matcher = argumentPattern.matcher(argumentString);
         String description = argumentString.replaceAll(argumentRegex, "").trim();
-        if (description.equals("")) {
-            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+
+        if (matcher.find()) {
+            int argumentStartIndex = matcher.start();
+            description = argumentString.substring(0, argumentStartIndex).trim();
         }
 
         return description;
