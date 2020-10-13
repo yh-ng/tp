@@ -71,10 +71,18 @@ public class Parser {
         case ListCommand.COMMAND_WORD:
             if (words.length == 1) {
                 return new ListCommand();
-            } else {
-                int priority = Integer.parseInt(words[1]);
-                return new ListCommand(priority);
             }
+            String listCommand = "";
+            int priority;
+            if (argumentsMap.get("p") == null) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
+            }
+            try {
+                priority = Integer.parseInt(listCommand.replaceAll("[\\D]", ""));
+            } catch (NumberFormatException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+            }
+            return new ListCommand(priority);
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
         case DoneCommand.COMMAND_WORD:

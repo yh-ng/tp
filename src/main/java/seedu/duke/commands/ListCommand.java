@@ -18,6 +18,7 @@ public class ListCommand extends Command {
             + "     Example: " + COMMAND_WORD;
     private final boolean hasPriority;
     private int priority;
+    public static int listSize;
 
     public ListCommand() {
         this.hasPriority = false;
@@ -44,8 +45,13 @@ public class ListCommand extends Command {
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask(priority);
         } else {
-            tasks.listTask();
+            for (int i = 0; i < tasks.size(); i++) {
+                newTasks.add(tasks.get(i));
+            }
+            TaskList newTaskList = new TaskList(newTasks);
+            newTaskList.listTask();
+            //tasks.listTask();
         }
-
+        listSize = newTasks.size();
     }
 }
