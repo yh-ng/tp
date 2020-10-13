@@ -29,6 +29,7 @@ public class Messages {
             + "Please enter valid commands :-(";
     public static final String EXCEPTION_EMPTY_SPACE = ";( OOPS!! Detected an empty spacing. "
             + "Please remove any unwanted spaces";
+    public static final String EXCEPTION_DUPLICATE_ARGUMENTS = ";( OOPS!! You have duplicate arguments! ";
     public static final String EXCEPTION_EMPTY_DESCRIPTION = ":( OOPS!!! The description of a task cannot be empty.";
     public static final String EXCEPTION_INVALID_CATEGORY = ":( OOPS!!! Please input a valid category using the format "
             + "c/CATEGORY.";

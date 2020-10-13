@@ -134,13 +134,17 @@ public class Parser {
      * @param argumentRegex  The regex to match arguments against.
      * @return A HashMap of keyword-argument pairs containing the matched arguments.
      */
-    public static HashMap<String, String> getArgumentsFromRegex(String argumentString, String argumentRegex) {
+    public static HashMap<String, String> getArgumentsFromRegex(String argumentString, String argumentRegex)
+            throws DukeException {
         HashMap<String, String> argumentsMap = new HashMap<>();
         Pattern argumentPattern = Pattern.compile(argumentRegex);
         Matcher matcher = argumentPattern.matcher(argumentString);
 
         while (matcher.find()) {
             String[] currentArgument = matcher.group().trim().split("/");
+            if (argumentsMap.containsKey(currentArgument[0])) {
+                throw new DukeException(Messages.EXCEPTION_DUPLICATE_ARGUMENTS);
+            }
             argumentsMap.put(currentArgument[0], currentArgument[1]);
         }
 
