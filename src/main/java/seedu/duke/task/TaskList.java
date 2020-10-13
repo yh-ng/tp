@@ -4,6 +4,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents a list of tasks.
@@ -20,6 +21,7 @@ public class TaskList {
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
+
 
     /**
      * Constructs an empty task list.
@@ -77,19 +79,21 @@ public class TaskList {
     }
 
     public void deletePriorityTask(int taskIndex) {
-        tasks.remove(taskIndex); // task is the arraylist that is actually the newDeleteTaskList
+        tasks.remove(taskIndex);
+
     }
 
     public void displayDeletedPriorityTask(ArrayList<Task> taskDeleted) {
         Ui.showLine();
         Ui.dukePrintMultiple(Messages.MESSAGE_DELETE_TASK_WITH_PRIORITY);
         Ui.showLine();
+        Collections.reverse(taskDeleted);
         for (Task task : taskDeleted) {
             Ui.dukePrintMultiple(task.toString());
         }
-        Ui.showLine();
+        //Ui.showLine();
         Ui.dukePrintMultiple(Messages.MESSAGE_STATUS_FIRST
-                + (tasks.size() - 1) + Messages.MESSAGE_STATUS_LAST);
+                + (tasks.size()) + Messages.MESSAGE_STATUS_LAST);
         Ui.showLine();
     }
 

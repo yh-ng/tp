@@ -42,7 +42,7 @@ public class Messages {
     public static final String EXCEPTION_INVALID_EVENT = "Please enter your event in the correct format.\n     "
             + "Example: event project meeting /at Mon 2-4pm";
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
-    public static final String EXCEPTION_INVALID_PRIORITY = "Priority cannot be less than 0!";
+    public static final String EXCEPTION_INVALID_PRIORITY = "Invalid priority number.";
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
             + "Maybe this is your first time using Duke?";
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";
