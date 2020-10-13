@@ -27,7 +27,6 @@ public class DeleteCommand extends Command {
     public DeleteCommand(int index) {
         this.hasPriorityValue = false;
         this.index = index;
-        System.out.println("this is the index: " + index);
     }
 
     public DeleteCommand(String priorityValue) {
