@@ -9,7 +9,10 @@ import java.util.HashMap;
 
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a todo task to the task list.\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a todo task to the task list.\n"
+            + "     Parameters: TASK_NAME\n"
+            + "     Example: " + COMMAND_WORD + " example_task";
     private final String description;
     private final HashMap<String, String> argumentsMap;
 

@@ -10,7 +10,7 @@ public class CategoryCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets the category of a task identified by the task index number in the task list\n"
             + "     Parameters: INDEX c/CATEGORY\n"
-            + "Example: " + COMMAND_WORD + " 1 Academics";
+            + "     Example: " + COMMAND_WORD + " 1 Academics";
 
     private int index;
     private String category;
