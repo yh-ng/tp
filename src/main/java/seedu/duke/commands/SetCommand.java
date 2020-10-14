@@ -9,7 +9,7 @@ public class SetCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets the task identified by the index number used in the task listing to the new priority.\n"
             + "     Parameters: INDEX p/PRIORITY\n"
-            + "     Example: " + COMMAND_WORD + " 1 2";
+            + "     Example: " + COMMAND_WORD + " 1 p/2";
 
     private final int index;
     private final int priority;

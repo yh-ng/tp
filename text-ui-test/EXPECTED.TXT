@@ -6,29 +6,29 @@
      I have created a new tasks.txt file for you. :) Type some commands and see it.
     ____________________________________________________________
 
- _                           _  _   _
-| |                         (_)| \ | |
-| |_   ___  _ __  _ __ ___   _ |  \| | _   _  ___
-| __| / _ \| '__|| '_ ` _ \ | || . ` || | | |/ __|
-| |_ |  __/| |   | | | | | || || |\  || |_| |\__ \
- \__| \___||_|   |_| |_| |_||_|\_| \_/ \__,_||___/
+     _                           _  _   _
+    | |                         (_)| \ | |
+    | |_   ___  _ __  _ __ ___   _ |  \| | _   _  ___
+    | __| / _ \| '__|| '_ ` _ \ | || . ` || | | |/ __|
+    | |_ |  __/| |   | | | | | || || |\  || |_| |\__ \
+     \__| \___||_|   |_| |_| |_||_|\_| \_/ \__,_||___/
 
     ____________________________________________________________
-     Hello! I'm Duke.
+     Hello! I'm termiNus.
      What can I do for you?
     ____________________________________________________________
 
     ____________________________________________________________
-     add: Adds a todo task to the task list.
-     Parameters: TASK_NAME
-     Example: add example_task
+     add: Adds a task to the task list.
+     Parameters: TASK_NAME <optional arguments>
+     Example: add example_task <optional arguments>
 
      bye: Exits the program.
      Example: bye
 
      category: Sets the category of a task identified by the task index number in the task list
      Parameters: INDEX c/CATEGORY
-     Example: category 1 Academics
+     Example: category 1 c/Academics
 
      clear: Clears all tasks in the task list.
      Example: clear
@@ -53,7 +53,7 @@
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
-     Example: set 1 2
+     Example: set 1 p/2
     ____________________________________________________________
 
     ____________________________________________________________
