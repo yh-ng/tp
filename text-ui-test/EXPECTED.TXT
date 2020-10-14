@@ -19,41 +19,41 @@
     ____________________________________________________________
 
     ____________________________________________________________
-      add: Adds a todo task to the task list.
-      Parameters: TASK_NAME
-      Example: add example_task
+     add: Adds a todo task to the task list.
+     Parameters: TASK_NAME
+     Example: add example_task
 
-      bye: Exits the program.
-      Example: bye
+     bye: Exits the program.
+     Example: bye
 
-      category: Sets the category of a task identified by the task index number in the task list
-      Parameters: INDEX c/CATEGORY
-      Example: category 1 Academics
+     category: Sets the category of a task identified by the task index number in the task list
+     Parameters: INDEX c/CATEGORY
+     Example: category 1 Academics
 
-      clear: Clears all tasks in the task list.
-      Example: clear
+     clear: Clears all tasks in the task list.
+     Example: clear
 
-      delete: Deletes the task identified by the index number used in the task listing.
-      Parameters: INDEX
-      Example: delete 1
+     delete: Deletes the task identified by the index number used in the task listing.
+     Parameters: INDEX
+     Example: delete 1
 
-      done: Marks the task identified by the index number used in the task listing as done.
-      Parameters: INDEX
-      Example: done 1
+     done: Marks the task identified by the index number used in the task listing as done.
+     Parameters: INDEX
+     Example: done 1
 
-      find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
-      Parameters: KEYWORDS
-      Example: find book
+     find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
+     Parameters: KEYWORDS
+     Example: find book
 
-      help: Shows program usage instructions.
-      Example: help
+     help: Shows program usage instructions.
+     Example: help
 
-      list: Displays all tasks in the task list as a list with index numbers.
-      Example: list
+     list: Displays all tasks in the task list as a list with index numbers.
+     Example: list
 
-      set: Sets the task identified by the index number used in the task listing to the new priority.
-      Parameters: INDEX p/PRIORITY
-      Example: set 1 2
+     set: Sets the task identified by the index number used in the task listing to the new priority.
+     Parameters: INDEX p/PRIORITY
+     Example: set 1 2
     ____________________________________________________________
 
     ____________________________________________________________
