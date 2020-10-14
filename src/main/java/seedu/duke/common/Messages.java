@@ -46,7 +46,7 @@ public class Messages {
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "Invalid priority number.";
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
-            + "Maybe this is your first time using Duke?";
+            + "Maybe this is your first time using termiNus?";
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";
     public static final String MESSAGE_NEW_FILE = "I have created a new tasks.txt file for you. :) "
             + "Type some commands and see it.";
