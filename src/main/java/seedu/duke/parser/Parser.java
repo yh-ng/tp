@@ -15,6 +15,8 @@ import seedu.duke.commands.SetCommand;
 import seedu.duke.common.Messages;
 
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,6 +25,7 @@ import java.util.regex.Pattern;
  */
 public class Parser {
     public static final String ARGUMENT_REGEX = "([a-z]+/[:a-z0-9-]+)";
+    public static final Logger parserLogger = Logger.getLogger(Parser.class.getName());
 
     /**
      * Parses user input into command for execution.
@@ -151,6 +154,7 @@ public class Parser {
         HashMap<String, String> argumentsMap = new HashMap<>();
         Pattern argumentPattern = Pattern.compile(argumentRegex);
         Matcher matcher = argumentPattern.matcher(argumentString);
+        StringBuilder log = new StringBuilder("Optional arguments: ");
 
         while (matcher.find()) {
             String[] currentArgument = matcher.group().trim().split("/");
@@ -158,8 +162,10 @@ public class Parser {
                 throw new DukeException(Messages.EXCEPTION_DUPLICATE_ARGUMENTS);
             }
             argumentsMap.put(currentArgument[0], currentArgument[1]);
+            log.append(currentArgument[0]).append("/").append(currentArgument[1]).append(" ");
         }
 
+        parserLogger.log(Level.FINER, log.toString());
         return argumentsMap;
     }
 
@@ -180,6 +186,7 @@ public class Parser {
             description = argumentString.substring(0, argumentStartIndex).trim();
         }
 
+        parserLogger.log(Level.FINER, "Description: " + description);
         return description;
     }
 }
