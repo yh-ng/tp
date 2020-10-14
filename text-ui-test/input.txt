@@ -1,1 +1,14 @@
-James Gosling
+help
+add iP meeting
+add tP meeting by/16-09-23:59 at/15-09-2020-11:00
+list
+done 1
+done 4
+list
+add tP meeting by/16-09-23:59 at/15-09-2020-11:00 p/1 class/project
+delete 10
+delete 2
+list
+find book
+Revengers Assemble!
+bye
