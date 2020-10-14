@@ -9,7 +9,7 @@ public class DoneCommand extends Command {
 
     public static final String COMMAND_WORD = "done";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the task indentified by the index number used in the task listing as done.\n"
+            + ": Marks the task identified by the index number used in the task listing as done.\n"
             + "     Parameters: INDEX\n"
             + "     Example: " + COMMAND_WORD + " 1";
 
