@@ -129,6 +129,8 @@ public class Parser {
                 return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]),
                         Integer.parseInt(argumentsMap.get("p")));
             } catch (NumberFormatException e) {
+                throw new DukeException(Messages.WARNING_NO_TASK);
+            } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
             }
 
