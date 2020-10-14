@@ -6,13 +6,12 @@ package seedu.duke.common;
 public class Messages {
 
     public static final String DIVIDER = "    ____________________________________________________________";
-    public static final String LOGO =
-            " _                           _  _   _             \n" +
-            "| |                         (_)| \\ | |            \n" +
-            "| |_   ___  _ __  _ __ ___   _ |  \\| | _   _  ___ \n" +
-            "| __| / _ \\| '__|| '_ ` _ \\ | || . ` || | | |/ __|\n" +
-            "| |_ |  __/| |   | | | | | || || |\\  || |_| |\\__ \\\n" +
-            " \\__| \\___||_|   |_| |_| |_||_|\\_| \\_/ \\__,_||___/";
+    public static final String LOGO = " _                           _  _   _             \n"
+            + "| |                         (_)| \\ | |            \n"
+            + "| |_   ___  _ __  _ __ ___   _ |  \\| | _   _  ___ \n"
+            + "| __| / _ \\| '__|| '_ ` _ \\ | || . ` || | | |/ __|\n"
+            + "| |_ |  __/| |   | | | | | || || |\\  || |_| |\\__ \\\n"
+            + " \\__| \\___||_|   |_| |_| |_||_|\\_| \\_/ \\__,_||___/";
     public static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
     public static final String MESSAGE_ADDTASK = "Got it. I've added this task:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
