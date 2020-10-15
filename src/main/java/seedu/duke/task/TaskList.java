@@ -80,7 +80,6 @@ public class TaskList {
 
     public void deletePriorityTask(int taskIndex) {
         tasks.remove(taskIndex);
-
     }
 
     public void displayDeletedPriorityTask(ArrayList<Task> taskDeleted) {

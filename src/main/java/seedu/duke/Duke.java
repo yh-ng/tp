@@ -7,6 +7,9 @@ import seedu.duke.storage.Storage;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Entry point of the Duke application.
  * Initializes the application and starts the interaction with the user.
@@ -15,6 +18,7 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
+    private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
 
     public Duke(String filePath) {
         storage = new Storage(filePath);
@@ -47,6 +51,7 @@ public class Duke {
     }
   
     public static void main(String[] args) {
+        dukeLogger.log(Level.INFO,"Logging started");
         new Duke(Storage.DEFAULT_STORAGE_FILEPATH).run();
     }
 }

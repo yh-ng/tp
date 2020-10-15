@@ -1,9 +1,13 @@
 package seedu.duke.commands;
 
+import seedu.duke.Duke;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
+
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import java.util.ArrayList;
 
@@ -21,9 +25,11 @@ public class DeleteCommand extends Command {
     private final boolean hasPriorityValue;
     private int index;
     private int priorityIndex;
+    private static final Logger deleteCommandLogger = Logger.getLogger(DeleteCommand.class.getName());
 
 
     public DeleteCommand(int index) {
+        assert index > 0 : "Task number should be greater than 0";
         this.hasPriorityValue = false;
         this.index = index;
     }
@@ -31,6 +37,7 @@ public class DeleteCommand extends Command {
     public DeleteCommand(String priorityValue) {
         this.hasPriorityValue = true;
         this.priorityIndex = Integer.parseInt(priorityValue.substring(2));
+        deleteCommandLogger.log(Level.WARNING, "Priority should be non-negative");
     }
 
     @Override
