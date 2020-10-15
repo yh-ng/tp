@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
  * Parses use input.
  */
 public class Parser {
-    public static final String ARGUMENT_REGEX = "([a-z]+/[:a-z0-9-]+)";
+    public static final String ARGUMENT_REGEX = "([\\w]+/[^\\s]+)";
     public static final Logger parserLogger = Logger.getLogger(Parser.class.getName());
 
     /**
@@ -159,7 +159,7 @@ public class Parser {
         StringBuilder log = new StringBuilder("Optional arguments: ");
 
         while (matcher.find()) {
-            String[] currentArgument = matcher.group().trim().split("/");
+            String[] currentArgument = matcher.group().trim().split("/", 2);
             if (argumentsMap.containsKey(currentArgument[0])) {
                 throw new DukeException(Messages.EXCEPTION_DUPLICATE_ARGUMENTS);
             }
