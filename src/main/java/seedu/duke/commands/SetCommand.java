@@ -15,13 +15,12 @@ public class SetCommand extends Command {
             + ": Sets the task identified by the index number used in the task listing to the new priority.\n"
             + "     Parameters: INDEX p/PRIORITY\n"
             + "     Example: " + COMMAND_WORD + " 1 p/2";
+    public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p"));
 
     private final int index;
     private final HashMap<String, String> argumentsMap;
-    private final HashSet<String> allowedArguments = new HashSet<>(Arrays.asList("p"));
 
-    public SetCommand(int index, HashMap<String, String> argumentsMap) throws DukeException {
-        checkAllowedArguments(argumentsMap, allowedArguments);
+    public SetCommand(int index, HashMap<String, String> argumentsMap) {
         this.index = index;
         this.argumentsMap = argumentsMap;
     }
