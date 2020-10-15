@@ -3,6 +3,9 @@ package seedu.duke.commands;
 import seedu.duke.DukeException;
 import seedu.duke.task.TaskList;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * Represents an executable command.
  */
