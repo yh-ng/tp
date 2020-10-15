@@ -205,7 +205,7 @@ public class Parser {
             throws DukeException {
         for (HashMap.Entry<String, String> entry: argumentsMap.entrySet()) {
             if (!allowedArguments.contains(entry.getKey())) {
-                throw new DukeException("invalid optional argument!");
+                throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
             }
         }
     }
