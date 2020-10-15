@@ -6,7 +6,8 @@ import seedu.duke.common.Messages;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
-import java.util.logging.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import java.util.ArrayList;
 
