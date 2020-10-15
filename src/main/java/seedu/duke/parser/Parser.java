@@ -98,8 +98,8 @@ public class Parser {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             }
-  
-  
+
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -197,13 +197,13 @@ public class Parser {
     /**
      * Checks if the user passed in an invalid optional argument for a given command.
      *
-     * @param argumentsMap HashMap containing optional arguments.
+     * @param argumentsMap     HashMap containing optional arguments.
      * @param allowedArguments HashSet containing allowed arguments.
      * @throws DukeException If argumentsMap contains invalid arguments not in allowedArguments.
      */
     public static void checkAllowedArguments(HashMap<String, String> argumentsMap, HashSet<String> allowedArguments)
             throws DukeException {
-        for (HashMap.Entry<String, String> entry: argumentsMap.entrySet()) {
+        for (HashMap.Entry<String, String> entry : argumentsMap.entrySet()) {
             if (!allowedArguments.contains(entry.getKey())) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
             }
