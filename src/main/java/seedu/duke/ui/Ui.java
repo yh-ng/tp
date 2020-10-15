@@ -43,7 +43,7 @@ public class Ui {
      */
     public static void showWelcome() {
         System.out.println(Messages.LOGO);
-        dukePrint("Hello! I'm Duke.\n     What can I do for you?");
+        dukePrint("Hello! I'm termiNus.\n     What can I do for you?");
     }
 
     /**

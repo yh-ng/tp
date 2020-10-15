@@ -5,11 +5,18 @@ import seedu.duke.common.Messages;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a todo task to the task list.\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a task to the task list.\n"
+            + "     Parameters: TASK_NAME <optional arguments>\n"
+            + "     Example: " + COMMAND_WORD + " example_task <optional arguments>";
+    public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c"));
+
     private final String description;
     private final HashMap<String, String> argumentsMap;
 

@@ -15,6 +15,9 @@ import seedu.duke.commands.SetCommand;
 import seedu.duke.common.Messages;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,7 +25,8 @@ import java.util.regex.Pattern;
  * Parses use input.
  */
 public class Parser {
-    public static final String ARGUMENT_REGEX = "([a-z]+/[:a-z0-9-]+)";
+    public static final String ARGUMENT_REGEX = "([\\w]+/[^\\s]+)";
+    public static final Logger parserLogger = Logger.getLogger(Parser.class.getName());
 
     /**
      * Parses user input into command for execution.
@@ -39,6 +43,7 @@ public class Parser {
 
         switch (words[0].toLowerCase()) {
         case AddCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
             if (description.equals("")) {
                 throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
             }
@@ -123,9 +128,11 @@ public class Parser {
 
         case SetCommand.COMMAND_WORD:
             try {
-                return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]),
-                        Integer.parseInt(argumentsMap.get("p")));
+                checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
+                return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]), argumentsMap);
             } catch (NumberFormatException e) {
+                throw new DukeException(Messages.WARNING_NO_TASK);
+            } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
             }
 
@@ -151,15 +158,18 @@ public class Parser {
         HashMap<String, String> argumentsMap = new HashMap<>();
         Pattern argumentPattern = Pattern.compile(argumentRegex);
         Matcher matcher = argumentPattern.matcher(argumentString);
+        StringBuilder log = new StringBuilder("Optional arguments: ");
 
         while (matcher.find()) {
-            String[] currentArgument = matcher.group().trim().split("/");
+            String[] currentArgument = matcher.group().trim().split("/", 2);
             if (argumentsMap.containsKey(currentArgument[0])) {
                 throw new DukeException(Messages.EXCEPTION_DUPLICATE_ARGUMENTS);
             }
             argumentsMap.put(currentArgument[0], currentArgument[1]);
+            log.append(currentArgument[0]).append("/").append(currentArgument[1]).append(" ");
         }
 
+        parserLogger.log(Level.FINER, log.toString());
         return argumentsMap;
     }
 
@@ -180,6 +190,23 @@ public class Parser {
             description = argumentString.substring(0, argumentStartIndex).trim();
         }
 
+        parserLogger.log(Level.FINER, "Description: " + description);
         return description;
+    }
+
+    /**
+     * Checks if the user passed in an invalid optional argument for a given command.
+     *
+     * @param argumentsMap HashMap containing optional arguments.
+     * @param allowedArguments HashSet containing allowed arguments.
+     * @throws DukeException If argumentsMap contains invalid arguments not in allowedArguments.
+     */
+    public static void checkAllowedArguments(HashMap<String, String> argumentsMap, HashSet<String> allowedArguments)
+            throws DukeException {
+        for (HashMap.Entry<String, String> entry: argumentsMap.entrySet()) {
+            if (!allowedArguments.contains(entry.getKey())) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+            }
+        }
     }
 }

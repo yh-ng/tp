@@ -6,11 +6,12 @@ package seedu.duke.common;
 public class Messages {
 
     public static final String DIVIDER = "    ____________________________________________________________";
-    public static final String LOGO = "    ____        _        \n"
-            + "    |  _ \\ _   _| | _____ \n"
-            + "    | | | | | | | |/ / _ \\\n"
-            + "    | |_| | |_| |   <  __/\n"
-            + "    |____/ \\__,_|_|\\_\\___|\n";
+    public static final String LOGO = "     _                           _  _   _\n"
+            + "    | |                         (_)| \\ | |\n"
+            + "    | |_   ___  _ __  _ __ ___   _ |  \\| | _   _  ___\n"
+            + "    | __| / _ \\| '__|| '_ ` _ \\ | || . ` || | | |/ __|\n"
+            + "    | |_ |  __/| |   | | | | | || || |\\  || |_| |\\__ \\\n"
+            + "     \\__| \\___||_|   |_| |_| |_||_|\\_| \\_/ \\__,_||___/\n";
     public static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
     public static final String MESSAGE_ADDTASK = "Got it. I've added this task:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
@@ -30,6 +31,7 @@ public class Messages {
     public static final String EXCEPTION_EMPTY_SPACE = ";( OOPS!! Detected an empty spacing. "
             + "Please remove any unwanted spaces";
     public static final String EXCEPTION_DUPLICATE_ARGUMENTS = ";( OOPS!! You have duplicate arguments! ";
+    public static final String EXCEPTION_INVALID_ARGUMENTS = ":( OOPS!!! You have invalid arguments";
     public static final String EXCEPTION_EMPTY_DESCRIPTION = ":( OOPS!!! The description of a task cannot be empty.";
     public static final String EXCEPTION_INVALID_CATEGORY = ":( OOPS!!! Please input a valid category using the format "
             + "c/CATEGORY.";
@@ -45,7 +47,7 @@ public class Messages {
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "Invalid priority number.";
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
-            + "Maybe this is your first time using Duke?";
+            + "Maybe this is your first time using termiNus?";
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";
     public static final String MESSAGE_NEW_FILE = "I have created a new tasks.txt file for you. :) "
             + "Type some commands and see it.";
