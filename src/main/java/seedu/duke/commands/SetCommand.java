@@ -1,8 +1,13 @@
 package seedu.duke.commands;
 
+import seedu.duke.Duke;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.task.TaskList;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class SetCommand extends Command {
     public static final String COMMAND_WORD = "set";
@@ -12,11 +17,13 @@ public class SetCommand extends Command {
             + "     Example: " + COMMAND_WORD + " 1 p/2";
 
     private final int index;
-    private final int priority;
+    private final HashMap<String, String> argumentsMap;
+    private final HashSet<String> allowedArguments = new HashSet<>(Arrays.asList("p"));
 
-    public SetCommand(int index, int priority) {
+    public SetCommand(int index, HashMap<String, String> argumentsMap) throws DukeException {
+        checkAllowedArguments(argumentsMap, allowedArguments);
         this.index = index;
-        this.priority = priority;
+        this.argumentsMap = argumentsMap;
     }
 
     /**
@@ -26,6 +33,14 @@ public class SetCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks) throws DukeException {
+        int priority;
+
+        try {
+            priority = Integer.parseInt(argumentsMap.get("p"));
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
+        }
+
         if (priority < 0) {
             throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
         }

@@ -126,8 +126,7 @@ public class Parser {
 
         case SetCommand.COMMAND_WORD:
             try {
-                return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]),
-                        Integer.parseInt(argumentsMap.get("p")));
+                return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]), argumentsMap);
             } catch (NumberFormatException e) {
                 throw new DukeException(Messages.WARNING_NO_TASK);
             } catch (IndexOutOfBoundsException e) {
