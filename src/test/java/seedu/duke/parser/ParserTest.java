@@ -28,6 +28,14 @@ class ParserTest {
     }
 
     @Test
+    void getArgumentsFromRegex_multipleBackslash_parsesCorrectly() throws DukeException {
+        String testCommand = "add tP meeting p/23/24 c/cs2/1/13";
+        HashMap<String, String> argumentsMap = Parser.getArgumentsFromRegex(testCommand, Parser.ARGUMENT_REGEX);
+        assertEquals("23/24", argumentsMap.get("p"));
+        assertEquals("cs2/1/13", argumentsMap.get("c"));
+    }
+
+    @Test
     void removeArgumentsFromCommand_validCommand_returnsDescription() {
         String testCommand = "add tP meeting by/16-09-23:59 at/15-09-2020-11:00 p/1";
         String parsedString = Parser.removeArgumentsFromCommand(testCommand, Parser.ARGUMENT_REGEX);
