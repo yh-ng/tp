@@ -114,6 +114,26 @@ Output:
     ____________________________________________________________
 ```
 
+### Setting category of a task: `category`
+Sets the category of an existing task.
+
+Format: `category <taskIndexNumber> c/<category>`
+
+:triangular_flag_on_post: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+
+Example of usage:
+
+`category 1 c/CCA`
+
+Output:
+
+```
+    ____________________________________________________________
+     Nice! I have set the category of this task:
+       [T][N] tP meeting (p:0) (category: CCA)
+    ____________________________________________________________
+```
+
 ### Mark task as done: `done`
 Marks a given task as done.
 
@@ -299,6 +319,7 @@ Add task | `add <description> <optional arguments>` | `add tP meeting c/cs2113`
 List tasks | `list` | `list`
 List tasks with priority | `list p/<priority>` | `list p/2`
 Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
+Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c/CCA`
 Mark task as done | `done <taskIndexNumber>` | `done 1`
 Delete task | `delete <taskIndexNumber>` | `delete 2`
 Delete tasks with priority | `delete p/<priority>` | `delete p/2`
