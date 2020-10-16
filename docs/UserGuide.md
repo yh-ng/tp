@@ -298,8 +298,8 @@ Action | Command | Example
 Add task | `add <description> <optional arguments>` | `add tP meeting c/cs2113`
 List tasks | `list` | `list`
 List tasks with priority | `list p/<priority>` | `list p/2`
-Set priority of task | ``set <taskIndexNumber> p/<priority>`` | `set 1 p/2`
-Mark task as done | `done <taskIndexNumber` | `done 1`
+Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
+Mark task as done | `done <taskIndexNumber>` | `done 1`
 Delete task | `delete <taskIndexNumber>` | `delete 2`
 Delete tasks with priority | `delete p/<priority>` | `delete p/2`
 Clear all tasks | `clear` | `clear`
