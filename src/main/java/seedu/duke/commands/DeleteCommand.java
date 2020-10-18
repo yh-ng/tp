@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
             + "     Example: " + COMMAND_WORD + " 1";
 
     private boolean hasPriorityValue = false;
-    private  boolean hasCategoryValue = false;
+    private boolean hasCategoryValue = false;
     private String categoryValue = "";
     private int index;
     private int priorityIndex;
@@ -37,13 +37,11 @@ public class DeleteCommand extends Command {
     }
 
     public DeleteCommand(String inputValue) {  // for both priority + category
-
-        if (inputValue.startsWith("p")){  // for priority
+        if (inputValue.startsWith("p")) {  // for priority
             this.hasPriorityValue = true;
             this.priorityIndex = Integer.parseInt(inputValue.substring(2));
             //deleteCommandLogger.log(Level.WARNING, "Priority should be non-negative");
-        }
-        else { // for category
+        } else { // for category
             this.hasCategoryValue = true;
             this.categoryValue = inputValue.substring(2);
             //deleteCommandLogger.log(Level.WARNING, "Priority should be non-negative");
@@ -70,34 +68,22 @@ public class DeleteCommand extends Command {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
             tasks.displayDeletedPriorityOrCategoryTask(prioritytaskDeleted); //if priority exists
-
-        }
-
-        /// END OF PRIORITY
-
-
-        else if (hasCategoryValue){
-           // try {
-                for (int i = tasks.size() - 1; i >= 0; i--) {
-                    if (tasks.get(i).getCategory() == null){
-                        continue; //ignore if category is not set for the task
-                    }
-                    if (tasks.get(i).getCategory().equals(categoryValue)) {
-                        prioritytaskDeleted.add(tasks.get(i));
-                        tasks.deletePriorityOrCategoryTask(i);
-                    }
+        } else if (hasCategoryValue) {
+            for (int i = tasks.size() - 1; i >= 0; i--) {
+                if (tasks.get(i).getCategory() == null) {
+                    continue; //ignore if category is not set for the task
                 }
-//            }catch (NullPointerException e){
-//                throw new DukeException(Messages.EXCEPTION_FIND);
-//            }
+                if (tasks.get(i).getCategory().equals(categoryValue)) {
+                    prioritytaskDeleted.add(tasks.get(i));
+                    tasks.deletePriorityOrCategoryTask(i);
+                }
+            }
 
             if (prioritytaskDeleted.isEmpty()) {
                 throw new DukeException(Messages.EXCEPTION_CATEGORY_NOT_FOUND);
             }
             tasks.displayDeletedPriorityOrCategoryTask(prioritytaskDeleted);
-        }
-
-        else { // single deletion
+        } else { // single deletion
             tasks.deleteTask(index);
         }
     }

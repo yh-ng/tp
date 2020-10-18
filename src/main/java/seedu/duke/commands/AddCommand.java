@@ -51,12 +51,7 @@ public class AddCommand extends Command {
             if (argumentsMap.get("c") != null) {
                 newTodo.setCategory(argumentsMap.get("c"));
             }
-
         }
-//        else {
-//            newTodo.setCategory(""); // set to default
-//        }
-
         tasks.addTask(newTodo);
     }
 }
