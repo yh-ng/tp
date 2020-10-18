@@ -51,8 +51,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList tasks) throws DukeException {
-        ArrayList<Task> prioritytaskDeleted = new ArrayList<Task>();
-        ArrayList<Task> categorytaskDeleted = new ArrayList<Task>();
+        ArrayList<Task> taskDeleted = new ArrayList<Task>();
+        boolean isCategory = false;
 
         if (hasPriorityValue) {
             if (priorityIndex < 0) {
@@ -60,30 +60,30 @@ public class DeleteCommand extends Command {
             }
             for (int i = tasks.size() - 1; i >= 0; i--) {
                 if (tasks.get(i).getPriority() == priorityIndex) {
-                    prioritytaskDeleted.add(tasks.get(i));
+                    taskDeleted.add(tasks.get(i));
                     tasks.deletePriorityOrCategoryTask(i);
                 }
             }
-            if (prioritytaskDeleted.isEmpty()) {
+            if (taskDeleted.isEmpty()) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
-            tasks.displayDeletedPriorityOrCategoryTask(prioritytaskDeleted); //if priority exists
+            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted,isCategory);
         } else if (hasCategoryValue) {
+            isCategory = true;
             for (int i = tasks.size() - 1; i >= 0; i--) {
                 if (tasks.get(i).getCategory() == null) {
                     continue; //ignore if category is not set for the task
                 }
                 if (tasks.get(i).getCategory().equals(categoryValue)) {
-                    prioritytaskDeleted.add(tasks.get(i));
+                    taskDeleted.add(tasks.get(i));
                     tasks.deletePriorityOrCategoryTask(i);
                 }
             }
-
-            if (prioritytaskDeleted.isEmpty()) {
+            if (taskDeleted.isEmpty()) {
                 throw new DukeException(Messages.EXCEPTION_CATEGORY_NOT_FOUND);
             }
-            tasks.displayDeletedPriorityOrCategoryTask(prioritytaskDeleted);
-        } else { // single deletion
+            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted,isCategory);
+        } else {
             tasks.deleteTask(index);
         }
     }

@@ -170,7 +170,7 @@ Output:
 ```
     ____________________________________________________________
      Noted. I've removed this task:
-       [T][N] meeting (p:2)
+       [T][N] iP meeting (p:2)
      Now you have 5 tasks in the list.
     ____________________________________________________________
 
@@ -189,10 +189,32 @@ Output:
 
 ```    
     ____________________________________________________________
-     Noted. I've removed all these task(s) from the same priority:
+     Noted. I've removed all these task(s) with the same priority:
     ____________________________________________________________
-     [T][N] bottle (p:2)
-     [T][N] whatever (p:2)
+     [T][N] tP meeting (p:2)
+     [T][N] iP meeting (p:2)
+     
+     Now you have 3 tasks in the list.
+    ____________________________________________________________
+
+```
+### Deleting all tasks of a certain category: `delete`
+Delete tasks of the same category
+
+Format: `delete c/<category>`
+
+Example of usage:
+
+`delete c/cs2113`
+
+Output:
+
+```    
+    ____________________________________________________________
+     Noted. I've removed all these task(s) with the same category:
+    ____________________________________________________________
+     [T][Y] tP meeting (p:0) (category: cs2113)
+     [T][N] iP meeting (p:0) (category: cs2113)
      
      Now you have 3 tasks in the list.
     ____________________________________________________________
@@ -322,7 +344,8 @@ Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
 Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c/CCA`
 Mark task as done | `done <taskIndexNumber>` | `done 1`
 Delete task | `delete <taskIndexNumber>` | `delete 2`
-Delete tasks with priority | `delete p/<priority>` | `delete p/2`
+Delete tasks by priority | `delete p/<priority>` | `delete p/2`
+Delete tasks by category  | `delete c/<category>` | `delete c/cs2113`
 Clear all tasks | `clear` | `clear`
 Find tasks matching keyword | `find <keyword>` | `find meeting`
 Getting help | `help` | `help`

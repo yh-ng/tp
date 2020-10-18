@@ -83,12 +83,16 @@ public class TaskList {
     }
 
 
-    public void displayDeletedPriorityOrCategoryTask(ArrayList<Task> prioritytaskDeleted) {
+    public void displayDeletedPriorityOrCategoryTask(ArrayList<Task> taskDeleted, boolean isCategory) {
         Ui.showLine();
-        Ui.dukePrintMultiple(Messages.MESSAGE_DELETE_TASK_WITH_PRIORITY);
+        if (isCategory) {
+            Ui.dukePrintMultiple(Messages.MESSAGE_DELETE_TASK_WITH_CATEGORY);
+        } else {
+            Ui.dukePrintMultiple(Messages.MESSAGE_DELETE_TASK_WITH_PRIORITY);
+        }
         Ui.showLine();
-        Collections.reverse(prioritytaskDeleted);
-        for (Task task : prioritytaskDeleted) {
+        Collections.reverse(taskDeleted);
+        for (Task task : taskDeleted) {
             Ui.dukePrintMultiple(task.toString());
         }
         Ui.dukePrintMultiple(Messages.MESSAGE_STATUS_FIRST
