@@ -67,24 +67,29 @@ public class TaskList {
      *
      * @param index the index of the task in the task list
      */
-    public void deleteTask(int index) { // have to differentiate all priority or individual task deletion
+    public void deleteTask(int index) {
         if (index > tasks.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_TASK);
         } else {
-            Task taskRemoved = tasks.get(index - 1); // task is the arraylist
+            Task taskRemoved = tasks.get(index - 1);
             Ui.dukePrint(Messages.MESSAGE_DELETE + taskRemoved.toString() + Messages.MESSAGE_STATUS_FIRST
                     + (tasks.size() - 1) + Messages.MESSAGE_STATUS_LAST);
             tasks.remove(index - 1);
         }
     }
 
-    public void deletePriorityTask(int taskIndex) {
+    public void deletePriorityOrCategoryTask(int taskIndex) {
         tasks.remove(taskIndex);
     }
 
-    public void displayDeletedPriorityTask(ArrayList<Task> taskDeleted) {
+
+    public void displayDeletedPriorityOrCategoryTask(ArrayList<Task> taskDeleted, boolean isCategory) {
         Ui.showLine();
-        Ui.dukePrintMultiple(Messages.MESSAGE_DELETE_TASK_WITH_PRIORITY);
+        if (isCategory) {
+            Ui.dukePrintMultiple(Messages.MESSAGE_DELETE_TASK_WITH_CATEGORY);
+        } else {
+            Ui.dukePrintMultiple(Messages.MESSAGE_DELETE_TASK_WITH_PRIORITY);
+        }
         Ui.showLine();
         Collections.reverse(taskDeleted);
         for (Task task : taskDeleted) {
@@ -94,6 +99,7 @@ public class TaskList {
                 + (tasks.size()) + Messages.MESSAGE_STATUS_LAST);
         Ui.showLine();
     }
+
 
     /**
      * Lists all the tasks in the task list.

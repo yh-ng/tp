@@ -20,7 +20,9 @@ public class Messages {
     public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the tasks of this priority in your list:";
     public static final String MESSAGE_DELETE = "Noted. I've removed this task:\n       ";
     public static final String MESSAGE_DELETE_TASK_WITH_PRIORITY = "Noted. I've removed all these task(s) "
-            + "from the same priority:";
+            + "with the same priority:";
+    public static final String MESSAGE_DELETE_TASK_WITH_CATEGORY = "Noted. I've removed all these task(s) "
+            + "with the same category:";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared all your tasks.";
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
@@ -46,6 +48,7 @@ public class Messages {
             + "Example: event project meeting /at Mon 2-4pm";
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "Invalid priority number.";
+    public static final String EXCEPTION_CATEGORY_NOT_FOUND = "Invalid category.";
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";

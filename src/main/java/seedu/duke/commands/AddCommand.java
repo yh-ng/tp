@@ -52,7 +52,6 @@ public class AddCommand extends Command {
                 newTodo.setCategory(argumentsMap.get("c"));
             }
         }
-
         tasks.addTask(newTodo);
     }
 }
