@@ -46,6 +46,7 @@ public class Messages {
             + "Example: event project meeting /at Mon 2-4pm";
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "Invalid priority number.";
+    public static final String EXCEPTION_CATEGORY_NOT_FOUND = "Invalid category.";
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";

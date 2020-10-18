@@ -22,7 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Parses use input.
+ * Parses user input.
  */
 public class Parser {
     public static final String ARGUMENT_REGEX = "([\\w]+/[^\\s]+)";
@@ -87,7 +87,9 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             try {
-                if (words[1].contains("p")) {
+                if (words[1].contains("p")) { // for priority
+                    return new DeleteCommand(words[1]);
+                } else if (words[1].contains("c")) { // for category
                     return new DeleteCommand(words[1]);
                 } else {
                     return new DeleteCommand(Integer.parseInt(words[1]));
