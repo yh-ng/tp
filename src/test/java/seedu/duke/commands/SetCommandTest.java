@@ -28,11 +28,25 @@ class SetCommandTest {
     }
 
     @Test
-    void execute_negativePriority_throwsException() throws DukeException {
+    void execute_negativePriority_throwsException() {
         int newPriority = -1;
         TaskList tasks = new TaskList();
         HashMap<String, String> argumentsMap = new HashMap<>();
         argumentsMap.put("p", Integer.toString(newPriority));
+        Command setCommand = new SetCommand(1, argumentsMap);
+
+        tasks.addTodo("test description");
+        assertThrows(DukeException.class, () -> {
+            setCommand.execute(tasks);
+        });
+    }
+
+    @Test
+    void execute_invalidPriority_throwsException() {
+        String newPriority = "a";
+        TaskList tasks = new TaskList();
+        HashMap<String, String> argumentsMap = new HashMap<>();
+        argumentsMap.put("p", newPriority);
         Command setCommand = new SetCommand(1, argumentsMap);
 
         tasks.addTodo("test description");
