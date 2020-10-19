@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
  */
 public abstract class Task {
     public static DateTimeFormatter DATETIME_PARSE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    public static DateTimeFormatter DATETIME_PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    public static DateTimeFormatter DATETIME_PRINT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     protected String description;
     protected boolean isDone;

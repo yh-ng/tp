@@ -72,7 +72,7 @@ class AddCommandTest {
         String description = "test description";
         HashMap<String, String> argumentsMap = new HashMap<>();
         String inputDate = "13-05-2020";
-        String expectedDateString = "May 13 2020";
+        String expectedDateString = "13 May 2020";
         argumentsMap.put("date", inputDate);
         TaskList taskList = new TaskList();
 
@@ -81,7 +81,7 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_commandWithInvalidDate_throwsException() throws DukeException {
+    void execute_commandWithInvalidDate_throwsException() {
         String description = "test description";
         HashMap<String, String> argumentsMap = new HashMap<>();
         TaskList taskList = new TaskList();
