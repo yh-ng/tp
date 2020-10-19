@@ -39,6 +39,7 @@ public class Messages {
             + "c/CATEGORY.";
     public static final String EXCEPTION_EMPTY_CATEGORY_BODY = ":( OOPS!!! The body of a category command cannot be "
             + "empty.";
+    public static final String EXCEPTION_INVALID_DATE = ":( OOPS!!! The format of your date should be dd-MM-yyyy.";
     public static final String EXCEPTION_EMPTY_CATEGORY = ":( OOPS!!! The category cannot be empty.";
     public static final String EXCEPTION_EMPTY_DEADLINE = ":( OOPS!!! The deadline of a task cannot be empty.";
     public static final String EXCEPTION_EMPTY_TIME = ":( OOPS!!! The time of an event task cannot be empty.";
