@@ -5,9 +5,6 @@ import seedu.duke.common.Messages;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -57,12 +54,7 @@ public class AddCommand extends Command {
         }
 
         if (argumentsMap.containsKey("date")) {
-            try {
-                LocalDate date = LocalDate.parse(argumentsMap.get("date"), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-                newTodo.setDate(date);
-            } catch (DateTimeParseException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
-            }
+            newTodo.setDateFromString(argumentsMap.get("date"));
         }
 
         tasks.addTask(newTodo);

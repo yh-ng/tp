@@ -1,6 +1,11 @@
 package seedu.duke.task;
 
+import seedu.duke.DukeException;
+import seedu.duke.common.Messages;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a task in the task list.
@@ -108,8 +113,12 @@ public abstract class Task {
         this.category = category;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateFromString(String dateString) throws DukeException {
+        try {
+            date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        } catch (DateTimeParseException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
+        }
     }
 
     public LocalDate getDate() {
@@ -117,10 +126,10 @@ public abstract class Task {
     }
 
     public String getDateString() {
-        if (date != null) {
-            return date.toString();
+        if (date == null) {
+            return "";
         }
 
-        return "";
+        return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 }
