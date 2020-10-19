@@ -1,5 +1,7 @@
 package seedu.duke.task;
 
+import java.time.LocalDate;
+
 /**
  * Represents a task in the task list.
  */
@@ -8,6 +10,7 @@ public abstract class Task {
     protected boolean isDone;
     protected int priority;
     protected String category;
+    protected LocalDate date;
 
     /**
      * Constructor used when adding a new task.
@@ -103,5 +106,21 @@ public abstract class Task {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getDateString() {
+        if (date != null) {
+            return date.toString();
+        }
+
+        return "";
     }
 }
