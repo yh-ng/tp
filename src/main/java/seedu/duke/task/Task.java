@@ -11,6 +11,9 @@ import java.time.format.DateTimeParseException;
  * Represents a task in the task list.
  */
 public abstract class Task {
+    public static DateTimeFormatter DATETIME_PARSE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static DateTimeFormatter DATETIME_PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
+
     protected String description;
     protected boolean isDone;
     protected int priority;
@@ -114,8 +117,9 @@ public abstract class Task {
     }
 
     public void setDateFromString(String dateString) throws DukeException {
+        assert dateString != null : "dateString should not be null.";
         try {
-            date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            date = LocalDate.parse(dateString, DATETIME_PARSE_FORMAT);
         } catch (DateTimeParseException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
@@ -130,6 +134,6 @@ public abstract class Task {
             return "";
         }
 
-        return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return date.format(DATETIME_PRINT_FORMAT);
     }
 }
