@@ -93,4 +93,15 @@ class ParserTest {
         String expectedString = "tP meeting";
         assertEquals(expectedString, parsedString);
     }
+
+    @Test
+    void checkAllowedArguments_argumentNotAllowed_throwsException() {
+        HashSet<String> allowedArguments = new HashSet<>(Arrays.asList("p"));
+        HashMap<String, String> argumentsMap = new HashMap<>();
+        argumentsMap.put("p", "1");
+        argumentsMap.put("i", "2");
+        assertThrows(DukeException.class, () -> {
+            Parser.checkAllowedArguments(argumentsMap, allowedArguments);
+        });
+    }
 }
