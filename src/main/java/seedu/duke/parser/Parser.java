@@ -6,6 +6,7 @@ import seedu.duke.commands.ByeCommand;
 import seedu.duke.commands.CategoryCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandCreator;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DoneCommand;
 import seedu.duke.commands.FindCommand;
@@ -44,10 +45,7 @@ public class Parser {
         switch (words[0].toLowerCase()) {
         case AddCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
-            if (description.equals("")) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-            }
-            return new AddCommand(description, argumentsMap);
+            return CommandCreator.createAddCommand(description, argumentsMap);
 
 
         case CategoryCommand.COMMAND_WORD:
@@ -129,14 +127,8 @@ public class Parser {
 
 
         case SetCommand.COMMAND_WORD:
-            try {
-                checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
-                return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]), argumentsMap);
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.WARNING_NO_TASK);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-            }
+            checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createSetCommand(fullCommand, argumentsMap);
 
 
         case ByeCommand.COMMAND_WORD:
