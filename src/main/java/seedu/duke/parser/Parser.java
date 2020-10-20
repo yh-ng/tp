@@ -37,15 +37,18 @@ public class Parser {
      * @throws DukeException if user input commands are not in the standard format
      */
     public static Command parse(String fullCommand) throws DukeException {
-        String[] words = fullCommand.split(" ", 2);
-        String commandString = fullCommand.replaceFirst(words[0], "").trim();
+        String rootCommand = fullCommand.split(" ")[0];
+        String commandString = fullCommand.replaceFirst(rootCommand, "").trim(); // full command without rootCommand
         String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
 
-        switch (words[0].toLowerCase()) {
+        switch (rootCommand.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createAddCommand(description, argumentsMap);
+        case SetCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createSetCommand(fullCommand, argumentsMap);
 
 
         case CategoryCommand.COMMAND_WORD:
@@ -65,7 +68,7 @@ public class Parser {
 
 
         case ListCommand.COMMAND_WORD:
-            if (words.length == 1) {
+            if (fullCommand.equals("list")) {
                 return new ListCommand();
             }
             int priority;
@@ -85,12 +88,12 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             try {
-                if (words[1].contains("p")) { // for priority
-                    return new DeleteCommand(words[1]);
-                } else if (words[1].contains("c")) { // for category
-                    return new DeleteCommand(words[1]);
+                if (commandString.contains("p")) { // for priority
+                    return new DeleteCommand(commandString);
+                } else if (commandString.contains("c")) { // for category
+                    return new DeleteCommand(commandString);
                 } else {
-                    return new DeleteCommand(Integer.parseInt(words[1]));
+                    return new DeleteCommand(Integer.parseInt(commandString));
                 }
             } catch (NumberFormatException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
@@ -106,7 +109,7 @@ public class Parser {
 
         case DoneCommand.COMMAND_WORD:
             try {
-                return new DoneCommand(Integer.parseInt(words[1]));
+                return new DoneCommand(Integer.parseInt(commandString));
             } catch (NumberFormatException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
             } catch (IndexOutOfBoundsException e) {
@@ -116,7 +119,7 @@ public class Parser {
 
         case FindCommand.COMMAND_WORD:
             try {
-                return new FindCommand(words[1].trim());
+                return new FindCommand(commandString.trim());
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.EXCEPTION_FIND);
             }
@@ -124,11 +127,6 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-
-        case SetCommand.COMMAND_WORD:
-            checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
-            return CommandCreator.createSetCommand(fullCommand, argumentsMap);
 
 
         case ByeCommand.COMMAND_WORD:
