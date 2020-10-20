@@ -2,13 +2,49 @@ package seedu.duke.parser;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
+import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.SetCommand;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
+
+    @Test
+    void parse_validAddCommand_returnsAddCommand() throws DukeException {
+        String fullCommand = "add tP meeting p/1";
+        Command command = Parser.parse(fullCommand);
+        assertTrue(command instanceof AddCommand);
+    }
+
+    @Test
+    void parse_invalidAddCommand_throwsException() {
+        String fullCommand = "add";
+        assertThrows(DukeException.class, () -> {
+            Parser.parse(fullCommand);
+        });
+    }
+
+    @Test
+    void parse_validSetCommand_returnsSetCommand() throws DukeException {
+        String fullCommand = "set 1 p/0";
+        Command command = Parser.parse(fullCommand);
+        assertTrue(command instanceof SetCommand);
+    }
+
+    @Test
+    void parse_invalidSetCommand_throwsException() {
+        String fullCommand = "set p/-1";
+        assertThrows(DukeException.class, () -> {
+            Parser.parse(fullCommand);
+        });
+    }
 
     @Test
     void getArgumentsFromRegex_validCommand_parseArgumentsCorrectly() throws DukeException {
