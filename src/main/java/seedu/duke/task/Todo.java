@@ -50,6 +50,9 @@ public class Todo extends Task {
         if (category != null) {
             returnString += " (category: " + category + ")";
         }
+        if (date != null) {
+            returnString += " (date: " + getDateString() + ")";
+        }
         return returnString;
     }
 }
