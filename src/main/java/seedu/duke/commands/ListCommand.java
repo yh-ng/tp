@@ -34,19 +34,24 @@ public class ListCommand extends Command {
         this.hasCategory = false;
     }
 
-    public ListCommand (int priority) {
+    public ListCommand(int priority) {
         this.hasPriority = true;
         this.hasCategory = false;
         this.priority = priority;
     }
 
-    public ListCommand (String category) {
+    public ListCommand(String category) {
         this.hasPriority = false;
         this.hasCategory = true;
         this.category = category;
     }
 
     @Override
+    /**
+     * Executes the command.
+     *
+     * @param tasks a TaskList object containing all tasks
+     */
     public void execute(TaskList tasks) throws DukeException {
         ArrayList<Task> newTasks = new ArrayList<Task>();
         listSize = tasks.size();

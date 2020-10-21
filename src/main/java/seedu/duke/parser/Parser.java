@@ -68,12 +68,11 @@ public class Parser {
 
 
         case ListCommand.COMMAND_WORD:
-            if (fullCommand.equals("list")) { //list all the tasks
+            if (fullCommand.equals("list")) { //list every tasks
                 return new ListCommand();
             }
             int priority;
             String category;
-
             if (commandString.contains("p/")) {
                 if (argumentsMap.get("p") == null) {
                     throw new DukeException(Messages.EXCEPTION_EMPTY_PRIORITY);
