@@ -40,4 +40,41 @@ public class CommandCreator {
             throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
         }
     }
+
+    /**
+     * Creates and returns a ListCommand with given arguments.
+     *
+     * @param fullCommand Full command given by the user.
+     * @param commandString Command parameters given by the user.
+     * @param argumentsMap HashMap containing arguments.
+     * @return ListCommand with given arguments.
+     * @throws DukeException When invalid arguments are given.
+     */
+    public static Command createListCommand(String fullCommand, String commandString,
+                                            HashMap<String, String> argumentsMap) throws DukeException {
+        if (fullCommand.equals("list")) { //list every tasks
+            return new ListCommand();
+        }
+        int priority;
+        String category;
+        if (commandString.contains("p/")) {
+            if (argumentsMap.get("p") == null) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_PRIORITY);
+            }
+            try {
+                priority = Integer.parseInt(argumentsMap.get("p"));
+            } catch (NumberFormatException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+            }
+            return new ListCommand(priority);
+        } else if (commandString.contains("c/")) {
+            if (argumentsMap.get("c") == null) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
+            }
+            category = argumentsMap.get("c");
+            return new ListCommand(category);
+        } else {
+            throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
+        }
+    }
 }
