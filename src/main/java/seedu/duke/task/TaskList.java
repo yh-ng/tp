@@ -128,6 +128,18 @@ public class TaskList {
         Ui.dukePrint(Messages.MESSAGE_LIST_WITH_PRIORITY + message);
     }
 
+    public void listTask(String category) {
+        String message = "";
+        if (tasks.size() == 0) {
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_LIST_WITH_CATEGORY);
+            return;
+        }
+        for (int i = 0; i < tasks.size(); i++) {
+            message = message + "\n     " + (i + 1) + "." + tasks.get(i).toString();
+        }
+        Ui.dukePrint(Messages.MESSAGE_LIST_WITH_CATEGORY + message);
+    }
+
     /**
      * Clears all the tasks in the task list.
      */

@@ -18,6 +18,7 @@ public class Messages {
     public static final String MESSAGE_STATUS_LAST = " tasks in the list.";
     public static final String MESSAGE_LIST = "Here are the tasks in your list:";
     public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the tasks of this priority in your list:";
+    public static final String MESSAGE_LIST_WITH_CATEGORY = "Here are the tasks of this category in your list:";
     public static final String MESSAGE_DELETE = "Noted. I've removed this task:\n       ";
     public static final String MESSAGE_DELETE_TASK_WITH_PRIORITY = "Noted. I've removed all these task(s) "
             + "with the same priority:";
@@ -40,6 +41,7 @@ public class Messages {
     public static final String EXCEPTION_EMPTY_CATEGORY_BODY = ":( OOPS!!! The body of a category command cannot be "
             + "empty.";
     public static final String EXCEPTION_INVALID_DATE = ":( OOPS!!! The format of your date should be dd-MM-yyyy.";
+    public static final String EXCEPTION_EMPTY_PRIORITY = ":( OOPS!!! The priority cannot be empty.";
     public static final String EXCEPTION_EMPTY_CATEGORY = ":( OOPS!!! The category cannot be empty.";
     public static final String EXCEPTION_EMPTY_DEADLINE = ":( OOPS!!! The deadline of a task cannot be empty.";
     public static final String EXCEPTION_EMPTY_TIME = ":( OOPS!!! The time of an event task cannot be empty.";
@@ -63,6 +65,7 @@ public class Messages {
     public static final String MESSAGE_EMPTY_LIST = "There are no tasks in your list. "
             + "Your task list is empty.";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "There are no tasks of this priority in your list. ";
+    public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "There are no tasks of this category in your list. ";
     public static final String EXCEPTION_INVALID_LIST_COMMAND = ":( OOPS!!! Please input a valid list command "
             + "using the format \"list p/PRIORITY\", or \"list\".";
 
