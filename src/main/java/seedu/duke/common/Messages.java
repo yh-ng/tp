@@ -73,5 +73,5 @@ public class Messages {
             + "you can input in this format: yyyy-MM-dd HH:mm";
     public static final String EXCEPTION_FIND = ":( OOPS!!! The keyword of a find command cannot be empty.";
     public static final String EXCEPTION_INVALID_LIST_COMMAND = ":( OOPS!!! Please input a valid list command "
-            + "using the format \"list p/PRIORITY\", or \"list\".";
+            + "using the format: \n     \"list p/PRIORITY\", \"list c/CATEGORY\", or \"list\".";
 }

@@ -6,6 +6,8 @@ import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * Lists all tasks in the task list to the user.
@@ -22,6 +24,7 @@ public class ListCommand extends Command {
             + "          Optional parameter 2: c/CATEGORY\n"
             + "          Displays all the tasks with CATEGORY as a list.\n"
             + "          Example: " + COMMAND_WORD + " c/cs2113";
+    //public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c"));
     private final boolean hasPriority;
     private final boolean hasCategory;
     private int priority;

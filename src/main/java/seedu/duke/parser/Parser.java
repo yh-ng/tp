@@ -68,30 +68,8 @@ public class Parser {
 
 
         case ListCommand.COMMAND_WORD:
-            if (fullCommand.equals("list")) { //list every tasks
-                return new ListCommand();
-            }
-            int priority;
-            String category;
-            if (commandString.contains("p/")) {
-                if (argumentsMap.get("p") == null) {
-                    throw new DukeException(Messages.EXCEPTION_EMPTY_PRIORITY);
-                }
-                try {
-                    priority = Integer.parseInt(argumentsMap.get("p"));
-                } catch (NumberFormatException e) {
-                    throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-                }
-                return new ListCommand(priority);
-            } else if (commandString.contains("c/")) {
-                if (argumentsMap.get("c") == null) {
-                    throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
-                }
-                category = argumentsMap.get("c");
-                return new ListCommand(category);
-            } else {
-                throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
-            }
+            //checkAllowedArguments(argumentsMap, ListCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createListCommand(fullCommand, commandString, argumentsMap);
 
         case DeleteCommand.COMMAND_WORD:
             try {
