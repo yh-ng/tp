@@ -27,16 +27,11 @@ public class Todo extends Task {
 
     @Override
     public String toFile() {
-        String fileString = "";
-        if (isDone) {
-            fileString = "T | 1 | " + description + " | " + priority;
-        } else {
-            fileString = "T | 0 | " + description + " | " + priority;
-        }
-        if (category != null) {
-            fileString += " | " + category;
-        }
-        return fileString;
+        String isDoneString = (isDone) ? "1" : "0";
+        String categoryString = (category == null) ? "" : category;
+        String dateString = getDateString(Task.DATETIME_PARSE_FORMAT);
+        return "T | " + isDoneString + " | " + description + " | " + priority + " | " + categoryString + " | "
+                + dateString;
     }
 
     @Override
@@ -49,6 +44,9 @@ public class Todo extends Task {
         }
         if (category != null) {
             returnString += " (category: " + category + ")";
+        }
+        if (date != null) {
+            returnString += " (date: " + getDateString(Task.DATETIME_PRINT_FORMAT) + ")";
         }
         return returnString;
     }

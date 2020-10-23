@@ -1,13 +1,24 @@
 package seedu.duke.task;
 
+import seedu.duke.DukeException;
+import seedu.duke.common.Messages;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents a task in the task list.
  */
 public abstract class Task {
+    public static DateTimeFormatter DATETIME_PARSE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static DateTimeFormatter DATETIME_PRINT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
+
     protected String description;
     protected boolean isDone;
     protected int priority;
     protected String category;
+    protected LocalDate date;
 
     /**
      * Constructor used when adding a new task.
@@ -103,5 +114,26 @@ public abstract class Task {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public void setDateFromString(String dateString) throws DukeException {
+        assert dateString != null : "dateString should not be null.";
+        try {
+            date = LocalDate.parse(dateString, DATETIME_PARSE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
+        }
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getDateString(DateTimeFormatter formatter) {
+        if (date == null) {
+            return "";
+        }
+
+        return date.format(formatter);
     }
 }

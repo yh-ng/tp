@@ -19,7 +19,13 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the task listing.\n"
             + "     Parameters: INDEX\n"
-            + "     Example: " + COMMAND_WORD + " 1";
+            + "     Example: " + COMMAND_WORD + " 1\n"
+            + "          Optional parameter 1: p/PRIORITY\n"
+            + "          Deletes all the tasks with PRIORITY.\n"
+            + "          Example: " + COMMAND_WORD + " p/1\n"
+            + "          Optional parameter 2: c/CATEGORY\n"
+            + "          Deletes all the tasks with CATEGORY.\n"
+            + "          Example: " + COMMAND_WORD + " c/cs2113";
 
     private boolean hasPriorityValue = false;
     private boolean hasCategoryValue = false;

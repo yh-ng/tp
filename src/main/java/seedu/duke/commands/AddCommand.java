@@ -15,7 +15,7 @@ public class AddCommand extends Command {
             + ": Adds a task to the task list.\n"
             + "     Parameters: TASK_NAME <optional arguments>\n"
             + "     Example: " + COMMAND_WORD + " example_task <optional arguments>";
-    public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c"));
+    public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "date"));
 
     private final String description;
     private final HashMap<String, String> argumentsMap;
@@ -52,6 +52,11 @@ public class AddCommand extends Command {
                 newTodo.setCategory(argumentsMap.get("c"));
             }
         }
+
+        if (argumentsMap.containsKey("date")) {
+            newTodo.setDateFromString(argumentsMap.get("date"));
+        }
+
         tasks.addTask(newTodo);
     }
 }
