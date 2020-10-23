@@ -79,7 +79,7 @@ public class CommandCreator {
     }
 
     /**
-     * Creates and returns a ListCommand with given arguments.
+     * Creates and returns a DeleteCommand with given arguments.
      *
      * @param commandString Command parameters given by the user.
      * @return DeleteCommand with given arguments.
