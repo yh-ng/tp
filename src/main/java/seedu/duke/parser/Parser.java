@@ -38,7 +38,7 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeException {
         String rootCommand = fullCommand.split(" ")[0];
-        String commandString = fullCommand.replaceFirst(rootCommand, "").trim(); // full command without rootCommand
+        String commandString = fullCommand.replaceFirst(rootCommand, "").trim();
         String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
 
@@ -68,25 +68,10 @@ public class Parser {
 
 
         case ListCommand.COMMAND_WORD:
-            //checkAllowedArguments(argumentsMap, ListCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createListCommand(fullCommand, commandString, argumentsMap);
 
         case DeleteCommand.COMMAND_WORD:
-            try {
-                if (commandString.contains("p")) { // for priority
-                    return new DeleteCommand(commandString);
-                } else if (commandString.contains("c")) { // for category
-                    return new DeleteCommand(commandString);
-                } else {
-                    return new DeleteCommand(Integer.parseInt(commandString));
-                }
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.WARNING_NO_TASK);
-            }
-
+            return CommandCreator.createDeleteCommand(commandString);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
