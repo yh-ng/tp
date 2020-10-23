@@ -7,6 +7,7 @@ import seedu.duke.commands.CategoryCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandCreator;
+import seedu.duke.commands.DateCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DoneCommand;
 import seedu.duke.commands.FindCommand;
@@ -49,6 +50,9 @@ public class Parser {
         case SetCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createSetCommand(fullCommand, argumentsMap);
+        case DateCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, DateCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createDateCommand(commandString, argumentsMap);
 
 
         case CategoryCommand.COMMAND_WORD:

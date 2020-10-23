@@ -1,5 +1,6 @@
 package seedu.duke.task;
 
+import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.ui.Ui;
 
@@ -231,6 +232,21 @@ public class TaskList {
         } else {
             tasks.get(index - 1).setPriority(priority);
             Ui.dukePrint(Messages.MESSAGE_SET_PRIORITY + tasks.get(index - 1).getPriority());
+        }
+    }
+
+    /**
+     * Sets the date of a task at the given index.
+     *
+     * @param index the index of the task to set priority.
+     * @param date the date to set the task at.
+     */
+    public void setDate(int index, String date) throws DukeException {
+        if (index > tasks.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            tasks.get(index - 1).setDateFromString(date);
+            Ui.dukePrint(Messages.MESSAGE_DATE + tasks.get(index - 1).toString());
         }
     }
 }
