@@ -84,7 +84,8 @@ public class Storage {
      */
     private Task loadTaskFromLine(String line) throws DukeException {
         Task newTask;
-        String[] arguments = line.split("\\|");
+        String paddedLine = line + " ";
+        String[] arguments = paddedLine.split("\\|");
 
         if (arguments.length != EXPECTED_DIVIDER_COUNT) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
