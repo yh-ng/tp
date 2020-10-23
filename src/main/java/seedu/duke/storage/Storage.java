@@ -5,7 +5,6 @@ import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
-import seedu.duke.task.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -85,7 +84,8 @@ public class Storage {
      */
     private Task loadTaskFromLine(String line) throws DukeException {
         Task newTask;
-        String[] arguments = line.split("\\|");
+        String paddedLine = line + " ";
+        String[] arguments = paddedLine.split("\\|");
 
         if (arguments.length != EXPECTED_DIVIDER_COUNT) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
@@ -98,7 +98,7 @@ public class Storage {
             String category = arguments[4].trim();
             String dateString = arguments[5].trim();
 
-            newTask = new Todo(description, isDone, priority);
+            newTask = new Task(description, isDone, priority);
             if (!category.equals("")) {
                 newTask.setCategory(category);
             }
