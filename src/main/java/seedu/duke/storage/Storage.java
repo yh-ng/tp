@@ -5,7 +5,6 @@ import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
-import seedu.duke.task.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +18,8 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private String filePath;
+    public static final int EXPECTED_DIVIDER_COUNT = 6;
+    private final String filePath;
     /** Default file path used. */
     public static final String DEFAULT_STORAGE_FILEPATH = "tasks.txt";
 
@@ -42,16 +42,10 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
         ArrayList<Task> tasks = new ArrayList<>();
-        Task task;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            String[] taskParts = line.split(" \\| ");
-            task = new Todo(taskParts[2].trim(), Utils.stringToBoolean(taskParts[1].trim()),
-                    Integer.parseInt(taskParts[3].trim()));
-            tasks.add(task);
-            if (taskParts.length > 4) {
-                task.setCategory(taskParts[4]);
-            }
+            Task newTask = loadTaskFromLine(line);
+            tasks.add(newTask);
         }
         return tasks;
     }
@@ -79,5 +73,42 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
         }
+    }
+
+    /**
+     * Returns a task corresponding to arguments from a line loaded from file.
+     *
+     * @param line A line loaded from the save file.
+     * @return Task corresponding to the loaded line.
+     * @throws DukeException If there is an error parsing the save file.
+     */
+    private Task loadTaskFromLine(String line) throws DukeException {
+        Task newTask;
+        String paddedLine = line + " ";
+        String[] arguments = paddedLine.split("\\|");
+
+        if (arguments.length != EXPECTED_DIVIDER_COUNT) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+
+        try {
+            boolean isDone = Utils.stringToBoolean(arguments[1].trim());
+            String description = arguments[2].trim();
+            int priority = Integer.parseInt(arguments[3].trim());
+            String category = arguments[4].trim();
+            String dateString = arguments[5].trim();
+
+            newTask = new Task(description, isDone, priority);
+            if (!category.equals("")) {
+                newTask.setCategory(category);
+            }
+            if (!dateString.equals("")) {
+                newTask.setDateFromString(dateString);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+
+        return newTask;
     }
 }

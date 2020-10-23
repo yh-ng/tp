@@ -33,23 +33,26 @@ Adds a new item to the list of todo items.
 Format: `add <description> <optional arguments>`
 
 List of `<optional arguments>`:
-- `p/<number>` sets the priority of the task
-- `c/<classficiation>` sets the classification of the task
+- `p/<number>` sets the priority of the task.
+- `c/<category>` sets the category of the task.
+- `date/<dd-MM-yyyy>` sets the date of the task.
 
-:triangular_flag_on_post: By default, there is no classification, and the priority is set to 0.
+:triangular_flag_on_post: By default, there is no category and date, and the priority is set to 0.
 
 Example of usage: 
 
 `add tP meeting`
 
-`add tP meeting c/cs2113 p/1`
+`add tP meeting c/cs2113`
+
+`add tP meeting c/cs2113 p/1 date/13-05-2020`
 
 Output:
 
 ```
     ____________________________________________________________
      Got it. I've added this task:
-       [T][N] tP meeting (p:1) (category: cs2113)
+       [T][N] tP meeting (p:1) (category: cs2113) (date: 13 May 2020)
      Now you have 4 tasks in the list.
     ____________________________________________________________
 ```
@@ -90,6 +93,25 @@ Output:
      Here are the tasks of this priority in your list:
      1.[T][N] iP meeting (p:2) (category: cs2113)
      2.[T][N] assignment submission (p:2) (category: cg2028)
+    ____________________________________________________________
+```
+
+### Listing tasks with given category: `list`
+Lists all the tasks with the given category.
+
+Format: `list c/<category>`
+
+Example of usage:
+
+`list c/cs2113`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the tasks of this category in your list:
+     1.[T][N] iP meeting (p:2) (category: cs2113)
+     2.[T][N] lecture quiz (p:2) (category: cs2113)
     ____________________________________________________________
 ```
 
@@ -302,6 +324,12 @@ Output:
 
      list: Displays all tasks in the task list as a list with index numbers.
      Example: list
+          Optional parameter 1: p/PRIORITY
+          Displays all the tasks with PRIORITY as a list.
+          Example: list p/1
+          Optional parameter 2: c/CATEGORY
+          Displays all the tasks with CATEGORY as a list.
+          Example: list c/cs2113
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY

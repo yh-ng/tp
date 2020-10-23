@@ -56,7 +56,7 @@ public class TaskList {
      * @param description the description of the todo task
      */
     public void addTodo(String description) {
-        Todo newTodo = new Todo(description);
+        Task newTodo = new Task(description);
         tasks.add(newTodo);
         Ui.dukePrint(Messages.MESSAGE_ADDTASK + newTodo.toString() + Messages.MESSAGE_STATUS_FIRST
                 + tasks.size() + Messages.MESSAGE_STATUS_LAST);
@@ -126,6 +126,18 @@ public class TaskList {
             message = message + "\n     " + (i + 1) + "." + tasks.get(i).toString();
         }
         Ui.dukePrint(Messages.MESSAGE_LIST_WITH_PRIORITY + message);
+    }
+
+    public void listTask(String category) {
+        String message = "";
+        if (tasks.size() == 0) {
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_LIST_WITH_CATEGORY);
+            return;
+        }
+        for (int i = 0; i < tasks.size(); i++) {
+            message = message + "\n     " + (i + 1) + "." + tasks.get(i).toString();
+        }
+        Ui.dukePrint(Messages.MESSAGE_LIST_WITH_CATEGORY + message);
     }
 
     /**
