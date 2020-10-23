@@ -119,6 +119,30 @@ public class CommandCreator {
         } catch (NumberFormatException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
         }
+    }
 
+    /**
+     * Creates and returns a DoneCommand with given arguments.
+     *
+     * @param commandString Command parameters given by the user.
+     * @return DoneCommand with given arguments.
+     * @throws DukeException If invalid arguments are given.
+     */
+    public static Command createDoneCommand(String commandString) throws DukeException {
+        try {
+            return new DoneCommand(Integer.parseInt(commandString));
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.WARNING_NO_TASK);
+        }
+    }
+
+    public static Command createFindCommand(String commandString) throws DukeException {
+        try {
+            return new FindCommand(commandString.trim());
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_FIND);
+        }
     }
 }
