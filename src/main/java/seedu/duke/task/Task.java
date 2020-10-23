@@ -129,11 +129,11 @@ public abstract class Task {
         return date;
     }
 
-    public String getDateString() {
+    public String getDateString(DateTimeFormatter formatter) {
         if (date == null) {
             return "";
         }
 
-        return date.format(DATETIME_PRINT_FORMAT);
+        return date.format(formatter);
     }
 }

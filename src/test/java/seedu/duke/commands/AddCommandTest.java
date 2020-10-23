@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
+import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 import java.util.HashMap;
@@ -77,7 +78,7 @@ class AddCommandTest {
         TaskList taskList = new TaskList();
 
         new AddCommand(description, argumentsMap).execute(taskList);
-        assertEquals(expectedDateString, taskList.get(0).getDateString());
+        assertEquals(expectedDateString, taskList.get(0).getDateString(Task.DATETIME_PRINT_FORMAT));
     }
 
     @Test
