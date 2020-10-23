@@ -37,8 +37,8 @@ public class Parser {
      * @throws DukeException if user input commands are not in the standard format
      */
     public static Command parse(String fullCommand) throws DukeException {
-        String rootCommand = fullCommand.split(" ")[0]; // eg. delete, list etc
-        String commandString = fullCommand.replaceFirst(rootCommand, "").trim(); // the 2nd command
+        String rootCommand = fullCommand.split(" ")[0];
+        String commandString = fullCommand.replaceFirst(rootCommand, "").trim();
         String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
 
