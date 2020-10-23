@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents a task in the task list.
  */
-public abstract class Task {
+public class Task {
     public static DateTimeFormatter DATETIME_PARSE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static DateTimeFormatter DATETIME_PRINT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
@@ -75,14 +75,34 @@ public abstract class Task {
      *
      * @return the formatted string to be saved into the storage file
      */
-    public abstract String toFile();
+    public String toFile() {
+        String isDoneString = (isDone) ? "1" : "0";
+        String categoryString = (category == null) ? "" : category;
+        String dateString = getDateString(Task.DATETIME_PARSE_FORMAT);
+        return "T | " + isDoneString + " | " + description + " | " + priority + " | " + categoryString + " | "
+                + dateString;
+    }
 
     /**
      * Converts the attributes of the task into a formatted string to be displayed to the user.
      *
      * @return the formatted string to be displayed to the user
      */
-    public abstract String toString();
+    public String toString() {
+        String returnString = "";
+        if (this.isDone) {
+            returnString =  "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
+        } else {
+            returnString =  "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
+        }
+        if (category != null) {
+            returnString += " (category: " + category + ")";
+        }
+        if (date != null) {
+            returnString += " (date: " + getDateString(Task.DATETIME_PRINT_FORMAT) + ")";
+        }
+        return returnString;
+    }
 
     /**
      * Retrieves the priority of a task.

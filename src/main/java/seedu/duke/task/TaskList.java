@@ -56,7 +56,7 @@ public class TaskList {
      * @param description the description of the todo task
      */
     public void addTodo(String description) {
-        Todo newTodo = new Todo(description);
+        Task newTodo = new Task(description);
         tasks.add(newTodo);
         Ui.dukePrint(Messages.MESSAGE_ADDTASK + newTodo.toString() + Messages.MESSAGE_STATUS_FIRST
                 + tasks.size() + Messages.MESSAGE_STATUS_LAST);

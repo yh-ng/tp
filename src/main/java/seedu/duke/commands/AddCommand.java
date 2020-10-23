@@ -2,8 +2,8 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
-import seedu.duke.task.Todo;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,7 +32,7 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks) throws DukeException {
-        Todo newTodo = new Todo(description);
+        Task newTask = new Task(description);
 
         if (argumentsMap.containsKey("p")) {
             int newPriority;
@@ -44,19 +44,19 @@ public class AddCommand extends Command {
             if (newPriority < 0) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
-            newTodo.setPriority(newPriority);
+            newTask.setPriority(newPriority);
         }
 
         if (argumentsMap.containsKey("c")) {
             if (argumentsMap.get("c") != null) {
-                newTodo.setCategory(argumentsMap.get("c"));
+                newTask.setCategory(argumentsMap.get("c"));
             }
         }
 
         if (argumentsMap.containsKey("date")) {
-            newTodo.setDateFromString(argumentsMap.get("date"));
+            newTask.setDateFromString(argumentsMap.get("date"));
         }
 
-        tasks.addTask(newTodo);
+        tasks.addTask(newTask);
     }
 }
