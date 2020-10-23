@@ -77,4 +77,28 @@ public class CommandCreator {
             throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
         }
     }
+
+    /**
+     * Creates and returns a ListCommand with given arguments.
+     *
+     * @param commandString Command parameters given by the user.
+     * @return DeleteCommand with given arguments.
+     * @throws DukeException When invalid arguments are given.
+     */
+    public static Command createDeleteCommand(String commandString) throws DukeException {
+        try {
+            if (commandString.contains("p")) { // for priority
+                return new DeleteCommand(commandString);
+            } else if (commandString.contains("c")) { // for category
+                return new DeleteCommand(commandString);
+            } else {
+                return new DeleteCommand(Integer.parseInt(commandString));
+            }
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.WARNING_NO_TASK);
+        }
+    }
 }
