@@ -156,6 +156,26 @@ Output:
     ____________________________________________________________
 ```
 
+### Setting date of a task: `date`
+Sets the date of an existing task.
+
+Format: `date <taskIndexNumber> date/<dd-MM-yyyy>`
+
+:triangular_flag_on_post: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+
+Example of usage:
+
+`date 1 date/11-11-2020`
+
+Output:
+
+```
+    ____________________________________________________________
+     Nice! I have set the date of this task:
+       [T][N] study for finals (p:0) (category: st2334) (date: 11 Nov 2020)
+    ____________________________________________________________
+```
+
 ### Mark task as done: `done`
 Marks a given task as done.
 
@@ -370,6 +390,7 @@ List tasks | `list` | `list`
 List tasks with priority | `list p/<priority>` | `list p/2`
 Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
 Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c/CCA`
+Set date of task | `date <taskIndexNumber> date/<dd-MM-yyyy>` | `date 1 date/11-11-2020`
 Mark task as done | `done <taskIndexNumber>` | `done 1`
 Delete task | `delete <taskIndexNumber>` | `delete 2`
 Delete tasks by priority | `delete p/<priority>` | `delete p/2`

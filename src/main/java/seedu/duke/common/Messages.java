@@ -36,6 +36,7 @@ public class Messages {
 
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
     public static final String MESSAGE_CATEGORY = "Nice! I have set the category of this task:\n       ";
+    public static final String MESSAGE_DATE = "Nice! I have set the date of this task:\n       ";
     public static final String MESSAGE_SET_PRIORITY = "Nice! I've set the priority of this task to: ";
 
     public static final String MESSAGE_FIND = "Here are the matching tasks in your list:";

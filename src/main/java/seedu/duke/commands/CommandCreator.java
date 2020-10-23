@@ -101,4 +101,48 @@ public class CommandCreator {
             throw new DukeException(Messages.WARNING_NO_TASK);
         }
     }
+
+    /**
+     * Creates and returns a DateCommand with given arguments.
+     *
+     * @param commandString Command parameters given by the user.
+     * @return DateCommand with given arguments.
+     * @throws DukeException If invalid arguments are given.
+     */
+    public static Command createDateCommand(String commandString, HashMap<String, String> argumentsMap)
+            throws DukeException {
+        try {
+            int index = Integer.parseInt(commandString.split(" ")[0]);
+            return new DateCommand(index, argumentsMap);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+        }
+    }
+
+    /**
+     * Creates and returns a DoneCommand with given arguments.
+     *
+     * @param commandString Command parameters given by the user.
+     * @return DoneCommand with given arguments.
+     * @throws DukeException If invalid arguments are given.
+     */
+    public static Command createDoneCommand(String commandString) throws DukeException {
+        try {
+            return new DoneCommand(Integer.parseInt(commandString));
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.WARNING_NO_TASK);
+        }
+    }
+
+    public static Command createFindCommand(String commandString) throws DukeException {
+        try {
+            return new FindCommand(commandString.trim());
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_FIND);
+        }
+    }
 }
