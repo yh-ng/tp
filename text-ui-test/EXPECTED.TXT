@@ -56,12 +56,12 @@
 
      list: Displays all tasks in the task list as a list with index numbers.
      Example: list
-          Optional parameter 1: p/PRIORITY
+          Optional parameter 1: tasks p/PRIORITY
           Displays all the tasks with PRIORITY as a list.
-          Example: list p/1
-          Optional parameter 2: c/CATEGORY
+          Example: list tasks p/1
+          Optional parameter 2: tasks c/CATEGORY
           Displays all the tasks with CATEGORY as a list.
-          Example: list c/cs2113
+          Example: list tasks c/cs2113
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
