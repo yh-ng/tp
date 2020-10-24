@@ -15,14 +15,17 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays all tasks in the task list as a list with index numbers.\n"
-            + "     Example: " + COMMAND_WORD + "\n"
+            + ": Displays all items in the list with index numbers.\n"
+            + "     Example: " + COMMAND_WORD + " all\n"
+            + "     Displays all items in the list.\n"
             + "          Optional parameter 1: tasks p/PRIORITY\n"
             + "          Displays all the tasks with PRIORITY as a list.\n"
             + "          Example: " + COMMAND_WORD + " tasks p/1\n"
             + "          Optional parameter 2: tasks c/CATEGORY\n"
             + "          Displays all the tasks with CATEGORY as a list.\n"
-            + "          Example: " + COMMAND_WORD + " tasks c/cs2113";
+            + "          Example: " + COMMAND_WORD + " tasks c/cs2113\n"
+            + "          Optional parameter 3: tasks sorted\n"
+            + "          Displays all the tasks sorted by priority";
     private final boolean hasPriority;
     private final boolean hasCategory;
     private int priority;
