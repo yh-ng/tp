@@ -57,6 +57,9 @@ public class CommandCreator {
         }
         switch (subRootCommand.toLowerCase()) {
         case "tasks":
+            if (commandString.length() == 0) {
+                return new ListCommand();
+            }
             int priority;
             String category;
             if (commandString.contains("p/")) {

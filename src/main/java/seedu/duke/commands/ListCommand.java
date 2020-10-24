@@ -6,8 +6,6 @@ import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 
 /**
  * Lists all tasks in the task list to the user.
