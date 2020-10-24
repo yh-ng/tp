@@ -6,6 +6,7 @@ import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Lists all tasks in the task list to the user.
@@ -78,9 +79,8 @@ public class ListCommand extends Command {
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask(category);
         } else {
-            for (int i = 0; i < tasks.size(); i++) {
-                newTasks.add(tasks.get(i));
-            }
+            newTasks = tasks.getTaskList();
+            Collections.sort(newTasks);
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask();
         }
