@@ -27,6 +27,7 @@ public class ListCommand extends Command {
     private final boolean hasCategory;
     private int priority;
     private String category;
+    private boolean isSorted;
     public static int listSize;
     public static int newListSize;
 
@@ -38,13 +39,21 @@ public class ListCommand extends Command {
     public ListCommand(int priority) {
         this.hasPriority = true;
         this.hasCategory = false;
+        this.isSorted = false;
         this.priority = priority;
     }
 
     public ListCommand(String category) {
         this.hasPriority = false;
         this.hasCategory = true;
+        this.isSorted = false;
         this.category = category;
+    }
+
+    public ListCommand(boolean isSorted) {
+        this.hasPriority = false;
+        this.hasCategory = false;
+        this.isSorted = true;
     }
 
     @Override
@@ -78,11 +87,13 @@ public class ListCommand extends Command {
             }
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask(category);
-        } else {
+        } else if (isSorted) {
             newTasks = tasks.getTaskList();
             Collections.sort(newTasks);
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask();
+        } else {
+            tasks.listTask();
         }
         newListSize = newTasks.size();
     }

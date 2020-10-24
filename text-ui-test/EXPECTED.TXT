@@ -88,14 +88,14 @@
 
     ____________________________________________________________
      Here are the tasks in your list:
-     1.[T][N] other meeting (p:3)
-     2.[T][N] tP meeting (p:5) (category: cs2113)
-     3.[T][N] iP meeting (p:0)
+     1.[T][N] iP meeting (p:0)
+     2.[T][N] other meeting (p:3)
+     3.[T][N] tP meeting (p:5) (category: cs2113)
     ____________________________________________________________
 
     ____________________________________________________________
      Nice! I've marked this task as done:
-       [Y] other meeting
+       [Y] iP meeting
     ____________________________________________________________
 
     ____________________________________________________________
@@ -104,9 +104,9 @@
 
     ____________________________________________________________
      Here are the tasks in your list:
-     1.[T][Y] other meeting (p:3)
-     2.[T][N] tP meeting (p:5) (category: cs2113)
-     3.[T][N] iP meeting (p:0)
+     1.[T][Y] iP meeting (p:0)
+     2.[T][N] other meeting (p:3)
+     3.[T][N] tP meeting (p:5) (category: cs2113)
     ____________________________________________________________
 
     ____________________________________________________________
@@ -119,14 +119,14 @@
 
     ____________________________________________________________
      Noted. I've removed this task:
-       [T][N] tP meeting (p:5) (category: cs2113)
+       [T][N] other meeting (p:3)
      Now you have 2 tasks in the list.
     ____________________________________________________________
 
     ____________________________________________________________
      Here are the tasks in your list:
-     1.[T][Y] other meeting (p:3)
-     2.[T][N] iP meeting (p:0)
+     1.[T][Y] iP meeting (p:0)
+     2.[T][N] tP meeting (p:5) (category: cs2113)
     ____________________________________________________________
 
     ____________________________________________________________
