@@ -52,6 +52,26 @@ public class TaskList {
     }
 
     /**
+     * Adds a list of tasks to the task list.
+     *
+     * @param newTaskList ArrayList of new tasks.
+     */
+    public void addTasksFromList(ArrayList<Task> newTaskList) {
+        Ui.showLine();
+        if (newTaskList.size() <= 0) {
+            Ui.dukePrintMultiple("There are no tasks to add");
+        } else {
+            Ui.dukePrintMultiple("Got it. I've added these tasks:\n");
+            for (Task task: newTaskList) {
+                tasks.add(task);
+                Ui.dukePrintMultiple(task.toString());
+            }
+            Ui.dukePrintMultiple(Messages.MESSAGE_STATUS_FIRST + tasks.size() + Messages.MESSAGE_STATUS_LAST);
+        }
+        Ui.showLine();
+    }
+
+    /**
      * Adds a todo task to the task list.
      *
      * @param description the description of the todo task

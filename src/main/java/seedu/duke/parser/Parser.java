@@ -2,6 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.DukeException;
 import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.AddRecurringCommand;
 import seedu.duke.commands.ByeCommand;
 import seedu.duke.commands.CategoryCommand;
 import seedu.duke.commands.ClearCommand;
@@ -47,6 +48,9 @@ public class Parser {
         case AddCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createAddCommand(description, argumentsMap);
+        case AddRecurringCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, AddRecurringCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createAddRecurringCommand(description, argumentsMap);
         case SetCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createSetCommand(fullCommand, argumentsMap);
