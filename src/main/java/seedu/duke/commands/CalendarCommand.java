@@ -26,9 +26,11 @@ public class CalendarCommand extends Command {
     public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("d"));
 
     private final HashMap<String, String> argumentsMap;
+    private final LocalDate currentDate;
 
     public CalendarCommand(HashMap<String, String> argumentsMap) {
         this.argumentsMap = argumentsMap;
+        this.currentDate = LocalDate.now();
     }
 
     /**
@@ -39,7 +41,6 @@ public class CalendarCommand extends Command {
     @Override
     public void execute(TaskList tasks) throws DukeException {
         int daysToPrint;
-        LocalDate currentDate = LocalDate.now();
         assert argumentsMap.size() <= ALLOWED_ARGUMENTS.size();
 
         if (!argumentsMap.containsKey("d")) {
