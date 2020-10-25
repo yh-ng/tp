@@ -168,8 +168,6 @@ public class Item implements Comparable<Item> {
      */
     @Override
     public int compareTo(Item otherItem) {
-        String thisItemCategory = (this.category == null) ? "" : this.category;
-        String otherItemCategory = (otherItem.category == null) ? "" : otherItem.category;
         if (this.priority != otherItem.priority && this.priority == 0) {
             return 1;
         }
@@ -179,6 +177,8 @@ public class Item implements Comparable<Item> {
         if (this.priority != otherItem.priority) {
             return this.priority - otherItem.priority;
         }
+        String thisItemCategory = (this.category == null) ? "" : this.category;
+        String otherItemCategory = (otherItem.category == null) ? "" : otherItem.category;
         return thisItemCategory.compareTo(otherItemCategory);
     }
 }
