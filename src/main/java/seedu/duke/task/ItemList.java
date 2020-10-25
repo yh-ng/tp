@@ -7,6 +7,7 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// Renamed from previous Task.java with some modifications.
 /**
  * Represents a list of items.
  */

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+// Renamed from previous Task.java with some modifications.
 /**
  * Represents an item in the list.
  */
