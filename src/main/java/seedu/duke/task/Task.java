@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents a task in the task list.
  */
-public class Task {
+public class Task implements Comparable<Task> {
     public static DateTimeFormatter DATETIME_PARSE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static DateTimeFormatter DATETIME_PRINT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
@@ -155,5 +155,27 @@ public class Task {
         }
 
         return date.format(formatter);
+    }
+
+    /**
+     * Defines how tasks are sorted. First sort tasks based on priority in ascending order (priority 0, i.e. no
+     * priority, is the last). If two tasks have the same priority, sort based on category lexicographically.
+     *
+     * @param otherTask The other task to compare to.
+     * @return negative integer if this task precedes the argument task,
+     *     positive integer if this task follows the argument task, 0 otherwise.
+     */
+    @Override
+    public int compareTo(Task otherTask) {
+        if (this.priority != otherTask.priority && this.priority == 0) {
+            return 1;
+        }
+        if (this.priority != otherTask.priority && otherTask.priority == 0) {
+            return -1;
+        }
+        if (this.priority != otherTask.priority) {
+            return this.priority - otherTask.priority;
+        }
+        return this.category.compareTo(otherTask.category);
     }
 }

@@ -57,14 +57,34 @@ Output:
     ____________________________________________________________
 ```
 
-### Listing tasks: `list`
-Lists all the tasks.
+### Listing: `list`
+Lists everything.
 
-Format: `list`
+Format: `list all`
 
 Example of usage:
 
-`list`
+`list all`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the tasks in your list:
+     1.[T][N] tP meeting (p:1) (category: cs2113)
+     2.[T][N] iP meeting (p:2) (category: cs2113)
+     3.[T][N] assignment submission (p:2) (category: cg2028)
+    ____________________________________________________________
+```
+
+### Listing tasks: `list`
+Lists all the tasks.
+
+Format: `list tasks`
+
+Example of usage:
+
+`list tasks`
 
 Output:
 
@@ -80,11 +100,11 @@ Output:
 ### Listing tasks with given priority: `list`
 Lists all the tasks with the given priority.
 
-Format: `list p/<priority>`
+Format: `list tasks p/<priority>`
 
 Example of usage:
 
-`list p/2`
+`list tasks p/2`
 
 Output:
 
@@ -99,11 +119,11 @@ Output:
 ### Listing tasks with given category: `list`
 Lists all the tasks with the given category.
 
-Format: `list c/<category>`
+Format: `list tasks c/<category>`
 
 Example of usage:
 
-`list c/cs2113`
+`list tasks c/cs2113`
 
 Output:
 
@@ -330,6 +350,12 @@ Output:
      delete: Deletes the task identified by the index number used in the task listing.
      Parameters: INDEX
      Example: delete 1
+          Optional parameter 1: p/PRIORITY
+          Deletes all the tasks with PRIORITY.
+          Example: delete p/1
+          Optional parameter 2: c/CATEGORY
+          Deletes all the tasks with CATEGORY.
+          Example: delete c/cs2113
 
      done: Marks the task identified by the index number used in the task listing as done.
      Parameters: INDEX
@@ -344,12 +370,12 @@ Output:
 
      list: Displays all tasks in the task list as a list with index numbers.
      Example: list
-          Optional parameter 1: p/PRIORITY
+          Optional parameter 1: tasks p/PRIORITY
           Displays all the tasks with PRIORITY as a list.
-          Example: list p/1
-          Optional parameter 2: c/CATEGORY
+          Example: list tasks p/1
+          Optional parameter 2: tasks c/CATEGORY
           Displays all the tasks with CATEGORY as a list.
-          Example: list c/cs2113
+          Example: list tasks c/cs2113
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY

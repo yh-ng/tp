@@ -2,14 +2,14 @@ help
 add iP meeting
 add other meeting p/3
 add tP meeting p/5 c/cs2113
-list
+list tasks
 done 1
 done 4
-list
+list tasks
 add tP meeting p/2 c/cs2113 invalid/argument
 delete 10
 delete 2
-list
+list tasks
 find book
 Revengers Assemble!
 bye

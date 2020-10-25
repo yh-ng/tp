@@ -72,7 +72,9 @@ public class Parser {
             }
             return new CategoryCommand(index, argumentsMap.get("c"));
         case ListCommand.COMMAND_WORD:
-            return CommandCreator.createListCommand(fullCommand, commandString, argumentsMap);
+            String subRootCommand = commandString.split(" ")[0];
+            commandString = commandString.replaceFirst(subRootCommand, "").trim();
+            return CommandCreator.createListCommand(fullCommand, subRootCommand, commandString);
         case DeleteCommand.COMMAND_WORD:
             return CommandCreator.createDeleteCommand(commandString);
         case ClearCommand.COMMAND_WORD:
