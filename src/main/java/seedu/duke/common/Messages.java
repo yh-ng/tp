@@ -51,6 +51,8 @@ public class Messages {
     public static final String EXCEPTION_EMPTY_DESCRIPTION = ":( OOPS!!! The description of a task cannot be empty.";
     public static final String EXCEPTION_INVALID_CATEGORY = ":( OOPS!!! Please input a valid category using the format "
             + "c/CATEGORY.";
+    public static final String EXCEPTION_NEGATIVE_DAY_COUNT = ":( OOPS!!! Your number of days must be positive!";
+    public static final String EXCEPTION_INVALID_DAY_COUNT = ":( OOPS!!! Your number of days is an invalid integer!";
     public static final String EXCEPTION_EMPTY_CATEGORY_BODY = ":( OOPS!!! The body of a category command cannot be "
             + "empty.";
     public static final String EXCEPTION_INVALID_DATE = ":( OOPS!!! The format of your date should be dd-MM-yyyy.";
