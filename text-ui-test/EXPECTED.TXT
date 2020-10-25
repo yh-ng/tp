@@ -54,14 +54,17 @@
      help: Shows program usage instructions.
      Example: help
 
-     list: Displays all tasks in the task list as a list with index numbers.
-     Example: list
+     list: Displays all items in the list with index numbers.
+     Example: list all
+     Displays all items in the list.
           Optional parameter 1: tasks p/PRIORITY
           Displays all the tasks with PRIORITY as a list.
           Example: list tasks p/1
           Optional parameter 2: tasks c/CATEGORY
           Displays all the tasks with CATEGORY as a list.
           Example: list tasks c/cs2113
+          Optional parameter 3: tasks sorted
+          Displays all the tasks sorted by priority
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
