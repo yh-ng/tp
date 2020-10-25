@@ -99,6 +99,7 @@ public class Ui {
 
     /**
      * Prints the heading in the calendar for a certain date.
+     *
      * @param date Date of the heading.
      */
     private static void dukePrintDayHeading(LocalDate date) {
