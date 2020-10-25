@@ -161,21 +161,23 @@ public class Item implements Comparable<Item> {
      * Defines how tasks are sorted. First sort tasks based on priority in ascending order (priority 0, i.e. no
      * priority, is the last). If two tasks have the same priority, sort based on category lexicographically.
      *
-     * @param otherTask The other task to compare to.
+     * @param otherItem The other task to compare to.
      * @return negative integer if this task precedes the argument task,
      *     positive integer if this task follows the argument task, 0 otherwise.
      */
     @Override
-    public int compareTo(Item otherTask) {
-        if (this.priority != otherTask.priority && this.priority == 0) {
+    public int compareTo(Item otherItem) {
+        String thisItemCategory = (this.category == null) ? "" : this.category;
+        String otherItemCategory = (otherItem.category == null) ? "" : otherItem.category;
+        if (this.priority != otherItem.priority && this.priority == 0) {
             return 1;
         }
-        if (this.priority != otherTask.priority && otherTask.priority == 0) {
+        if (this.priority != otherItem.priority && otherItem.priority == 0) {
             return -1;
         }
-        if (this.priority != otherTask.priority) {
-            return this.priority - otherTask.priority;
+        if (this.priority != otherItem.priority) {
+            return this.priority - otherItem.priority;
         }
-        return this.category.compareTo(otherTask.category);
+        return thisItemCategory.compareTo(otherItemCategory);
     }
 }
