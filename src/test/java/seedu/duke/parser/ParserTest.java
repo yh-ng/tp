@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.DateCommand;
 import seedu.duke.commands.SetCommand;
 
 import java.util.Arrays;
@@ -43,6 +44,21 @@ class ParserTest {
         String fullCommand = "set p/-1";
         assertThrows(DukeException.class, () -> {
             Parser.parse(fullCommand);
+        });
+    }
+
+    @Test
+    void parse_validDateCommand_returnsDateCommand() throws DukeException {
+        String fullCommand = "date 1 date/05-05-2020";
+        Command command = Parser.parse(fullCommand);
+        assertTrue(command instanceof DateCommand);
+    }
+
+    @Test
+    void parse_invalidDateCommand_throwsException() {
+        String fullCommandWrongIndex = "date a date/05-05-2020";
+        assertThrows(DukeException.class, () -> {
+            Parser.parse(fullCommandWrongIndex);
         });
     }
 

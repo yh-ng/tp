@@ -7,6 +7,7 @@ import seedu.duke.commands.CategoryCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandCreator;
+import seedu.duke.commands.DateCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DoneCommand;
 import seedu.duke.commands.FindCommand;
@@ -49,8 +50,9 @@ public class Parser {
         case SetCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createSetCommand(fullCommand, argumentsMap);
-
-
+        case DateCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, DateCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createDateCommand(commandString, argumentsMap);
         case CategoryCommand.COMMAND_WORD:
             int index;
             try {
@@ -65,44 +67,22 @@ public class Parser {
                 throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
             }
             return new CategoryCommand(index, argumentsMap.get("c"));
-
-
         case ListCommand.COMMAND_WORD:
-            return CommandCreator.createListCommand(fullCommand, commandString, argumentsMap);
-
+            String subRootCommand = commandString.split(" ")[0];
+            commandString = commandString.replaceFirst(subRootCommand, "").trim();
+            return CommandCreator.createListCommand(fullCommand, subRootCommand, commandString);
         case DeleteCommand.COMMAND_WORD:
             return CommandCreator.createDeleteCommand(commandString);
-
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-
         case DoneCommand.COMMAND_WORD:
-            try {
-                return new DoneCommand(Integer.parseInt(commandString));
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.WARNING_NO_TASK);
-            }
-
-
+            return CommandCreator.createDoneCommand(commandString);
         case FindCommand.COMMAND_WORD:
-            try {
-                return new FindCommand(commandString.trim());
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.EXCEPTION_FIND);
-            }
-
-
+            return CommandCreator.createFindCommand(commandString);
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
-
-
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
