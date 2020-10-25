@@ -3,7 +3,7 @@ package seedu.duke.task;
 /**
  * Represents a task in the task list.
  */
-public class Task extends Item {
+public class Book extends Item {
 
     /**
      * Constructor used when adding a new task.
@@ -11,7 +11,7 @@ public class Task extends Item {
      *
      * @param description the description of the task
      */
-    public Task(String description) {
+    public Book(String description) {
         super(description);
         this.isDone = false;
         this.setPriority(0);
@@ -24,7 +24,7 @@ public class Task extends Item {
      * @param isDone true if the task is done already, false otherwise
      * @param priority the priority of the task
      */
-    public Task(String description, boolean isDone, int priority) {
+    public Book(String description, boolean isDone, int priority) {
         super(description, isDone, priority);
     }
 }
