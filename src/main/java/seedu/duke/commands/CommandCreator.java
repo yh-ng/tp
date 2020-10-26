@@ -52,8 +52,11 @@ public class CommandCreator {
      */
     public static Command createListCommand(String fullCommand, String subRootCommand,
                                             String commandString) throws DukeException {
-        if (fullCommand.equals("list all")) { //list everything
+        if (fullCommand.trim().toLowerCase().equals("list all")) { //list everything
             return new ListCommand();
+        }
+        if (fullCommand.trim().toLowerCase().equals("list tasks sorted")) {
+            return new ListCommand(true);
         }
         switch (subRootCommand.toLowerCase()) {
         case "tasks":
@@ -85,7 +88,7 @@ public class CommandCreator {
         case "expenses":
         case "meals":
         default:
-            throw  new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
+            throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
         }
     }
 

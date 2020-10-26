@@ -28,7 +28,7 @@ termiNus is an interactive task manager for students in NUS.
 ## Features 
 
 ### Adding a task: `add`
-Adds a new item to the list of todo items.
+Adds a new item to the list of todo tasks.
 
 Format: `add <description> <optional arguments>`
 
