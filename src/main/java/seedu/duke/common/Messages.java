@@ -56,6 +56,9 @@ public class Messages {
     public static final String EXCEPTION_EMPTY_CATEGORY_BODY = ":( OOPS!!! The body of a category command cannot be "
             + "empty.";
     public static final String EXCEPTION_INVALID_DATE = ":( OOPS!!! The format of your date should be dd-MM-yyyy.";
+    public static final String EXCEPTION_INVALID_DAY = ":( OOPS!!! The format of your day should be the first 3 charact"
+            + "ers of the day!\n"
+            + "     Example: mon, tue, wed, thu, fri, sat, sun";
     public static final String EXCEPTION_EMPTY_PRIORITY = ":( OOPS!!! The priority cannot be empty.";
     public static final String EXCEPTION_EMPTY_CATEGORY = ":( OOPS!!! The category cannot be empty.";
     public static final String EXCEPTION_EMPTY_DEADLINE = ":( OOPS!!! The deadline of a task cannot be empty.";
