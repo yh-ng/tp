@@ -2,12 +2,15 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.parser.Parser;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -39,6 +42,8 @@ public class AddRecurringCommand extends AddCommand {
     public void execute(TaskList tasks) throws DukeException {
         final LocalDate startDate;
         final LocalDate endDate;
+        LocalDate nearestDay;
+        ArrayList<Task> newTasks = new ArrayList<>();
 
         if (!argumentsMap.containsKey("day") || !argumentsMap.containsKey("s") || !argumentsMap.containsKey("e")) {
             throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
@@ -50,8 +55,8 @@ public class AddRecurringCommand extends AddCommand {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
 
-        LocalDate nearestDay = findNearestDay(startDate, argumentsMap.get("day"));
-        ArrayList<Task> newTasks = new ArrayList<>();
+        DayOfWeek dayOfWeek = Parser.getDayFromString(argumentsMap.get("day"));
+        nearestDay = startDate.with(TemporalAdjusters.nextOrSame(dayOfWeek));
 
         while (nearestDay.until(endDate, ChronoUnit.DAYS) >= 0) {
             Task newTask = new Task(description);
@@ -61,32 +66,5 @@ public class AddRecurringCommand extends AddCommand {
             nearestDay = nearestDay.plusDays(Calendar.DAY_OF_WEEK);
         }
         tasks.addTasksFromList(newTasks);
-    }
-
-    /**
-     * Finds the nearest date from a starting date that matches the day.
-     *
-     * @param startDate Starting date to match.
-     * @param day Day to match.
-     * @return LocalDate corresponding to the nearest day.
-     * @throws DukeException If none of the day matches.
-     */
-    private LocalDate findNearestDay(LocalDate startDate, String day) throws DukeException {
-        LocalDate finalDate = startDate;
-        boolean dayFound = false;
-        for (int i = 0; i < Calendar.DAY_OF_WEEK; i++) {
-            String startDayString = finalDate.getDayOfWeek().toString().substring(0,3).toLowerCase();
-            if (startDayString.equals(day)) {
-                dayFound = true;
-                break;
-            }
-            finalDate = finalDate.plusDays(1);
-        }
-
-        if (!dayFound) {
-            throw new DukeException("OOPS!!! The day you provided is invalid!");
-        }
-
-        return finalDate;
     }
 }
