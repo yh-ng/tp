@@ -57,6 +57,42 @@ Output:
     ____________________________________________________________
 ```
 
+### Adding recurring tasks: `addr`
+Adds multiple tasks to the list of todo tasks that occur weekly.
+
+Format: `addr <description> <optional/compulsory arguments>`
+
+List of `<optional arguments>`:
+- `p/<number>` sets the priority of the task.
+- `c/<category>` sets the category of the task.
+
+List of `<compulsory arguments>`:
+- `s/<dd-MM-yyyy>` start date of recurring tasks (inclusive).
+- `e/<dd-MM-yyyy>` end date of recurring tasks (inclusive).
+- `day/<mon/tue/wed/thu/fri/sat/sun>` day of recurring task.
+
+Example of usage:
+
+`addr tp meeting s/26-10-2020 e/27-11-2020 day/fri`
+
+`addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
+
+Output:
+
+```
+    ____________________________________________________________
+     Got it. I've added these tasks:
+       
+     [T][N] board games club (p:1) (category: CCA) (date: 28 Oct 2020)
+     [T][N] board games club (p:1) (category: CCA) (date: 04 Nov 2020)
+     [T][N] board games club (p:1) (category: CCA) (date: 11 Nov 2020)
+     [T][N] board games club (p:1) (category: CCA) (date: 18 Nov 2020)
+     [T][N] board games club (p:1) (category: CCA) (date: 25 Nov 2020)
+     
+     Now you have 31 tasks in the list.
+    ____________________________________________________________
+```
+
 ### Listing: `list`
 Lists everything.
 
@@ -439,6 +475,7 @@ putting it in the same folder as `termiNus.jar`.
 Action | Command | Example
 ----- | ------ | ------
 Add task | `add <description> <optional arguments>` | `add tP meeting c/cs2113`
+Add recurring task | `addr <description> <optional/compulsory arguments>` | `addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
 List tasks | `list` | `list`
 List tasks with priority | `list p/<priority>` | `list p/2`
 Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
