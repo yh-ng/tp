@@ -56,7 +56,7 @@ public class ListCommand extends Command {
     public ListCommand(boolean isSorted) {
         this.hasPriority = false;
         this.hasCategory = false;
-        this.isSorted = true;
+        this.isSorted = isSorted;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class ListCommand extends Command {
                     continue;
                 }
                 if (tasks.get(i).getCategory().equals(category)) {
-                    newTasks.add(tasks.get(i));
+                    newTasks.add((Task) tasks.get(i));
                 }
             }
             TaskList newTaskList = new TaskList(newTasks);
