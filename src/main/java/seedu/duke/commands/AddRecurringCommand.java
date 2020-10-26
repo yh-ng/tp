@@ -46,7 +46,7 @@ public class AddRecurringCommand extends AddCommand {
         ArrayList<Task> newTasks = new ArrayList<>();
 
         if (!argumentsMap.containsKey("day") || !argumentsMap.containsKey("s") || !argumentsMap.containsKey("e")) {
-            throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+            throw new DukeException(Messages.EXCEPTION_RECURRING_ARGUMENTS);
         }
         try {
             startDate = LocalDate.parse(argumentsMap.get("s"), Task.DATETIME_PARSE_FORMAT);

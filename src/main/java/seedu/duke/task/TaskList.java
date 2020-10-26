@@ -34,9 +34,9 @@ public class TaskList extends ItemList<Task> {
     public void addTasksFromList(ArrayList<Task> newTaskList) {
         Ui.showLine();
         if (newTaskList.size() <= 0) {
-            Ui.dukePrintMultiple("There are no tasks to add");
+            Ui.dukePrintMultiple(Messages.WARNING_NO_TASK);
         } else {
-            Ui.dukePrintMultiple("Got it. I've added these tasks:\n");
+            Ui.dukePrintMultiple(Messages.MESSAGE_ADD_MULTIPLE_TASK);
             for (Task task: newTaskList) {
                 items.add(task);
                 Ui.dukePrintMultiple(task.toString());
