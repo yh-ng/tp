@@ -15,6 +15,8 @@ public class Messages {
 
     public static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
     public static final String MESSAGE_ADDTASK = "Got it. I've added this task:\n       ";
+    public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
+    public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_STATUS_LAST = " tasks in the list.";
 
@@ -53,9 +55,13 @@ public class Messages {
             + "c/CATEGORY.";
     public static final String EXCEPTION_NEGATIVE_DAY_COUNT = ":( OOPS!!! Your number of days must be positive!";
     public static final String EXCEPTION_INVALID_DAY_COUNT = ":( OOPS!!! Your number of days is an invalid integer!";
+    public static final String EXCEPTION_RECURRING_ARGUMENTS = ":( OOPS!!! You need the s/, e/ and day/ arguments!";
     public static final String EXCEPTION_EMPTY_CATEGORY_BODY = ":( OOPS!!! The body of a category command cannot be "
             + "empty.";
     public static final String EXCEPTION_INVALID_DATE = ":( OOPS!!! The format of your date should be dd-MM-yyyy.";
+    public static final String EXCEPTION_INVALID_DAY = ":( OOPS!!! The format of your day should be the first 3 charact"
+            + "ers of the day!\n"
+            + "     Example: mon, tue, wed, thu, fri, sat, sun";
     public static final String EXCEPTION_EMPTY_PRIORITY = ":( OOPS!!! The priority cannot be empty.";
     public static final String EXCEPTION_EMPTY_CATEGORY = ":( OOPS!!! The category cannot be empty.";
     public static final String EXCEPTION_EMPTY_DEADLINE = ":( OOPS!!! The deadline of a task cannot be empty.";

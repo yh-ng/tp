@@ -26,6 +26,31 @@ public class TaskList extends ItemList<Task> {
         items = new ArrayList<>();
     }
 
+    /**
+     * Adds a list of tasks to the task list.
+     *
+     * @param newTaskList ArrayList of new tasks.
+     */
+    public void addTasksFromList(ArrayList<Task> newTaskList) {
+        Ui.showLine();
+        if (newTaskList.size() <= 0) {
+            Ui.dukePrintMultiple(Messages.WARNING_NO_TASK);
+        } else {
+            Ui.dukePrintMultiple(Messages.MESSAGE_ADD_MULTIPLE_TASK);
+            for (Task task: newTaskList) {
+                items.add(task);
+                Ui.dukePrintMultiple(task.toString());
+            }
+            Ui.dukePrintMultiple(Messages.MESSAGE_STATUS_FIRST + items.size() + Messages.MESSAGE_STATUS_LAST);
+        }
+        Ui.showLine();
+    }
+
+    /**
+     * Adds a todo task to the task list.
+     *
+     * @param description the description of the todo task
+     */
     @Override
     public void addTodo(String description) {
         Task newTask = new Task(description);
