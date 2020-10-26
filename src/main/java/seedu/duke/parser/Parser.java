@@ -3,6 +3,7 @@ package seedu.duke.parser;
 import seedu.duke.DukeException;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.ByeCommand;
+import seedu.duke.commands.CalendarCommand;
 import seedu.duke.commands.CategoryCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
@@ -53,6 +54,9 @@ public class Parser {
         case DateCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, DateCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createDateCommand(commandString, argumentsMap);
+        case CalendarCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, CalendarCommand.ALLOWED_ARGUMENTS);
+            return new CalendarCommand(argumentsMap);
         case CategoryCommand.COMMAND_WORD:
             int index;
             try {

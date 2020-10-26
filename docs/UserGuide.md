@@ -301,6 +301,33 @@ Output:
 
 ```
 
+### Print calendar: `calendar`
+Prints a calendar with tasks from current date to given number of days.
+
+Format: `calendar d/<daysToPrint>`
+
+Example of usage:
+
+`calendar d/7`
+
+Output:
+```
+    ____________________________________________________________
+     Today's date is: 26 Oct 2020
+     Here's your tasks for the next 7 day(s).
+    ____________________________________________________________
+     MONDAY - 26 Oct 2020
+     [T][N] finish tutorial (p:2) (date: 26 Oct 2020)
+    ____________________________________________________________
+     TUESDAY - 27 Oct 2020
+     [T][N] tp meeting (p:0) (category: cs2113) (date: 27 Oct 2020)
+     [T][N] meet with friend (p:1) (category: personal) (date: 27 Oct 2020)
+    ____________________________________________________________
+     THURSDAY - 29 Oct 2020
+     [T][N] tp v2.0 submission (p:0) (category: cs2113) (date: 29 Oct 2020)
+    ____________________________________________________________
+```
+
 ### Searching tasks: `find`
 Finds all tasks with matching description (case-insensitive).
 
@@ -422,6 +449,7 @@ Delete task | `delete <taskIndexNumber>` | `delete 2`
 Delete tasks by priority | `delete p/<priority>` | `delete p/2`
 Delete tasks by category  | `delete c/<category>` | `delete c/cs2113`
 Clear all tasks | `clear` | `clear`
+Print calendar | `calendar d/<daysToPrint>` | `calendar d/7`
 Find tasks matching keyword | `find <keyword>` | `find meeting`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`
