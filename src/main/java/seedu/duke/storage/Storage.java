@@ -3,10 +3,7 @@ package seedu.duke.storage;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
-import seedu.duke.task.Book;
-import seedu.duke.task.BookList;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import seedu.duke.task.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +24,7 @@ public class Storage {
      */
     public static final String TASK_STORAGE_FILEPATH = "tasks.txt";
     public static final String BOOK_STORAGE_FILEPATH = "books.txt";
+    public static final String CREDIT_STORAGE_FILEPATH = "credits.txt";
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -76,6 +74,29 @@ public class Storage {
             books.add(newBook);
         }
         return books;
+    }
+
+    /**
+     * Loads the credit list data from the storage, and then returns it.
+     *
+     * @return ArrayList of {@code Credit} from the storage file.
+     * @throws DukeException if the storage file does not exist, or is not a regular file.
+     */
+    public ArrayList<Credit> loadCredit() throws DukeException {
+        File file = new File(CREDIT_STORAGE_FILEPATH);
+        Scanner sc;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+        ArrayList<Credit> mealCredit = new ArrayList<>();
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            Credit newCredit = loadCreditFromLine(line);
+            mealCredit.add(newCredit);
+        }
+        return mealCredit;
     }
 
     /**
@@ -129,6 +150,31 @@ public class Storage {
     }
 
     /**
+     * Saves the {@code CreditList} data to the storage file.
+     *
+     * @param credits the {@code CreditList} to be saved to the storage file
+     * @throws DukeException if there were errors storing data to file.
+     */
+    public void saveCredit(CreditList credits) throws DukeException {
+        FileWriter fw;
+        try {
+            fw = new FileWriter(CREDIT_STORAGE_FILEPATH);
+        } catch (IOException e) {
+            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
+        }
+        String creditString = "";
+        for (int i = 0; i < credits.size(); i++) {
+            creditString = creditString + credits.get(i).toFileCredit() + "\n";
+        }
+        try {
+            fw.write(creditString);
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
+        }
+    }
+
+    /**
      * Returns a task corresponding to arguments from a line loaded from file.
      *
      * @param line A line loaded from the save file.
@@ -166,10 +212,10 @@ public class Storage {
     }
 
     /**
-     * Returns a task corresponding to arguments from a line loaded from file.
+     * Returns a book corresponding to arguments from a line loaded from file.
      *
      * @param line A line loaded from the save file.
-     * @return Task corresponding to the loaded line.
+     * @return Book corresponding to the loaded line.
      * @throws DukeException If there is an error parsing the save file.
      */
     private Book loadBookFromLine(String line) throws DukeException {
@@ -198,5 +244,31 @@ public class Storage {
         }
 
         return newBook;
+    }
+
+    /**
+     * Returns mealCredit corresponding to arguments from a line loaded from file.
+     *
+     * @param line A line loaded from the save file.
+     * @return Credit corresponding to the loaded line.
+     * @throws DukeException If there is an error parsing the save file.
+     */
+    private Credit loadCreditFromLine(String line) throws DukeException {
+        Credit newCredit;
+        String[] arguments = line.split("\\|");
+
+        if (arguments.length != EXPECTED_DIVIDER_COUNT - 4) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+
+        try {
+            String description = arguments[1].trim();
+            newCredit = new Credit(description);
+
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+
+        return newCredit;
     }
 }

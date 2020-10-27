@@ -46,6 +46,10 @@ public abstract class ItemList<T extends Item> {
         return items;
     }
 
+    public ArrayList<T> getCreditList() {
+        return items;
+    }
+
     /**
      * Adds an item to the item list from the parameters.
      *

@@ -111,6 +111,11 @@ public class Item implements Comparable<Item> {
         return "B | " + isDoneString + " | " + description + " | " + dateString + " | " + futureDateString;
     }
 
+    public String toFileCredit() {
+
+        return "C | " + description;
+    }
+
     /**
      * Converts the attributes of the task into a formatted string to be displayed to the user.
      *
