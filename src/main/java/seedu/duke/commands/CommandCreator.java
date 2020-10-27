@@ -22,7 +22,10 @@ public class CommandCreator {
         return new AddCommand(description, argumentsMap);
     }
 
-    public static Command createAddCommand(String commandString) {
+    public static Command createAddCommand(String commandString) throws DukeException {
+        if (!commandString.contains("m/") || !commandString.contains(" t/") || !commandString.contains(" u/")) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
+        }
         int indexOfT = commandString.indexOf("t/");
         String module = commandString.substring(2, indexOfT - 1);
         int indexOfU = commandString.indexOf("u/");
