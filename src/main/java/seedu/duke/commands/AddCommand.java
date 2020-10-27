@@ -2,7 +2,12 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.task.*;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.LinkList;
+import seedu.duke.task.ListType;
+import seedu.duke.task.TaskList;
+import seedu.duke.task.Link;
+import seedu.duke.task.Task;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -58,7 +63,7 @@ public class AddCommand extends Command {
         LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
         Task newTask = new Task(description);
         Link newLink = new Link(module, type, url);
-        if(isLink) {
+        if (isLink) {
             links.addLink(newLink);
         } else {
             setTaskProperties(newTask, argumentsMap);

@@ -54,6 +54,29 @@ public class Storage {
     }
 
     /**
+     * Loads the link list of data from the storage, and then returns it.
+     *
+     * @return ArrayList of {@code Link} from the storage file.
+     * @throws DukeException if the storage file does not exist, or is not a regular file.
+     */
+    public ArrayList<Link> loadLinks() throws DukeException {
+        File file = new File(DEFAULT_LINK_FILEPATH);
+        Scanner sc;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+        ArrayList<Link> links = new ArrayList<>();
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            Link newLink = loadLinkFromLine(line);
+            links.add(newLink);
+        }
+        return links;
+    }
+
+    /**
      * Saves the {@code TaskList} data to the storage file.
      *
      * @param tasks the {@code TaskList} to be saved to the storage file
@@ -72,6 +95,31 @@ public class Storage {
         }
         try {
             fw.write(taskString);
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
+        }
+    }
+
+    /**
+     * Saves the {@code LinkList} data to the storage file.
+     *
+     * @param links the {@code LinkList} to be saved to the storage file
+     * @throws DukeException if there were errors storing data to file.
+     */
+    public void save(LinkList links) throws DukeException {
+        FileWriter fw;
+        try {
+            fw = new FileWriter("links.txt");
+        } catch (IOException e) {
+            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
+        }
+        String linkString = "";
+        for (int i = 0; i < links.size(); i++) {
+            linkString = linkString + links.get(i).linkToFile() + "\n";
+        }
+        try {
+            fw.write(linkString);
             fw.close();
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
@@ -115,24 +163,13 @@ public class Storage {
         return newTask;
     }
 
-
-    public ArrayList<Link> loadLinks() throws DukeException {
-        File file = new File(DEFAULT_LINK_FILEPATH);
-        Scanner sc;
-        try {
-            sc = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
-        }
-        ArrayList<Link> links = new ArrayList<>();
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
-            Link newLink = loadLinkFromLine(line);
-            links.add(newLink);
-        }
-        return links;
-    }
-
+    /**
+     * Returns a link corresponding to arguments from a line loaded from file.
+     *
+     * @param line A line loaded from the save file.
+     * @return Link corresponding to the loaded line.
+     * @throws DukeException If there is an error parsing the save file.
+     */
     private Link loadLinkFromLine(String line) throws DukeException {
         Link newLink;
         String paddedLine = line + " ";
@@ -147,24 +184,5 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
         return newLink;
-    }
-
-    public void save(LinkList links) throws DukeException {
-        FileWriter fw;
-        try {
-            fw = new FileWriter("links.txt");
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
-        String linkString = "";
-        for (int i = 0; i < links.size(); i++) {
-            linkString = linkString + links.get(i).linkToFile() + "\n";
-        }
-        try {
-            fw.write(linkString);
-            fw.close();
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
     }
 }

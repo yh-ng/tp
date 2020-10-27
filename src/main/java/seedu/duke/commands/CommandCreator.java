@@ -22,14 +22,6 @@ public class CommandCreator {
         return new AddCommand(description, argumentsMap);
     }
 
-    public static Command createAddRecurringCommand(String description, HashMap<String, String> argumentsMap)
-            throws DukeException {
-        if (description.equals("")) {
-            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-        }
-        return new AddRecurringCommand(description, argumentsMap);
-    }
-
     public static Command createAddCommand(String commandString) {
         int indexOfT = commandString.indexOf("t/");
         String module = commandString.substring(2, indexOfT - 1);
@@ -37,6 +29,14 @@ public class CommandCreator {
         String type = commandString.substring(indexOfT + 2, indexOfU - 1);
         String url = commandString.substring(indexOfU + 2);
         return new AddCommand(module, type, url);
+    }
+
+    public static Command createAddRecurringCommand(String description, HashMap<String, String> argumentsMap)
+            throws DukeException {
+        if (description.equals("")) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+        }
+        return new AddRecurringCommand(description, argumentsMap);
     }
 
     /**

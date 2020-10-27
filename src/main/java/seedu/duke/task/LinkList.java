@@ -8,37 +8,68 @@ import java.util.ArrayList;
 public class LinkList extends ItemList<Link> {
     private ArrayList<Link> links;
 
+    /**
+     * Constructs an empty link list.
+     */
     public LinkList() {
         links = new ArrayList<>();
     }
 
     @Override
     public void addTodo(String description) {
-
     }
 
+    /**
+     * Constructs a link list with the given links.
+     *
+     * @param links An ArrayList of {@code Link}.
+     */
     public LinkList(ArrayList<Link> links) {
         this.links = links;
     }
 
+    /**
+     * Retrieves the list of links.
+     *
+     * @return An ArrayList of {@code Link}.
+     */
     public ArrayList<Link> getLinks() {
         return links;
     }
 
+    /**
+     * Adds a link to the link list.
+     *
+     * @param link the link to be added in to the list.
+     */
     public void addLink(Link link) {
         links.add(link);
         Ui.dukePrint(Messages.MESSAGE_ADD_LINK + link.linkToString() + Messages.MESSAGE_LINK_STATUS_FIRST
                 + links.size() + Messages.MESSAGE_LINK_STATUS_LAST);
     }
 
+    /**
+     * Retrieves the size of the link list.
+     *
+     * @return the size of the link list
+     */
     public int size() {
         return links.size();
     }
 
+    /**
+     * Retrieves the i-th link in the link list.
+     *
+     * @param i the index of the desired link.
+     * @return the i-th link in the link list.
+     */
     public Link get(int i) {
         return links.get(i);
     }
 
+    /**
+     * Lists all the links in the link list.
+     */
     public void listLink() {
         String message = "";
         if (links.size() == 0) {

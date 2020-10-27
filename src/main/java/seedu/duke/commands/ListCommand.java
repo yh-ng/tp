@@ -2,7 +2,11 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.task.*;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.LinkList;
+import seedu.duke.task.ListType;
+import seedu.duke.task.TaskList;
+import seedu.duke.task.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,12 +57,6 @@ public class ListCommand extends Command {
         this.isSorted = false;
         this.category = category;
     }
-
-//    public ListCommand(boolean isSorted) {
-//        this.hasPriority = false;
-//        this.hasCategory = false;
-//        this.isSorted = isSorted;
-//    }
 
     public ListCommand(boolean isSorted, boolean isLink) {
         if (isSorted) {

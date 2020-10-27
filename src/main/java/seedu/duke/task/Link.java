@@ -1,10 +1,17 @@
 package seedu.duke.task;
 
-public class Link extends Item{
+public class Link extends Item {
     protected String module;
     protected String type;
     protected String url;
 
+    /**
+     * Constructor used when adding a new Zoom link.
+     *
+     * @param module the name of the module.
+     * @param type the type of the zoom link.
+     * @param url the Zoom link.
+     */
     public Link(String module, String type, String url) {
         super(url);//this is weird
         this.module = module;
