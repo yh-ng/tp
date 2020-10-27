@@ -24,7 +24,7 @@ public class Storage {
     private final String filePath;
     /** Default file path used. */
     public static final String DEFAULT_STORAGE_FILEPATH = "tasks.txt";
-    public static final String DEFAULT_LINK_FILEPATH = "lists.txt";
+    public static final String DEFAULT_LINK_FILEPATH = "links.txt";
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -138,11 +138,12 @@ public class Storage {
         String paddedLine = line + " ";
         String[] arguments = paddedLine.split("\\|");
         try {
-            String module = arguments[1].trim();
-            String type = arguments[2].trim();
-            String url = arguments[3].trim();
+            String module = arguments[0].trim();
+            String type = arguments[1].trim();
+            String url = arguments[2].trim();
             newLink = new Link(module, type, url);
         } catch (IndexOutOfBoundsException e) {
+            System.out.println("here");
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
         return newLink;

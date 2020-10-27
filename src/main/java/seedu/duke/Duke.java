@@ -23,7 +23,7 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
-    //private Storage linkStorage;
+    private Storage linkStorage;
     private LinkList links;
     private final Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
     private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
@@ -37,9 +37,14 @@ public class Duke {
             links = new LinkList(storage.loadLinks());
         } catch (DukeException e) {
             Ui.showError(e);
-            tasks = new TaskList();
-            links = new LinkList();
-            Ui.dukePrint(Messages.MESSAGE_NEW_FILE);
+            if (tasks == null) {
+                tasks = new TaskList();
+                Ui.dukePrint(Messages.MESSAGE_NEW_FILE);
+            }
+            if (links == null) {
+                links = new LinkList();
+                Ui.dukePrint(Messages.MESSAGE_NEW_LINK_FILE);
+            }
         }
         listMap.put(ListType.TASK_LIST, tasks);
         listMap.put(ListType.LINK_LIST, links);

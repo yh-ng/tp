@@ -84,6 +84,8 @@ public class Messages {
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";
     public static final String MESSAGE_NEW_FILE = "I have created a new tasks.txt file for you. :) "
             + "Type some commands and see it.";
+    public static final String MESSAGE_NEW_LINK_FILE = "I have created a new links.txt file for you. :) "
+            + "Type some commands and see it.";
     public static final String WARNING_DATETIME = "If you want your DateTime to be formatted, "
             + "you can input in this format: yyyy-MM-dd HH:mm";
     public static final String EXCEPTION_FIND = ":( OOPS!!! The keyword of a find command cannot be empty.";
