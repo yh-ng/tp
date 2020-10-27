@@ -18,11 +18,10 @@ public class Item implements Comparable<Item> {
 
     protected String description;
     protected boolean isDone;
-    protected boolean isReturn;
     protected int priority;
     protected String category;
     protected LocalDate date;
-    protected LocalDate futureDate;
+
 
     /**
      * Constructor used when adding a new task.
@@ -33,7 +32,6 @@ public class Item implements Comparable<Item> {
     public Item(String description) {
         this.description = description;
         this.isDone = false;
-        this.isReturn = false;
         this.setPriority(0);
     }
 
@@ -52,7 +50,6 @@ public class Item implements Comparable<Item> {
 
     public Item(String description, boolean isReturn) { // this for book
         this.description = description;
-        this.isReturn = isReturn;
     }
 
     /**
@@ -73,21 +70,12 @@ public class Item implements Comparable<Item> {
         return isDone;
     }
 
-    /**
-     * Retrieves whether the task in done.
-     *
-     * @return true if the task is done already, false otherwise
-     */
-    public boolean getIsReturn() {
-        return isReturn;
-    }
 
     /**
      * Marks the task as done and book as returned.
      */
-    public void markAsDoneOrReturn() {
+    public void markAsDone() {
         isDone = true;
-        isReturn = true;
     }
 
     /**
@@ -103,13 +91,6 @@ public class Item implements Comparable<Item> {
                 + dateString;
     }
 
-    public String toFileBook() {
-        String isDoneString = (isDone) ? "1" : "0";
-        String dateString = getDateString(Item.DATETIME_PARSE_FORMAT);
-        String futureDateString = getFutureDateString(Item.DATETIME_PARSE_FORMAT);
-
-        return "B | " + isDoneString + " | " + description + " | " + dateString + " | " + futureDateString;
-    }
 
     /**
      * Converts the attributes of the task into a formatted string to be displayed to the user.
@@ -132,28 +113,6 @@ public class Item implements Comparable<Item> {
         return returnString;
     }
 
-    /**
-     * Converts the attributes of the book into a formatted string to be displayed to the user.
-     *
-     * @return the formatted string to be displayed to the user
-     */
-    public String toStringBook(boolean isList) {
-        String returnString = "";
-        if (isList) {
-            if (this.isReturn) {
-                returnString = "[B][R] " + this.description + "\n";
-            } else {
-                returnString = "[B][L] " + this.description + "\n";
-            }
-        } else {
-            returnString = this.description + "\n";
-        }
-        if (date != null) {
-            returnString += "\t\t (Loan Date: " + getDateString(Task.DATETIME_PRINT_FORMAT) + ")\n";
-            returnString += "\t\t (Due Date: " + getFutureDateString(Task.DATETIME_PRINT_FORMAT) + ")";
-        }
-        return returnString;
-    }
 
     /**
      * Retrieves the priority of a task.
@@ -191,7 +150,7 @@ public class Item implements Comparable<Item> {
         assert dateString != null : "dateString should not be null.";
         try {
             date = LocalDate.parse(dateString, DATETIME_PARSE_FORMAT);
-            futureDate = date.plusMonths(1);
+            //futureDate = date.plusMonths(1);
         } catch (DateTimeParseException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
@@ -209,14 +168,6 @@ public class Item implements Comparable<Item> {
         return date.format(formatter);
     }
 
-    public String getFutureDateString(DateTimeFormatter formatter) {
-        if (futureDate == null) {
-            return "";
-        }
-
-        return futureDate.format(formatter);
-
-    }
 
     /**
      * Defines how tasks are sorted. First sort tasks based on priority in ascending order (priority 0, i.e. no

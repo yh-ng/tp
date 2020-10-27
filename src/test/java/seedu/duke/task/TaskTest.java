@@ -25,7 +25,7 @@ class TaskTest {
     void markAsDone_setIsDone_todoSetAsDone() {
         Task todo = new Task("test description");
         assertFalse(todo.getIsDone());
-        todo.markAsDoneOrReturn();
+        todo.markAsDone();
         assertTrue(todo.getIsDone());
     }
 

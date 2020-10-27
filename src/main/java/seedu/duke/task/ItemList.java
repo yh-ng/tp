@@ -57,16 +57,6 @@ public abstract class ItemList<T extends Item> {
                 + items.size() + Messages.MESSAGE_STATUS_LAST);
     }
 
-    /**
-     * Adds a book to the book list from the parameters.
-     *
-     * @param book Task to be added to the task list.
-     */
-    public void addBook(T book) {
-        items.add(book);
-        Ui.dukePrint(Messages.MESSAGE_ADDBOOK + book.toStringBook(false));
-    }
-
 
     /**
      * Adds an item into the list.
@@ -162,18 +152,6 @@ public abstract class ItemList<T extends Item> {
         Ui.dukePrint(Messages.MESSAGE_LIST_WITH_CATEGORY + message);
     }
 
-    public void listBook() {
-        String message = "";
-        if (items.size() == 0) {
-            Ui.dukePrint(Messages.MESSAGE_EMPTY_BOOK_LIST);
-            return;
-        }
-        for (int i = 0; i < items.size(); i++) {
-            message += "\n     " + (i + 1) + "." + items.get(i).toStringBook(true);
-        }
-        Ui.dukePrint(Messages.MESSAGE_BOOK_LIST + message);
-    }
-
     /**
      * Clears all the items in the list.
      */
@@ -192,19 +170,11 @@ public abstract class ItemList<T extends Item> {
         if (index > items.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_TASK);
         } else {
-            items.get(index - 1).markAsDoneOrReturn();
+            items.get(index - 1).markAsDone();
             Ui.dukePrint(Messages.MESSAGE_DONE + items.get(index - 1).getDescription());
         }
     }
 
-    public void markBookAsReturned(int index) {
-        if (index > items.size() || index < 1) {
-            Ui.dukePrint(Messages.WARNING_NO_TASK);
-        } else {
-            items.get(index - 1).markAsDoneOrReturn();
-            Ui.dukePrint(Messages.MESSAGE_RETURNED + items.get(index - 1).getDescription());
-        }
-    }
 
     /**
      * Sets the category of a task identified by the task index number in the task list.

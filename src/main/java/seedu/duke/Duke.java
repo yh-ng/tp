@@ -37,13 +37,9 @@ public class Duke {
             if (tasks == null) {
                 tasks = new TaskList();
                 Ui.dukePrint(Messages.MESSAGE_NEW_TASK_FILE);
-            } else if (books == null) {
+            }
+            if (books == null) {
                 books = new BookList();
-                Ui.dukePrint(Messages.MESSAGE_NEW_BOOK_FILE);
-            } else {
-                tasks = new TaskList();
-                books = new BookList();
-                Ui.dukePrint(Messages.MESSAGE_NEW_TASK_FILE);
                 Ui.dukePrint(Messages.MESSAGE_NEW_BOOK_FILE);
             }
         }

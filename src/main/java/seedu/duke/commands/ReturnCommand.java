@@ -26,6 +26,6 @@ public class ReturnCommand extends Command {
     @Override
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
         BookList books = (BookList) listMap.get(ListType.BOOK_LIST);
-        books.markBookAsReturned(index);
+        books.markAsReturn(index);
     }
 }
