@@ -77,7 +77,7 @@ public class Book extends Item {
      *
      * @return the formatted string to be displayed to the user
      */
-    public String toStringBook(boolean isList) {
+    public String toString(boolean isList) {
         String returnString = "";
         if (isList) {
             if (this.isReturn) {
@@ -95,8 +95,8 @@ public class Book extends Item {
         return returnString;
     }
 
-
-    public String toFileBook() {
+    @Override
+    public String toFile() {
         String isDoneString = (isDone) ? "1" : "0";
         String dateString = getDateString(Item.DATETIME_PARSE_FORMAT);
         String futureDateString = getFutureDateString(Item.DATETIME_PARSE_FORMAT);
