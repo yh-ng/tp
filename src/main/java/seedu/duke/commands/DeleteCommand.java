@@ -3,9 +3,10 @@ package seedu.duke.commands;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.task.ItemList;
+import seedu.duke.task.LinkList;
 import seedu.duke.task.ListType;
-import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
+import seedu.duke.task.Task;
 
 import java.util.Map;
 import java.util.logging.Logger;
@@ -35,6 +36,7 @@ public class DeleteCommand extends Command {
     private int index;
     private int priorityIndex;
     private static final Logger deleteCommandLogger = Logger.getLogger(DeleteCommand.class.getName());
+    private boolean isLink;
 
 
     public DeleteCommand(int index) { // for single delete
@@ -57,9 +59,18 @@ public class DeleteCommand extends Command {
         }
     }
 
+    public DeleteCommand(int index, boolean isLink) { // for single deletion of link
+        assert index > 0 : "Task number should be greater than 0";
+        this.hasPriorityValue = false;
+        this.hasCategoryValue = false;
+        this.isLink = isLink;
+        this.index = index;
+    }
+
     @Override
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
         TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+        LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
         ArrayList<Task> taskDeleted = new ArrayList<Task>();
         boolean isCategory = false;
 
@@ -92,6 +103,8 @@ public class DeleteCommand extends Command {
                 throw new DukeException(Messages.EXCEPTION_CATEGORY_NOT_FOUND);
             }
             tasks.displayDeletedPriorityOrCategoryTask(taskDeleted,isCategory);
+        } else if (isLink) {
+            links.deleteLink(index);
         } else {
             tasks.deleteTask(index);
         }
