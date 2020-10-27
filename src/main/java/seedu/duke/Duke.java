@@ -6,7 +6,6 @@ import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.task.ItemList;
 import seedu.duke.task.ListType;
-import seedu.duke.task.ModuleList;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
