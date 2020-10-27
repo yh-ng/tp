@@ -36,7 +36,7 @@ public class Duke {
     public Duke(String filePath) {
 
         storage = new Storage(filePath);
-        boolean errorMessage = false; // nvr show yet
+        boolean errorMessage = false;
         try {
             tasks = new TaskList(storage.loadTask());          
         } catch (DukeException e) {
