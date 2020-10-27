@@ -9,7 +9,7 @@ public class CommandCreator {
     /**
      * Creates and returns an AddCommand with given arguments.
      *
-     * @param description Description of the task.
+     * @param description  Description of the task.
      * @param argumentsMap HashMap containing optional arguments.
      * @return AddCommand with given arguments.
      * @throws DukeException When description is empty.
@@ -62,7 +62,7 @@ public class CommandCreator {
     /**
      * Creates and returns a SetCommand with given arguments.
      *
-     * @param fullCommand Full command given by the user.
+     * @param fullCommand  Full command given by the user.
      * @param argumentsMap HashMap containing optional arguments.
      * @return SetCommand with given arguments.
      * @throws DukeException When invalid arguments are given.
@@ -81,17 +81,15 @@ public class CommandCreator {
     /**
      * Creates and returns a ListCommand with given arguments.
      *
-     * @param fullCommand Full command given by the user.
+     * @param fullCommand    Full command given by the user.
      * @param subRootCommand sub-root command given by the user.
-     * @param commandString Command parameters given by the user.
+     * @param commandString  Command parameters given by the user.
      * @return ListCommand with given arguments.
      * @throws DukeException When invalid arguments are given.
      */
     public static Command createListCommand(String fullCommand, String subRootCommand,
                                             String commandString) throws DukeException {
-        if (fullCommand.trim().toLowerCase().equals("list")) {
-            return new ListCommand();
-        }
+
         if (fullCommand.trim().toLowerCase().equals("list tasks sorted")) {
             return new ListCommand(true, false);
         }
@@ -122,9 +120,11 @@ public class CommandCreator {
                 throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
             }
         case "links":
-            return new ListCommand(false,true);
+            return new ListCommand(false, true);
         case "expenses":
         case "meals":
+        case "books":
+            return new ListCommand(false, false, true);
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
         }
@@ -201,5 +201,36 @@ public class CommandCreator {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Messages.EXCEPTION_FIND);
         }
+    }
+
+    public static Command createBorrowCommand(String description, HashMap<String, String> argumentsMap)
+            throws DukeException {
+        if (argumentsMap.isEmpty()) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+        }
+        return new BorrowCommand(description, argumentsMap);
+    }
+
+
+    /**
+     * Creates and returns a ReturnCommand with given arguments.
+     *
+     * @param commandString Command parameters given by the user.
+     * @return ReturnCommand with given arguments.
+     * @throws DukeException If invalid arguments are given.
+     */
+    public static Command createReturnCommand(String commandString) throws DukeException {
+        try {
+            return new ReturnCommand(Integer.parseInt(commandString));
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.WARNING_NO_TASK);
+        }
+    }
+
+    public static Command createDeductCommand(String value)
+            throws DukeException {
+        return new DeductCommand(value);
     }
 }

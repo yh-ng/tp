@@ -7,6 +7,14 @@
     ____________________________________________________________
 
     ____________________________________________________________
+     I have created a new books.txt file for you. :) Type some commands and see it.
+    ____________________________________________________________
+
+    ____________________________________________________________
+     I have created a new mealCredit.txt file for you. :) Type some commands and see it.
+    ____________________________________________________________
+
+    ____________________________________________________________
      I have created a new links.txt file for you. :) Type some commands and see it.
     ____________________________________________________________
 
@@ -95,6 +103,7 @@
 
     ____________________________________________________________
      Here are the tasks in your list:
+
      1.[T][N] iP meeting (p:0)
      2.[T][N] other meeting (p:3)
      3.[T][N] tP meeting (p:5) (category: cs2113)
@@ -111,6 +120,7 @@
 
     ____________________________________________________________
      Here are the tasks in your list:
+
      1.[T][Y] iP meeting (p:0)
      2.[T][N] other meeting (p:3)
      3.[T][N] tP meeting (p:5) (category: cs2113)
@@ -132,6 +142,7 @@
 
     ____________________________________________________________
      Here are the tasks in your list:
+
      1.[T][Y] iP meeting (p:0)
      2.[T][N] tP meeting (p:5) (category: cs2113)
     ____________________________________________________________

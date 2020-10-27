@@ -27,6 +27,6 @@ public class DoneCommand extends Command {
     @Override
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
         TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
-        tasks.markAsDone(index);
+        tasks.markTaskAsDone(index);
     }
 }

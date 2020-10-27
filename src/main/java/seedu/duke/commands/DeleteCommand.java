@@ -9,9 +9,10 @@ import seedu.duke.task.TaskList;
 import seedu.duke.task.Task;
 
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import java.util.ArrayList;
+// @@author MuhammadHoze
 
 /**
  * Deletes a Task identified by its index in the task list.
@@ -35,27 +36,23 @@ public class DeleteCommand extends Command {
     private String categoryValue = "";
     private int index;
     private int priorityIndex;
-    private static final Logger deleteCommandLogger = Logger.getLogger(DeleteCommand.class.getName());
     private boolean isLink;
 
 
-    public DeleteCommand(int index) { // for single delete
+    public DeleteCommand(int index) {
         assert index > 0 : "Task number should be greater than 0";
         this.hasPriorityValue = false;
         this.hasCategoryValue = false;
         this.index = index;
     }
 
-    public DeleteCommand(String inputValue) {  // for both priority + category
-        if (inputValue.startsWith("p")) {  // for priority
+    public DeleteCommand(String inputValue) {
+        if (inputValue.startsWith("p")) {
             this.hasPriorityValue = true;
             this.priorityIndex = Integer.parseInt(inputValue.substring(2));
-            //deleteCommandLogger.log(Level.WARNING, "Priority should be non-negative");
-        } else { // for category
+        } else if (inputValue.startsWith("c")) {
             this.hasCategoryValue = true;
             this.categoryValue = inputValue.substring(2);
-            //deleteCommandLogger.log(Level.WARNING, "Priority should be non-negative");
-
         }
     }
 
@@ -87,7 +84,7 @@ public class DeleteCommand extends Command {
             if (taskDeleted.isEmpty()) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
-            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted,isCategory);
+            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted, isCategory);
         } else if (hasCategoryValue) {
             isCategory = true;
             for (int i = tasks.size() - 1; i >= 0; i--) {
@@ -102,7 +99,7 @@ public class DeleteCommand extends Command {
             if (taskDeleted.isEmpty()) {
                 throw new DukeException(Messages.EXCEPTION_CATEGORY_NOT_FOUND);
             }
-            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted,isCategory);
+            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted, isCategory);
         } else if (isLink) {
             links.deleteLink(index);
         } else {

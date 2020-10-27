@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 // Renamed from previous Task.java with some modifications.
+
 /**
  * Represents a list of items.
  */
 public abstract class ItemList<T extends Item> {
 
     protected ArrayList<T> items;
+
 
     /**
      * Constructs an item list with the given items.
@@ -51,6 +53,7 @@ public abstract class ItemList<T extends Item> {
                 + items.size() + Messages.MESSAGE_LINK_STATUS_LAST);
     }
 
+
     /**
      * Adds an item into the list.
      *
@@ -87,7 +90,7 @@ public abstract class ItemList<T extends Item> {
      * Displays the item deleted from the list.
      *
      * @param itemsDeleted the item deleted from the list
-     * @param isCategory whether to display all the tasks with the same category
+     * @param isCategory   whether to display all the tasks with the same category
      */
     public void displayDeletedPriorityOrCategoryTask(ArrayList<T> itemsDeleted, boolean isCategory) {
         Ui.showLine();
@@ -112,13 +115,13 @@ public abstract class ItemList<T extends Item> {
     public void listTask() {
         String message = "";
         if (items.size() == 0) {
-            Ui.dukePrint(Messages.MESSAGE_EMPTY_LIST);
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_TASK_LIST);
             return;
         }
         for (int i = 0; i < items.size(); i++) {
             message = message + "\n     " + (i + 1) + "." + items.get(i).toString();
         }
-        Ui.dukePrint(Messages.MESSAGE_LIST + message);
+        Ui.dukePrint(Messages.MESSAGE_TASK_LIST + message);
     }
 
     public void listTask(int priority) {
@@ -159,7 +162,7 @@ public abstract class ItemList<T extends Item> {
      *
      * @param index the index of the item in the list
      */
-    public void markAsDone(int index) {
+    public void markTaskAsDone(int index) {
         if (index > items.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_TASK);
         } else {
@@ -167,6 +170,7 @@ public abstract class ItemList<T extends Item> {
             Ui.dukePrint(Messages.MESSAGE_DONE + items.get(index - 1).getDescription());
         }
     }
+
 
     /**
      * Sets the category of a task identified by the task index number in the task list.
@@ -244,7 +248,7 @@ public abstract class ItemList<T extends Item> {
      * Sets the date of a task at the given index.
      *
      * @param index the index of the task to set priority.
-     * @param date the date to set the task at.
+     * @param date  the date to set the task at.
      */
     public void setDate(int index, String date) throws DukeException {
         if (index > items.size() || index < 1) {
