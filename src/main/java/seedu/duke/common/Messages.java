@@ -15,16 +15,20 @@ public class Messages {
 
     public static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
     public static final String MESSAGE_ADDTASK = "Got it. I've added this task:\n       ";
+    public static final String MESSAGE_ADDBOOK = "Got it. I've added this book: ";
     public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_STATUS_LAST = " tasks in the list.";
 
-    public static final String MESSAGE_LIST = "Here are the tasks in your list:";
+    public static final String MESSAGE_TASK_LIST = "Here are the tasks in your list:\n";
+    public static final String MESSAGE_BOOK_LIST = "Here are the books in your list:\n";
     public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the tasks of this priority in your list:";
     public static final String MESSAGE_LIST_WITH_CATEGORY = "Here are the tasks of this category in your list:";
-    public static final String MESSAGE_EMPTY_LIST = "There are no tasks in your list. "
+    public static final String MESSAGE_EMPTY_TASK_LIST = "There are no tasks in your list. "
             + "Your task list is empty.";
+    public static final String MESSAGE_EMPTY_BOOK_LIST = "There are no books in your list. "
+            + "Your book list is empty.";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "There are no tasks of this priority in your list. ";
     public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "There are no tasks of this category in your list. ";
 
@@ -76,7 +80,9 @@ public class Messages {
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";
-    public static final String MESSAGE_NEW_FILE = "I have created a new tasks.txt file for you. :) "
+    public static final String MESSAGE_NEW_TASK_FILE = "I have created a new tasks.txt file for you. :) "
+            + "Type some commands and see it.";
+    public static final String MESSAGE_NEW_BOOK_FILE = "I have created a new books.txt file for you. :) "
             + "Type some commands and see it.";
     public static final String WARNING_DATETIME = "If you want your DateTime to be formatted, "
             + "you can input in this format: yyyy-MM-dd HH:mm";

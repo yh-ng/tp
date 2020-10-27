@@ -9,7 +9,7 @@ public class CommandCreator {
     /**
      * Creates and returns an AddCommand with given arguments.
      *
-     * @param description Description of the task.
+     * @param description  Description of the task.
      * @param argumentsMap HashMap containing optional arguments.
      * @return AddCommand with given arguments.
      * @throws DukeException When description is empty.
@@ -33,7 +33,7 @@ public class CommandCreator {
     /**
      * Creates and returns a SetCommand with given arguments.
      *
-     * @param fullCommand Full command given by the user.
+     * @param fullCommand  Full command given by the user.
      * @param argumentsMap HashMap containing optional arguments.
      * @return SetCommand with given arguments.
      * @throws DukeException When invalid arguments are given.
@@ -52,9 +52,9 @@ public class CommandCreator {
     /**
      * Creates and returns a ListCommand with given arguments.
      *
-     * @param fullCommand Full command given by the user.
+     * @param fullCommand    Full command given by the user.
      * @param subRootCommand sub-root command given by the user.
-     * @param commandString Command parameters given by the user.
+     * @param commandString  Command parameters given by the user.
      * @return ListCommand with given arguments.
      * @throws DukeException When invalid arguments are given.
      */
@@ -64,7 +64,7 @@ public class CommandCreator {
             return new ListCommand();
         }
         if (fullCommand.trim().toLowerCase().equals("list tasks sorted")) {
-            return new ListCommand(true);
+            return new ListCommand(true, false);
         }
         switch (subRootCommand.toLowerCase()) {
         case "tasks":
@@ -95,6 +95,8 @@ public class CommandCreator {
         case "links":
         case "expenses":
         case "meals":
+        case "books":
+            return new ListCommand(false, true);
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
         }
@@ -166,5 +168,13 @@ public class CommandCreator {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Messages.EXCEPTION_FIND);
         }
+    }
+
+    public static Command createBorrowCommand(String description, HashMap<String, String> argumentsMap)
+            throws DukeException {
+        if (argumentsMap.isEmpty()) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+        }
+        return new BorrowCommand(description, argumentsMap);
     }
 }

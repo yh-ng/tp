@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 // Renamed from previous Task.java with some modifications.
+
 /**
  * Represents a list of items.
  */
 public abstract class ItemList<T extends Item> {
 
     protected ArrayList<T> items;
+
 
     /**
      * Constructs an item list with the given items.
@@ -40,6 +42,10 @@ public abstract class ItemList<T extends Item> {
         return items;
     }
 
+    public ArrayList<T> getBookList() {
+        return items;
+    }
+
     /**
      * Adds an item to the item list from the parameters.
      *
@@ -50,6 +56,17 @@ public abstract class ItemList<T extends Item> {
         Ui.dukePrint(Messages.MESSAGE_ADDTASK + item.toString() + Messages.MESSAGE_STATUS_FIRST
                 + items.size() + Messages.MESSAGE_STATUS_LAST);
     }
+
+    /**
+     * Adds a book to the book list from the parameters.
+     *
+     * @param book Task to be added to the task list.
+     */
+    public void addBook(T book) {
+        items.add(book);
+        Ui.dukePrint(Messages.MESSAGE_ADDBOOK + book.toStringBook());
+    }
+
 
     /**
      * Adds an item into the list.
@@ -87,7 +104,7 @@ public abstract class ItemList<T extends Item> {
      * Displays the item deleted from the list.
      *
      * @param itemsDeleted the item deleted from the list
-     * @param isCategory whether to display all the tasks with the same category
+     * @param isCategory   whether to display all the tasks with the same category
      */
     public void displayDeletedPriorityOrCategoryTask(ArrayList<T> itemsDeleted, boolean isCategory) {
         Ui.showLine();
@@ -112,13 +129,13 @@ public abstract class ItemList<T extends Item> {
     public void listTask() {
         String message = "";
         if (items.size() == 0) {
-            Ui.dukePrint(Messages.MESSAGE_EMPTY_LIST);
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_TASK_LIST);
             return;
         }
         for (int i = 0; i < items.size(); i++) {
             message = message + "\n     " + (i + 1) + "." + items.get(i).toString();
         }
-        Ui.dukePrint(Messages.MESSAGE_LIST + message);
+        Ui.dukePrint(Messages.MESSAGE_TASK_LIST + message);
     }
 
     public void listTask(int priority) {
@@ -143,6 +160,18 @@ public abstract class ItemList<T extends Item> {
             message = message + "\n     " + (i + 1) + "." + items.get(i).toString();
         }
         Ui.dukePrint(Messages.MESSAGE_LIST_WITH_CATEGORY + message);
+    }
+
+    public void listBook() {
+        String message = "";
+        if (items.size() == 0) {
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_BOOK_LIST);
+            return;
+        }
+        for (int i = 0; i < items.size(); i++) {
+            message += "\n     " + (i + 1) + "." + items.get(i).toStringBook();
+        }
+        Ui.dukePrint(Messages.MESSAGE_BOOK_LIST + message);
     }
 
     /**
@@ -244,7 +273,7 @@ public abstract class ItemList<T extends Item> {
      * Sets the date of a task at the given index.
      *
      * @param index the index of the task to set priority.
-     * @param date the date to set the task at.
+     * @param date  the date to set the task at.
      */
     public void setDate(int index, String date) throws DukeException {
         if (index > items.size() || index < 1) {

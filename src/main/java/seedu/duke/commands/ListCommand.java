@@ -2,6 +2,8 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.task.Book;
+import seedu.duke.task.BookList;
 import seedu.duke.task.ItemList;
 import seedu.duke.task.ListType;
 import seedu.duke.task.Task;
@@ -29,11 +31,12 @@ public class ListCommand extends Command {
             + "          Example: " + COMMAND_WORD + " tasks c/cs2113\n"
             + "          Optional parameter 3: tasks sorted\n"
             + "          Displays all the tasks sorted by priority";
-    private final boolean hasPriority;
-    private final boolean hasCategory;
+    private boolean hasPriority;
+    private boolean hasCategory;
     private int priority;
     private String category;
     private boolean isSorted;
+    private boolean isBook;
     public static int listSize;
     public static int newListSize;
 
@@ -56,11 +59,18 @@ public class ListCommand extends Command {
         this.category = category;
     }
 
-    public ListCommand(boolean isSorted) {
-        this.hasPriority = false;
-        this.hasCategory = false;
-        this.isSorted = isSorted;
+    public ListCommand(boolean isSorted, boolean isBook) {
+        if (isSorted) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isSorted = isSorted;
+        } else if (isBook) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isBook = isBook;
+        }
     }
+
 
     /**
      * Executes the command.
@@ -70,7 +80,9 @@ public class ListCommand extends Command {
     @Override
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
         TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+        BookList books = (BookList) listMap.get(ListType.BOOK_LIST);
         ArrayList<Task> newTasks = new ArrayList<Task>();
+        ArrayList<Book> newBooks = new ArrayList<Book>();
         listSize = tasks.size();
         if (hasPriority) {
             if (priority < 0) {
@@ -99,6 +111,10 @@ public class ListCommand extends Command {
             Collections.sort(newTasks);
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask();
+        } else if (isBook) {
+            newBooks = books.getBookList();
+            BookList newBookList = new BookList(newBooks);
+            newBookList.listBook();
         } else {
             tasks.listTask();
         }

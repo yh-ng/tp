@@ -3,6 +3,7 @@ package seedu.duke.parser;
 import seedu.duke.DukeException;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.AddRecurringCommand;
+import seedu.duke.commands.BorrowCommand;
 import seedu.duke.commands.ByeCommand;
 import seedu.duke.commands.CalendarCommand;
 import seedu.duke.commands.CategoryCommand;
@@ -82,6 +83,9 @@ public class Parser {
             return CommandCreator.createListCommand(fullCommand, subRootCommand, commandString);
         case DeleteCommand.COMMAND_WORD:
             return CommandCreator.createDeleteCommand(commandString);
+        case BorrowCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, BorrowCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createBorrowCommand(description, argumentsMap);
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
         case DoneCommand.COMMAND_WORD:

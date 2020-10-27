@@ -14,7 +14,6 @@ public class Book extends Item {
     public Book(String description) {
         super(description);
         this.isDone = false;
-        this.setPriority(0);
     }
 
     /**
@@ -22,9 +21,8 @@ public class Book extends Item {
      *
      * @param description the description of the task
      * @param isDone true if the task is done already, false otherwise
-     * @param priority the priority of the task
      */
-    public Book(String description, boolean isDone, int priority) {
-        super(description, isDone, priority);
+    public Book(String description, boolean isDone) {
+        super(description, isDone);
     }
 }
