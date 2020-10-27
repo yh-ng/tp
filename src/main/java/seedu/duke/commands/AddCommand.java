@@ -2,13 +2,20 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.ListType;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
+// @@author iamchenjiajun
+/**
+ * Represents a command that adds a task to the task list.
+ */
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -17,8 +24,8 @@ public class AddCommand extends Command {
             + "     Example: " + COMMAND_WORD + " example_task <optional arguments>";
     public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "date"));
 
-    private final String description;
-    private final HashMap<String, String> argumentsMap;
+    protected final String description;
+    protected final HashMap<String, String> argumentsMap;
 
     public AddCommand(String description, HashMap<String, String> argumentsMap) {
         this.description = description;
@@ -28,12 +35,24 @@ public class AddCommand extends Command {
     /**
      * Executes the command.
      *
-     * @param tasks a TaskList object containing all tasks
+     * @param listMap a Map object containing all lists
      */
     @Override
-    public void execute(TaskList tasks) throws DukeException {
+    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
+        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         Task newTask = new Task(description);
+        setTaskProperties(newTask, argumentsMap);
+        tasks.addTask(newTask);
+    }
 
+    /**
+     * Sets the properties of a given Task.
+     *
+     * @param task Task to set the properties of.
+     * @param argumentsMap HashMap containing arguments to set the Task properties.
+     * @throws DukeException If arguments in HashMap are invalid.
+     */
+    protected void setTaskProperties(Task task, HashMap<String, String> argumentsMap) throws DukeException {
         if (argumentsMap.containsKey("p")) {
             int newPriority;
             try {
@@ -44,19 +63,17 @@ public class AddCommand extends Command {
             if (newPriority < 0) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
-            newTask.setPriority(newPriority);
+            task.setPriority(newPriority);
         }
 
         if (argumentsMap.containsKey("c")) {
             if (argumentsMap.get("c") != null) {
-                newTask.setCategory(argumentsMap.get("c"));
+                task.setCategory(argumentsMap.get("c"));
             }
         }
 
         if (argumentsMap.containsKey("date")) {
-            newTask.setDateFromString(argumentsMap.get("date"));
+            task.setDateFromString(argumentsMap.get("date"));
         }
-
-        tasks.addTask(newTask);
     }
 }

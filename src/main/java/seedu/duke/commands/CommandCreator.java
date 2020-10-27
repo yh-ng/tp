@@ -22,6 +22,14 @@ public class CommandCreator {
         return new AddCommand(description, argumentsMap);
     }
 
+    public static Command createAddRecurringCommand(String description, HashMap<String, String> argumentsMap)
+            throws DukeException {
+        if (description.equals("")) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+        }
+        return new AddRecurringCommand(description, argumentsMap);
+    }
+
     /**
      * Creates and returns a SetCommand with given arguments.
      *

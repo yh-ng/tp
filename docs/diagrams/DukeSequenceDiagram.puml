@@ -1,0 +1,87 @@
+@startuml
+participant ":Duke" as DukeClass <<class>>
+participant ":Duke" as Duke
+participant ":Storage" as Storage
+participant ":TaskList" as TaskList
+participant ":Ui" as Ui <<class>>
+participant ":Parser" as Parser <<class>>
+participant ":Command" as Command
+
+-> DukeClass : main()
+activate DukeClass
+
+create Duke
+DukeClass -> Duke: new Duke(filePath)
+activate Duke
+
+create Storage
+Duke -> Storage : new Storage(filePath)
+activate Storage
+
+Duke <-- Storage
+deactivate Storage
+
+create TaskList
+Duke -> TaskList : new TaskList()
+activate TaskList
+
+Storage <- TaskList : load()
+activate Storage
+
+Storage --> TaskList
+deactivate Storage
+
+Duke <-- TaskList : tasks
+deactivate TaskList
+
+DukeClass <-- Duke
+deactivate Duke
+
+DukeClass -> Duke : run()
+activate Duke
+
+'Duke runs
+
+Duke -> Ui : showWelcome()
+
+loop !isExit
+
+Duke -> Ui : readCommand()
+activate Ui
+
+Duke <-- Ui : fullCommand
+deactivate Ui
+
+Duke -> Parser : parse(fullCommand)
+activate Parser
+
+create Command
+Parser -> Command
+activate Command
+
+Parser <-- Command
+deactivate Command
+
+Duke <-- Parser : Command
+deactivate Parser
+
+Duke -> Command : execute()
+
+Duke -> Command : isExit()
+
+Duke -> Storage : save(tasks)
+
+destroy Command
+
+end
+
+'Duke stops
+
+DukeClass <-- Duke
+deactivate Duke
+
+destroy Duke
+
+<-- DukeClass
+deactivate DukeClass
+@enduml

@@ -2,7 +2,9 @@ package seedu.duke.parser;
 
 import seedu.duke.DukeException;
 import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.AddRecurringCommand;
 import seedu.duke.commands.ByeCommand;
+import seedu.duke.commands.CalendarCommand;
 import seedu.duke.commands.CategoryCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
@@ -16,6 +18,7 @@ import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.SetCommand;
 import seedu.duke.common.Messages;
 
+import java.time.DayOfWeek;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Level;
@@ -47,12 +50,18 @@ public class Parser {
         case AddCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createAddCommand(description, argumentsMap);
+        case AddRecurringCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, AddRecurringCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createAddRecurringCommand(description, argumentsMap);
         case SetCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createSetCommand(fullCommand, argumentsMap);
         case DateCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, DateCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createDateCommand(commandString, argumentsMap);
+        case CalendarCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, CalendarCommand.ALLOWED_ARGUMENTS);
+            return new CalendarCommand(argumentsMap);
         case CategoryCommand.COMMAND_WORD:
             int index;
             try {
@@ -149,6 +158,34 @@ public class Parser {
             if (!allowedArguments.contains(entry.getKey())) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
             }
+        }
+    }
+
+    /**
+     * Parses a day string and returns a DayOfWeek enum corresponding to the day of the week.
+     *
+     * @param day String of the day to parse.
+     * @return DayOfWeek enum representing the corresponding day of the week.
+     * @throws DukeException If the string is invalid.
+     */
+    public static DayOfWeek getDayFromString(String day) throws DukeException {
+        switch (day.toLowerCase()) {
+        case "mon":
+            return DayOfWeek.MONDAY;
+        case "tue":
+            return DayOfWeek.TUESDAY;
+        case "wed":
+            return DayOfWeek.WEDNESDAY;
+        case "thu":
+            return DayOfWeek.THURSDAY;
+        case "fri":
+            return DayOfWeek.FRIDAY;
+        case "sat":
+            return DayOfWeek.SATURDAY;
+        case "sun":
+            return DayOfWeek.SUNDAY;
+        default:
+            throw new DukeException(Messages.EXCEPTION_INVALID_DAY);
         }
     }
 }

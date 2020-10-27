@@ -2,9 +2,12 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.ListType;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import java.util.ArrayList;
@@ -55,7 +58,8 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) throws DukeException {
+    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
+        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         ArrayList<Task> taskDeleted = new ArrayList<Task>();
         boolean isCategory = false;
 
