@@ -26,8 +26,8 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
-    private BookList books = new BookList();
-    private CreditList mealCredit = new CreditList();
+    private BookList books;
+    private CreditList mealCredit;
     private ModuleList modules;
     private Storage linkStorage;
     private LinkList links;
@@ -35,9 +35,9 @@ public class Duke {
     private final Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
     private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
 
-    public Duke(String filePath) {
+    public Duke() {
 
-        storage = new Storage(filePath);
+        storage = new Storage();
         boolean errorMessage = false; // nvr show yet
         try {
             tasks = new TaskList(storage.loadTask());          
@@ -105,11 +105,11 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 c.execute(listMap);
                 isExit = c.isExit();
-                storage.saveTask(tasks);
-                storage.saveBook(books);
-                storage.saveCredit(mealCredit);
-                storage.save(links);
-                storage.saveModule(modules);
+                storage.save(tasks, Storage.TASK_STORAGE_FILEPATH);
+                storage.save(books, Storage.BOOK_STORAGE_FILEPATH);
+                storage.save(mealCredit, Storage.CREDIT_STORAGE_FILEPATH);
+                storage.save(links, Storage.DEFAULT_LINK_FILEPATH);
+                storage.save(modules, Storage.DEFAULT_MODULE_FILEPATH);
             } catch (DukeException e) {
                 Ui.showError(e);
             }
@@ -118,6 +118,6 @@ public class Duke {
 
     public static void main(String[] args) {
         dukeLogger.log(Level.INFO, "Logging started");
-        new Duke(Storage.TASK_STORAGE_FILEPATH).run();
+        new Duke().run();
     }
 }

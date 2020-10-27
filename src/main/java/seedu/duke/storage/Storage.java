@@ -4,15 +4,11 @@ import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
 import seedu.duke.task.Book;
-import seedu.duke.task.BookList;
 import seedu.duke.task.Credit;
-import seedu.duke.task.CreditList;
+import seedu.duke.task.ItemList;
 import seedu.duke.task.Link;
-import seedu.duke.task.LinkList;
 import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
 import seedu.duke.task.Module;
-import seedu.duke.task.ModuleList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +23,6 @@ import java.util.Scanner;
 public class Storage {
 
     public static final int EXPECTED_DIVIDER_COUNT = 6;
-    private final String filePath;
     /**
      * Default file path used.
      */
@@ -36,10 +31,6 @@ public class Storage {
     public static final String CREDIT_STORAGE_FILEPATH = "credits.txt";
     public static final String DEFAULT_LINK_FILEPATH = "links.txt";
     public static final String DEFAULT_MODULE_FILEPATH = "modules.txt";
-
-    public Storage(String filePath) {
-        this.filePath = filePath;
-    }
 
     /**
      * Loads the task list data from the storage, and then returns it.
@@ -158,124 +149,24 @@ public class Storage {
     }
 
     /**
-     * Saves the list of modules to file.
+     * Saves the {@code ItemList} data to the storage file.
      *
-     * @param modules List of modules.
-     * @throws DukeException If there was an error when saving.
-     */
-    public void saveModule(ModuleList modules) throws DukeException {
-        FileWriter fw;
-        try {
-            fw = new FileWriter(DEFAULT_MODULE_FILEPATH);
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
-        String taskString = "";
-        for (int i = 0; i < modules.size(); i++) {
-            taskString = taskString + modules.get(i).toFile() + "\n";
-        }
-        try {
-            fw.write(taskString);
-            fw.close();
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
-    }
-
-    /**
-     * Saves the {@code BookList} data to the storage file.
-     *
-     * @param books the {@code BookList} to be saved to the storage file
+     * @param items the {@code ItemList} to be saved to the storage file
      * @throws DukeException if there were errors storing data to file.
      */
-    public void saveBook(BookList books) throws DukeException {
+    public void save(ItemList items, String saveFilePath) throws DukeException {
         FileWriter fw;
         try {
-            fw = new FileWriter(BOOK_STORAGE_FILEPATH);
+            fw = new FileWriter(saveFilePath);
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
         }
-        String bookString = "";
-        for (int i = 0; i < books.size(); i++) {
-            bookString = bookString + books.get(i).toFileBook() + "\n";
+        String saveString = "";
+        for (int i = 0; i < items.size(); i++) {
+            saveString = saveString + items.get(i).toFile() + "\n";
         }
         try {
-            fw.write(bookString);
-            fw.close();
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
-    }
-
-    /**
-     * Saves the {@code CreditList} data to the storage file.
-     *
-     * @param credits the {@code CreditList} to be saved to the storage file
-     * @throws DukeException if there were errors storing data to file.
-     */
-    public void saveCredit(CreditList credits) throws DukeException {
-        FileWriter fw;
-        try {
-            fw = new FileWriter(CREDIT_STORAGE_FILEPATH);
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
-        String creditString = "";
-        for (int i = 0; i < credits.size(); i++) {
-            creditString = creditString + credits.get(i).toFileCredit() + "\n";
-        }
-        try {
-            fw.write(creditString);
-            fw.close();
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
-    }
-
-    /**
-     * Saves the {@code LinkList} data to the storage file.
-     *
-     * @param links the {@code LinkList} to be saved to the storage file
-     * @throws DukeException if there were errors storing data to file.
-     */
-    public void save(LinkList links) throws DukeException {
-        FileWriter fw;
-        try {
-            fw = new FileWriter("links.txt");
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
-        String linkString = "";
-        for (int i = 0; i < links.size(); i++) {
-            linkString = linkString + links.get(i).linkToFile() + "\n";
-        }
-        try {
-            fw.write(linkString);
-            fw.close();
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
-    }
-
-    /**
-     * Saves the {@code TaskList} data to the storage file.
-     *
-     * @param tasks the {@code TaskList} to be saved to the storage file
-     * @throws DukeException if there were errors storing data to file.
-     */
-    public void saveTask(TaskList tasks) throws DukeException {
-        FileWriter fw;
-        try {
-            fw = new FileWriter(TASK_STORAGE_FILEPATH);
-        } catch (IOException e) {
-            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
-        }
-        String taskString = "";
-        for (int i = 0; i < tasks.size(); i++) {
-            taskString = taskString + tasks.get(i).toFile() + "\n";
-        }
-        try {
-            fw.write(taskString);
+            fw.write(saveString);
             fw.close();
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);

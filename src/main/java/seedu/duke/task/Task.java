@@ -27,4 +27,18 @@ public class Task extends Item {
     public Task(String description, boolean isDone, int priority) {
         super(description, isDone, priority);
     }
+
+    /**
+     * Converts the attributes of the task into a formatted string to be saved into the storage file.
+     *
+     * @return the formatted string to be saved into the storage file
+     */
+    @Override
+    public String toFile() {
+        String isDoneString = (isDone) ? "1" : "0";
+        String categoryString = (category == null) ? "" : category;
+        String dateString = getDateString(Item.DATETIME_PARSE_FORMAT);
+        return "T | " + isDoneString + " | " + description + " | " + priority + " | " + categoryString + " | "
+                + dateString;
+    }
 }
