@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+// @@author MuhammadHoze
+
 public class BorrowCommand extends Command {
 
     public static final String COMMAND_WORD = "borrow";
@@ -26,9 +28,7 @@ public class BorrowCommand extends Command {
     public BorrowCommand(String description, HashMap<String, String> argumentsMap) {
         this.description = description;
         this.argumentsMap = argumentsMap;
-
     }
-
 
     @Override
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
@@ -39,8 +39,6 @@ public class BorrowCommand extends Command {
         if (argumentsMap.containsKey("date")) {
             newBook.setDateFromString(argumentsMap.get("date"));
         }
-
         books.addBook(newBook);
-
     }
 }

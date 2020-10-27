@@ -6,11 +6,10 @@ import seedu.duke.task.ItemList;
 import seedu.duke.task.ListType;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
-
 import java.util.Map;
-import java.util.logging.Logger;
-
 import java.util.ArrayList;
+
+// @@author MuhammadHoze
 
 /**
  * Deletes a Task identified by its index in the task list.
@@ -35,7 +34,7 @@ public class DeleteCommand extends Command {
     private int index;
     private int priorityIndex;
 
-    public DeleteCommand(int index) { // for single delete
+    public DeleteCommand(int index) {
         assert index > 0 : "Task number should be greater than 0";
         this.hasPriorityValue = false;
         this.hasCategoryValue = false;
@@ -43,10 +42,10 @@ public class DeleteCommand extends Command {
     }
 
     public DeleteCommand(String inputValue) {
-        if (inputValue.startsWith("p")) {  // for priority
+        if (inputValue.startsWith("p")) {
             this.hasPriorityValue = true;
             this.priorityIndex = Integer.parseInt(inputValue.substring(2));
-        } else if (inputValue.startsWith("c")) { // for category
+        } else if (inputValue.startsWith("c")) {
             this.hasCategoryValue = true;
             this.categoryValue = inputValue.substring(2);
         }
