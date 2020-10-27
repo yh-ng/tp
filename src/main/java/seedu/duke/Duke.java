@@ -4,9 +4,14 @@ import seedu.duke.commands.Command;
 import seedu.duke.common.Messages;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.ListType;
+import seedu.duke.task.ModuleList;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,6 +23,7 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
+    private final Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
     private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
 
     public Duke(String filePath) {
@@ -29,6 +35,7 @@ public class Duke {
             tasks = new TaskList();
             Ui.dukePrint(Messages.MESSAGE_NEW_FILE);
         }
+        listMap.put(ListType.TASK_LIST, tasks);
     }
 
     /**
@@ -41,7 +48,7 @@ public class Duke {
             try {
                 String fullCommand = Ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks);
+                c.execute(listMap);
                 isExit = c.isExit();
                 storage.save(tasks);
             } catch (DukeException e) {

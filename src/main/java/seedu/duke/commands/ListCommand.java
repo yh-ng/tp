@@ -2,11 +2,14 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.ListType;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 
 /**
  * Lists all tasks in the task list to the user.
@@ -59,13 +62,14 @@ public class ListCommand extends Command {
         this.isSorted = isSorted;
     }
 
-    @Override
     /**
      * Executes the command.
      *
-     * @param tasks a TaskList object containing all tasks
+     * @param listMap a Map object containing all lists
      */
-    public void execute(TaskList tasks) throws DukeException {
+    @Override
+    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
+        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         ArrayList<Task> newTasks = new ArrayList<Task>();
         listSize = tasks.size();
         if (hasPriority) {
