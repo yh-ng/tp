@@ -3,6 +3,8 @@ package seedu.duke.storage;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
+import seedu.duke.task.Link;
+import seedu.duke.task.LinkList;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
@@ -22,6 +24,7 @@ public class Storage {
     private final String filePath;
     /** Default file path used. */
     public static final String DEFAULT_STORAGE_FILEPATH = "tasks.txt";
+    public static final String DEFAULT_LINK_FILEPATH = "lists.txt";
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -110,5 +113,57 @@ public class Storage {
         }
 
         return newTask;
+    }
+
+
+    public ArrayList<Link> loadLinks() throws DukeException {
+        File file = new File(DEFAULT_LINK_FILEPATH);
+        Scanner sc;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+        ArrayList<Link> links = new ArrayList<>();
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            Link newLink = loadLinkFromLine(line);
+            links.add(newLink);
+        }
+        return links;
+    }
+
+    private Link loadLinkFromLine(String line) throws DukeException {
+        Link newLink;
+        String paddedLine = line + " ";
+        String[] arguments = paddedLine.split("\\|");
+        try {
+            String module = arguments[1].trim();
+            String type = arguments[2].trim();
+            String url = arguments[3].trim();
+            newLink = new Link(module, type, url);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+        return newLink;
+    }
+
+    public void save(LinkList links) throws DukeException {
+        FileWriter fw;
+        try {
+            fw = new FileWriter("links.txt");
+        } catch (IOException e) {
+            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
+        }
+        String linkString = "";
+        for (int i = 0; i < links.size(); i++) {
+            linkString = linkString + links.get(i).linkToFile() + "\n";
+        }
+        try {
+            fw.write(linkString);
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
+        }
     }
 }

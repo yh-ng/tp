@@ -2,10 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import seedu.duke.task.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,13 +26,14 @@ public class ListCommand extends Command {
             + "          Example: " + COMMAND_WORD + " tasks c/cs2113\n"
             + "          Optional parameter 3: tasks sorted\n"
             + "          Displays all the tasks sorted by priority";
-    private final boolean hasPriority;
-    private final boolean hasCategory;
+    private boolean hasPriority;
+    private boolean hasCategory;
     private int priority;
     private String category;
     private boolean isSorted;
     public static int listSize;
     public static int newListSize;
+    private boolean isLink;
 
     public ListCommand() {
         this.hasPriority = false;
@@ -56,10 +54,22 @@ public class ListCommand extends Command {
         this.category = category;
     }
 
-    public ListCommand(boolean isSorted) {
-        this.hasPriority = false;
-        this.hasCategory = false;
-        this.isSorted = isSorted;
+//    public ListCommand(boolean isSorted) {
+//        this.hasPriority = false;
+//        this.hasCategory = false;
+//        this.isSorted = isSorted;
+//    }
+
+    public ListCommand(boolean isSorted, boolean isLink) {
+        if (isSorted) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isSorted = isSorted;
+        } else if (isLink) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isLink = isLink;
+        }
     }
 
     /**
@@ -70,7 +80,9 @@ public class ListCommand extends Command {
     @Override
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
         TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+        LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
         ArrayList<Task> newTasks = new ArrayList<Task>();
+        //ArrayList<Link> newLinks = new ArrayList<Link>();
         listSize = tasks.size();
         if (hasPriority) {
             if (priority < 0) {
@@ -99,6 +111,9 @@ public class ListCommand extends Command {
             Collections.sort(newTasks);
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask();
+        } else if (isLink) {
+            //newLinks = links.getLinks();
+            links.listLink();
         } else {
             tasks.listTask();
         }

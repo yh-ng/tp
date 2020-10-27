@@ -2,10 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import seedu.duke.task.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,9 +24,27 @@ public class AddCommand extends Command {
     protected final String description;
     protected final HashMap<String, String> argumentsMap;
 
+    private final String module;
+    private final String type;
+    private final String url;
+    private final Boolean isLink;
+
     public AddCommand(String description, HashMap<String, String> argumentsMap) {
         this.description = description;
         this.argumentsMap = argumentsMap;
+        this.module = "";
+        this.type = "";
+        this.url = "";
+        this.isLink = false;
+    }
+
+    public AddCommand(String module, String type, String url) {
+        this.description = "";
+        this.argumentsMap = null;
+        this.module = module;
+        this.type = type;
+        this.url = url;
+        this.isLink = true;
     }
 
     /**
@@ -40,9 +55,15 @@ public class AddCommand extends Command {
     @Override
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
         TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+        LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
         Task newTask = new Task(description);
-        setTaskProperties(newTask, argumentsMap);
-        tasks.addTask(newTask);
+        Link newLink = new Link(module, type, url);
+        if(isLink) {
+            links.addLink(newLink);
+        } else {
+            setTaskProperties(newTask, argumentsMap);
+            tasks.addTask(newTask);
+        }
     }
 
     /**

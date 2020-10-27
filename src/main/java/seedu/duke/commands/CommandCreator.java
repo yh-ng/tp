@@ -30,6 +30,15 @@ public class CommandCreator {
         return new AddRecurringCommand(description, argumentsMap);
     }
 
+    public static Command createAddCommand(String commandString) {
+        int indexOfT = commandString.indexOf("t/");
+        String module = commandString.substring(2, indexOfT - 1);
+        int indexOfU = commandString.indexOf("u/");
+        String type = commandString.substring(indexOfT + 2, indexOfU - 1);
+        String url = commandString.substring(indexOfU + 2);
+        return new AddCommand(module, type, url);
+    }
+
     /**
      * Creates and returns a SetCommand with given arguments.
      *
@@ -64,7 +73,7 @@ public class CommandCreator {
             return new ListCommand();
         }
         if (fullCommand.trim().toLowerCase().equals("list tasks sorted")) {
-            return new ListCommand(true);
+            return new ListCommand(true, false);
         }
         switch (subRootCommand.toLowerCase()) {
         case "tasks":
@@ -93,6 +102,7 @@ public class CommandCreator {
                 throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
             }
         case "links":
+            return new ListCommand(false,true);
         case "expenses":
         case "meals":
         default:

@@ -1,0 +1,36 @@
+package seedu.duke.task;
+
+public class Link extends Item{
+    protected String module;
+    protected String type;
+    protected String url;
+
+    public Link(String module, String type, String url) {
+        super(url);//this is weird
+        this.module = module;
+        this.type = type;
+        this.url = url;
+    }
+
+    public String getModule() {
+        return this.module;
+    }
+
+    public  String getType() {
+        return this.type;
+    }
+
+    public String getUrl() {
+        return this.url;
+    }
+
+    public String linkToString() {
+        String returnString = this.getModule() + " " + this.getType() + "\n       " + this.getUrl();
+        return returnString;
+    }
+
+    public String linkToFile() {
+        String returnString = this.getModule() + " | " + this.getType() + " | " + this.getUrl();
+        return returnString;
+    }
+}
