@@ -4,7 +4,10 @@ import seedu.duke.commands.Command;
 import seedu.duke.common.Messages;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
-import seedu.duke.task.*;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.LinkList;
+import seedu.duke.task.ListType;
+import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 import java.util.EnumMap;
@@ -22,16 +25,17 @@ public class Duke {
     private TaskList tasks;
     private BookList books = new BookList();
     private CreditList mealCredit = new CreditList();
+    private Storage linkStorage;
+    private LinkList links;
+  
     private final Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
     private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
 
     public Duke(String filePath) {
-        boolean errorMessage = false;
         storage = new Storage(filePath);
         try {
-            tasks = new TaskList(storage.loadTask());
+            tasks = new TaskList(storage.loadTask());          
         } catch (DukeException e) {
-            errorMessage = true;
             Ui.showError(e);
             tasks = new TaskList();
             Ui.dukePrint(Messages.MESSAGE_NEW_TASK_FILE);
@@ -39,24 +43,29 @@ public class Duke {
         try {
             books = new BookList(storage.loadBook());
         } catch (DukeException e) {
-            if (!errorMessage) {
-                Ui.showError(e);
-            }
+            Ui.showError(e);
             books = new BookList();
             Ui.dukePrint(Messages.MESSAGE_NEW_BOOK_FILE);
         }
         try {
             mealCredit = new CreditList(storage.loadCredit());
         } catch (DukeException e) {
-            if (!errorMessage) {
-                Ui.showError(e);
-            }
+            Ui.showError(e);
             mealCredit = new CreditList();
             Ui.dukePrint(Messages.MESSAGE_NEW_MEAL_CREDIT_FILE);
         }
+        try {
+            links = new LinkList(storage.loadLinks()); //here 
+        } catch (DukeException e) {
+            Ui.showError(e);
+            links = new LinkList();
+            Ui.dukePrint(Messages.MESSAGE_NEW_LINK_FILE);
+        }
+     
         listMap.put(ListType.TASK_LIST, tasks);
         listMap.put(ListType.BOOK_LIST, books);
         listMap.put(ListType.CREDIT_LIST, mealCredit);
+        listMap.put(ListType.LINK_LIST, links);
     }
 
     /**
@@ -74,6 +83,7 @@ public class Duke {
                 storage.saveTask(tasks);
                 storage.saveBook(books);
                 storage.saveCredit(mealCredit);
+                storage.save(links);
             } catch (DukeException e) {
                 Ui.showError(e);
             }

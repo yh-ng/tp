@@ -49,8 +49,8 @@ public abstract class ItemList<T extends Item> {
      */
     public void addTask(T item) {
         items.add(item);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + item.toString() + Messages.MESSAGE_STATUS_FIRST
-                + items.size() + Messages.MESSAGE_STATUS_LAST);
+        Ui.dukePrint(Messages.MESSAGE_ADD_LINK + item.toString() + Messages.MESSAGE_LINK_STATUS_FIRST
+                + items.size() + Messages.MESSAGE_LINK_STATUS_LAST);
     }
 
 

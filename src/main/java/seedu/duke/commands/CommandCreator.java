@@ -22,6 +22,35 @@ public class CommandCreator {
         return new AddCommand(description, argumentsMap);
     }
 
+    public static Command createAddCommand(String commandString) throws DukeException {
+        if (!commandString.contains("m/") || !commandString.contains(" t/") || !commandString.contains(" u/")) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
+        }
+        int indexOfT = commandString.indexOf("t/");
+        String module = commandString.substring(2, indexOfT - 1);
+        int indexOfU = commandString.indexOf("u/");
+        String type = commandString.substring(indexOfT + 2, indexOfU - 1);
+        String url = commandString.substring(indexOfU + 2);
+        return new AddCommand(module, type, url);
+    }
+
+    public static Command parseAddCommand(String commandString, String description, HashMap<String,
+            String> argumentsMap) throws DukeException {
+        String subRootAddCommand = commandString.split(" ")[0];
+        if (subRootAddCommand.equals("link")) {
+            commandString = commandString.replaceFirst(subRootAddCommand, "").trim();
+            return CommandCreator.createAddCommand(commandString);
+        } else {
+            //checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
+            for (HashMap.Entry<String, String> entry : argumentsMap.entrySet()) {
+                if (!AddCommand.ALLOWED_ARGUMENTS.contains(entry.getKey())) {
+                    throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+                }
+            }
+            return CommandCreator.createAddCommand(description, argumentsMap);
+        }
+    }
+
     public static Command createAddRecurringCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
         if (description.equals("")) {
@@ -60,6 +89,7 @@ public class CommandCreator {
      */
     public static Command createListCommand(String fullCommand, String subRootCommand,
                                             String commandString) throws DukeException {
+
         if (fullCommand.trim().toLowerCase().equals("list tasks sorted")) {
             return new ListCommand(true, false);
         }
@@ -90,10 +120,11 @@ public class CommandCreator {
                 throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
             }
         case "links":
+            return new ListCommand(false,true);
         case "expenses":
         case "meals":
         case "books":
-            return new ListCommand(false, true);
+            return new ListCommand(false, false, true);
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
         }
@@ -107,6 +138,11 @@ public class CommandCreator {
      * @throws DukeException When invalid arguments are given.
      */
     public static Command createDeleteCommand(String commandString) throws DukeException {
+        String subRootAddCommand = commandString.split(" ")[0];
+        if (subRootAddCommand.equals("link")) {
+            int index = Integer.parseInt(commandString.replaceFirst(subRootAddCommand, "").trim());
+            return new DeleteCommand(index, true);
+        }
         try {
             if (commandString.contains("p")) { // for priority
                 return new DeleteCommand(commandString);

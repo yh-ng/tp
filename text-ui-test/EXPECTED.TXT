@@ -7,7 +7,15 @@
     ____________________________________________________________
 
     ____________________________________________________________
+
      I have created a new books.txt file for you. :) Type some commands and see it.
+     ____________________________________________________________
+
+    ____________________________________________________________
+
+     I have created a new links.txt file for you. :) Type some commands and see it.
+     ____________________________________________________________
+
     ____________________________________________________________
 
      _                           _  _   _
@@ -76,21 +84,21 @@
     ____________________________________________________________
 
     ____________________________________________________________
-     Got it. I've added this task:
+     Got it. I've added this link:
        [T][N] iP meeting (p:0)
-     Now you have 1 tasks in the list.
+     Now you have 1 links in the list.
     ____________________________________________________________
 
     ____________________________________________________________
-     Got it. I've added this task:
+     Got it. I've added this link:
        [T][N] other meeting (p:3)
-     Now you have 2 tasks in the list.
+     Now you have 2 links in the list.
     ____________________________________________________________
 
     ____________________________________________________________
-     Got it. I've added this task:
+     Got it. I've added this link:
        [T][N] tP meeting (p:5) (category: cs2113)
-     Now you have 3 tasks in the list.
+     Now you have 3 links in the list.
     ____________________________________________________________
 
     ____________________________________________________________

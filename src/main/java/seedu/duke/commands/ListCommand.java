@@ -5,9 +5,10 @@ import seedu.duke.common.Messages;
 import seedu.duke.task.Book;
 import seedu.duke.task.BookList;
 import seedu.duke.task.ItemList;
+import seedu.duke.task.LinkList;
 import seedu.duke.task.ListType;
-import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
+import seedu.duke.task.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,6 +40,7 @@ public class ListCommand extends Command {
     private boolean isBook;
     public static int listSize;
     public static int newListSize;
+    private boolean isLink;
 
     public ListCommand() {
         this.hasPriority = false;
@@ -58,19 +60,33 @@ public class ListCommand extends Command {
         this.isSorted = false;
         this.category = category;
     }
+  
+     public ListCommand(boolean isSorted, boolean isLink) {
+        if (isSorted) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isSorted = true;
+        } else if (isLink) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isLink = true;
 
-    public ListCommand(boolean isSorted, boolean isBook) {
+        }
+    }
+
+    public ListCommand(boolean isSorted, boolean isLink, boolean isBook) {
         if (isSorted) {
             this.hasPriority = false;
             this.hasCategory = false;
             this.isSorted = isSorted;
+        } else if (isLink) {
+           this.hasPriority = false;
+            this.hasCategory = false;
+            this.isLink = isLink;
         } else if (isBook) {
             this.hasPriority = false;
             this.hasCategory = false;
             this.isBook = isBook;
-        }
-    }
-
 
     /**
      * Executes the command.
@@ -81,6 +97,8 @@ public class ListCommand extends Command {
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
         TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         BookList books = (BookList) listMap.get(ListType.BOOK_LIST);
+        LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
+
         ArrayList<Task> newTasks = new ArrayList<Task>();
         ArrayList<Book> newBooks = new ArrayList<Book>();
         listSize = tasks.size();
@@ -115,6 +133,8 @@ public class ListCommand extends Command {
             newBooks = books.getBookList();
             BookList newBookList = new BookList(newBooks);
             newBookList.listBook();
+        } else if (isLink) {
+            links.listLink();
         } else {
             tasks.listTask();
         }

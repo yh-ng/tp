@@ -16,10 +16,13 @@ public class Messages {
     public static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
     public static final String MESSAGE_ADDTASK = "Got it. I've added this task:\n       ";
     public static final String MESSAGE_ADDBOOK = "Got it. I've added this book: ";
+    public static final String MESSAGE_ADD_LINK = "Got it. I've added this link:\n       ";
     public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_STATUS_LAST = " tasks in the list.";
+    public static final String MESSAGE_LINK_STATUS_FIRST = "\n     Now you have ";
+    public static final String MESSAGE_LINK_STATUS_LAST = " links in the list.";
 
     public static final String MESSAGE_TASK_LIST = "Here are the tasks in your list:\n";
     public static final String MESSAGE_BOOK_LIST = "Here are the books in your list:\n";
@@ -31,14 +34,19 @@ public class Messages {
             + "Your book list is empty.";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "There are no tasks of this priority in your list. ";
     public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "There are no tasks of this category in your list. ";
+    public static final String MESSAGE_LINK_LIST = "Here are the links in your list:";
+    public static final String MESSAGE_EMPTY_LINK_LIST = "There are no links in your list. "
+            + "Your link list is empty.";
 
     public static final String MESSAGE_DELETE = "Noted. I've removed this task:\n       ";
     public static final String MESSAGE_DELETE_TASK_WITH_PRIORITY = "Noted. I've removed all these task(s) "
             + "with the same priority:";
     public static final String MESSAGE_DELETE_TASK_WITH_CATEGORY = "Noted. I've removed all these task(s) "
             + "with the same category:";
+    public static final String MESSAGE_DELETE_LINK = "Noted. I've removed this link:\n       ";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared all your tasks.";
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
+    public static final String WARNING_NO_LINK = "You do not have this link in the list.";
 
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
     public static final String MESSAGE_RETURNED = "Nice! I've marked this book as returned:\n       [R] ";
@@ -81,6 +89,8 @@ public class Messages {
     public static final String MESSAGE_NEW_BOOK_FILE = "I have created a new books.txt file for you. :) "
             + "Type some commands and see it.";
     public static final String MESSAGE_NEW_MEAL_CREDIT_FILE = "I have created a new mealCredit.txt file for you. :) "
+            + "Type some commands and see it.";
+    public static final String MESSAGE_NEW_LINK_FILE = "I have created a new links.txt file for you. :) "
             + "Type some commands and see it.";
     public static final String WARNING_DATETIME = "If you want your DateTime to be formatted, "
             + "you can input in this format: yyyy-MM-dd HH:mm";
