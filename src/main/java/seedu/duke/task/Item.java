@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 // Renamed from previous Task.java with some modifications.
+
 /**
  * Represents an item in the list.
  */
@@ -20,6 +21,7 @@ public class Item implements Comparable<Item> {
     protected int priority;
     protected String category;
     protected LocalDate date;
+
 
     /**
      * Constructor used when adding a new task.
@@ -37,13 +39,18 @@ public class Item implements Comparable<Item> {
      * Convenience constructor used when loading from the storage file.
      *
      * @param description the description of the task
-     * @param isDone true if the task is done already, false otherwise
-     * @param priority the priority of the task
+     * @param isDone      true if the task is done already, false otherwise
+     * @param priority    the priority of the task
      */
     public Item(String description, boolean isDone, int priority) {
         this.description = description;
         this.isDone = isDone;
         this.priority = priority;
+    }
+
+    public Item(String description, boolean isReturn) {
+        this.description = description;
+
     }
 
     /**
@@ -64,8 +71,9 @@ public class Item implements Comparable<Item> {
         return isDone;
     }
 
+
     /**
-     * Marks the task as done.
+     * Marks the task as done and book as returned.
      */
     public void markAsDone() {
         isDone = true;
@@ -84,6 +92,12 @@ public class Item implements Comparable<Item> {
                 + dateString;
     }
 
+
+    public String toFileCredit() {
+
+        return "C | " + description;
+    }
+
     /**
      * Converts the attributes of the task into a formatted string to be displayed to the user.
      *
@@ -92,9 +106,9 @@ public class Item implements Comparable<Item> {
     public String toString() {
         String returnString = "";
         if (this.isDone) {
-            returnString =  "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
+            returnString = "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
         } else {
-            returnString =  "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
+            returnString = "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
         }
         if (category != null) {
             returnString += " (category: " + category + ")";
@@ -104,6 +118,7 @@ public class Item implements Comparable<Item> {
         }
         return returnString;
     }
+
 
     /**
      * Retrieves the priority of a task.
@@ -141,6 +156,7 @@ public class Item implements Comparable<Item> {
         assert dateString != null : "dateString should not be null.";
         try {
             date = LocalDate.parse(dateString, DATETIME_PARSE_FORMAT);
+            //futureDate = date.plusMonths(1);
         } catch (DateTimeParseException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
@@ -158,13 +174,14 @@ public class Item implements Comparable<Item> {
         return date.format(formatter);
     }
 
+
     /**
      * Defines how tasks are sorted. First sort tasks based on priority in ascending order (priority 0, i.e. no
      * priority, is the last). If two tasks have the same priority, sort based on category lexicographically.
+     * positive integer if this task follows the argument task, 0 otherwise.
      *
      * @param otherItem The other task to compare to.
      * @return negative integer if this task precedes the argument task,
-     *     positive integer if this task follows the argument task, 0 otherwise.
      */
     @Override
     public int compareTo(Item otherItem) {
