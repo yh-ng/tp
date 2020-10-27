@@ -18,6 +18,9 @@
 
 termiNus is an interactive task manager for students in NUS.
 
+## Table of Contents
+{:toc}
+
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
