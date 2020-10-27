@@ -192,4 +192,13 @@ public class CommandCreator {
             throw new DukeException(Messages.WARNING_NO_TASK);
         }
     }
+
+    public static Command createDeductCommand(String value)
+            throws DukeException {
+        System.out.println(value);
+//        if (argumentsMap.isEmpty()) {
+//            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+//        }
+        return new DeductCommand(value);
+    }
 }
