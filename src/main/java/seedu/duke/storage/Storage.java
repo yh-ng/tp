@@ -11,6 +11,8 @@ import seedu.duke.task.Link;
 import seedu.duke.task.LinkList;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
+import seedu.duke.task.Module;
+import seedu.duke.task.ModuleList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,6 +35,7 @@ public class Storage {
     public static final String BOOK_STORAGE_FILEPATH = "books.txt";
     public static final String CREDIT_STORAGE_FILEPATH = "credits.txt";
     public static final String DEFAULT_LINK_FILEPATH = "links.txt";
+    public static final String DEFAULT_MODULE_FILEPATH = "modules.txt";
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -132,21 +135,44 @@ public class Storage {
     }
 
     /**
-     * Saves the {@code TaskList} data to the storage file.
+     * Loads the module list data from the storage.
      *
-     * @param tasks the {@code TaskList} to be saved to the storage file
-     * @throws DukeException if there were errors storing data to file.
+     * @return ArrayList of modules.
+     * @throws DukeException If the file does not exist, or parsing errors.
      */
-    public void saveTask(TaskList tasks) throws DukeException {
+    public ArrayList<Module> loadModule() throws DukeException {
+        File file = new File(DEFAULT_MODULE_FILEPATH);
+        Scanner sc;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+        ArrayList<Module> modules = new ArrayList<>();
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            Module newModule = loadModuleFromLine(line);
+            modules.add(newModule);
+        }
+        return modules;
+    }
+
+    /**
+     * Saves the list of modules to file.
+     *
+     * @param modules List of modules.
+     * @throws DukeException If there was an error when saving.
+     */
+    public void saveModule(ModuleList modules) throws DukeException {
         FileWriter fw;
         try {
-            fw = new FileWriter(TASK_STORAGE_FILEPATH);
+            fw = new FileWriter(DEFAULT_MODULE_FILEPATH);
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
         }
         String taskString = "";
-        for (int i = 0; i < tasks.size(); i++) {
-            taskString = taskString + tasks.get(i).toFile() + "\n";
+        for (int i = 0; i < modules.size(); i++) {
+            taskString = taskString + modules.get(i).toFile() + "\n";
         }
         try {
             fw.write(taskString);
@@ -225,6 +251,31 @@ public class Storage {
         }
         try {
             fw.write(linkString);
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
+        }
+    }
+
+    /**
+     * Saves the {@code TaskList} data to the storage file.
+     *
+     * @param tasks the {@code TaskList} to be saved to the storage file
+     * @throws DukeException if there were errors storing data to file.
+     */
+    public void saveTask(TaskList tasks) throws DukeException {
+        FileWriter fw;
+        try {
+            fw = new FileWriter(TASK_STORAGE_FILEPATH);
+        } catch (IOException e) {
+            throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
+        }
+        String taskString = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            taskString = taskString + tasks.get(i).toFile() + "\n";
+        }
+        try {
+            fw.write(taskString);
             fw.close();
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
@@ -351,6 +402,33 @@ public class Storage {
         }
 
         return newLink;
+    }
+
+    /**
+     * Returns a module corresponding to arguments from a line loaded from file.
+     *
+     * @param line A line loaded from the save file.
+     * @return Module corresponding to the loaded line.
+     * @throws DukeException If there is an error parsing the save file.
+     */
+    private Module loadModuleFromLine(String line) throws DukeException {
+        String paddedLine = line + " ";
+        String[] arguments = paddedLine.split("\\|");
+
+        if (arguments.length != 4) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+
+        try {
+            String description = arguments[0].trim();
+            String grade = arguments[1].trim();
+            int mc = Integer.parseInt(arguments[2].trim());
+            String semester = arguments[3].trim();
+
+            return new Module(description, grade, mc, semester);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
     }
 
 }

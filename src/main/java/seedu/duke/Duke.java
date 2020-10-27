@@ -28,7 +28,7 @@ public class Duke {
     private TaskList tasks;
     private BookList books = new BookList();
     private CreditList mealCredit = new CreditList();
-    private ModuleList moduleList = new ModuleList();
+    private ModuleList modules;
     private Storage linkStorage;
     private LinkList links;
   
@@ -76,12 +76,21 @@ public class Duke {
             links = new LinkList();
             Ui.dukePrint(Messages.MESSAGE_NEW_LINK_FILE);
         }
+        try {
+            modules = new ModuleList(storage.loadModule());
+        } catch (DukeException e) {
+            if (!errorMessage) {
+                Ui.showError(e);
+            }
+            modules = new ModuleList();
+            Ui.dukePrint(Messages.MESSAGE_NEW_MODULE_FILE);
+        }
      
         listMap.put(ListType.TASK_LIST, tasks);
         listMap.put(ListType.BOOK_LIST, books);
         listMap.put(ListType.CREDIT_LIST, mealCredit);
         listMap.put(ListType.LINK_LIST, links);
-        listMap.put(ListType.MODULE_LIST, moduleList);
+        listMap.put(ListType.MODULE_LIST, modules);
     }
 
     /**
@@ -100,6 +109,7 @@ public class Duke {
                 storage.saveBook(books);
                 storage.saveCredit(mealCredit);
                 storage.save(links);
+                storage.saveModule(modules);
             } catch (DukeException e) {
                 Ui.showError(e);
             }

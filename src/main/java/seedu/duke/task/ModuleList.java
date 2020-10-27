@@ -6,7 +6,20 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+// @@author iamchenjiajun
+
+/**
+ * Represents a list of modules.
+ */
 public class ModuleList extends ItemList<Module> {
+    public ModuleList() {
+        items = new ArrayList<>();
+    }
+
+    public ModuleList(ArrayList<Module> modules) {
+        items = modules;
+    }
+
     /**
      * Adds an item into the list.
      *
