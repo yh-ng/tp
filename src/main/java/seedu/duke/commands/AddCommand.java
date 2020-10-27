@@ -2,12 +2,15 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.ListType;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 // @@author iamchenjiajun
 /**
@@ -32,10 +35,11 @@ public class AddCommand extends Command {
     /**
      * Executes the command.
      *
-     * @param tasks a TaskList object containing all tasks
+     * @param listMap a Map object containing all lists
      */
     @Override
-    public void execute(TaskList tasks) throws DukeException {
+    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
+        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         Task newTask = new Task(description);
         setTaskProperties(newTask, argumentsMap);
         tasks.addTask(newTask);
