@@ -4,6 +4,8 @@ import seedu.duke.commands.Command;
 import seedu.duke.common.Messages;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
+import seedu.duke.task.BookList;
+import seedu.duke.task.CreditList;
 import seedu.duke.task.ItemList;
 import seedu.duke.task.LinkList;
 import seedu.duke.task.ListType;
@@ -32,10 +34,13 @@ public class Duke {
     private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
 
     public Duke(String filePath) {
+
         storage = new Storage(filePath);
+        boolean errorMessage = false; // nvr show yet
         try {
             tasks = new TaskList(storage.loadTask());          
         } catch (DukeException e) {
+            errorMessage = true;
             Ui.showError(e);
             tasks = new TaskList();
             Ui.dukePrint(Messages.MESSAGE_NEW_TASK_FILE);
@@ -43,21 +48,29 @@ public class Duke {
         try {
             books = new BookList(storage.loadBook());
         } catch (DukeException e) {
-            Ui.showError(e);
+            if (!errorMessage) {
+                Ui.showError(e);
+                errorMessage = true;
+            }
             books = new BookList();
             Ui.dukePrint(Messages.MESSAGE_NEW_BOOK_FILE);
         }
         try {
             mealCredit = new CreditList(storage.loadCredit());
         } catch (DukeException e) {
-            Ui.showError(e);
+            if (!errorMessage) {
+                Ui.showError(e);
+                errorMessage = true;
+            }
             mealCredit = new CreditList();
             Ui.dukePrint(Messages.MESSAGE_NEW_MEAL_CREDIT_FILE);
         }
         try {
-            links = new LinkList(storage.loadLinks()); //here 
+            links = new LinkList(storage.loadLinks());
         } catch (DukeException e) {
-            Ui.showError(e);
+            if (!errorMessage) {
+                Ui.showError(e);
+            }
             links = new LinkList();
             Ui.dukePrint(Messages.MESSAGE_NEW_LINK_FILE);
         }

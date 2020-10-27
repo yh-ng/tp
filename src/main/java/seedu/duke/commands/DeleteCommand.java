@@ -7,8 +7,10 @@ import seedu.duke.task.LinkList;
 import seedu.duke.task.ListType;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Task;
+
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 // @@author MuhammadHoze
 
@@ -34,7 +36,6 @@ public class DeleteCommand extends Command {
     private String categoryValue = "";
     private int index;
     private int priorityIndex;
-    private static final Logger deleteCommandLogger = Logger.getLogger(DeleteCommand.class.getName());
     private boolean isLink;
 
 
@@ -83,7 +84,7 @@ public class DeleteCommand extends Command {
             if (taskDeleted.isEmpty()) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
-            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted,isCategory);
+            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted, isCategory);
         } else if (hasCategoryValue) {
             isCategory = true;
             for (int i = tasks.size() - 1; i >= 0; i--) {
@@ -98,7 +99,7 @@ public class DeleteCommand extends Command {
             if (taskDeleted.isEmpty()) {
                 throw new DukeException(Messages.EXCEPTION_CATEGORY_NOT_FOUND);
             }
-            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted,isCategory);
+            tasks.displayDeletedPriorityOrCategoryTask(taskDeleted, isCategory);
         } else if (isLink) {
             links.deleteLink(index);
         } else {

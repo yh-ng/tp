@@ -60,8 +60,8 @@ public class ListCommand extends Command {
         this.isSorted = false;
         this.category = category;
     }
-  
-     public ListCommand(boolean isSorted, boolean isLink) {
+
+    public ListCommand(boolean isSorted, boolean isLink) {
         if (isSorted) {
             this.hasPriority = false;
             this.hasCategory = false;
@@ -80,13 +80,15 @@ public class ListCommand extends Command {
             this.hasCategory = false;
             this.isSorted = isSorted;
         } else if (isLink) {
-           this.hasPriority = false;
+            this.hasPriority = false;
             this.hasCategory = false;
             this.isLink = isLink;
         } else if (isBook) {
             this.hasPriority = false;
             this.hasCategory = false;
             this.isBook = isBook;
+        }
+    }
 
     /**
      * Executes the command.

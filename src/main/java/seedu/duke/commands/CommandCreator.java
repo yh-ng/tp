@@ -120,7 +120,7 @@ public class CommandCreator {
                 throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
             }
         case "links":
-            return new ListCommand(false,true);
+            return new ListCommand(false, true);
         case "expenses":
         case "meals":
         case "books":
@@ -231,10 +231,6 @@ public class CommandCreator {
 
     public static Command createDeductCommand(String value)
             throws DukeException {
-        System.out.println(value);
-//        if (argumentsMap.isEmpty()) {
-//            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-//        }
         return new DeductCommand(value);
     }
 }

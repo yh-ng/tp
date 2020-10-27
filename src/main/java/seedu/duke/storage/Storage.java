@@ -3,7 +3,14 @@ package seedu.duke.storage;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
-import seedu.duke.task.*;
+import seedu.duke.task.Book;
+import seedu.duke.task.BookList;
+import seedu.duke.task.Credit;
+import seedu.duke.task.CreditList;
+import seedu.duke.task.Link;
+import seedu.duke.task.LinkList;
+import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -76,7 +83,7 @@ public class Storage {
         }
         return books;
     }
-      
+
     /**
      * Loads the link list of data from the storage, and then returns it.
      *
@@ -91,7 +98,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
-      
+
         ArrayList<Link> links = new ArrayList<>();
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
@@ -99,7 +106,7 @@ public class Storage {
             links.add(newLink);
         }
         return links;
-
+    }
 
     /**
      * Loads the credit list data from the storage, and then returns it.
@@ -198,8 +205,8 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
         }
     }
-      
-     /**
+
+    /**
      * Saves the {@code LinkList} data to the storage file.
      *
      * @param links the {@code LinkList} to be saved to the storage file
@@ -217,7 +224,7 @@ public class Storage {
             linkString = linkString + links.get(i).linkToFile() + "\n";
         }
         try {
-            fw.write(linkString);  
+            fw.write(linkString);
             fw.close();
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
@@ -320,8 +327,9 @@ public class Storage {
         }
 
         return newCredit;
-      
-     /**
+    }
+
+    /**
      * Returns a link corresponding to arguments from a line loaded from file.
      *
      * @param line A line loaded from the save file.
@@ -341,7 +349,8 @@ public class Storage {
             System.out.println("here");
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
-      
+
         return newLink;
     }
+
 }
