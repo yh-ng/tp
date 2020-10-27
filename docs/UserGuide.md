@@ -57,6 +57,42 @@ Output:
     ____________________________________________________________
 ```
 
+### Adding recurring tasks: `addr`
+Adds multiple tasks to the list of todo tasks that occur weekly.
+
+Format: `addr <description> <optional/compulsory arguments>`
+
+List of `<optional arguments>`:
+- `p/<number>` sets the priority of the task.
+- `c/<category>` sets the category of the task.
+
+List of `<compulsory arguments>`:
+- `s/<dd-MM-yyyy>` start date of recurring tasks (inclusive).
+- `e/<dd-MM-yyyy>` end date of recurring tasks (inclusive).
+- `day/<mon/tue/wed/thu/fri/sat/sun>` day of recurring task.
+
+Example of usage:
+
+`addr tp meeting s/26-10-2020 e/27-11-2020 day/fri`
+
+`addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
+
+Output:
+
+```
+    ____________________________________________________________
+     Got it. I've added these tasks:
+       
+     [T][N] board games club (p:1) (category: CCA) (date: 28 Oct 2020)
+     [T][N] board games club (p:1) (category: CCA) (date: 04 Nov 2020)
+     [T][N] board games club (p:1) (category: CCA) (date: 11 Nov 2020)
+     [T][N] board games club (p:1) (category: CCA) (date: 18 Nov 2020)
+     [T][N] board games club (p:1) (category: CCA) (date: 25 Nov 2020)
+     
+     Now you have 31 tasks in the list.
+    ____________________________________________________________
+```
+
 ### Listing: `list`
 Lists everything.
 
@@ -301,6 +337,33 @@ Output:
 
 ```
 
+### Print calendar: `calendar`
+Prints a calendar with tasks from current date to given number of days.
+
+Format: `calendar d/<daysToPrint>`
+
+Example of usage:
+
+`calendar d/7`
+
+Output:
+```
+    ____________________________________________________________
+     Today's date is: 26 Oct 2020
+     Here's your tasks for the next 7 day(s).
+    ____________________________________________________________
+     MONDAY - 26 Oct 2020
+     [T][N] finish tutorial (p:2) (date: 26 Oct 2020)
+    ____________________________________________________________
+     TUESDAY - 27 Oct 2020
+     [T][N] tp meeting (p:0) (category: cs2113) (date: 27 Oct 2020)
+     [T][N] meet with friend (p:1) (category: personal) (date: 27 Oct 2020)
+    ____________________________________________________________
+     THURSDAY - 29 Oct 2020
+     [T][N] tp v2.0 submission (p:0) (category: cs2113) (date: 29 Oct 2020)
+    ____________________________________________________________
+```
+
 ### Searching tasks: `find`
 Finds all tasks with matching description (case-insensitive).
 
@@ -412,6 +475,7 @@ putting it in the same folder as `termiNus.jar`.
 Action | Command | Example
 ----- | ------ | ------
 Add task | `add <description> <optional arguments>` | `add tP meeting c/cs2113`
+Add recurring task | `addr <description> <optional/compulsory arguments>` | `addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
 List tasks | `list` | `list`
 List tasks with priority | `list p/<priority>` | `list p/2`
 Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
@@ -422,6 +486,7 @@ Delete task | `delete <taskIndexNumber>` | `delete 2`
 Delete tasks by priority | `delete p/<priority>` | `delete p/2`
 Delete tasks by category  | `delete c/<category>` | `delete c/cs2113`
 Clear all tasks | `clear` | `clear`
+Print calendar | `calendar d/<daysToPrint>` | `calendar d/7`
 Find tasks matching keyword | `find <keyword>` | `find meeting`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`
