@@ -39,8 +39,10 @@ public class Messages {
             + "with the same priority:";
     public static final String MESSAGE_DELETE_TASK_WITH_CATEGORY = "Noted. I've removed all these task(s) "
             + "with the same category:";
+    public static final String MESSAGE_DELETE_LINK = "Noted. I've removed this link:\n       ";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared all your tasks.";
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
+    public static final String WARNING_NO_LINK = "You do not have this link in the list.";
 
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
     public static final String MESSAGE_CATEGORY = "Nice! I have set the category of this task:\n       ";

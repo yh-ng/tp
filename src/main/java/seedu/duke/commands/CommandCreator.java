@@ -138,6 +138,11 @@ public class CommandCreator {
      * @throws DukeException When invalid arguments are given.
      */
     public static Command createDeleteCommand(String commandString) throws DukeException {
+        String subRootAddCommand = commandString.split(" ")[0];
+        if (subRootAddCommand.equals("link")) {
+            int index = Integer.parseInt(commandString.replaceFirst(subRootAddCommand, "").trim());
+            return new DeleteCommand(index, true);
+        }
         try {
             if (commandString.contains("p")) { // for priority
                 return new DeleteCommand(commandString);

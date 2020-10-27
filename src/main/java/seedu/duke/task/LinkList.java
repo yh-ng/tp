@@ -81,4 +81,20 @@ public class LinkList extends ItemList<Link> {
         }
         Ui.dukePrint(Messages.MESSAGE_LINK_LIST + message);
     }
+
+    /**
+     * Deletes a link from the list, identified by the index of the link in the list.
+     *
+     * @param index the index of the link in the list.
+     */
+    public void deleteLink(int index) {
+        if (index > links.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_LINK);
+        } else {
+            Link linkRemoved = links.get(index - 1);
+            Ui.dukePrint(Messages.MESSAGE_DELETE_LINK + linkRemoved.linkToString() + Messages.MESSAGE_LINK_STATUS_FIRST
+                    + (links.size() - 1) + Messages.MESSAGE_LINK_STATUS_LAST);
+            links.remove(index - 1);
+        }
+    }
 }
