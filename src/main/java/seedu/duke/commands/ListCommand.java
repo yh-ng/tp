@@ -89,11 +89,11 @@ public class ListCommand extends Command {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
             for (int i = 0; i < tasks.size(); i++) {
-                if (tasks.get(i).getPriority() == priority) { //if the task matches the same priority input by user
-                    newTasks.add(tasks.get(i)); // add the task into arraylist (newTasks)
+                if (tasks.get(i).getPriority() == priority) {
+                    newTasks.add(tasks.get(i));
                 }
             }
-            TaskList newTaskList = new TaskList(newTasks); //created a new object called newTaskList
+            TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask(priority);
         } else if (hasCategory) {
             for (int i = 0; i < tasks.size(); i++) {
