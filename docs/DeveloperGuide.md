@@ -4,6 +4,7 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+![DukeSequenceDiagram](https://raw.githubusercontent.com/AY2021S1-CS2113-T14-3/tp/master/docs/images/DukeSequenceDiagram.png)
 
 ## Product scope
 ### Target user profile
