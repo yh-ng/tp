@@ -29,8 +29,8 @@ public class Storage {
     public static final String TASK_STORAGE_FILEPATH = "tasks.txt";
     public static final String BOOK_STORAGE_FILEPATH = "books.txt";
     public static final String CREDIT_STORAGE_FILEPATH = "credits.txt";
-    public static final String DEFAULT_LINK_FILEPATH = "links.txt";
-    public static final String DEFAULT_MODULE_FILEPATH = "modules.txt";
+    public static final String LINK_STORAGE_FILEPATH = "links.txt";
+    public static final String MODULE_STORAGE_FILEPATH = "modules.txt";
 
     /**
      * Loads the task list data from the storage, and then returns it.
@@ -85,7 +85,7 @@ public class Storage {
      * @throws DukeException if the storage file does not exist, or is not a regular file.
      */
     public ArrayList<Link> loadLinks() throws DukeException {
-        File file = new File(DEFAULT_LINK_FILEPATH);
+        File file = new File(LINK_STORAGE_FILEPATH);
         Scanner sc;
         try {
             sc = new Scanner(file);
@@ -132,7 +132,7 @@ public class Storage {
      * @throws DukeException If the file does not exist, or parsing errors.
      */
     public ArrayList<Module> loadModule() throws DukeException {
-        File file = new File(DEFAULT_MODULE_FILEPATH);
+        File file = new File(MODULE_STORAGE_FILEPATH);
         Scanner sc;
         try {
             sc = new Scanner(file);

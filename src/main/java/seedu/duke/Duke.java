@@ -108,8 +108,8 @@ public class Duke {
                 storage.save(tasks, Storage.TASK_STORAGE_FILEPATH);
                 storage.save(books, Storage.BOOK_STORAGE_FILEPATH);
                 storage.save(mealCredit, Storage.CREDIT_STORAGE_FILEPATH);
-                storage.save(links, Storage.DEFAULT_LINK_FILEPATH);
-                storage.save(modules, Storage.DEFAULT_MODULE_FILEPATH);
+                storage.save(links, Storage.LINK_STORAGE_FILEPATH);
+                storage.save(modules, Storage.MODULE_STORAGE_FILEPATH);
             } catch (DukeException e) {
                 Ui.showError(e);
             }
