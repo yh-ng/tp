@@ -7,8 +7,7 @@ import seedu.duke.task.ListType;
 
 import java.util.Map;
 
-public class ReturnCommand extends Command{
-
+public class ReturnCommand extends Command {
 
     public static final String COMMAND_WORD = "return";
     public static final String MESSAGE_USAGE = COMMAND_WORD
