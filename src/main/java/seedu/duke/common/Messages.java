@@ -41,6 +41,7 @@ public class Messages {
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
 
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
+    public static final String MESSAGE_RETURNED = "Nice! I've marked this book as returned:\n       [R] ";
     public static final String MESSAGE_CATEGORY = "Nice! I have set the category of this task:\n       ";
     public static final String MESSAGE_DATE = "Nice! I have set the date of this task:\n       ";
     public static final String MESSAGE_SET_PRIORITY = "Nice! I've set the priority of this task to: ";
@@ -69,11 +70,6 @@ public class Messages {
     public static final String EXCEPTION_EMPTY_PRIORITY = ":( OOPS!!! The priority cannot be empty.";
     public static final String EXCEPTION_EMPTY_CATEGORY = ":( OOPS!!! The category cannot be empty.";
     public static final String EXCEPTION_EMPTY_DEADLINE = ":( OOPS!!! The deadline of a task cannot be empty.";
-    public static final String EXCEPTION_EMPTY_TIME = ":( OOPS!!! The time of an event task cannot be empty.";
-    public static final String EXCEPTION_INVALID_DEADLINE = "Please enter your deadline in the correct format.\n     "
-            + "Example: deadline return book /by Sunday";
-    public static final String EXCEPTION_INVALID_EVENT = "Please enter your event in the correct format.\n     "
-            + "Example: event project meeting /at Mon 2-4pm";
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "Invalid priority number.";
     public static final String EXCEPTION_CATEGORY_NOT_FOUND = "Invalid category.";
@@ -88,9 +84,10 @@ public class Messages {
             + "you can input in this format: yyyy-MM-dd HH:mm";
     public static final String EXCEPTION_FIND = ":( OOPS!!! The keyword of a find command cannot be empty.";
     public static final String EXCEPTION_INVALID_LIST_COMMAND = ":( OOPS!!! Please input a valid list command "
-            + "using the format: \n     \"list\";\n"
+            + "using the format: \n\n"
             + "     \"list tasks p/PRIORITY\", \"list tasks c/CATEGORY\";\n"
             + "     \"list links\"\n"
             + "     \"list expenses\"\n"
-            + "     \"list meals\"";
+            + "     \"list meals\"\n"
+            + "     \"list books\"";
 }

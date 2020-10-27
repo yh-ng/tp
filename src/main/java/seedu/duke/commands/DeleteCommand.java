@@ -34,8 +34,6 @@ public class DeleteCommand extends Command {
     private String categoryValue = "";
     private int index;
     private int priorityIndex;
-    private static final Logger deleteCommandLogger = Logger.getLogger(DeleteCommand.class.getName());
-
 
     public DeleteCommand(int index) { // for single delete
         assert index > 0 : "Task number should be greater than 0";
@@ -44,16 +42,13 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
-    public DeleteCommand(String inputValue) {  // for both priority + category
+    public DeleteCommand(String inputValue) {
         if (inputValue.startsWith("p")) {  // for priority
             this.hasPriorityValue = true;
             this.priorityIndex = Integer.parseInt(inputValue.substring(2));
-            //deleteCommandLogger.log(Level.WARNING, "Priority should be non-negative");
-        } else { // for category
+        } else if (inputValue.startsWith("c")) { // for category
             this.hasCategoryValue = true;
             this.categoryValue = inputValue.substring(2);
-            //deleteCommandLogger.log(Level.WARNING, "Priority should be non-negative");
-
         }
     }
 

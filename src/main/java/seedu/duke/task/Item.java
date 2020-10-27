@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 // Renamed from previous Task.java with some modifications.
+
 /**
  * Represents an item in the list.
  */
@@ -17,6 +18,7 @@ public class Item implements Comparable<Item> {
 
     protected String description;
     protected boolean isDone;
+    protected boolean isReturn;
     protected int priority;
     protected String category;
     protected LocalDate date;
@@ -31,6 +33,7 @@ public class Item implements Comparable<Item> {
     public Item(String description) {
         this.description = description;
         this.isDone = false;
+        this.isReturn = false;
         this.setPriority(0);
     }
 
@@ -38,8 +41,8 @@ public class Item implements Comparable<Item> {
      * Convenience constructor used when loading from the storage file.
      *
      * @param description the description of the task
-     * @param isDone true if the task is done already, false otherwise
-     * @param priority the priority of the task
+     * @param isDone      true if the task is done already, false otherwise
+     * @param priority    the priority of the task
      */
     public Item(String description, boolean isDone, int priority) {
         this.description = description;
@@ -47,9 +50,9 @@ public class Item implements Comparable<Item> {
         this.priority = priority;
     }
 
-    public Item(String description, boolean isDone) {
+    public Item(String description, boolean isReturn) { // this for book
         this.description = description;
-        this.isDone = isDone;
+        this.isReturn = isReturn;
     }
 
     /**
@@ -71,10 +74,20 @@ public class Item implements Comparable<Item> {
     }
 
     /**
-     * Marks the task as done.
+     * Retrieves whether the task in done.
+     *
+     * @return true if the task is done already, false otherwise
      */
-    public void markAsDone() {
+    public boolean getIsReturn() {
+        return isReturn;
+    }
+
+    /**
+     * Marks the task as done and book as returned.
+     */
+    public void markAsDoneOrReturn() {
         isDone = true;
+        isReturn = true;
     }
 
     /**
@@ -106,9 +119,9 @@ public class Item implements Comparable<Item> {
     public String toString() {
         String returnString = "";
         if (this.isDone) {
-            returnString =  "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
+            returnString = "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
         } else {
-            returnString =  "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
+            returnString = "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
         }
         if (category != null) {
             returnString += " (category: " + category + ")";
@@ -124,9 +137,17 @@ public class Item implements Comparable<Item> {
      *
      * @return the formatted string to be displayed to the user
      */
-    public String toStringBook() {
+    public String toStringBook(boolean isList) {
         String returnString = "";
-        returnString = description + "\n";
+        if (isList) {
+            if (this.isReturn) {
+                returnString = "[B][R] " + this.description + "\n";
+            } else {
+                returnString = "[B][L] " + this.description + "\n";
+            }
+        } else {
+            returnString = this.description + "\n";
+        }
         if (date != null) {
             returnString += "\t\t (Loan Date: " + getDateString(Task.DATETIME_PRINT_FORMAT) + ")\n";
             returnString += "\t\t (Due Date: " + getFutureDateString(Task.DATETIME_PRINT_FORMAT) + ")";
@@ -203,7 +224,7 @@ public class Item implements Comparable<Item> {
      *
      * @param otherItem The other task to compare to.
      * @return negative integer if this task precedes the argument task,
-     *     positive integer if this task follows the argument task, 0 otherwise.
+     * positive integer if this task follows the argument task, 0 otherwise.
      */
     @Override
     public int compareTo(Item otherItem) {

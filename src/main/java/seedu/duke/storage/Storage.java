@@ -181,12 +181,12 @@ public class Storage {
         }
 
         try {
-            boolean isDone = Utils.stringToBoolean(arguments[1].trim());
+            boolean isReturn = Utils.stringToBoolean(arguments[1].trim());
             String description = arguments[2].trim();
             String dateString = arguments[3].trim();
             String futureDateString = arguments[4].trim();
 
-            newBook = new Book(description, isDone);
+            newBook = new Book(description, isReturn);
             if (!dateString.equals("")) {
                 newBook.setDateFromString(dateString);
             }

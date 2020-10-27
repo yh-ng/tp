@@ -60,9 +60,6 @@ public class CommandCreator {
      */
     public static Command createListCommand(String fullCommand, String subRootCommand,
                                             String commandString) throws DukeException {
-        if (fullCommand.trim().toLowerCase().equals("list all")) { //list everything
-            return new ListCommand();
-        }
         if (fullCommand.trim().toLowerCase().equals("list tasks sorted")) {
             return new ListCommand(true, false);
         }
@@ -176,5 +173,23 @@ public class CommandCreator {
             throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
         }
         return new BorrowCommand(description, argumentsMap);
+    }
+
+
+    /**
+     * Creates and returns a ReturnCommand with given arguments.
+     *
+     * @param commandString Command parameters given by the user.
+     * @return ReturnCommand with given arguments.
+     * @throws DukeException If invalid arguments are given.
+     */
+    public static Command createReturnCommand(String commandString) throws DukeException {
+        try {
+            return new ReturnCommand(Integer.parseInt(commandString));
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.WARNING_NO_TASK);
+        }
     }
 }

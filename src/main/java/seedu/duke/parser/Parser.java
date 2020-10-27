@@ -1,22 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.DukeException;
-import seedu.duke.commands.AddCommand;
-import seedu.duke.commands.AddRecurringCommand;
-import seedu.duke.commands.BorrowCommand;
-import seedu.duke.commands.ByeCommand;
-import seedu.duke.commands.CalendarCommand;
-import seedu.duke.commands.CategoryCommand;
-import seedu.duke.commands.ClearCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.CommandCreator;
-import seedu.duke.commands.DateCommand;
-import seedu.duke.commands.DeleteCommand;
-import seedu.duke.commands.DoneCommand;
-import seedu.duke.commands.FindCommand;
-import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.ListCommand;
-import seedu.duke.commands.SetCommand;
+import seedu.duke.commands.*;
 import seedu.duke.common.Messages;
 
 import java.time.DayOfWeek;
@@ -90,6 +75,8 @@ public class Parser {
             return new ClearCommand();
         case DoneCommand.COMMAND_WORD:
             return CommandCreator.createDoneCommand(commandString);
+        case ReturnCommand.COMMAND_WORD:
+            return CommandCreator.createReturnCommand(commandString);
         case FindCommand.COMMAND_WORD:
             return CommandCreator.createFindCommand(commandString);
         case HelpCommand.COMMAND_WORD:

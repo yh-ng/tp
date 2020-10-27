@@ -64,7 +64,7 @@ public abstract class ItemList<T extends Item> {
      */
     public void addBook(T book) {
         items.add(book);
-        Ui.dukePrint(Messages.MESSAGE_ADDBOOK + book.toStringBook());
+        Ui.dukePrint(Messages.MESSAGE_ADDBOOK + book.toStringBook(false));
     }
 
 
@@ -169,7 +169,7 @@ public abstract class ItemList<T extends Item> {
             return;
         }
         for (int i = 0; i < items.size(); i++) {
-            message += "\n     " + (i + 1) + "." + items.get(i).toStringBook();
+            message += "\n     " + (i + 1) + "." + items.get(i).toStringBook(true);
         }
         Ui.dukePrint(Messages.MESSAGE_BOOK_LIST + message);
     }
@@ -188,12 +188,21 @@ public abstract class ItemList<T extends Item> {
      *
      * @param index the index of the item in the list
      */
-    public void markAsDone(int index) {
+    public void markTaskAsDone(int index) {
         if (index > items.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_TASK);
         } else {
-            items.get(index - 1).markAsDone();
+            items.get(index - 1).markAsDoneOrReturn();
             Ui.dukePrint(Messages.MESSAGE_DONE + items.get(index - 1).getDescription());
+        }
+    }
+
+    public void markBookAsReturned(int index) {
+        if (index > items.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            items.get(index - 1).markAsDoneOrReturn();
+            Ui.dukePrint(Messages.MESSAGE_RETURNED + items.get(index - 1).getDescription());
         }
     }
 
