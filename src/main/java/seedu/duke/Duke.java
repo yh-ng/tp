@@ -23,18 +23,18 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
-    private Storage linkStorage;
+    //private Storage linkStorage;
     private LinkList links;
     private final Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
     private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
 
     public Duke(String filePath) {
         storage = new Storage(filePath);
-        linkStorage = new Storage("links.txt");
+        //linkStorage = new Storage("links.txt");
         try {
             tasks = new TaskList(storage.load());
-            links = new LinkList(linkStorage.loadLinks());
-            //links = new LinkList(storage.loadLinks());
+            //links = new LinkList(linkStorage.loadLinks());
+            links = new LinkList(storage.loadLinks());
         } catch (DukeException e) {
             Ui.showError(e);
             tasks = new TaskList();

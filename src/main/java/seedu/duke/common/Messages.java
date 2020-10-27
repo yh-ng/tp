@@ -30,6 +30,9 @@ public class Messages {
             + "Your task list is empty.";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "There are no tasks of this priority in your list. ";
     public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "There are no tasks of this category in your list. ";
+    public static final String MESSAGE_LINK_LIST = "Here are the links in your list:";
+    public static final String MESSAGE_EMPTY_LINK_LIST = "There are no links in your list. "
+            + "Your link list is empty.";
 
     public static final String MESSAGE_DELETE = "Noted. I've removed this task:\n       ";
     public static final String MESSAGE_DELETE_TASK_WITH_PRIORITY = "Noted. I've removed all these task(s) "

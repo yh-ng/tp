@@ -64,11 +64,11 @@ public class ListCommand extends Command {
         if (isSorted) {
             this.hasPriority = false;
             this.hasCategory = false;
-            this.isSorted = isSorted;
+            this.isSorted = true;
         } else if (isLink) {
             this.hasPriority = false;
             this.hasCategory = false;
-            this.isLink = isLink;
+            this.isLink = true;
         }
     }
 
@@ -82,7 +82,6 @@ public class ListCommand extends Command {
         TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
         ArrayList<Task> newTasks = new ArrayList<Task>();
-        //ArrayList<Link> newLinks = new ArrayList<Link>();
         listSize = tasks.size();
         if (hasPriority) {
             if (priority < 0) {
@@ -112,7 +111,6 @@ public class ListCommand extends Command {
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask();
         } else if (isLink) {
-            //newLinks = links.getLinks();
             links.listLink();
         } else {
             tasks.listTask();

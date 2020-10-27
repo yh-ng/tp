@@ -42,12 +42,12 @@ public class LinkList extends ItemList<Link> {
     public void listLink() {
         String message = "";
         if (links.size() == 0) {
-            Ui.dukePrint(Messages.MESSAGE_EMPTY_LIST);
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_LINK_LIST);
             return;
         }
         for (int i = 0; i < links.size(); i++) {
             message = message + "\n     " + (i + 1) + "." + links.get(i).linkToString();
         }
-        Ui.dukePrint(Messages.MESSAGE_LIST + message);
+        Ui.dukePrint(Messages.MESSAGE_LINK_LIST + message);
     }
 }

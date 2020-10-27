@@ -69,7 +69,7 @@ public class CommandCreator {
      */
     public static Command createListCommand(String fullCommand, String subRootCommand,
                                             String commandString) throws DukeException {
-        if (fullCommand.trim().toLowerCase().equals("list all")) { //list everything
+        if (fullCommand.trim().toLowerCase().equals("list")) {
             return new ListCommand();
         }
         if (fullCommand.trim().toLowerCase().equals("list tasks sorted")) {
