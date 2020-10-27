@@ -3,10 +3,8 @@ package seedu.duke.storage;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
-import seedu.duke.task.Link;
-import seedu.duke.task.LinkList;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import seedu.duke.task.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
