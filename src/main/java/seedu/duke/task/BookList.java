@@ -26,6 +26,10 @@ public class BookList extends ItemList<Book> {
         items = new ArrayList<>();
     }
 
+    public ArrayList<Book> getBookList() {
+        return items;
+    }
+
     /**
      * Adds a book to the book list from the parameters.
      *

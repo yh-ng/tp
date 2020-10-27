@@ -28,21 +28,26 @@ public class Duke {
     private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
 
     public Duke(String filePath) {
+        boolean errorMessage = false;
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.loadTask());
+        } catch (DukeException e) {
+            errorMessage = true;
+            Ui.showError(e);
+            tasks = new TaskList();
+            Ui.dukePrint(Messages.MESSAGE_NEW_TASK_FILE);
+        }
+        try {
             books = new BookList(storage.loadBook());
         } catch (DukeException e) {
-            Ui.showError(e);
-            if (tasks == null) {
-                tasks = new TaskList();
-                Ui.dukePrint(Messages.MESSAGE_NEW_TASK_FILE);
+            if (!errorMessage) {
+                Ui.showError(e);
             }
-            if (books == null) {
-                books = new BookList();
-                Ui.dukePrint(Messages.MESSAGE_NEW_BOOK_FILE);
-            }
+            books = new BookList();
+            Ui.dukePrint(Messages.MESSAGE_NEW_BOOK_FILE);
         }
+
         listMap.put(ListType.TASK_LIST, tasks);
         listMap.put(ListType.BOOK_LIST, books);
     }

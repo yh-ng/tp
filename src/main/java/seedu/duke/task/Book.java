@@ -23,18 +23,17 @@ public class Book extends Item {
      */
     public Book(String description) {
         super(description);
-        this.isDone = false;
-        this.isReturn = false;
     }
 
     /**
      * Convenience constructor used when loading from the storage file.
      *
-     * @param description the description of the task
-     * @param isReturn true if the task is done already, false otherwise
+     * @param description the description of the book
+     * @param isReturn    true if the book is returned already, false otherwise
      */
     public Book(String description, boolean isReturn) {
         super(description, isReturn);
+
     }
 
     /**

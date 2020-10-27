@@ -48,8 +48,9 @@ public class Item implements Comparable<Item> {
         this.priority = priority;
     }
 
-    public Item(String description, boolean isReturn) { // this for book
+    public Item(String description, boolean isReturn) {
         this.description = description;
+
     }
 
     /**
