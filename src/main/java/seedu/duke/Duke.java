@@ -9,6 +9,7 @@ import seedu.duke.task.CreditList;
 import seedu.duke.task.ItemList;
 import seedu.duke.task.LinkList;
 import seedu.duke.task.ListType;
+import seedu.duke.task.ModuleList;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
@@ -27,6 +28,7 @@ public class Duke {
     private TaskList tasks;
     private BookList books = new BookList();
     private CreditList mealCredit = new CreditList();
+    private ModuleList moduleList = new ModuleList();
     private Storage linkStorage;
     private LinkList links;
   
@@ -79,6 +81,7 @@ public class Duke {
         listMap.put(ListType.BOOK_LIST, books);
         listMap.put(ListType.CREDIT_LIST, mealCredit);
         listMap.put(ListType.LINK_LIST, links);
+        listMap.put(ListType.MODULE_LIST, moduleList);
     }
 
     /**
