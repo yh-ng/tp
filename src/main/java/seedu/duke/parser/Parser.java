@@ -48,14 +48,7 @@ public class Parser {
 
         switch (rootCommand.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
-            String subRootAddCommand = commandString.split(" ")[0];
-            if (subRootAddCommand.equals("link")) {
-                commandString = commandString.replaceFirst(subRootAddCommand, "").trim();
-                return CommandCreator.createAddCommand(commandString);
-            } else {
-                checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
-                return CommandCreator.createAddCommand(description, argumentsMap);
-            }
+            return CommandCreator.parseAddCommand(commandString, description, argumentsMap);
         case AddRecurringCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, AddRecurringCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createAddRecurringCommand(description, argumentsMap);

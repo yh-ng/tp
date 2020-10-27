@@ -34,6 +34,23 @@ public class CommandCreator {
         return new AddCommand(module, type, url);
     }
 
+    public static Command parseAddCommand(String commandString, String description, HashMap<String,
+            String> argumentsMap) throws DukeException {
+        String subRootAddCommand = commandString.split(" ")[0];
+        if (subRootAddCommand.equals("link")) {
+            commandString = commandString.replaceFirst(subRootAddCommand, "").trim();
+            return CommandCreator.createAddCommand(commandString);
+        } else {
+            //checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
+            for (HashMap.Entry<String, String> entry : argumentsMap.entrySet()) {
+                if (!AddCommand.ALLOWED_ARGUMENTS.contains(entry.getKey())) {
+                    throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+                }
+            }
+            return CommandCreator.createAddCommand(description, argumentsMap);
+        }
+    }
+
     public static Command createAddRecurringCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
         if (description.equals("")) {
