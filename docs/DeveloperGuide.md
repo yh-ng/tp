@@ -5,6 +5,13 @@
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ### Architecture
+
+Below is an architecture diagram of termiNus.
+
+![ArchitectureDiagram](./images/ArchitectureDiagram.png)
+
+Below is a sequence diagram of how the main program functions.
+
 ![DukeSequenceDiagram](./images/DukeSequenceDiagram.png)
 
 ### Ui component
