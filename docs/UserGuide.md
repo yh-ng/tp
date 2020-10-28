@@ -792,6 +792,7 @@ Add recurring task | `addr <description> <optional/compulsory arguments>` | `add
 Add module | `add module <module code> <compulsory arguments>` | `add module CS2113 g/A+ mc/4 ay/2021S1`
 Add web link | `add link m/<module code> <compulsory arguments>` | `add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
 Add book | `borrow <book name> <compulsory argument>` | `borrow cooking book date/11-11-2011`
+Add expense item | `spend <description> <compulsory arguments> <optional arguements>` | `spend lunch v/5 currency/SGD date/29-10-2020`
 Create module folders | `makefolders` | `makefolders`
 List tasks | `list` | `list tasks`
 List tasks with priority | `list p/<priority>` | `list p/2`
@@ -799,10 +800,12 @@ List tasks with category | `list c/<category>` | `list c/2113`
 List links | `list` | `list links`
 List books | `list` | `list books`
 List modules | `list` | `list module`
+List expense items | `list` | `list expenses`
 Delete task | `delete task <taskIndexNumber>` | `delete task 2`
 Delete tasks by priority | `delete p/<priority>` | `delete tasks p/2`
 Delete tasks by category  | `delete c/<category>` | `delete tasks c/cs2113`
 Delete link | `delete link <taskIndexNumber>` | `delete link 2`
+Delete expense items | `delete expense <expenseIndexNumber>` | `delete expense 2`
 Mark task as done | `done <taskIndexNumber>` | `done 1`
 Mark book as returned | `return <taskIndexNumber>` | `return 2`
 Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
@@ -813,4 +816,3 @@ Find tasks with matching keyword | `find <keyword>` | `find meeting`
 Clear all tasks | `clear` | `clear`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`
-
