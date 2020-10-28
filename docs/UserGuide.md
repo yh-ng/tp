@@ -17,8 +17,8 @@
     * [Displaying books borrowed and returned on list](#displaying-books-borrowed-and-returned-on-list-list): `list`
     * [Displaying modules on list](#displaying-modules-on-list-list): `list`
     * [Deleting a task from the list](#deleting-a-task-from-the-list-delete): `delete`
-            * [Deleting all tasks of a certain priority](#deleting-all-tasks-of-a-certain-priority-delete): `delete`
-            * [Deleting all tasks of a certain category](#deleting-all-tasks-of-a-certain-category-delete): `delete`
+        * [Deleting all tasks of a certain priority](#deleting-all-tasks-of-a-certain-priority-delete): `delete`
+        * [Deleting all tasks of a certain category](#deleting-all-tasks-of-a-certain-category-delete): `delete`
     * [Deleting a link from the list](#deleting-a-link-from-the-list-delete): `delete` 
     * [Marking a task as done](#marking-a-task-as-done-done): `done`
     * [Marking a book as returned](#marking-a-book-as-returned-return): `return`
@@ -69,7 +69,7 @@ List of `<optional arguments>`:
 - `c/<category>` sets the category of the task.
 - `date/<dd-MM-yyyy>` sets the date of the task.
 
-:triangular_flag_on_post: By default, there is no category and date, and the priority is set to 0.
+🚩: By default, there is no category and date, and the priority is set to 0.
 
 Example of usage: 
 
