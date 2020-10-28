@@ -21,15 +21,15 @@ activate Storage
 Duke <-- Storage
 deactivate Storage
 
-create ItemList
-Duke -> ItemList : new ItemList()
-activate ItemList
-
-Storage <- ItemList : load()
+Duke -> Storage : load()
 activate Storage
 
-Storage --> ItemList
+Duke <-- Storage : ArrayList<Item>
 deactivate Storage
+
+create ItemList
+Duke -> ItemList : new ItemList(ArrayList<Item>)
+activate ItemList
 
 Duke <-- ItemList : items
 deactivate ItemList
