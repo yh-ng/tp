@@ -5,6 +5,8 @@ import seedu.duke.common.Messages;
 import seedu.duke.task.ItemList;
 import seedu.duke.task.LinkList;
 import seedu.duke.task.ListType;
+import seedu.duke.task.Module;
+import seedu.duke.task.ModuleList;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Link;
 import seedu.duke.task.Task;
@@ -24,32 +26,18 @@ public class AddCommand extends Command {
             + ": Adds a task to the task list.\n"
             + "     Parameters: TASK_NAME <optional arguments>\n"
             + "     Example: " + COMMAND_WORD + " example_task <optional arguments>";
-    public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "date"));
+    public static final HashSet<String> TASK_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "date"));
+    public static final HashSet<String> LINK_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("m", "t", "u"));
+    public static final HashSet<String> MODULE_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("g", "mc", "ay"));
 
-    protected final String description;
-    protected final HashMap<String, String> argumentsMap;
+    protected String description;
+    protected HashMap<String, String> argumentsMap;
+    private final ListType addType;
 
-    private final String module;
-    private final String type;
-    private final String url;
-    private final Boolean isLink;
-
-    public AddCommand(String description, HashMap<String, String> argumentsMap) {
+    public AddCommand(String description, HashMap<String, String> argumentsMap, ListType addType) {
+        this.addType = addType;
         this.description = description;
         this.argumentsMap = argumentsMap;
-        this.module = "";
-        this.type = "";
-        this.url = "";
-        this.isLink = false;
-    }
-
-    public AddCommand(String module, String type, String url) {
-        this.description = "";
-        this.argumentsMap = null;
-        this.module = module;
-        this.type = type;
-        this.url = url;
-        this.isLink = true;
     }
 
     /**
@@ -61,14 +49,57 @@ public class AddCommand extends Command {
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
         TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
-        Task newTask = new Task(description);
-        Link newLink = new Link(module, type, url);
-        if (isLink) {
-            links.addLink(newLink);
-        } else {
-            setTaskProperties(newTask, argumentsMap);
-            tasks.addTask(newTask);
+        ModuleList modules = (ModuleList) listMap.get(ListType.MODULE_LIST);
+        switch (addType) {
+        case TASK_LIST:
+            executeAddTask(tasks);
+            break;
+        case LINK_LIST:
+            executeAddLink(links);
+            break;
+        case MODULE_LIST:
+            executeAddModule(modules);
+            break;
+        default:
+            throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
+    }
+
+    private void executeAddTask(TaskList tasks) throws DukeException {
+        if (description.equals("")) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+        }
+        Task newTask = new Task(description);
+        setTaskProperties(newTask, argumentsMap);
+        tasks.addItem(newTask);
+    }
+
+    private void executeAddLink(LinkList links) throws DukeException {
+        if (!argumentsMap.containsKey("m") || !argumentsMap.containsKey("t") || !argumentsMap.containsKey("u")) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+        }
+        String module = argumentsMap.get("m");
+        String type = argumentsMap.get("t");
+        String url = argumentsMap.get("u");
+        Link newLink = new Link(module, type, url);
+        links.addLink(newLink);
+    }
+
+    private void executeAddModule(ModuleList modules) throws DukeException {
+        int mc;
+
+        if (!argumentsMap.containsKey("g") || !argumentsMap.containsKey("mc") || !argumentsMap.containsKey("ay")) {
+            throw new DukeException("OOPS!!! g, mc and ay arguments are required!");
+        }
+
+        try {
+            mc = Integer.parseInt(argumentsMap.get("mc"));
+        } catch (NumberFormatException e) {
+            throw new DukeException("OOPS!!! Your MCs are invalid!");
+        }
+
+        Module module = new Module(description, argumentsMap.get("g"), mc, argumentsMap.get("ay"));
+        modules.addItem(module);
     }
 
     /**
