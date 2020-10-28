@@ -2,7 +2,7 @@
 participant ":Duke" as DukeClass <<class>>
 participant ":Duke" as Duke
 participant ":Storage" as Storage
-participant ":TaskList" as TaskList
+participant ":ItemList" as ItemList
 participant ":Ui" as Ui <<class>>
 participant ":Parser" as Parser <<class>>
 participant ":Command" as Command
@@ -11,28 +11,28 @@ participant ":Command" as Command
 activate DukeClass
 
 create Duke
-DukeClass -> Duke: new Duke(filePath)
+DukeClass -> Duke: new Duke()
 activate Duke
 
 create Storage
-Duke -> Storage : new Storage(filePath)
+Duke -> Storage : new Storage()
 activate Storage
 
 Duke <-- Storage
 deactivate Storage
 
-create TaskList
-Duke -> TaskList : new TaskList()
-activate TaskList
+create ItemList
+Duke -> ItemList : new ItemList()
+activate ItemList
 
-Storage <- TaskList : load()
+Storage <- ItemList : load()
 activate Storage
 
-Storage --> TaskList
+Storage --> ItemList
 deactivate Storage
 
-Duke <-- TaskList : tasks
-deactivate TaskList
+Duke <-- ItemList : items
+deactivate ItemList
 
 DukeClass <-- Duke
 deactivate Duke
@@ -69,7 +69,7 @@ Duke -> Command : execute()
 
 Duke -> Command : isExit()
 
-Duke -> Storage : save(tasks)
+Duke -> Storage : save(items)
 
 destroy Command
 
