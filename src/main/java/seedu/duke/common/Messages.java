@@ -20,7 +20,7 @@ public class Messages {
     public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
-    public static final String MESSAGE_STATUS_LAST = " tasks in the list.";
+    public static final String MESSAGE_STATUS_LAST = " items in the list.";
     public static final String MESSAGE_LINK_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_LINK_STATUS_LAST = " links in the list.";
 
