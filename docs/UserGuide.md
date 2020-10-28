@@ -53,7 +53,7 @@ termiNus is an interactive task manager for students in NUS.
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `termiNus` from [here](http://link.to/duke).
+1. Down the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/tag/v2.0).
 1. Navigate to the folder containing `termiNus.jar` in the terminal.
 1. Run termiNus by using `java -jar termiNus.jar`.
 
