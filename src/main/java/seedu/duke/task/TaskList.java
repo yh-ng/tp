@@ -47,6 +47,35 @@ public class TaskList extends ItemList<Task> {
     }
 
     /**
+     * Sets the category of a task identified by the task index number in the task list.
+     *
+     * @param index the index of the task in the task list
+     */
+    public void setCategory(int index, String category) {
+        if (index > items.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            items.get(index - 1).setCategory(category);
+            Ui.dukePrint(Messages.MESSAGE_CATEGORY + items.get(index - 1).toString());
+        }
+    }
+
+    /**
+     * Sets the priority of a task at the given index.
+     *
+     * @param index    the index of the task to set priority.
+     * @param priority the priority to set the task at.
+     */
+    public void setPriority(int index, int priority) {
+        if (index > items.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            items.get(index - 1).setPriority(priority);
+            Ui.dukePrint(Messages.MESSAGE_SET_PRIORITY + items.get(index - 1).getPriority());
+        }
+    }
+
+    /**
      * Adds a todo task to the task list.
      *
      * @param description the description of the todo task

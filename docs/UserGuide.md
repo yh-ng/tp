@@ -96,6 +96,75 @@ Output:
     ____________________________________________________________
 ```
 
+### Adding modules: `add module`
+Add modules to the module list.
+
+Format: `add module <module code> <compulsory arguments>`
+
+:triangular_flag_on_post: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix (characters in full caps).
+
+List of `<compulsory arguments>`:
+- `g/<grade>` grade of the module (`A+`, `A`, `A-`, etc).
+- `ay/<XXXXSY>` academic year of the module where `X` is an integer and `Y` is `1` or `2` (`2021S1`, `2021S2`, etc...).
+- `mc/<MCs>` modular credits of the module.
+
+Example of usage:
+
+`add module CS2113 g/A+ mc/4 ay/2021S1`
+
+Output:
+
+```
+    ____________________________________________________________
+     Got it. I've added this link:
+       [A+] CS2113 (4 MC) (AY2021S1)
+     Now you have 4 modules in the list.
+    ____________________________________________________________
+```
+
+### List modules: `list module`
+List all the modules in the module list and shows computed CAP and completed MCs.
+
+Format: `list module`
+
+Example of usage:
+
+`list module`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here is a list of your modules:
+     [A+] CS2113 (4 MC) (AY2021S1)
+     [A-] CG2027 (2 MC) (AY2021S1)
+    ____________________________________________________________
+     Total CAP: 4.83
+     Total MCs completed: 6
+    ____________________________________________________________
+```
+
+### Create module folders: `makefolders`
+Make folders for all modules in the module list according to academic year.
+
+Format: `makefolders`
+
+Example of usage:
+
+`makefolders`
+
+Output:
+
+```
+    ____________________________________________________________
+     Creating module folders...
+     Created folder/sub-folders for CS1010 at ./modules/AY2021S1/CS1010/
+     Created folder/sub-folders for CS1231 at ./modules/AY1920S1/CS1231/
+     Created folder/sub-folders for CS2113 at ./modules/AY2021S1/CS2113/
+     Created folder(s) for 3 module(s).
+    ____________________________________________________________
+```
+
 ### Listing: `list`
 Lists everything.
 
