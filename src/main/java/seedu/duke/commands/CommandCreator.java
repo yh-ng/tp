@@ -223,7 +223,7 @@ public class CommandCreator {
      * @throws DukeException If invalid arguments are given.
      */
     public static Command createCategoryCommand(String commandString, HashMap<String, String> argumentsMap)
-            throws DukeException{
+            throws DukeException {
         int index;
         try {
             index = Integer.parseInt(commandString.split(" ")[0]);
