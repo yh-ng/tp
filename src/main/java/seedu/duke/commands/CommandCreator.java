@@ -214,6 +214,32 @@ public class CommandCreator {
         }
     }
 
+    // @@author GuoAi
+    /**
+     * Creates and returns a CategoryCommand with given arguments.
+     *
+     * @param commandString Command parameters given by the user.
+     * @return CategoryCommand with given arguments.
+     * @throws DukeException If invalid arguments are given.
+     */
+    public static Command createCategoryCommand(String commandString, HashMap<String, String> argumentsMap)
+            throws DukeException{
+        int index;
+        try {
+            index = Integer.parseInt(commandString.split(" ")[0]);
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+        }
+        if (!argumentsMap.containsKey("c")) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_CATEGORY);
+        }
+        if (argumentsMap.get("c").trim().equals("")) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
+        }
+        return new CategoryCommand(index, argumentsMap.get("c"));
+    }
+
+    // @@author
     public static Command createDeductCommand(String value)
             throws DukeException {
         return new DeductCommand(value);
