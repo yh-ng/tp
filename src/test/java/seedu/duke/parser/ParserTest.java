@@ -19,7 +19,7 @@ class ParserTest {
 
     @Test
     void parse_validAddCommand_returnsAddCommand() throws DukeException {
-        String fullCommand = "add tP meeting p/1";
+        String fullCommand = "add task tP meeting p/1";
         Command command = Parser.parse(fullCommand);
         assertTrue(command instanceof AddCommand);
     }

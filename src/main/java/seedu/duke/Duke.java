@@ -38,6 +38,7 @@ public class Duke {
     public Duke() {
 
         storage = new Storage();
+
         boolean errorMessage = false;
         try {
             tasks = new TaskList(storage.loadTask());          
