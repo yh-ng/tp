@@ -26,8 +26,8 @@ public class CommandCreator {
             Parser.checkAllowedArguments(argumentsMap, AddCommand.LINK_ALLOWED_ARGUMENTS);
             return new AddCommand(newDescription, argumentsMap, ListType.LINK_LIST);
         case "module":
-            Parser.checkAllowedArguments(argumentsMap, AddModuleCommand.ALLOWED_ARGUMENTS);
-            return new AddModuleCommand(newDescription, argumentsMap);
+            Parser.checkAllowedArguments(argumentsMap, AddCommand.MODULE_ALLOWED_ARGUMENTS);
+            return new AddCommand(newDescription, argumentsMap, ListType.MODULE_LIST);
         case "task":
             Parser.checkAllowedArguments(argumentsMap, AddCommand.TASK_ALLOWED_ARGUMENTS);
             return new AddCommand(newDescription, argumentsMap, ListType.TASK_LIST);

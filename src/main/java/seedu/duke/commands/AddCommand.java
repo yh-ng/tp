@@ -5,6 +5,8 @@ import seedu.duke.common.Messages;
 import seedu.duke.task.ItemList;
 import seedu.duke.task.LinkList;
 import seedu.duke.task.ListType;
+import seedu.duke.task.Module;
+import seedu.duke.task.ModuleList;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Link;
 import seedu.duke.task.Task;
@@ -26,6 +28,7 @@ public class AddCommand extends Command {
             + "     Example: " + COMMAND_WORD + " example_task <optional arguments>";
     public static final HashSet<String> TASK_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "date"));
     public static final HashSet<String> LINK_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("m", "t", "u"));
+    public static final HashSet<String> MODULE_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("g", "mc", "ay"));
 
     protected String description;
     protected HashMap<String, String> argumentsMap;
@@ -46,12 +49,16 @@ public class AddCommand extends Command {
     public void execute(Map<ListType, ItemList> listMap) throws DukeException {
         TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
+        ModuleList modules = (ModuleList) listMap.get(ListType.MODULE_LIST);
         switch (addType) {
         case TASK_LIST:
             executeAddTask(tasks);
             break;
         case LINK_LIST:
             executeAddLink(links);
+            break;
+        case MODULE_LIST:
+            executeAddModule(modules);
             break;
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
@@ -76,6 +83,23 @@ public class AddCommand extends Command {
         String url = argumentsMap.get("u");
         Link newLink = new Link(module, type, url);
         links.addLink(newLink);
+    }
+
+    private void executeAddModule(ModuleList modules) throws DukeException {
+        int mc;
+
+        if (!argumentsMap.containsKey("g") || !argumentsMap.containsKey("mc") || !argumentsMap.containsKey("ay")) {
+            throw new DukeException("OOPS!!! g, mc and ay arguments are required!");
+        }
+
+        try {
+            mc = Integer.parseInt(argumentsMap.get("mc"));
+        } catch (NumberFormatException e) {
+            throw new DukeException("OOPS!!! Your MCs are invalid!");
+        }
+
+        Module module = new Module(description, argumentsMap.get("g"), mc, argumentsMap.get("ay"));
+        modules.addTask(module);
     }
 
     /**
