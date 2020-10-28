@@ -161,6 +161,25 @@ This feature is facilitated by `Parser` and `AddCommand`.
 - Step 3 The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `links`, and returns a `ListCommand` for the link list.
 - Step 4 The command is excuted and the complete list of links is displayed.
 
+##### Calendar command
+The calendar command allows users to print out a calendar view of their tasks within the next `X` days, where `X` is a parameter passed by the user.
+
+- `CalendarCommand` obtains a list of tasks from `TaskList` by using its `getTaskList` method, which returns an `ArrayList` of `Task` objects.
+- The list of tasks is converted into a `Stream`.
+- The `Task` objects without dates are filtered out.
+- The `Task` objects outside the range of the current date and `X` days of the current date are filtered out.
+- The `ArrayList` is sorted by task dates, which uses a `Comparator` defined in the parameters.
+- The `Stream` is collected back into an `ArrayList`, which has sorted dates of tasks within the next `X` days.
+- The `ArrayList` of `Task` objects are passed to the `Ui.dukePrintCalendar` method, which prints the tasks as a calendar.
+- The `dukePrintCalendar` method groups tasks by date and a new heading is printed for each day. This is done by comparing each `Task` in the loop with the
+previous task to check if they have the same date, and to print a new heading if not.
+
+The filtering of the tasks by date is done using this code, which is called on a `Stream` object.
+```
+    .filter(task -> currentDate.until(task.getDate(), ChronoUnit.DAYS) >= 0)
+    .filter(task -> currentDate.until(task.getDate(), ChronoUnit.DAYS) <= daysToPrint)
+```
+
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
