@@ -1,9 +1,6 @@
 # Developer Guide
 
 ## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 ### Architecture
 
 Below is an architecture diagram of termiNus.
@@ -113,13 +110,50 @@ termiNus is an application which helps NUS undergraduates to have better managem
 |v2.0|
 
 ## Implementation
-Add tasks
+#####Add tasks
 Step 1
 step 2
 
-List tasks
-Step 1
-Step 2
+##### List tasks
+The list tasks feature allows the user to list all the tasks tracked.
+This feature is facilitated by `ListCommand`. 
+- Step 1 The user inputs the command `list tasks`. (Assuming the task list is not empty)
+- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+- Step 3 The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks`, and returns a `ListCommand` for the whole task list.
+- Step 4 The command is executed and the complete list of all the tracked tasks is displayed.
+
+##### List tasks with priority
+The list tasks with priority feature allows the user to list tasks of a certain priority.
+This feature is facilitated by `Parser` and `ListCommand`.
+- Step 1 The user inputs the command `list tasks p/3`. (Assuming the tasks of CS2113 is not empty)
+- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+- Step 3 The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `p/`, and returns a `ListCommand` for the task list of priority level 3.
+- Step 4 The command is executed and the list of tasks with level 3 priority is displayed.
+
+##### List tasks with category
+The list tasks with category feature allows the user to list tasks of a certain category.
+This feature is facilitated by `Parser` and `ListCommand`.
+- Step 1 The user inputs the command `list tasks c/CS2113`. (Assuming the tasks of CS2113 is not empty)
+- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+- Step 3 The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `c/`, and returns a `ListCommand` for the task list under CS2113 category.
+- Step 4 The command is executed and the list of tasks categoried by CS2113 is displayed.
+
+##### Add links
+The add links feature allows the user to add and save zoom meeting links of modules.
+This feature is faclitated by `Parser`, `AddCommand` and `Storage`.
+- Step 1 The user inputs `add links m/CS2113 t/lecture u/https://nus.sg.zoom.us/cs2113/lecture`.
+- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `AddCommand`.
+- Step 3 The method `createAddCommand()` in `CommandCreator` further parses the input by identifying the keyword `link`, and returns a `AddCommand`.
+- Step 4 The command is excuted and the links is added into the link list with module name and online class type.
+- Step 5 `Storage` saves the added link by writing it into the `links.txt` file.
+
+##### List links
+The list link feature allows the user to list all the zoom meeting links.
+This feature is facilitated by `Parser` and `AddCommand`.
+- Step 1 The user inputs `list links`. (Assuming the link list is not empty).
+- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+- Step 3 The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `links`, and returns a `ListCommand` for the link list.
+- Step 4 The command is excuted and the complete list of links is displayed.
 
 ## Non-Functional Requirements
 

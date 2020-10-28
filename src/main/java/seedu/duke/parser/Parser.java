@@ -52,7 +52,7 @@ public class Parser {
 
         switch (rootCommand.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
-            return CommandCreator.parseAddCommand(commandString, description, argumentsMap);
+            return CommandCreator.createAddCommand(commandString, description, argumentsMap);
         case AddRecurringCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, AddRecurringCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createAddRecurringCommand(description, argumentsMap);
