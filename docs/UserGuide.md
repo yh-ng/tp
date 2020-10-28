@@ -55,19 +55,19 @@ termiNus is an interactive task manager for students in NUS.
 
 ## Quick Start
 
-1. Ensure that you have Java 11 or above installed on your computer.
-1. Down the latest version of `termiNus` from [here](http://link.to/duke).
-1. Copy the file to the folder you want to use as the home folder for your termiNUS.
-1. Navigate to the folder containing `termiNus.jar` in the terminal or command prompt.
-1. Run termiNus by using `java -jar termiNus.jar`.
-1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will show a brief user guide.
+1. Ensure that you have Java 11 or above installed.
+2. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest).
+3. Copy the file to the folder you want to use as the home folder for your termiNUS.
+4. Navigate to the folder containing `termiNus.jar` in the terminal or command prompt.
+5. Run termiNus by using `java -jar termiNus.jar`.
+6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will show a brief user guide.
 Some example commands you can try:
 * `add task tP meeting`: Adds a `Task` with description `tP meeting` to the task list
 * `list tasks`: Lists all tasks
 * `delete task 1`: Deletes the 1st task shown in the task list
 * `clear`: Clears all items in the list
 * `bye`: Exits the app
-1. Refer to the Features below for details of each command.
+7. Refer to the Features below for details of each command.
 
 ## Features 
 
