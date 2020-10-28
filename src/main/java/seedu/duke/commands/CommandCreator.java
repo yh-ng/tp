@@ -1,6 +1,5 @@
 package seedu.duke.commands;
 
-import jdk.jshell.execution.JdiExecutionControl;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.parser.Parser;
@@ -244,7 +243,6 @@ public class CommandCreator {
     }
 
     // @@author GuoAi
-
     /**
      * Creates and returns a CategoryCommand with given arguments.
      *
