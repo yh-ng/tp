@@ -9,6 +9,7 @@
     * [Adding a module](#adding-a-module-add-module): `add module`
     * [Adding a WebLink](#adding-a-weblink-add-link): `add link`
     * [Adding a book](#adding-a-book-borrow): `borrow`
+    * [Adding an expense item](#adding-an-expense-item-spend-coming-soon): `spend` (coming soon)
     * [Creating module folders](#creating-module-folders-makefolders): `makefolders`
     * [Displaying tasks on list](#displaying-tasks-on-list-list): `list`
         * [Displaying tasks based on priority](#displaying-tasks-based-on-priority-list): `list`
@@ -16,10 +17,12 @@
     * [Displaying WebLinks on list](#displaying-weblinks-on-list-list): `list`
     * [Displaying books borrowed and returned on list](#displaying-books-borrowed-and-returned-on-list-list): `list`
     * [Displaying modules on list](#displaying-modules-on-list-list): `list`
+    * [Displaying expense items on list](#displaying-expense-items-on-list-list-coming-soon): `list` (coming soon)
     * [Deleting a task from the list](#deleting-a-task-from-the-list-delete): `delete`
         * [Deleting all tasks of a certain priority](#deleting-all-tasks-of-a-certain-priority-delete): `delete`
         * [Deleting all tasks of a certain category](#deleting-all-tasks-of-a-certain-category-delete): `delete`
     * [Deleting a link from the list](#deleting-a-link-from-the-list-delete): `delete` 
+    * [Deleting an expense item from the list](#deleting-an-expense-item-from-the-list-delete-coming-soon): `delete` (coming soon)
     * [Marking a task as done](#marking-a-task-as-done-done): `done`
     * [Marking a book as returned](#marking-a-book-as-returned-return): `return`
     * [Setting the priority of a task](#setting-the-priority-of-a-task-set): `set`
@@ -53,9 +56,18 @@ termiNus is an interactive task manager for students in NUS.
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `termiNus` from [here](http://link.to/duke).
-1. Navigate to the folder containing `termiNus.jar` in the terminal.
-1. Run termiNus by using `java -jar termiNus.jar`.
+2. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest).
+3. Copy the file to the folder you want to use as the home folder for your termiNUS.
+4. Navigate to the folder containing `termiNus.jar` in the terminal or command prompt.
+5. Run termiNus by using `java -jar termiNus.jar`.
+6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will show a brief user guide.
+Some example commands you can try:
+* `add task tP meeting`: Adds a `Task` with description `tP meeting` to the task list
+* `list tasks`: Lists all tasks
+* `delete task 1`: Deletes the 1st task shown in the task list
+* `clear`: Clears all items in the list
+* `bye`: Exits the app
+7. Refer to the Features below for details of each command.
 
 ## Features 
 
@@ -194,6 +206,39 @@ Output:
        (Due Date: 11 Dec 2011)
     ____________________________________________________________
 ```
+
+### Adding an expense item: `spend` (coming soon)
+Add an expense item into the expense list.
+
+Format: `spend <description> <compulsory arguments> <optional arguments>`
+
+List of `<compulsory arguments>`:
+- `v/<value>` sets the amount of money spent
+
+List of `<optional arguments>`:
+- `currency/<currency>` sets the currency of the expense.
+- `date/<dd-MM-yyyy>` sets the date of the expense.
+
+🚩: By default, there is no currency and date, and the currency is set to "SGD".
+
+Example of usage:
+
+`spend lunch v/5`
+
+`spend lunch v/5 currency/CNY`
+
+`spend lunch v/5 currency/USD date/28-10-2020`
+
+Output:
+
+```
+    ____________________________________________________________
+     Got it. I've added this expense item:
+       lunch (5 SGD) (date: 28 Oct 2020)
+     Now you have 4 tasks in the list.
+    ____________________________________________________________
+```
+
 ### Creating module folders: `makefolders`
 Make folders for all modules in the module list according to academic year.
 
@@ -342,6 +387,30 @@ Output:
      Total MCs completed: 6
     ____________________________________________________________
 ```
+### Displaying expense items on list: `list` (coming soon)
+List all the expense items in the expense list and shows total amount of money spent for each currency.
+
+Format: `list expenses`
+
+Example of usage:
+
+`list expenses`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here is a list of your expenses:
+     lunch (5 SGD) (date: 28 Oct 2020)
+     dinner (10 USD)
+    ____________________________________________________________
+     Total money spent:
+     SGD: 5
+     USD: 10
+    ____________________________________________________________
+```
+
+
 ### Deleting a task from the list: `delete`
 Deletes a task from the list
 
@@ -433,6 +502,28 @@ Output:
     ____________________________________________________________
 
 ```
+### Deleting an expense item from the list: `delete` (coming soon)
+Deletes an expense item from the list 
+
+Format: `delete expense <expenseIndexNumber>`
+
+🚩: `<expenseIndexNumber>` corresponds to the index given on `list` command output.
+
+Example of usage:
+
+`delete expense 2`
+
+Output: 
+
+```
+    ____________________________________________________________
+     Noted. I've removed this expense item:
+       lunch (5 SGD)
+     Now you have 0 links in the list.
+    ____________________________________________________________
+
+```
+
 ### Marking a task as done: `done`
 Marks a given task as done.
 
@@ -610,10 +701,27 @@ Output:
     ____________________________________________________________
      add: Adds a task to the task list.
      Parameters: TASK_NAME <optional arguments>
-     Example: add example_task <optional arguments>
+     List of <optional arguments>
+       - `p/<number>` sets the priority of the task.
+       - `c/<category>` sets the category of the task.
+       - `date/<dd-MM-yyyy>` sets the date of the task.
+     Example: add task example_task <optional arguments>
 
-     bye: Exits the program.
-     Example: bye
+     addr: Adds a task to the task list.
+     Parameters: TASK_NAME <optional/compulsory arguments>
+     List of <optional arguments>:
+       - `p/<number>` sets the priority of the task.
+       - `c/<category>` sets the category of the task.
+       - `date/<dd-MM-yyyy>` sets the date of the task.
+     List of `<compulsory arguments>
+       - `s/<dd-MM-yyyy>` start date of recurring tasks (inclusive)
+       - `e/<dd-MM-yyyy>` end date of recurring tasks (inclusive).
+       - `day/<mon/tue/wed/thu/fri/sat/sun>` day of recurring task.
+     Example: addr example_task <optional arguments>
+
+     borrow: Adds a book to the book list.
+     Parameters: BOOK_NAME date/DATE
+     Example: borrow example_book  date/10-10-2020
 
      category: Sets the category of a task identified by the task index number in the task list
      Parameters: INDEX c/CATEGORY
@@ -636,10 +744,6 @@ Output:
      Parameters: INDEX
      Example: done 1
 
-     return: Marks the book identified by the index number used in the book listing as returned.
-     Parameters: INDEX
-     Example: return 2
-
      find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
      Parameters: KEYWORDS
      Example: find book
@@ -647,20 +751,20 @@ Output:
      help: Shows program usage instructions.
      Example: help
 
-     list: Displays all tasks in the task list as a list with index numbers.
-     Example: list
+     list: Displays all items in the list with index numbers.
+     Example: list all
+     Displays all items in the list.
           Optional parameter 1: tasks p/PRIORITY
           Displays all the tasks with PRIORITY as a list.
           Example: list tasks p/1
           Optional parameter 2: tasks c/CATEGORY
           Displays all the tasks with CATEGORY as a list.
           Example: list tasks c/cs2113
+          Optional parameter 3: tasks sorted
+          Displays all the tasks sorted by priority
 
-     list: Displays all links in the link list as a list with index numbers.
-     Example: list links
-
-     list: Displays all books in the book list as a list with index numbers.
-     Example: list books
+     bye: Exits the program.
+     Example: bye
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
@@ -701,6 +805,7 @@ Add recurring task | `addr <description> <optional/compulsory arguments>` | `add
 Add module | `add module <module code> <compulsory arguments>` | `add module CS2113 g/A+ mc/4 ay/2021S1`
 Add web link | `add link m/<module code> <compulsory arguments>` | `add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
 Add book | `borrow <book name> <compulsory argument>` | `borrow cooking book date/11-11-2011`
+Add expense item | `spend <description> <compulsory arguments> <optional arguements>` | `spend lunch v/5 currency/SGD date/29-10-2020`
 Create module folders | `makefolders` | `makefolders`
 List tasks | `list` | `list tasks`
 List tasks with priority | `list p/<priority>` | `list p/2`
@@ -708,10 +813,12 @@ List tasks with category | `list c/<category>` | `list c/2113`
 List links | `list` | `list links`
 List books | `list` | `list books`
 List modules | `list` | `list module`
+List expense items | `list` | `list expenses`
 Delete task | `delete task <taskIndexNumber>` | `delete task 2`
 Delete tasks by priority | `delete p/<priority>` | `delete tasks p/2`
 Delete tasks by category  | `delete c/<category>` | `delete tasks c/cs2113`
 Delete link | `delete link <taskIndexNumber>` | `delete link 2`
+Delete expense items | `delete expense <expenseIndexNumber>` | `delete expense 2`
 Mark task as done | `done <taskIndexNumber>` | `done 1`
 Mark book as returned | `return <taskIndexNumber>` | `return 2`
 Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
@@ -722,4 +829,3 @@ Find tasks with matching keyword | `find <keyword>` | `find meeting`
 Clear all tasks | `clear` | `clear`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`
-
