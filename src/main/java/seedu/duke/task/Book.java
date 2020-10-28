@@ -97,10 +97,10 @@ public class Book extends Item {
 
     @Override
     public String toFile() {
-        String isDoneString = (isDone) ? "1" : "0";
+        String isReturnString = (isReturn) ? "1" : "0";
         String dateString = getDateString(Item.DATETIME_PARSE_FORMAT);
         String futureDateString = getFutureDateString(Item.DATETIME_PARSE_FORMAT);
 
-        return "B | " + isDoneString + " | " + description + " | " + dateString + " | " + futureDateString;
+        return "B | " + isReturnString + " | " + description + " | " + dateString + " | " + futureDateString;
     }
 }
