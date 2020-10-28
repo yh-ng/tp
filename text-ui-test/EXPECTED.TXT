@@ -47,13 +47,13 @@
 
      delete: Deletes the task identified by the index number used in the task listing.
      Parameters: INDEX
-     Example: delete 1
+     Example: delete task 1
           Optional parameter 1: p/PRIORITY
           Deletes all the tasks with PRIORITY.
-          Example: delete p/1
+          Example: delete tasks p/1
           Optional parameter 2: c/CATEGORY
           Deletes all the tasks with CATEGORY.
-          Example: delete c/cs2113
+          Example: delete tasks c/cs2113
 
      done: Marks the task identified by the index number used in the task listing as done.
      Parameters: INDEX
