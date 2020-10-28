@@ -51,7 +51,7 @@ public class BookList extends ItemList<Book> {
 
     public void markAsReturn(int index) {
         if (index > items.size() || index < 1) {
-            Ui.dukePrint(Messages.WARNING_NO_TASK);
+            Ui.dukePrint(Messages.WARNING_NO_BOOK);
         } else {
             items.get(index - 1).markAsReturn();
             Ui.dukePrint(Messages.MESSAGE_RETURNED + items.get(index - 1).getDescription());

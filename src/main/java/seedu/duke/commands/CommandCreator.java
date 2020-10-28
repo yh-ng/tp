@@ -215,8 +215,11 @@ public class CommandCreator {
 
     public static Command createBorrowCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
+        if (description.isEmpty()) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_BOOK_DESCRIPTION);
+        }
         if (argumentsMap.isEmpty()) {
-            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+            throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
         return new BorrowCommand(description, argumentsMap);
     }
@@ -235,7 +238,7 @@ public class CommandCreator {
         } catch (NumberFormatException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(Messages.WARNING_NO_TASK);
+            throw new DukeException(Messages.WARNING_NO_BOOK);
         }
     }
 
