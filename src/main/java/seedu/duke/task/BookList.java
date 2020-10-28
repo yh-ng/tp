@@ -37,7 +37,7 @@ public class BookList extends ItemList<Book> {
      */
     public void addBook(Book book) {
         items.add(book);
-        Ui.dukePrint(Messages.MESSAGE_ADDBOOK + book.toStringBook(false));
+        Ui.dukePrint(Messages.MESSAGE_ADDBOOK + book.toString(false));
     }
 
     @Override
@@ -65,7 +65,7 @@ public class BookList extends ItemList<Book> {
             return;
         }
         for (int i = 0; i < items.size(); i++) {
-            message += "\n     " + (i + 1) + "." + items.get(i).toStringBook(true);
+            message += "\n     " + (i + 1) + "." + items.get(i).toString(true);
         }
         Ui.dukePrint(Messages.MESSAGE_BOOK_LIST + message);
     }

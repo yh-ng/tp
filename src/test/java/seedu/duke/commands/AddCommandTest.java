@@ -24,7 +24,7 @@ class AddCommandTest {
         listMap.put(ListType.TASK_LIST, new TaskList());
         TaskList taskList = (TaskList) listMap.get(ListType.TASK_LIST);
 
-        new AddCommand(description, argumentsMap).execute(listMap);
+        new AddCommand(description, argumentsMap, ListType.TASK_LIST).execute(listMap);
         assertEquals(1, taskList.size());
         assertEquals(description, taskList.get(0).getDescription());
     }
@@ -39,7 +39,7 @@ class AddCommandTest {
         listMap.put(ListType.TASK_LIST, new TaskList());
         TaskList taskList = (TaskList) listMap.get(ListType.TASK_LIST);
 
-        new AddCommand(description, argumentsMap).execute(listMap);
+        new AddCommand(description, argumentsMap, ListType.TASK_LIST).execute(listMap);
         assertEquals(1, taskList.size());
         assertEquals(Integer.parseInt(inputPriority), taskList.get(0).getPriority());
     }
@@ -54,7 +54,7 @@ class AddCommandTest {
         listMap.put(ListType.TASK_LIST, new TaskList());
         TaskList taskList = (TaskList) listMap.get(ListType.TASK_LIST);
 
-        new AddCommand(description, argumentsMap).execute(listMap);
+        new AddCommand(description, argumentsMap, ListType.TASK_LIST).execute(listMap);
         assertEquals(1, taskList.size());
         assertEquals(inputCategory, taskList.get(0).getCategory());
     }
@@ -70,13 +70,13 @@ class AddCommandTest {
         TaskList taskList = (TaskList) listMap.get(ListType.TASK_LIST);
 
         assertThrows(DukeException.class, () -> {
-            new AddCommand(description, argumentsMap).execute(listMap);
+            new AddCommand(description, argumentsMap, ListType.TASK_LIST).execute(listMap);
         });
 
         inputPriority = "a";
         argumentsMap.put("p", inputPriority);
         assertThrows(DukeException.class, () -> {
-            new AddCommand(description, argumentsMap).execute(listMap);
+            new AddCommand(description, argumentsMap, ListType.TASK_LIST).execute(listMap);
         });
     }
 
@@ -92,7 +92,7 @@ class AddCommandTest {
         String expectedDateString = "13 May 2020";
         argumentsMap.put("date", inputDate);
 
-        new AddCommand(description, argumentsMap).execute(listMap);
+        new AddCommand(description, argumentsMap, ListType.TASK_LIST).execute(listMap);
         assertEquals(expectedDateString, taskList.get(0).getDateString(Task.DATETIME_PRINT_FORMAT));
     }
 
@@ -107,13 +107,13 @@ class AddCommandTest {
         String inputDate = "13-13-2020";
         argumentsMap.put("date", inputDate);
         assertThrows(DukeException.class, () -> {
-            new AddCommand(description, argumentsMap).execute(listMap);
+            new AddCommand(description, argumentsMap, ListType.TASK_LIST).execute(listMap);
         });
 
         inputDate = "blah";
         argumentsMap.put("date", inputDate);
         assertThrows(DukeException.class, () -> {
-            new AddCommand(description, argumentsMap).execute(listMap);
+            new AddCommand(description, argumentsMap, ListType.TASK_LIST).execute(listMap);
         });
     }
 }
