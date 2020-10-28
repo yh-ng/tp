@@ -28,7 +28,15 @@ public class AddRecurringCommand extends AddCommand {
     public static final String COMMAND_WORD = "addr";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the task list.\n"
-            + "     Parameters: TASK_NAME <optional arguments>\n"
+            + "     Parameters: TASK_NAME <optional/compulsory arguments>\n"
+            + "     List of <optional arguments>:\n"
+            + "       - p/<number> sets the priority of the task.\n"
+            + "       - c/<category> sets the category of the task.\n"
+            + "       - date/<dd-MM-yyyy> sets the date of the task.\n"
+            + "     List of `<compulsory arguments>\n"
+            + "       - s/<dd-MM-yyyy> start date of recurring tasks (inclusive)\n"
+            + "       - e/<dd-MM-yyyy> end date of recurring tasks (inclusive).\n"
+            + "       - day/<mon/tue/wed/thu/fri/sat/sun> day of recurring task.\n"
             + "     Example: " + COMMAND_WORD + " example_task <optional arguments>";
     public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "day", "s", "e"));
 

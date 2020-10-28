@@ -19,8 +19,7 @@ public class BorrowCommand extends Command {
     public static final String COMMAND_WORD = "borrow";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a book to the book list.\n"
-            + "     Parameters: BOOK_NAME date/DATE\n"
-            + "     Example: " + COMMAND_WORD + " example_book  date/10-10-2020";
+            + "     Example: " + COMMAND_WORD + " example_book  date/DD-MM-YYYY";
     private String description = "";
     public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Collections.singletonList("date"));
     private final HashMap<String, String> argumentsMap;

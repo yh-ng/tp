@@ -14,7 +14,8 @@ import java.util.Map;
 public class DateCommand extends Command {
     public static final String COMMAND_WORD = "date";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sets the date of a given task in the list.";
+            + ": Sets the date of a given task in the list.\n"
+            + "     Example: " + COMMAND_WORD + " <taskIndex>" + " date/DD-MM-YYYY";
     public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("date"));
 
     private final int index;
