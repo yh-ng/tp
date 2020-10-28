@@ -31,12 +31,12 @@ public class Link extends Item {
         return this.url;
     }
 
-    public String linkToString() {
+    public String toString() {
         String returnString = this.getModule() + " " + this.getType() + "\n       " + this.getUrl();
         return returnString;
     }
 
-    public String linkToFile() {
+    public String toFile() {
         String returnString = this.getModule() + " | " + this.getType() + " | " + this.getUrl();
         return returnString;
     }

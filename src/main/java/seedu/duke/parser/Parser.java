@@ -17,6 +17,7 @@ import seedu.duke.commands.DoneCommand;
 import seedu.duke.commands.FindCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.MakeFolderCommand;
 import seedu.duke.commands.ReturnCommand;
 import seedu.duke.commands.SetCommand;
 import seedu.duke.common.Messages;
@@ -97,6 +98,8 @@ public class Parser {
             return CommandCreator.createDeductCommand(description);
         case FindCommand.COMMAND_WORD:
             return CommandCreator.createFindCommand(commandString);
+        case MakeFolderCommand.COMMAND_WORD:
+            return new MakeFolderCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         case ByeCommand.COMMAND_WORD:

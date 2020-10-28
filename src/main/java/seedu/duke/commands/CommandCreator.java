@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.parser.Parser;
 
 import java.util.HashMap;
 
@@ -40,13 +41,12 @@ public class CommandCreator {
         if (subRootAddCommand.equals("link")) {
             commandString = commandString.replaceFirst(subRootAddCommand, "").trim();
             return CommandCreator.createAddCommand(commandString);
+        } else if (subRootAddCommand.equals("module")) {
+            Parser.checkAllowedArguments(argumentsMap, AddModuleCommand.ALLOWED_ARGUMENTS);
+            commandString = description.replaceFirst(subRootAddCommand, "").trim();
+            return new AddModuleCommand(commandString, argumentsMap);
         } else {
-            //checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
-            for (HashMap.Entry<String, String> entry : argumentsMap.entrySet()) {
-                if (!AddCommand.ALLOWED_ARGUMENTS.contains(entry.getKey())) {
-                    throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
-                }
-            }
+            Parser.checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createAddCommand(description, argumentsMap);
         }
     }
@@ -123,6 +123,8 @@ public class CommandCreator {
             return new ListCommand(false, true);
         case "expenses":
         case "meals":
+        case "module":
+            return new ListModuleCommand();
         case "books":
             return new ListCommand(false, false, true);
         default:

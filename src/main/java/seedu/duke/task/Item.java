@@ -32,7 +32,6 @@ public class Item implements Comparable<Item> {
     public Item(String description) {
         this.description = description;
         this.isDone = false;
-        this.setPriority(0);
     }
 
     /**
@@ -54,9 +53,9 @@ public class Item implements Comparable<Item> {
     }
 
     /**
-     * Retrieves the description of a task.
+     * Retrieves the description of an item.
      *
-     * @return the description string of the task
+     * @return the description string of the item.
      */
     public String getDescription() {
         return description;
@@ -104,52 +103,7 @@ public class Item implements Comparable<Item> {
      * @return the formatted string to be displayed to the user
      */
     public String toString() {
-        String returnString = "";
-        if (this.isDone) {
-            returnString = "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
-        } else {
-            returnString = "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
-        }
-        if (category != null) {
-            returnString += " (category: " + category + ")";
-        }
-        if (date != null) {
-            returnString += " (date: " + getDateString(Item.DATETIME_PRINT_FORMAT) + ")";
-        }
-        return returnString;
-    }
-
-
-    /**
-     * Retrieves the priority of a task.
-     *
-     * @return Priority of the task.
-     */
-    public int getPriority() {
-        return priority;
-    }
-
-    /**
-     * Retrieves the category of a task.
-     *
-     * @return Category of the task.
-     */
-    public String getCategory() {
-        return category;
-    }
-
-    /**
-     * Sets the priority of a task.
-     *
-     * @param priority New priority of the task.
-     */
-    public void setPriority(int priority) {
-        assert priority >= 0 : "Priority should be non-negative";
-        this.priority = priority;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+        return this.description;
     }
 
     public void setDateFromString(String dateString) throws DukeException {
