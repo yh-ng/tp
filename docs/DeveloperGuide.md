@@ -5,11 +5,13 @@
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ### Architecture
-![DukeSequenceDiagram](https://raw.githubusercontent.com/AY2021S1-CS2113-T14-3/tp/master/docs/images/DukeSequenceDiagram.png)
+![DukeSequenceDiagram](./images/DukeSequenceDiagram.png)
 
 ### Ui component
 
 ### Parser component
+
+![DukeSequenceDiagram](./images/ParserSequenceDiagram.png)
 
 ### Command component
 
