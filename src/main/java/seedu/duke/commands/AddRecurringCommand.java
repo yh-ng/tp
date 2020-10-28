@@ -33,7 +33,7 @@ public class AddRecurringCommand extends AddCommand {
     public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "day", "s", "e"));
 
     public AddRecurringCommand(String description, HashMap<String, String> argumentsMap) {
-        super(description, argumentsMap);
+        super(description, argumentsMap, ListType.TASK_LIST);
     }
 
     /**

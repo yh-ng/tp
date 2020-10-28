@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.parser.Parser;
+import seedu.duke.task.ListType;
 
 import java.util.HashMap;
 
@@ -15,39 +16,23 @@ public class CommandCreator {
      * @return AddCommand with given arguments.
      * @throws DukeException When description is empty.
      */
-    public static Command createAddCommand(String description, HashMap<String, String> argumentsMap)
-            throws DukeException {
-        if (description.equals("")) {
-            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-        }
-        return new AddCommand(description, argumentsMap);
-    }
-
-    public static Command createAddCommand(String commandString) throws DukeException {
-        if (!commandString.contains("m/") || !commandString.contains(" t/") || !commandString.contains(" u/")) {
-            throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
-        }
-        int indexOfT = commandString.indexOf("t/");
-        String module = commandString.substring(2, indexOfT - 1);
-        int indexOfU = commandString.indexOf("u/");
-        String type = commandString.substring(indexOfT + 2, indexOfU - 1);
-        String url = commandString.substring(indexOfU + 2);
-        return new AddCommand(module, type, url);
-    }
-
     public static Command parseAddCommand(String commandString, String description, HashMap<String,
             String> argumentsMap) throws DukeException {
-        String subRootAddCommand = commandString.split(" ")[0];
-        if (subRootAddCommand.equals("link")) {
-            commandString = commandString.replaceFirst(subRootAddCommand, "").trim();
-            return CommandCreator.createAddCommand(commandString);
-        } else if (subRootAddCommand.equals("module")) {
+        String rootCommand = commandString.split(" ")[0];
+        String newDescription = description.replaceFirst(rootCommand, "").trim();
+
+        switch (rootCommand) {
+        case "link":
+            Parser.checkAllowedArguments(argumentsMap, AddCommand.LINK_ALLOWED_ARGUMENTS);
+            return new AddCommand(newDescription, argumentsMap, ListType.LINK_LIST);
+        case "module":
             Parser.checkAllowedArguments(argumentsMap, AddModuleCommand.ALLOWED_ARGUMENTS);
-            commandString = description.replaceFirst(subRootAddCommand, "").trim();
-            return new AddModuleCommand(commandString, argumentsMap);
-        } else {
-            Parser.checkAllowedArguments(argumentsMap, AddCommand.ALLOWED_ARGUMENTS);
-            return CommandCreator.createAddCommand(description, argumentsMap);
+            return new AddModuleCommand(newDescription, argumentsMap);
+        case "task":
+            Parser.checkAllowedArguments(argumentsMap, AddCommand.TASK_ALLOWED_ARGUMENTS);
+            return new AddCommand(newDescription, argumentsMap, ListType.TASK_LIST);
+        default:
+            throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
     }
 
