@@ -1,5 +1,37 @@
 # termiNus User Guide
 
+## Table of Contents
+* Introduction
+* Quick Start
+* Features
+    * [Adding a task](#adding-a-task-add): `add`
+    * [Adding recurring tasks](#adding-recurring-tasks-addr): `addr`
+    * [Adding a module](#adding-a-module-add-module): `add module`
+    * [Adding a WebLink](#adding-a-weblink-add-link): `add link`
+    * [Adding a book](#adding-a-book-borrow): `borrow`
+    * [Creating module folders](#creating-module-folders-makefolders): `makefolders`
+    * [Displaying tasks on list](#displaying-tasks-on-list-list): `list`
+        * [Displaying tasks based on priority](#displaying-tasks-based-on-priority-list): `list`
+        * [Displaying tasks based on category](#displaying-tasks-based-on-category-list): `list`
+    * [Displaying WebLinks on list](#displaying-weblinks-on-list-list): `list`
+    * [Displaying books borrowed and returned on list](#displaying-books-borrowed-and-returned-on-list-list): `list`
+    * [Displaying modules on list](#displaying-modules-on-list-list): `list`
+    * [Deleting a task from the list](#deleting-a-task-from-the-list-delete): `delete`
+        * [Deleting all tasks of a certain priority](#deleting-all-tasks-of-a-certain-priority-delete): `delete`
+        * [Deleting all tasks of a certain category](#deleting-all-tasks-of-a-certain-category-delete): `delete`
+    * [Deleting a link from the list](#deleting-a-link-from-the-list-delete): `delete` 
+    * [Marking a task as done](#marking-a-task-as-done-done): `done`
+    * [Marking a book as returned](#marking-a-book-as-returned-return): `return`
+    * [Setting the priority of a task](#setting-the-priority-of-a-task-set): `set`
+    * [Setting the category of a task](#setting-the-category-of-a-task-category): `category`
+    * [Setting the date of a task](#setting-the-date-of-a-task-date): `date`
+    * [Printing task calendar](#printing-task-calendar-calendar): `calendar`
+    * [Searching for tasks with keyword](#searching-for-tasks-with-keyword-find): `find`
+    * [Clearing all tasks](#clearing-all-tasks-clear): `clear`
+    * [Getting help](#getting-help-help): `help`
+    * [Exit and Save](#exiting-and-saving-the-program-bye): `bye`
+* Command Summary
+
 ## Introduction
 
 ```
@@ -17,9 +49,6 @@
 ```
 
 termiNus is an interactive task manager for students in NUS.
-
-## Table of Contents
-{:toc}
 
 ## Quick Start
 
@@ -40,7 +69,7 @@ List of `<optional arguments>`:
 - `c/<category>` sets the category of the task.
 - `date/<dd-MM-yyyy>` sets the date of the task.
 
-:triangular_flag_on_post: By default, there is no category and date, and the priority is set to 0.
+🚩: By default, there is no category and date, and the priority is set to 0.
 
 Example of usage: 
 
@@ -95,13 +124,12 @@ Output:
      Now you have 31 tasks in the list.
     ____________________________________________________________
 ```
-
-### Adding modules: `add module`
+### Adding a module: `add module`
 Add modules to the module list.
 
 Format: `add module <module code> <compulsory arguments>`
 
-:triangular_flag_on_post: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix (characters in full caps).
+🚩: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix (characters in full caps).
 
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module (`A+`, `A`, `A-`, etc).
@@ -121,30 +149,52 @@ Output:
      Now you have 4 modules in the list.
     ____________________________________________________________
 ```
+### Adding a weblink: `add link`
+Add a link for lecture/tutorial sessions through zoom 
 
-### List modules: `list module`
-List all the modules in the module list and shows computed CAP and completed MCs.
+Format: `add link m/<module code> <compulsory arguments>`
 
-Format: `list module`
+List of `<compulsory arguments>`:
+- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`, etc).
+- `u/<URL>`  the link.  
 
 Example of usage:
 
-`list module`
+`add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
 
 Output:
 
 ```
     ____________________________________________________________
-     Here is a list of your modules:
-     [A+] CS2113 (4 MC) (AY2021S1)
-     [A-] CG2027 (2 MC) (AY2021S1)
-    ____________________________________________________________
-     Total CAP: 4.83
-     Total MCs completed: 6
+     Got it. I've added this link:
+       CS2113 lecture
+       https://cs2113Lecture.zoom.com
+     Now you have 1 links in the list.
     ____________________________________________________________
 ```
 
-### Create module folders: `makefolders`
+### Adding a book: `borrow`
+Loan a book and add into the book list 
+
+Format: `borrow <book name> <compulsory argument>`
+
+List of `<compulsory arguments>`:
+- `date/<DD-MM-YYYY>` date of borrow (`23/11/2020`).
+
+Example of usage:
+
+`borrow cooking book date/11-11-2011`
+
+Output:
+
+```
+    ____________________________________________________________
+     Got it. I've added this book: cooking book
+       (Loan Date: 11 Nov 2011)
+       (Due Date: 11 Dec 2011)
+    ____________________________________________________________
+```
+### Creating module folders: `makefolders`
 Make folders for all modules in the module list according to academic year.
 
 Format: `makefolders`
@@ -165,27 +215,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Listing: `list`
-Lists everything.
-
-Format: `list all`
-
-Example of usage:
-
-`list all`
-
-Output:
-
-```
-    ____________________________________________________________
-     Here are the tasks in your list:
-     1.[T][N] tP meeting (p:1) (category: cs2113)
-     2.[T][N] iP meeting (p:2) (category: cs2113)
-     3.[T][N] assignment submission (p:2) (category: cg2028)
-    ____________________________________________________________
-```
-
-### Listing tasks: `list`
+### Displaying tasks on list: `list`
 Lists all the tasks.
 
 Format: `list tasks`
@@ -199,13 +229,14 @@ Output:
 ```
     ____________________________________________________________
      Here are the tasks in your list:
+
      1.[T][N] tP meeting (p:1) (category: cs2113)
      2.[T][N] iP meeting (p:2) (category: cs2113)
      3.[T][N] assignment submission (p:2) (category: cg2028)
     ____________________________________________________________
 ```
 
-### Listing tasks with given priority: `list`
+### Displaying tasks based on priority: `list`
 Lists all the tasks with the given priority.
 
 Format: `list tasks p/<priority>`
@@ -219,12 +250,13 @@ Output:
 ```
     ____________________________________________________________
      Here are the tasks of this priority in your list:
+
      1.[T][N] iP meeting (p:2) (category: cs2113)
      2.[T][N] assignment submission (p:2) (category: cg2028)
     ____________________________________________________________
 ```
 
-### Listing tasks with given category: `list`
+### Displaying tasks based on category: `list`
 Lists all the tasks with the given category.
 
 Format: `list tasks c/<category>`
@@ -238,102 +270,84 @@ Output:
 ```
     ____________________________________________________________
      Here are the tasks of this category in your list:
+
      1.[T][N] iP meeting (p:2) (category: cs2113)
      2.[T][N] lecture quiz (p:2) (category: cs2113)
     ____________________________________________________________
 ```
+### Displaying weblinks on list: `list`
+Lists all the links.
 
-### Setting priority of task: `set`
-Sets the priority of an existing task.
-
-Format: `set <taskIndexNumber> p/<priority>`
-
-:triangular_flag_on_post: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+Format: `list links`
 
 Example of usage:
 
-`set 1 p/3`
-
-`set 2 p/4`
+`list links`
 
 Output:
 
 ```
     ____________________________________________________________
-     Nice! I've set the priority of this task to: 4
+     Here are the tasks of this category in your list:
+
+     1.[T][N] iP meeting (p:2) (category: cs2113)
+     2.[T][N] lecture quiz (p:2) (category: cs2113)
     ____________________________________________________________
 ```
+### Displaying books borrowed and returned on list: `list`
+List all books loaned and returned. 
 
-### Setting category of a task: `category`
-Sets the category of an existing task.
-
-Format: `category <taskIndexNumber> c/<category>`
-
-:triangular_flag_on_post: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+Format: `list books`
 
 Example of usage:
 
-`category 1 c/CCA`
+`list books`
 
 Output:
 
 ```
     ____________________________________________________________
-     Nice! I have set the category of this task:
-       [T][N] tP meeting (p:0) (category: CCA)
+     Here are the books in your list:
+
+     1.[B][L] cooking book
+         (Loan Date: 11 Nov 2011)
+         (Due Date: 11 Dec 2011)
+     2.[B][L] java book
+         (Loan Date: 10 Oct 2020)
+         (Due Date: 10 Nov 2020)
     ____________________________________________________________
 ```
+### Displaying modules on list: `list`
+List all the modules in the module list and shows computed CAP and completed MCs.
 
-### Setting date of a task: `date`
-Sets the date of an existing task.
-
-Format: `date <taskIndexNumber> date/<dd-MM-yyyy>`
-
-:triangular_flag_on_post: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+Format: `list module`
 
 Example of usage:
 
-`date 1 date/11-11-2020`
+`list module`
 
 Output:
 
 ```
     ____________________________________________________________
-     Nice! I have set the date of this task:
-       [T][N] study for finals (p:0) (category: st2334) (date: 11 Nov 2020)
+     Here is a list of your modules:
+     [A+] CS2113 (4 MC) (AY2021S1)
+     [A-] CG2027 (2 MC) (AY2021S1)
+    ____________________________________________________________
+     Total CAP: 4.83
+     Total MCs completed: 6
     ____________________________________________________________
 ```
-
-### Mark task as done: `done`
-Marks a given task as done.
-
-Format: `done <taskIndexNumber>`
-
-:triangular_flag_on_post: `<taskIndexNumber>` corresponds to the index given on `list` command output.
-
-Example of usage:
-
-`done 1`
-
-Output:
-
-```
-    ____________________________________________________________
-     Nice! I've marked this task as done:
-       [Y] tP meeting
-    ____________________________________________________________
-```
-
-### Deleting a task: `delete`
+### Deleting a task from the list: `delete`
 Deletes a task from the list
 
-Format: `delete <taskIndexNumber>`
+Format: `delete task <taskIndexNumber>`
 
-:triangular_flag_on_post: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
 
 Example of usage:
 
-`delete 2`
+`delete task 2`
 
 Output: 
 
@@ -345,15 +359,16 @@ Output:
     ____________________________________________________________
 
 ```
-
 ### Deleting all tasks of a certain priority: `delete`
 Delete tasks of the same priority
 
-Format: `delete p/<priority>`
+Format: `delete tasks p/<priority>`
+
+🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
 
 Example of usage:
 
-`delete p/2`
+`delete tasks p/2`
 
 Output:
 
@@ -371,11 +386,13 @@ Output:
 ### Deleting all tasks of a certain category: `delete`
 Delete tasks of the same category
 
-Format: `delete c/<category>`
+Format: `delete tasks c/<category>`
+
+🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
 
 Example of usage:
 
-`delete c/cs2113`
+`delete tasks c/cs2113`
 
 Output:
 
@@ -390,26 +407,127 @@ Output:
     ____________________________________________________________
 
 ```
+### Deleting a link from the list: `delete`
+Deletes a link from the list 
 
-### Clearing all tasks: `clear`
-Clears all tasks from the list 
+Format: `delete link <taskIndexNumber>`
 
-Format: `clear`
+🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
 
 Example of usage:
 
-`clear`
+`delete link 2`
+
+Output: 
+
+```
+    ____________________________________________________________
+     Noted. I've removed this link:
+       CS2113 lecture
+       https://cs2113Lecture.zoom.com
+     Now you have 0 links in the list.
+    ____________________________________________________________
+
+```
+### Marking a task as done: `done`
+Marks a given task as done.
+
+Format: `done <taskIndexNumber>`
+
+🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+
+Example of usage:
+
+`done 1`
 
 Output:
 
 ```
     ____________________________________________________________
-     Noted. I've cleared all your tasks.
+     Nice! I've marked this task as done:
+       [Y] tP meeting
     ____________________________________________________________
+```
+### Marking a book as returned: `return`
+Marks a given task as done.
+
+Format: `done <taskIndexNumber>`
+
+🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+
+Example of usage:
+
+`done 1`
+
+Output:
 
 ```
+    ____________________________________________________________
+     Nice! I've marked this task as done:
+       [Y] tP meeting
+    ____________________________________________________________
+```
+### Setting the priority of a task: `set`
+Sets the priority of an existing task.
 
-### Print calendar: `calendar`
+Format: `set <taskIndexNumber> p/<priority>`
+
+🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+
+Example of usage:
+
+`set 1 p/3`
+
+`set 2 p/4`
+
+Output:
+
+```
+    ____________________________________________________________
+     Nice! I've set the priority of this task to: 4
+    ____________________________________________________________
+```
+
+### Setting the category of a task: `category`
+Sets the category of an existing task.
+
+Format: `category <taskIndexNumber> c/<category>`
+
+🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+
+Example of usage:
+
+`category 1 c/CCA`
+
+Output:
+
+```
+    ____________________________________________________________
+     Nice! I have set the category of this task:
+       [T][N] tP meeting (p:0) (category: CCA)
+    ____________________________________________________________
+```
+
+### Setting the date of a task: `date`
+Sets the date of an existing task.
+
+Format: `date <taskIndexNumber> date/<dd-MM-yyyy>`
+
+🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+
+Example of usage:
+
+`date 1 date/11-11-2020`
+
+Output:
+
+```
+    ____________________________________________________________
+     Nice! I have set the date of this task:
+       [T][N] study for finals (p:0) (category: st2334) (date: 11 Nov 2020)
+    ____________________________________________________________
+```
+### Printing task calendar: `calendar`
 Prints a calendar with tasks from current date to given number of days.
 
 Format: `calendar d/<daysToPrint>`
@@ -436,10 +554,12 @@ Output:
     ____________________________________________________________
 ```
 
-### Searching tasks: `find`
-Finds all tasks with matching description (case-insensitive).
+### Searching for tasks with keyword: `find`
+Finds all tasks with matching description.
 
 Format: `find <keyword>`
+
+🚩: `<keyword>` is case-insensitive.
 
 Example of usage:
 
@@ -454,7 +574,23 @@ Output:
      2.[T][N] iP meeting (p:2) (category: cs2113)
     ____________________________________________________________
 ```
+### Clearing all tasks: `clear`
+Clears all tasks from the list 
 
+Format: `clear`
+
+Example of usage:
+
+`clear`
+
+Output:
+
+```
+    ____________________________________________________________
+     Noted. I've cleared all your tasks.
+    ____________________________________________________________
+
+```
 ### Getting help: `help`
 Prints the help message for commands.
 
@@ -484,17 +620,21 @@ Output:
 
      delete: Deletes the task identified by the index number used in the task listing.
      Parameters: INDEX
-     Example: delete 1
+     Example: delete task 1
           Optional parameter 1: p/PRIORITY
           Deletes all the tasks with PRIORITY.
-          Example: delete p/1
+          Example: delete tasks p/1
           Optional parameter 2: c/CATEGORY
           Deletes all the tasks with CATEGORY.
-          Example: delete c/cs2113
+          Example: delete tasks c/cs2113
 
      done: Marks the task identified by the index number used in the task listing as done.
      Parameters: INDEX
      Example: done 1
+
+     return: Marks the book identified by the index number used in the book listing as returned.
+     Parameters: INDEX
+     Example: return 2
 
      find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
      Parameters: KEYWORDS
@@ -512,14 +652,20 @@ Output:
           Displays all the tasks with CATEGORY as a list.
           Example: list tasks c/cs2113
 
+     list: Displays all links in the link list as a list with index numbers.
+     Example: list links
+
+     list: Displays all books in the book list as a list with index numbers.
+     Example: list books
+
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
      Example: set 1 p/2
     ____________________________________________________________
 ```
 
-### Exiting the program: `bye`
-Terminates the program.
+### Exiting and saving the program: `bye`
+Terminates and saves the program in different text files.
 
 Format: `bye`
 
@@ -548,17 +694,28 @@ Action | Command | Example
 ----- | ------ | ------
 Add task | `add <description> <optional arguments>` | `add tP meeting c/cs2113`
 Add recurring task | `addr <description> <optional/compulsory arguments>` | `addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
-List tasks | `list` | `list`
+Add module | `add module <module code> <compulsory arguments>` | `add module CS2113 g/A+ mc/4 ay/2021S1`
+Add web link | `add link m/<module code> <compulsory arguments>` | `add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
+Add book | `borrow <book name> <compulsory argument>` | `borrow cooking book date/11-11-2011`
+Create module folders | `makefolders` | `makefolders`
+List tasks | `list` | `list tasks`
 List tasks with priority | `list p/<priority>` | `list p/2`
+List tasks with category | `list c/<category>` | `list c/2113`
+List links | `list` | `list links`
+List books | `list` | `list books`
+List modules | `list` | `list module`
+Delete task | `delete task <taskIndexNumber>` | `delete task 2`
+Delete tasks by priority | `delete p/<priority>` | `delete tasks p/2`
+Delete tasks by category  | `delete c/<category>` | `delete tasks c/cs2113`
+Delete link | `delete link <taskIndexNumber>` | `delete link 2`
+Mark task as done | `done <taskIndexNumber>` | `done 1`
+Mark book as returned | `return <taskIndexNumber>` | `return 2`
 Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
 Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c/CCA`
 Set date of task | `date <taskIndexNumber> date/<dd-MM-yyyy>` | `date 1 date/11-11-2020`
-Mark task as done | `done <taskIndexNumber>` | `done 1`
-Delete task | `delete <taskIndexNumber>` | `delete 2`
-Delete tasks by priority | `delete p/<priority>` | `delete p/2`
-Delete tasks by category  | `delete c/<category>` | `delete c/cs2113`
-Clear all tasks | `clear` | `clear`
 Print calendar | `calendar d/<daysToPrint>` | `calendar d/7`
-Find tasks matching keyword | `find <keyword>` | `find meeting`
+Find tasks with matching keyword | `find <keyword>` | `find meeting`
+Clear all tasks | `clear` | `clear`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`
+

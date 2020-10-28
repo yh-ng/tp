@@ -66,19 +66,7 @@ public class Parser {
             checkAllowedArguments(argumentsMap, CalendarCommand.ALLOWED_ARGUMENTS);
             return new CalendarCommand(argumentsMap);
         case CategoryCommand.COMMAND_WORD:
-            int index;
-            try {
-                index = Integer.parseInt(commandString.split(" ")[0]);
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-            }
-            if (!argumentsMap.containsKey("c")) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_CATEGORY);
-            }
-            if (argumentsMap.get("c").trim().equals("")) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
-            }
-            return new CategoryCommand(index, argumentsMap.get("c"));
+            return CommandCreator.createCategoryCommand(commandString, argumentsMap);
         case ListCommand.COMMAND_WORD:
             String subRootCommand = commandString.split(" ")[0];
             commandString = commandString.replaceFirst(subRootCommand, "").trim();

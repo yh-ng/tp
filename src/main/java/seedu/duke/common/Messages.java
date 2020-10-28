@@ -20,7 +20,7 @@ public class Messages {
     public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
-    public static final String MESSAGE_STATUS_LAST = " tasks in the list.";
+    public static final String MESSAGE_STATUS_LAST = " items in the list.";
     public static final String MESSAGE_LINK_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_LINK_STATUS_LAST = " links in the list.";
 
@@ -79,6 +79,7 @@ public class Messages {
     public static final String EXCEPTION_EMPTY_CATEGORY = ":( OOPS!!! The category cannot be empty.";
     public static final String EXCEPTION_EMPTY_DEADLINE = ":( OOPS!!! The deadline of a task cannot be empty.";
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
+    public static final String EXCEPTION_INVALID_LINK_INDEX = "Please input a valid link index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "Invalid priority number.";
     public static final String EXCEPTION_CATEGORY_NOT_FOUND = "Invalid category.";
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
@@ -97,6 +98,11 @@ public class Messages {
     public static final String WARNING_DATETIME = "If you want your DateTime to be formatted, "
             + "you can input in this format: yyyy-MM-dd HH:mm";
     public static final String EXCEPTION_FIND = ":( OOPS!!! The keyword of a find command cannot be empty.";
+    public static final String EXCEPTION_INVALID_DELETE_COMMAND = ":( OOPS!!! Please input a valid delete command "
+            + "using the format: \n\n"
+            + "     \"delete tasks p/PRIORITY\", \"delete tasks c/CATEGORY\"\n"
+            + "     \"delete task <index number>\"\n"
+            + "     \"delete link <index number>\"";
     public static final String EXCEPTION_INVALID_LIST_COMMAND = ":( OOPS!!! Please input a valid list command "
             + "using the format: \n\n"
             + "     \"list tasks p/PRIORITY\", \"list tasks c/CATEGORY\";\n"
