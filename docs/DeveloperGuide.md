@@ -202,6 +202,13 @@ The filtering of the tasks by date is done using this code, which is called on a
     .filter(task -> currentDate.until(task.getDate(), ChronoUnit.DAYS) <= daysToPrint)
 ```
 
+The sorting of tasks by date is done using this code, which is also called on a `Stream` object.
+```
+.sorted(Comparator.comparing(Task::getDate))
+```
+This sorts the stream using a `Comparator` which is defined inline. The `Comparator` makes use of the `Task.getDate()` method to do the comparisons.
+This is done instead of defining a new `Comparator` class as `toCompare` is already implemented in the `LocaDate` API, and doing this simplifies the code.
+
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
