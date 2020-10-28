@@ -62,7 +62,7 @@ termiNus is an interactive task manager for students in NUS.
 ### Adding a task: `add`
 Adds a new item to the list of todo tasks.
 
-Format: `add <description> <optional arguments>`
+Format: `add task <description> <optional arguments>`
 
 List of `<optional arguments>`:
 - `p/<number>` sets the priority of the task.
@@ -73,11 +73,11 @@ List of `<optional arguments>`:
 
 Example of usage: 
 
-`add tP meeting`
+`add task tP meeting`
 
-`add tP meeting c/cs2113`
+`add task tP meeting c/cs2113`
 
-`add tP meeting c/cs2113 p/1 date/13-05-2020`
+`add task tP meeting c/cs2113 p/1 date/13-05-2020`
 
 Output:
 
@@ -220,6 +220,8 @@ Lists all the tasks.
 
 Format: `list tasks`
 
+🚩: Recurring tasks (inclusive)
+
 Example of usage:
 
 `list tasks`
@@ -288,11 +290,13 @@ Output:
 
 ```
     ____________________________________________________________
-     Here are the tasks of this category in your list:
-
-     1.[T][N] iP meeting (p:2) (category: cs2113)
-     2.[T][N] lecture quiz (p:2) (category: cs2113)
+     Here are the links in your list:
+     1.CS2113 lecture
+       https://cs2113Lecture.zoom.com
+     2.cs2028 lecture
+       https://zoom.com.sg
     ____________________________________________________________
+
 ```
 ### Displaying books borrowed and returned on list: `list`
 List all books loaned and returned. 
@@ -320,11 +324,11 @@ Output:
 ### Displaying modules on list: `list`
 List all the modules in the module list and shows computed CAP and completed MCs.
 
-Format: `list module`
+Format: `list modules`
 
 Example of usage:
 
-`list module`
+`list modules`
 
 Output:
 
@@ -401,7 +405,7 @@ Output:
      Noted. I've removed all these task(s) with the same category:
     ____________________________________________________________
      [T][Y] tP meeting (p:0) (category: cs2113)
-     [T][N] iP meeting (p:0) (category: cs2113)
+     [T][N] iP meeting (p:2) (category: cs2113)
      
      Now you have 3 tasks in the list.
     ____________________________________________________________
@@ -451,20 +455,20 @@ Output:
 ### Marking a book as returned: `return`
 Marks a given task as done.
 
-Format: `done <taskIndexNumber>`
+Format: `return <taskIndexNumber>`
 
 🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
 
 Example of usage:
 
-`done 1`
+`return 2`
 
 Output:
 
 ```
     ____________________________________________________________
-     Nice! I've marked this task as done:
-       [Y] tP meeting
+     Nice! I've marked this book as returned:
+       [R] java book
     ____________________________________________________________
 ```
 ### Setting the priority of a task: `set`
