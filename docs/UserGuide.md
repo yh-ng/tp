@@ -701,10 +701,27 @@ Output:
     ____________________________________________________________
      add: Adds a task to the task list.
      Parameters: TASK_NAME <optional arguments>
-     Example: add example_task <optional arguments>
+     List of <optional arguments>
+       - `p/<number>` sets the priority of the task.
+       - `c/<category>` sets the category of the task.
+       - `date/<dd-MM-yyyy>` sets the date of the task.
+     Example: add task example_task <optional arguments>
 
-     bye: Exits the program.
-     Example: bye
+     addr: Adds a task to the task list.
+     Parameters: TASK_NAME <optional/compulsory arguments>
+     List of <optional arguments>:
+       - `p/<number>` sets the priority of the task.
+       - `c/<category>` sets the category of the task.
+       - `date/<dd-MM-yyyy>` sets the date of the task.
+     List of `<compulsory arguments>
+       - `s/<dd-MM-yyyy>` start date of recurring tasks (inclusive)
+       - `e/<dd-MM-yyyy>` end date of recurring tasks (inclusive).
+       - `day/<mon/tue/wed/thu/fri/sat/sun>` day of recurring task.
+     Example: addr example_task <optional arguments>
+
+     borrow: Adds a book to the book list.
+     Parameters: BOOK_NAME date/DATE
+     Example: borrow example_book  date/10-10-2020
 
      category: Sets the category of a task identified by the task index number in the task list
      Parameters: INDEX c/CATEGORY
@@ -727,10 +744,6 @@ Output:
      Parameters: INDEX
      Example: done 1
 
-     return: Marks the book identified by the index number used in the book listing as returned.
-     Parameters: INDEX
-     Example: return 2
-
      find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
      Parameters: KEYWORDS
      Example: find book
@@ -738,20 +751,20 @@ Output:
      help: Shows program usage instructions.
      Example: help
 
-     list: Displays all tasks in the task list as a list with index numbers.
-     Example: list
+     list: Displays all items in the list with index numbers.
+     Example: list all
+     Displays all items in the list.
           Optional parameter 1: tasks p/PRIORITY
           Displays all the tasks with PRIORITY as a list.
           Example: list tasks p/1
           Optional parameter 2: tasks c/CATEGORY
           Displays all the tasks with CATEGORY as a list.
           Example: list tasks c/cs2113
+          Optional parameter 3: tasks sorted
+          Displays all the tasks sorted by priority
 
-     list: Displays all links in the link list as a list with index numbers.
-     Example: list links
-
-     list: Displays all books in the book list as a list with index numbers.
-     Example: list books
+     bye: Exits the program.
+     Example: bye
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
