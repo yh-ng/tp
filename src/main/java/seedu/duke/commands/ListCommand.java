@@ -25,13 +25,13 @@ public class ListCommand extends Command {
             + "     Example: " + COMMAND_WORD + " all\n"
             + "     Displays all items in the list.\n"
             + "          Optional parameter 1: tasks p/PRIORITY\n"
-            + "          Displays all the tasks with PRIORITY as a list.\n"
-            + "          Example: " + COMMAND_WORD + " tasks p/1\n"
+            + "             Displays all the tasks with PRIORITY as a list.\n"
+            + "             Example: " + COMMAND_WORD + " tasks p/1\n"
             + "          Optional parameter 2: tasks c/CATEGORY\n"
-            + "          Displays all the tasks with CATEGORY as a list.\n"
-            + "          Example: " + COMMAND_WORD + " tasks c/cs2113\n"
+            + "             Displays all the tasks with CATEGORY as a list.\n"
+            + "             Example: " + COMMAND_WORD + " tasks c/cs2113\n"
             + "          Optional parameter 3: tasks sorted\n"
-            + "          Displays all the tasks sorted by priority";
+            + "             Displays all the tasks sorted by priority";
     private boolean hasPriority;
     private boolean hasCategory;
     private int priority;

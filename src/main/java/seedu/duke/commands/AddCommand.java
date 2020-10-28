@@ -25,7 +25,11 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the task list.\n"
             + "     Parameters: TASK_NAME <optional arguments>\n"
-            + "     Example: " + COMMAND_WORD + " example_task <optional arguments>";
+            + "     List of <optional arguments>\n"
+            + "       - p/<number> sets the priority of the task.\n"
+            + "       - c/<category> sets the category of the task.\n"
+            + "       - date/<dd-MM-yyyy> sets the date of the task.\n"
+            + "     Example: " + COMMAND_WORD + " task" + " example_task <optional arguments>";
     public static final HashSet<String> TASK_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "date"));
     public static final HashSet<String> LINK_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("m", "t", "u"));
     public static final HashSet<String> MODULE_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("g", "mc", "ay"));
