@@ -7,8 +7,8 @@ done 1
 done 4
 list tasks
 add task tP meeting p/2 c/cs2113 invalid/argument
-delete 10
-delete 2
+delete task 10
+delete task 2
 list tasks
 find book
 Revengers Assemble!

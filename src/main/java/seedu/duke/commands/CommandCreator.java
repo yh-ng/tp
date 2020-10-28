@@ -124,17 +124,42 @@ public class CommandCreator {
      */
     public static Command createDeleteCommand(String commandString) throws DukeException {
         String subRootAddCommand = commandString.split(" ")[0];
-        if (subRootAddCommand.equals("link")) {
-            int index = Integer.parseInt(commandString.replaceFirst(subRootAddCommand, "").trim());
-            return new DeleteCommand(index, true);
+        String value;
+
+        if (commandString.length() == 0) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
         }
         try {
-            if (commandString.contains("p")) { // for priority
-                return new DeleteCommand(commandString);
-            } else if (commandString.contains("c")) { // for category
-                return new DeleteCommand(commandString);
-            } else {
-                return new DeleteCommand(Integer.parseInt(commandString));
+            value = commandString.split(" ")[1];
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
+        }
+        try {
+            switch (subRootAddCommand.toLowerCase()) {
+            case "link":
+                int index;
+                try {
+                    index = Integer.parseInt(commandString.replaceFirst(subRootAddCommand, "").trim());
+                } catch (NumberFormatException e) {
+                    throw new DukeException(Messages.EXCEPTION_INVALID_LINK_INDEX);
+                }
+
+                return new DeleteCommand(index, true);
+
+            case "tasks":
+                if (value.contains("p/")) {
+                    return new DeleteCommand(value);
+                } else if (value.contains("c/")) {
+                    return new DeleteCommand(value);
+                } else {
+                    throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
+                }
+
+            case "task":
+                return new DeleteCommand(Integer.parseInt(value));
+            default:
+                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+
             }
         } catch (NumberFormatException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
