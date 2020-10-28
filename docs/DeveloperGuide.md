@@ -158,29 +158,35 @@ sequentially. Each loading method calls the corresponding helper method (i.e. `l
 
 ## Product scope
 ### Target user profile
-{Describe the target user profile}
-
-Undergraduate students of National University of Singapore.
+Undergraduate students of National University of Singapore who:
+- require help to better manage their school work.
+- forgets to return their loan books to the library on time.
+- wants a timetable planner for easy reference.
+- are lazy to create separate module folders every semester.
+- wish to calculate their CAP.
 
 ### Value proposition
-{Describe the value proposition: what problem does it solve?}
-
-termiNus is an application which helps NUS undergraduates to have better management of study and daily life, by providing tasks, expenses, meal credits and borrowed books tracking, and module-related functions. It can increase users' efficiency and make their life easier.
+termiNus is an application which helps NUS undergraduates to better manage their school life, by providing daily task or
+borrowed books tracking, and module-related functions. This increase users' efficiency and make their life more organized.
 
 ## User Stories
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them if I don't know how to use the application|
-|v1.0|user|add tasks into a list|keep track of the things I need to do|
-|v1.0|student|assign priorities to tasks|focus on the more important things first|
-|v1.0|student|assign categories to tasks|have a more organised task list|
-|v1.0|
-|v1.0|
-|v2.0|
-|v2.0|
-|v2.0|
-|v2.0|
-|v2.0|
+|Version|Priority| As a ... | I want to ... | So that I can ...|
+|--------|----------|----------|---------------|------------------|
+|v1.0|***|student|add tasks into a list|keep track of the things I need to do|
+|v1.0|***|student|assign priorities to tasks|focus on the more important things first|
+|v1.0|**|student|assign categories to tasks|have a more organised task list|
+|v1.0|***|student|mark tasks as done|keep track of the remaining tasks to do|
+|v1.0|**|student|list all tasks in my list|have a better overview|
+|v1.0|***|student|be able to delete unwanted tasks|focus on the tasks which I need|
+|v1.0|***|student|save all data after using the application|retrieve the data upon running the application
+|v2.0|**|student|automatically create folders for my modules|I do not have to manually create them|
+|v2.0|***|student|add recurring tasks|avoid adding the same tasks every week
+|v2.0|***|student|have a calendar|I can view my current and upcoming tasks
+|v2.0|***|student|be able to set a tracker my borrowed books|avoid overdue fines
+|v2.0|**|student|sort my tasks based on highest priority|focus on those tasks first
+|v2.0|***|student|save zoom links in a centralized place|easily attend my online classes instead of looking through my email for the link 
+|v2.0|***|student|add modules and calculate my CAP|have a better projection of my grades and efforts
+|v2.0|*|student|login with a password|my system is protected 
 
 ## Implementation
 #####Add tasks
