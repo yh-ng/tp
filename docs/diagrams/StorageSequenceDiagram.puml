@@ -1,0 +1,189 @@
+@startuml
+participant ":Duke" as Duke
+participant ":Storage" as Storage
+participant ":Task" as Task
+participant ":Book" as Book
+participant ":Link" as Link
+participant ":Credit" as Credit
+participant ":Module" as Module
+
+create Storage
+Duke -> Storage : new Storage()
+activate Storage
+
+Duke <-- Storage
+deactivate Storage
+
+Duke -> Storage : loadTask()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadTaskFromLine(line)
+activate Storage
+
+create Task
+Storage -> Task : new Task(description, isDone, priority)
+activate Task
+
+Storage <-- Task : newTask
+deactivate Task
+
+alt !category.equals("")
+
+Storage -> Task : setCategory(category)
+activate Task
+
+Storage <-- Task
+deactivate Task
+
+end
+
+alt !dateString.equals("")
+
+Storage -> Task : setDateFromString(dateString)
+activate Task
+
+Storage <-- Task
+deactivate Task
+
+end
+
+destroy Task
+
+Storage <-- Storage : newTask
+deactivate Storage
+
+end
+
+Duke <-- Storage : tasks
+deactivate Storage
+
+Duke -> Storage : loadBook()
+activate Storage
+
+loop sc.hadNextLine()
+
+Storage -> Storage : loadBookFromLine(line)
+activate Storage
+
+create Book
+Storage -> Book : new Book(description, isReturn)
+activate Book
+
+Storage <-- Book : newBook
+deactivate Book
+
+alt !dateString.equals("")
+
+Storage -> Book : setDateFromString(dateString)
+activate Book
+
+Storage <-- Book
+deactivate Book
+
+end
+
+alt !futureDateString.equals("")
+
+Storage -> Book : setDateFromString(dateString)
+activate Book
+
+Storage <-- Book
+deactivate Book
+
+end
+
+destroy Book
+
+Storage <-- Storage : newBook
+deactivate Storage
+
+end
+
+Duke <-- Storage : books
+deactivate Storage
+
+Duke -> Storage : loadCredit()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadCreditFromLine(line)
+activate Storage
+
+create Credit
+Storage -> Credit : new Credit(description)
+activate Credit
+
+Storage <-- Credit : newCredit
+deactivate Credit
+
+destroy Credit
+
+Storage <-- Storage : newCredit
+deactivate Storage
+
+end
+
+Duke <-- Storage : mealCredit
+deactivate Storage
+
+Duke -> Storage : loadLinks()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadLinkFromLine(line)
+activate Storage
+
+create Link
+Storage -> Link : new Link(module, type, url)
+activate Link
+
+Storage <-- Link : newLink
+deactivate Link
+
+destroy Link
+
+Storage <-- Storage : newLink
+deactivate Storage
+
+end
+
+Duke <-- Storage : links
+deactivate Storage
+
+Duke -> Storage : loadModule()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadModuleFromLine(line)
+activate Storage
+
+create Module
+Storage -> Module : new Module(description, grade, mc, semester)
+activate Module
+
+Storage <-- Module : newModule
+deactivate Module
+
+destroy Module
+
+Storage <-- Storage : newModule
+deactivate Storage
+
+end
+
+Duke <-- Storage : modules
+deactivate Storage
+
+Duke -> Storage : save(items, path)
+activate Storage
+
+Duke <-- Storage
+deactivate Storage
+
+destroy Storage
+@enduml
