@@ -24,12 +24,10 @@ import java.util.logging.Logger;
  */
 public class Duke {
 
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
     private BookList books;
-    private CreditList mealCredit;
     private ModuleList modules;
-    private Storage linkStorage;
     private LinkList links;
   
     private final Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
@@ -59,16 +57,6 @@ public class Duke {
             Ui.dukePrint(Messages.MESSAGE_NEW_BOOK_FILE);
         }
         try {
-            mealCredit = new CreditList(storage.loadCredit());
-        } catch (DukeException e) {
-            if (!errorMessage) {
-                Ui.showError(e);
-                errorMessage = true;
-            }
-            mealCredit = new CreditList();
-            Ui.dukePrint(Messages.MESSAGE_NEW_MEAL_CREDIT_FILE);
-        }
-        try {
             links = new LinkList(storage.loadLinks());
         } catch (DukeException e) {
             if (!errorMessage) {
@@ -89,7 +77,6 @@ public class Duke {
      
         listMap.put(ListType.TASK_LIST, tasks);
         listMap.put(ListType.BOOK_LIST, books);
-        listMap.put(ListType.CREDIT_LIST, mealCredit);
         listMap.put(ListType.LINK_LIST, links);
         listMap.put(ListType.MODULE_LIST, modules);
     }
@@ -108,7 +95,6 @@ public class Duke {
                 isExit = c.isExit();
                 storage.save(tasks, Storage.TASK_STORAGE_FILEPATH);
                 storage.save(books, Storage.BOOK_STORAGE_FILEPATH);
-                storage.save(mealCredit, Storage.CREDIT_STORAGE_FILEPATH);
                 storage.save(links, Storage.LINK_STORAGE_FILEPATH);
                 storage.save(modules, Storage.MODULE_STORAGE_FILEPATH);
             } catch (DukeException e) {
