@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 // Renamed from previous Task.java with some modifications.
+
 /**
  * Represents an item in the list.
  */
@@ -21,6 +22,7 @@ public class Item implements Comparable<Item> {
     protected String category;
     protected LocalDate date;
 
+
     /**
      * Constructor used when adding a new task.
      * By default, the deadline task is not done.
@@ -30,15 +32,14 @@ public class Item implements Comparable<Item> {
     public Item(String description) {
         this.description = description;
         this.isDone = false;
-        this.setPriority(0);
     }
 
     /**
      * Convenience constructor used when loading from the storage file.
      *
      * @param description the description of the task
-     * @param isDone true if the task is done already, false otherwise
-     * @param priority the priority of the task
+     * @param isDone      true if the task is done already, false otherwise
+     * @param priority    the priority of the task
      */
     public Item(String description, boolean isDone, int priority) {
         this.description = description;
@@ -46,10 +47,15 @@ public class Item implements Comparable<Item> {
         this.priority = priority;
     }
 
+    public Item(String description, boolean isReturn) {
+        this.description = description;
+
+    }
+
     /**
-     * Retrieves the description of a task.
+     * Retrieves the description of an item.
      *
-     * @return the description string of the task
+     * @return the description string of the item.
      */
     public String getDescription() {
         return description;
@@ -64,8 +70,9 @@ public class Item implements Comparable<Item> {
         return isDone;
     }
 
+
     /**
-     * Marks the task as done.
+     * Marks the task as done and book as returned.
      */
     public void markAsDone() {
         isDone = true;
@@ -84,63 +91,26 @@ public class Item implements Comparable<Item> {
                 + dateString;
     }
 
+
+    public String toFileCredit() {
+
+        return "C | " + description;
+    }
+
     /**
      * Converts the attributes of the task into a formatted string to be displayed to the user.
      *
      * @return the formatted string to be displayed to the user
      */
     public String toString() {
-        String returnString = "";
-        if (this.isDone) {
-            returnString =  "[T][Y] " + this.description + " (p:" + this.getPriority() + ")";
-        } else {
-            returnString =  "[T][N] " + this.description + " (p:" + this.getPriority() + ")";
-        }
-        if (category != null) {
-            returnString += " (category: " + category + ")";
-        }
-        if (date != null) {
-            returnString += " (date: " + getDateString(Item.DATETIME_PRINT_FORMAT) + ")";
-        }
-        return returnString;
-    }
-
-    /**
-     * Retrieves the priority of a task.
-     *
-     * @return Priority of the task.
-     */
-    public int getPriority() {
-        return priority;
-    }
-
-    /**
-     * Retrieves the category of a task.
-     *
-     * @return Category of the task.
-     */
-    public String getCategory() {
-        return category;
-    }
-
-    /**
-     * Sets the priority of a task.
-     *
-     * @param priority New priority of the task.
-     */
-    public void setPriority(int priority) {
-        assert priority >= 0 : "Priority should be non-negative";
-        this.priority = priority;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+        return this.description;
     }
 
     public void setDateFromString(String dateString) throws DukeException {
         assert dateString != null : "dateString should not be null.";
         try {
             date = LocalDate.parse(dateString, DATETIME_PARSE_FORMAT);
+            //futureDate = date.plusMonths(1);
         } catch (DateTimeParseException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
@@ -158,13 +128,14 @@ public class Item implements Comparable<Item> {
         return date.format(formatter);
     }
 
+
     /**
      * Defines how tasks are sorted. First sort tasks based on priority in ascending order (priority 0, i.e. no
      * priority, is the last). If two tasks have the same priority, sort based on category lexicographically.
+     * positive integer if this task follows the argument task, 0 otherwise.
      *
      * @param otherItem The other task to compare to.
      * @return negative integer if this task precedes the argument task,
-     *     positive integer if this task follows the argument task, 0 otherwise.
      */
     @Override
     public int compareTo(Item otherItem) {

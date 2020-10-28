@@ -1,7 +1,12 @@
 package seedu.duke.commands;
 
+import seedu.duke.DukeException;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.ListType;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
+
+import java.util.Map;
 
 /**
  * Shows help instructions.
@@ -13,7 +18,8 @@ public class HelpCommand extends Command {
             + "     Example: " + COMMAND_WORD;
 
     @Override
-    public void execute(TaskList tasks) {
+    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
+        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         /*
         list of help commands is in alphabetical order
          */

@@ -16,3 +16,8 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 tasks.txt
+links.txt
+modules.txt
+credits.txt
+books.txt
+

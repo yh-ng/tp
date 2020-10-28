@@ -2,11 +2,17 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.task.Task;
+import seedu.duke.task.Book;
+import seedu.duke.task.BookList;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.LinkList;
+import seedu.duke.task.ListType;
 import seedu.duke.task.TaskList;
+import seedu.duke.task.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 
 /**
  * Lists all tasks in the task list to the user.
@@ -26,13 +32,15 @@ public class ListCommand extends Command {
             + "          Example: " + COMMAND_WORD + " tasks c/cs2113\n"
             + "          Optional parameter 3: tasks sorted\n"
             + "          Displays all the tasks sorted by priority";
-    private final boolean hasPriority;
-    private final boolean hasCategory;
+    private boolean hasPriority;
+    private boolean hasCategory;
     private int priority;
     private String category;
     private boolean isSorted;
+    private boolean isBook;
     public static int listSize;
     public static int newListSize;
+    private boolean isLink;
 
     public ListCommand() {
         this.hasPriority = false;
@@ -53,31 +61,59 @@ public class ListCommand extends Command {
         this.category = category;
     }
 
-    public ListCommand(boolean isSorted) {
-        this.hasPriority = false;
-        this.hasCategory = false;
-        this.isSorted = isSorted;
+    public ListCommand(boolean isSorted, boolean isLink) {
+        if (isSorted) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isSorted = true;
+        } else if (isLink) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isLink = true;
+
+        }
     }
 
-    @Override
+    public ListCommand(boolean isSorted, boolean isLink, boolean isBook) {
+        if (isSorted) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isSorted = isSorted;
+        } else if (isLink) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isLink = isLink;
+        } else if (isBook) {
+            this.hasPriority = false;
+            this.hasCategory = false;
+            this.isBook = isBook;
+        }
+    }
+
     /**
      * Executes the command.
      *
-     * @param tasks a TaskList object containing all tasks
+     * @param listMap a Map object containing all lists
      */
-    public void execute(TaskList tasks) throws DukeException {
+    @Override
+    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
+        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+        BookList books = (BookList) listMap.get(ListType.BOOK_LIST);
+        LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
+
         ArrayList<Task> newTasks = new ArrayList<Task>();
+        ArrayList<Book> newBooks = new ArrayList<Book>();
         listSize = tasks.size();
         if (hasPriority) {
             if (priority < 0) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
             }
             for (int i = 0; i < tasks.size(); i++) {
-                if (tasks.get(i).getPriority() == priority) { //if the task matches the same priority input by user
-                    newTasks.add(tasks.get(i)); // add the task into arraylist (newTasks)
+                if (tasks.get(i).getPriority() == priority) {
+                    newTasks.add(tasks.get(i));
                 }
             }
-            TaskList newTaskList = new TaskList(newTasks); //created a new object called newTaskList
+            TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask(priority);
         } else if (hasCategory) {
             for (int i = 0; i < tasks.size(); i++) {
@@ -95,6 +131,12 @@ public class ListCommand extends Command {
             Collections.sort(newTasks);
             TaskList newTaskList = new TaskList(newTasks);
             newTaskList.listTask();
+        } else if (isBook) {
+            newBooks = books.getBookList();
+            BookList newBookList = new BookList(newBooks);
+            newBookList.listBook();
+        } else if (isLink) {
+            links.listLink();
         } else {
             tasks.listTask();
         }

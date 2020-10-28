@@ -2,6 +2,8 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.ListType;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
@@ -13,6 +15,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 // @@author iamchenjiajun
@@ -37,10 +40,11 @@ public class CalendarCommand extends Command {
     /**
      * Executes the command.
      *
-     * @param tasks a TaskList object containing all tasks
+     * @param listMap a Map object containing all lists
      */
     @Override
-    public void execute(TaskList tasks) throws DukeException {
+    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
+        final TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         int daysToPrint;
         assert argumentsMap.size() <= ALLOWED_ARGUMENTS.size();
 

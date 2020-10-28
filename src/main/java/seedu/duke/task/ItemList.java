@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 // Renamed from previous Task.java with some modifications.
+
 /**
  * Represents a list of items.
  */
 public abstract class ItemList<T extends Item> {
 
     protected ArrayList<T> items;
+
 
     /**
      * Constructs an item list with the given items.
@@ -47,9 +49,10 @@ public abstract class ItemList<T extends Item> {
      */
     public void addTask(T item) {
         items.add(item);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + item.toString() + Messages.MESSAGE_STATUS_FIRST
-                + items.size() + Messages.MESSAGE_STATUS_LAST);
+        Ui.dukePrint(Messages.MESSAGE_ADD_LINK + item.toString() + Messages.MESSAGE_LINK_STATUS_FIRST
+                + items.size() + Messages.MESSAGE_LINK_STATUS_LAST);
     }
+
 
     /**
      * Adds an item into the list.
@@ -87,7 +90,7 @@ public abstract class ItemList<T extends Item> {
      * Displays the item deleted from the list.
      *
      * @param itemsDeleted the item deleted from the list
-     * @param isCategory whether to display all the tasks with the same category
+     * @param isCategory   whether to display all the tasks with the same category
      */
     public void displayDeletedPriorityOrCategoryTask(ArrayList<T> itemsDeleted, boolean isCategory) {
         Ui.showLine();
@@ -112,13 +115,13 @@ public abstract class ItemList<T extends Item> {
     public void listTask() {
         String message = "";
         if (items.size() == 0) {
-            Ui.dukePrint(Messages.MESSAGE_EMPTY_LIST);
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_TASK_LIST);
             return;
         }
         for (int i = 0; i < items.size(); i++) {
             message = message + "\n     " + (i + 1) + "." + items.get(i).toString();
         }
-        Ui.dukePrint(Messages.MESSAGE_LIST + message);
+        Ui.dukePrint(Messages.MESSAGE_TASK_LIST + message);
     }
 
     public void listTask(int priority) {
@@ -159,26 +162,12 @@ public abstract class ItemList<T extends Item> {
      *
      * @param index the index of the item in the list
      */
-    public void markAsDone(int index) {
+    public void markTaskAsDone(int index) {
         if (index > items.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_TASK);
         } else {
             items.get(index - 1).markAsDone();
             Ui.dukePrint(Messages.MESSAGE_DONE + items.get(index - 1).getDescription());
-        }
-    }
-
-    /**
-     * Sets the category of a task identified by the task index number in the task list.
-     *
-     * @param index the index of the task in the task list
-     */
-    public void setCategory(int index, String category) {
-        if (index > items.size() || index < 1) {
-            Ui.dukePrint(Messages.WARNING_NO_TASK);
-        } else {
-            items.get(index - 1).setCategory(category);
-            Ui.dukePrint(Messages.MESSAGE_CATEGORY + items.get(index - 1).toString());
         }
     }
 
@@ -226,25 +215,10 @@ public abstract class ItemList<T extends Item> {
     }
 
     /**
-     * Sets the priority of a task at the given index.
-     *
-     * @param index    the index of the task to set priority.
-     * @param priority the priority to set the task at.
-     */
-    public void setPriority(int index, int priority) {
-        if (index > items.size() || index < 1) {
-            Ui.dukePrint(Messages.WARNING_NO_TASK);
-        } else {
-            items.get(index - 1).setPriority(priority);
-            Ui.dukePrint(Messages.MESSAGE_SET_PRIORITY + items.get(index - 1).getPriority());
-        }
-    }
-
-    /**
      * Sets the date of a task at the given index.
      *
      * @param index the index of the task to set priority.
-     * @param date the date to set the task at.
+     * @param date  the date to set the task at.
      */
     public void setDate(int index, String date) throws DukeException {
         if (index > items.size() || index < 1) {

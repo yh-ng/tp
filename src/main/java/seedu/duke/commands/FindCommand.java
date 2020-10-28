@@ -1,6 +1,11 @@
 package seedu.duke.commands;
 
+import seedu.duke.DukeException;
+import seedu.duke.task.ItemList;
+import seedu.duke.task.ListType;
 import seedu.duke.task.TaskList;
+
+import java.util.Map;
 
 /**
  * Finds and lists all tasks in the task list whose description contains the argument keywords.
@@ -21,7 +26,8 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) {
+    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
+        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
         tasks.findTask(keyword);
     }
 }
