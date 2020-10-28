@@ -16,7 +16,7 @@ public class CommandCreator {
      * @return AddCommand with given arguments.
      * @throws DukeException When description is empty.
      */
-    public static Command parseAddCommand(String commandString, String description, HashMap<String,
+    public static Command createAddCommand(String commandString, String description, HashMap<String,
             String> argumentsMap) throws DukeException {
         String rootCommand = commandString.split(" ")[0];
         String newDescription = description.replaceFirst(rootCommand, "").trim();
@@ -106,7 +106,7 @@ public class CommandCreator {
             }
         case "links":
             return new ListCommand(false, true);
-        case "module":
+        case "modules":
             return new ListModuleCommand();
         case "books":
             return new ListCommand(false, false, true);
@@ -215,8 +215,11 @@ public class CommandCreator {
 
     public static Command createBorrowCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
+        if (description.isEmpty()) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_BOOK_DESCRIPTION);
+        }
         if (argumentsMap.isEmpty()) {
-            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+            throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
         return new BorrowCommand(description, argumentsMap);
     }
@@ -235,7 +238,7 @@ public class CommandCreator {
         } catch (NumberFormatException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(Messages.WARNING_NO_TASK);
+            throw new DukeException(Messages.WARNING_NO_BOOK);
         }
     }
 

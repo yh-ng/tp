@@ -46,6 +46,7 @@ public class Messages {
     public static final String MESSAGE_DELETE_LINK = "Noted. I've removed this link:\n       ";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared all your tasks.";
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
+    public static final String WARNING_NO_BOOK = "You do not have this book in the list.";
     public static final String WARNING_NO_LINK = "You do not have this link in the list.";
 
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
@@ -64,6 +65,8 @@ public class Messages {
     public static final String EXCEPTION_DUPLICATE_ARGUMENTS = ";( OOPS!! You have duplicate arguments! ";
     public static final String EXCEPTION_INVALID_ARGUMENTS = ":( OOPS!!! You have invalid arguments";
     public static final String EXCEPTION_EMPTY_DESCRIPTION = ":( OOPS!!! The description of a task cannot be empty.";
+    public static final String EXCEPTION_EMPTY_BOOK_DESCRIPTION = ":( OOPS!!! "
+            + "The description of a book cannot be empty.";
     public static final String EXCEPTION_INVALID_CATEGORY = ":( OOPS!!! Please input a valid category using the format "
             + "c/CATEGORY.";
     public static final String EXCEPTION_NEGATIVE_DAY_COUNT = ":( OOPS!!! Your number of days must be positive!";
@@ -105,9 +108,10 @@ public class Messages {
             + "     \"delete link <index number>\"";
     public static final String EXCEPTION_INVALID_LIST_COMMAND = ":( OOPS!!! Please input a valid list command "
             + "using the format: \n\n"
-            + "     \"list tasks p/PRIORITY\", \"list tasks c/CATEGORY\";\n"
+            + "     \"list tasks\"\n"
+            + "     \"list tasks p/PRIORITY\"\n"
+            + "     \"list tasks c/CATEGORY\"\n"
             + "     \"list links\"\n"
-            + "     \"list expenses\"\n"
-            + "     \"list meals\"\n"
+            + "     \"list modules\"\n"
             + "     \"list books\"";
 }
