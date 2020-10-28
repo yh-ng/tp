@@ -1,12 +1,12 @@
 help
-add iP meeting
-add other meeting p/3
-add tP meeting p/5 c/cs2113
+add task iP meeting
+add task other meeting p/3
+add task tP meeting p/5 c/cs2113
 list tasks
 done 1
 done 4
 list tasks
-add tP meeting p/2 c/cs2113 invalid/argument
+add task tP meeting p/2 c/cs2113 invalid/argument
 delete task 10
 delete task 2
 list tasks
