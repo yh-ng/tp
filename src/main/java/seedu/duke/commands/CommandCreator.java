@@ -106,7 +106,7 @@ public class CommandCreator {
             }
         case "links":
             return new ListCommand(false, true);
-        case "module":
+        case "modules":
             return new ListModuleCommand();
         case "books":
             return new ListCommand(false, false, true);
