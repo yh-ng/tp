@@ -16,7 +16,7 @@ public class CommandCreator {
      * @return AddCommand with given arguments.
      * @throws DukeException When description is empty.
      */
-    public static Command parseAddCommand(String commandString, String description, HashMap<String,
+    public static Command createAddCommand(String commandString, String description, HashMap<String,
             String> argumentsMap) throws DukeException {
         String rootCommand = commandString.split(" ")[0];
         String newDescription = description.replaceFirst(rootCommand, "").trim();
