@@ -211,9 +211,6 @@ borrowed books tracking, and module-related functions. This increase users' effi
 |v2.0|*|student|login with a password|my system is protected 
 
 ## Implementation
-#####Add tasks
-Step 1
-step 2
 
 ##### List tasks
 The list tasks feature allows the user to list all the tasks tracked.
