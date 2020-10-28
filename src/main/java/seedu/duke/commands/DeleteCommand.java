@@ -10,7 +10,6 @@ import seedu.duke.task.Task;
 
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 // @@author MuhammadHoze
 
@@ -56,7 +55,7 @@ public class DeleteCommand extends Command {
         }
     }
 
-    public DeleteCommand(int index, boolean isLink) { // for single deletion of link
+    public DeleteCommand(int index, boolean isLink) {
         assert index > 0 : "Task number should be greater than 0";
         this.hasPriorityValue = false;
         this.hasCategoryValue = false;

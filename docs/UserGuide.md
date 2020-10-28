@@ -17,8 +17,8 @@
     * [Displaying books borrowed and returned on list](#displaying-books-borrowed-and-returned-on-list-list): `list`
     * [Displaying modules on list](#displaying-modules-on-list-list): `list`
     * [Deleting a task from the list](#deleting-a-task-from-the-list-delete): `delete`
-            * [Deleting all tasks of a certain priority](#deleting-all-tasks-of-a-certain-priority-delete): `delete`
-            * [Deleting all tasks of a certain category](#deleting-all-tasks-of-a-certain-category-delete): `delete`
+        * [Deleting all tasks of a certain priority](#deleting-all-tasks-of-a-certain-priority-delete): `delete`
+        * [Deleting all tasks of a certain category](#deleting-all-tasks-of-a-certain-category-delete): `delete`
     * [Deleting a link from the list](#deleting-a-link-from-the-list-delete): `delete` 
     * [Marking a task as done](#marking-a-task-as-done-done): `done`
     * [Marking a book as returned](#marking-a-book-as-returned-return): `return`
@@ -69,7 +69,7 @@ List of `<optional arguments>`:
 - `c/<category>` sets the category of the task.
 - `date/<dd-MM-yyyy>` sets the date of the task.
 
-:triangular_flag_on_post: By default, there is no category and date, and the priority is set to 0.
+🚩: By default, there is no category and date, and the priority is set to 0.
 
 Example of usage: 
 
@@ -152,16 +152,25 @@ Output:
 ### Adding a weblink: `add link`
 Add a link for lecture/tutorial sessions through zoom 
 
-Format: `tba`
+Format: `add link m/<module code> <compulsory arguments>`
+
+List of `<compulsory arguments>`:
+- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`, etc).
+- `u/<URL>`  the link.  
 
 Example of usage:
 
-`tba`
+`add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
 
 Output:
 
 ```
-   tba
+    ____________________________________________________________
+     Got it. I've added this link:
+       CS2113 lecture
+       https://cs2113Lecture.zoom.com
+     Now you have 1 links in the list.
+    ____________________________________________________________
 ```
 
 ### Adding a book: `borrow`
@@ -301,11 +310,11 @@ Output:
      Here are the books in your list:
 
      1.[B][L] cooking book
-		 (Loan Date: 11 Nov 2011)
-		 (Due Date: 11 Dec 2011)
+         (Loan Date: 11 Nov 2011)
+         (Due Date: 11 Dec 2011)
      2.[B][L] java book
-		 (Loan Date: 10 Oct 2020)
-		 (Due Date: 10 Nov 2020)
+         (Loan Date: 10 Oct 2020)
+         (Due Date: 10 Nov 2020)
     ____________________________________________________________
 ```
 ### Displaying modules on list: `list`
@@ -686,7 +695,7 @@ Action | Command | Example
 Add task | `add <description> <optional arguments>` | `add tP meeting c/cs2113`
 Add recurring task | `addr <description> <optional/compulsory arguments>` | `addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
 Add module | `add module <module code> <compulsory arguments>` | `add module CS2113 g/A+ mc/4 ay/2021S1`
-Add web link | `TOC` | `add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
+Add web link | `add link m/<module code> <compulsory arguments>` | `add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
 Add book | `borrow <book name> <compulsory argument>` | `borrow cooking book date/11-11-2011`
 Create module folders | `makefolders` | `makefolders`
 List tasks | `list` | `list tasks`
