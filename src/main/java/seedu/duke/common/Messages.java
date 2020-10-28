@@ -105,9 +105,10 @@ public class Messages {
             + "     \"delete link <index number>\"";
     public static final String EXCEPTION_INVALID_LIST_COMMAND = ":( OOPS!!! Please input a valid list command "
             + "using the format: \n\n"
-            + "     \"list tasks p/PRIORITY\", \"list tasks c/CATEGORY\";\n"
+            + "     \"list tasks\"\n"
+            + "     \"list tasks p/PRIORITY\"\n"
+            + "     \"list tasks c/CATEGORY\"\n"
             + "     \"list links\"\n"
-            + "     \"list expenses\"\n"
-            + "     \"list meals\"\n"
+            + "     \"list modules\"\n"
             + "     \"list books\"";
 }
