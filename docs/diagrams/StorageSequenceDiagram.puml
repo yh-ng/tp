@@ -14,7 +14,7 @@ activate Storage
 Duke <-- Storage
 deactivate Storage
 
--> Storage : loadTask()
+Duke -> Storage : loadTask()
 activate Storage
 
 loop sc.hasNextLine()
@@ -59,7 +59,7 @@ end
 Duke <-- Storage : tasks
 deactivate Storage
 
--> Storage : loadBook()
+Duke -> Storage : loadBook()
 activate Storage
 
 loop sc.hadNextLine()
@@ -104,32 +104,7 @@ end
 Duke <-- Storage : books
 deactivate Storage
 
--> Storage : loadLinks()
-activate Storage
-
-loop sc.hasNextLine()
-
-Storage -> Storage : loadLinkFromLine(line)
-activate Storage
-
-create Link
-Storage -> Link : new Link(module, type, url)
-activate Link
-
-Storage <-- Link : newLink
-deactivate Link
-
-destroy Link
-
-Storage <-- Storage : newLink
-deactivate Storage
-
-end
-
-Duke <-- Storage : links
-deactivate Storage
-
--> Storage : loadCredit()
+Duke -> Storage : loadCredit()
 activate Storage
 
 loop sc.hasNextLine()
@@ -154,7 +129,32 @@ end
 Duke <-- Storage : mealCredit
 deactivate Storage
 
--> Storage : loadModule()
+Duke -> Storage : loadLinks()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadLinkFromLine(line)
+activate Storage
+
+create Link
+Storage -> Link : new Link(module, type, url)
+activate Link
+
+Storage <-- Link : newLink
+deactivate Link
+
+destroy Link
+
+Storage <-- Storage : newLink
+deactivate Storage
+
+end
+
+Duke <-- Storage : links
+deactivate Storage
+
+Duke -> Storage : loadModule()
 activate Storage
 
 loop sc.hasNextLine()
@@ -179,7 +179,7 @@ end
 Duke <-- Storage : modules
 deactivate Storage
 
--> Storage : save
+Duke -> Storage : save(items, path)
 activate Storage
 
 Duke <-- Storage

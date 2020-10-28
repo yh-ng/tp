@@ -76,7 +76,80 @@ arguments, thus reducing code complexity and SLOC.
 <!-- @@author -->
 ### Command component
 
-### Storage component
+<!-- @@author GuoAi -->
+### Storage component  
+
+The `Storage` class is a class loading data from files when Duke starts and saving data to files after each command.
+
+#### High level description
+
+Methods handling data loading (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadCredit()`, `loadModule()` methods) 
+return an `ArrayList` of `Item`s (i.e. `Task`, `Book`, `Link`, `Credit`, `Module`). These will be the initial values of 
+the `ItemList`. The `save()` method takes an `ItemList` and a `String` specifying the path to which the file will be 
+saved. The `ItemList` will be parsed and saved into files (each `ItemList` will be saved to a separate file) at the 
+specified path.  
+  
+Formats of the files: 
+  
+- `tasks.txt`:  
+  
+There are 6 fields stored for each `Task`:  
+1. String `T` for "Task"  
+2. Whether the `Task` has been done or not (1 for done, 0 for not done)  
+3. Description of the `Task`  
+4. Priority of the `Task` (an Integer)
+5. Category of the `Task`
+6. Date of the `Task`  
+  
+All the fields are separated by ` | ` with a leading and a trailing space. Each `Task` is stored as one line.  
+  
+Example: `T | 0 | borrow book | 1 | book | 28-10-2020`  
+  
+- `books.txt`:  
+
+There are 5 fields stored for each `Book`:  
+1. String `B` for "Book"  
+2. Whether the `Book` has been returned or not (1 for returned, 0 for not returned)   
+3. Name/Description of the `Book`  
+4. Borrow date of the `Book`  
+5. Return date of the `Book`  
+
+All the fields are separated by ` | ` with a leading and a trailing space. Each `Book` is stored as one line.  
+  
+Example: `B | 0 | cooking book | 11-11-2011 | 11-12-2011`  
+  
+- `links.txt`:  
+
+There are 3 fields stored for each `Link`:  
+1. Module of the `Link`  
+2. Type of the `Link`  
+3. URL of the `Link`  
+  
+All the fields are separated by ` | ` with a leading and a trailing space. Each `Link` is stored as one line.  
+
+Example: `CS2113 | lecture | https://cs2113Lecture.zoom.com`  
+  
+- `modules.txt`:  
+
+There are 4 fields for each `Module`:  
+1. Module code  
+2. Grade  
+3. Modular credits  
+4. Academic year and semester  
+
+All the fields are separated by ` | ` with a leading and a trailing space. Each `Module` is stored as one line.  
+  
+#### Implementation details
+
+The following sequence diagram shows how the `Storage` works.
+
+![StorageSequenceDiagram](./images/StorageSequenceDiagram.png)
+  
+1. At the start of `Duke`, a new `Storage` object will be created.
+2. `Duke` calls loading methods (i.e. `loadTask()`, `loadBook()`, `loadCredit()`, `loadLinks()`, `loadModule()`) 
+sequentially. Each loading method calls the corresponding helper method (i.e. `loadTaskFromLine()`, `loadBookFromLine()`, 
+`loadCreditFromLine()`, `loadLinkFromLine()`, `loadModuleFromLine()`) to load `Item`s from each line in the file. 
+3. After each command, `Duke` calls the `save()` method of `Storage` to save all the `Item`s in the list to files.
 
 
 ## Product scope
