@@ -1,13 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.TaskList;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import seedu.duke.model.Model;
 
 /**
  * Represents an executable command.
@@ -27,7 +21,7 @@ public abstract class Command {
     /**
      * Executes the command.
      *
-     * @param listMap a TaskList object containing all tasks
+     * @param model Model representing program data in memory.
      */
-    public abstract void execute(Map<ListType, ItemList> listMap) throws DukeException;
+    public abstract void execute(Model model) throws DukeException;
 }

@@ -2,11 +2,11 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.model.Model;
 import seedu.duke.parser.Parser;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import seedu.duke.model.ListType;
+import seedu.duke.model.item.Task;
+import seedu.duke.model.itemlist.TaskList;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 // @@author iamchenjiajun
 /**
@@ -44,14 +43,9 @@ public class AddRecurringCommand extends AddCommand {
         super(description, argumentsMap, ListType.TASK_LIST);
     }
 
-    /**
-     * Executes the command.
-     *
-     * @param listMap a Map object containing all lists
-     */
     @Override
-    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
-        final TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+    public void execute(Model model) throws DukeException {
+        final TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
         final LocalDate startDate;
         final LocalDate endDate;
         LocalDate nearestDay;

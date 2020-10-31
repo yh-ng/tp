@@ -3,7 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.parser.Parser;
-import seedu.duke.task.ListType;
+import seedu.duke.model.ListType;
 
 import java.util.HashMap;
 

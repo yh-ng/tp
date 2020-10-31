@@ -1,5 +1,6 @@
-package seedu.duke.task;
+package seedu.duke.model.itemlist;
 
+import seedu.duke.model.item.Module;
 import seedu.duke.ui.Ui;
 
 import java.io.File;
