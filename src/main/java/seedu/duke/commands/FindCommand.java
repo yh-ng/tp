@@ -1,11 +1,9 @@
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.TaskList;
-
-import java.util.Map;
+import seedu.duke.model.Model;
+import seedu.duke.model.ListType;
+import seedu.duke.model.itemlist.TaskList;
 
 /**
  * Finds and lists all tasks in the task list whose description contains the argument keywords.
@@ -26,8 +24,8 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
-        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+    public void execute(Model model) throws DukeException {
+        TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
         tasks.findTask(keyword);
     }
 }

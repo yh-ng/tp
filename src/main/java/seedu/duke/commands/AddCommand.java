@@ -2,19 +2,18 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.LinkList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.Module;
-import seedu.duke.task.ModuleList;
-import seedu.duke.task.TaskList;
-import seedu.duke.task.Link;
-import seedu.duke.task.Task;
+import seedu.duke.model.Model;
+import seedu.duke.model.itemlist.LinkList;
+import seedu.duke.model.ListType;
+import seedu.duke.model.item.Module;
+import seedu.duke.model.itemlist.ModuleList;
+import seedu.duke.model.itemlist.TaskList;
+import seedu.duke.model.item.Link;
+import seedu.duke.model.item.Task;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 // @@author iamchenjiajun
 /**
@@ -44,16 +43,12 @@ public class AddCommand extends Command {
         this.argumentsMap = argumentsMap;
     }
 
-    /**
-     * Executes the command.
-     *
-     * @param listMap a Map object containing all lists
-     */
     @Override
-    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
-        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
-        LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
-        ModuleList modules = (ModuleList) listMap.get(ListType.MODULE_LIST);
+    public void execute(Model model) throws DukeException {
+        TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
+        LinkList links = (LinkList) model.getList(ListType.LINK_LIST);
+        ModuleList modules = (ModuleList) model.getList(ListType.MODULE_LIST);
+
         switch (addType) {
         case TASK_LIST:
             executeAddTask(tasks);

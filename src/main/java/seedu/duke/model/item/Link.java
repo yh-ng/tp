@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package seedu.duke.model.item;
 
 public class Link extends Item {
     protected String module;

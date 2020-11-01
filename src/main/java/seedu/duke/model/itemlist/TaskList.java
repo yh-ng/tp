@@ -1,6 +1,7 @@
-package seedu.duke.task;
+package seedu.duke.model.itemlist;
 
 import seedu.duke.common.Messages;
+import seedu.duke.model.item.Task;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package seedu.duke.model.item;
 
 import seedu.duke.DukeException;
 

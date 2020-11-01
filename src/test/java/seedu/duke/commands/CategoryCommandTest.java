@@ -2,9 +2,10 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.TaskList;
+import seedu.duke.model.Model;
+import seedu.duke.model.itemlist.ItemList;
+import seedu.duke.model.ListType;
+import seedu.duke.model.itemlist.TaskList;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -17,14 +18,13 @@ public class CategoryCommandTest {
     void execute_validCategory_setsNewCategory() throws DukeException {
         String category = "test category";
         int index = 0;
-        Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
-        listMap.put(ListType.TASK_LIST, new TaskList());
-        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+        Model model = new Model();
+        TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
 
         tasks.addTodo("test description");
         Command categoryCommand = new CategoryCommand(index + 1, category);
         assertEquals(null, tasks.get(index).getCategory());
-        categoryCommand.execute(listMap);
+        categoryCommand.execute(model);
         assertEquals(category, tasks.get(index).getCategory());
     }
 }
