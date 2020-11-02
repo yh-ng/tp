@@ -146,7 +146,7 @@ Format: `add module <module code> <compulsory arguments>`
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module (`A+`, `A`, `A-`, etc).
 - `ay/<XXXXSY>` academic year of the module where `X` is an integer and `Y` is `1` or `2` (`2021S1`, `2021S2`, etc...).
-- `mc/<MCs>` modular credits of the module.
+- `mc/<MCs>` modular credits of the module. Valid for a range of 0 to 40 MCs.
 
 Example of usage:
 
@@ -507,6 +507,28 @@ Output:
     ____________________________________________________________
 
 ```
+
+### Deleting a module from the list: `delete`
+Deletes a module from the list 
+
+Format: `delete module <moduleIndexNumber>`
+
+🚩: `<moduleIndexNumber>` corresponds to the index given on `list module` command output.
+
+Example of usage:
+
+`delete module 2`
+
+Output: 
+
+```
+    ____________________________________________________________
+     Noted. I've removed this module:
+       [A+] CS1010 (4 MC) (AY1920S1)
+     Now you have 7 modules in the list.
+    ____________________________________________________________
+```
+
 ### Deleting an expense item from the list: `delete` (coming soon)
 Deletes an expense item from the list 
 
@@ -825,6 +847,7 @@ Delete task | `delete task <taskIndexNumber>` | `delete task 2`
 Delete tasks by priority | `delete p/<priority>` | `delete tasks p/2`
 Delete tasks by category  | `delete c/<category>` | `delete tasks c/cs2113`
 Delete link | `delete link <taskIndexNumber>` | `delete link 2`
+Delete module | `delete module <moduleIndexNumber>` | `delete module 2`
 Delete expense items | `delete expense <expenseIndexNumber>` | `delete expense 2`
 Mark task as done | `done <taskIndexNumber>` | `done 1`
 Mark book as returned | `return <taskIndexNumber>` | `return 2`

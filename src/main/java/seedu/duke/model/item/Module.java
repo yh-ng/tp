@@ -5,6 +5,7 @@ import seedu.duke.DukeException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// @@author iamchenjiajun
 public class Module extends Item {
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("(^[A-Z]{2,3}[\\d]{4}[A-Z]?$)");
     public static final Pattern MODULE_SEM_PATTERN = Pattern.compile("(^[\\d]{4}S[12]$)");
@@ -32,15 +33,44 @@ public class Module extends Item {
         if (!matcher.find()) {
             throw new DukeException("Your module code is wrong!");
         }
-        matcher = MODULE_SEM_PATTERN.matcher(semester);
-        if (!matcher.find()) {
+        if (!checkValidAy(semester)) {
             throw new DukeException("Your semester code is wrong!");
+        }
+        if (!checkValidMcs(mc)) {
+            throw new DukeException("Your number of MCs are invalid!");
         }
     }
 
     @Override
     public String toString() {
         return String.format("[%s] %s (%d MC) (AY%s)", getGrade(), getDescription(), getMc(), getSemester());
+    }
+
+    /**
+     * Checks if the number of MCs is in a valid range.
+     *
+     * @param mc Number of MCs.
+     * @return Boolean corresponding to the conditions.
+     */
+    public static boolean checkValidMcs(int mc) {
+        return mc >= 0 && mc <= 40;
+    }
+
+    /**
+     * Checks if the Academic Year is valid.
+     *
+     * @param ay Academic Year.
+     * @return True if the Academic Year is valid.
+     */
+    public static boolean checkValidAy(String ay) {
+        Matcher matcher = MODULE_SEM_PATTERN.matcher(ay);
+        if (!matcher.find()) {
+            return false;
+        }
+        assert ay.length() == 6;
+        int start = Integer.parseInt(ay.substring(0, 2));
+        int end = Integer.parseInt(ay.substring(2, 4));
+        return end - start == 1;
     }
 
     /**
