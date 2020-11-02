@@ -1,5 +1,6 @@
 package seedu.duke.model.itemlist;
 
+import seedu.duke.DukeException;
 import seedu.duke.model.item.Module;
 import seedu.duke.ui.Ui;
 
@@ -8,7 +9,6 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 // @@author iamchenjiajun
-
 /**
  * Represents a list of modules.
  */
@@ -28,6 +28,13 @@ public class ModuleList extends ItemList<Module> {
      */
     @Override
     public void addTodo(String description) {
+    }
+
+
+    @Override
+    public void addItem(Module item) throws DukeException {
+        checkModuleAlreadyExists(item);
+        super.addItem(item);
     }
 
     /**
@@ -119,5 +126,21 @@ public class ModuleList extends ItemList<Module> {
         }
         Ui.dukePrintMultiple("Created folder(s) for " + createdFolderCount + " module(s).");
         Ui.showLine();
+    }
+
+    /**
+     * Checks if a module with the same code and semester already exists in the module list.
+     *
+     * @param module Module to check against.
+     * @throws DukeException If module already exists in the list.
+     */
+    private void checkModuleAlreadyExists(Module module) throws DukeException {
+        int count = (int) items.stream()
+                .filter(existingModule -> existingModule.getSemester().equals(module.getSemester()))
+                .filter(existingModule -> existingModule.getDescription().equals(module.getDescription()))
+                .count();
+        if (count != 0) {
+            throw new DukeException("Module with same code and semester already exists!");
+        }
     }
 }
