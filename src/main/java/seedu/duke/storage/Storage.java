@@ -231,8 +231,6 @@ public class Storage {
             String dateString = arguments[3].trim();
             String futureDateString = arguments[4].trim();
 
-            //System.out.println(isReturn);
-
             newBook = new Book(description, isReturn);
             if (!dateString.equals("")) {
                 newBook.setDateFromString(dateString);
