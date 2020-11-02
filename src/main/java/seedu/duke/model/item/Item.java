@@ -49,7 +49,6 @@ public class Item implements Comparable<Item> {
 
     public Item(String description, boolean isReturn) {
         this.description = description;
-
     }
 
     /**

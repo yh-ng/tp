@@ -5,7 +5,9 @@ import seedu.duke.common.Messages;
 import seedu.duke.model.item.Item;
 import seedu.duke.ui.Ui;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 // Renamed from previous Task.java with some modifications.
@@ -182,11 +184,14 @@ public abstract class ItemList<T extends Item> {
         ArrayList<T> matchingTasks = new ArrayList<>();
         int count = 0;
         String message = "";
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getDescription().toLowerCase().contains(keyword.toLowerCase())) {
-                matchingTasks.add(items.get(i));
+        for (T item : items) {
+            String[] description;
+            description = item.getDescription().toLowerCase().split(" ");
+            if (Arrays.asList(description).contains(keyword)) {
+                matchingTasks.add(item);
                 count++;
-                message = message + "\n     " + count + "." + items.get(i).toString();
+                message = message + "\n     " + count + "." + item.toString();
+
             }
         }
         if (!message.equals("")) {
