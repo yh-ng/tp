@@ -5,6 +5,7 @@ import seedu.duke.model.item.Module;
 import seedu.duke.ui.Ui;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -106,7 +107,7 @@ public class ModuleList extends ItemList<Module> {
     /**
      * Creates folders corresponding to the modules and academic year.
      */
-    public void createModuleFolders() {
+    public void createModuleFolders() throws DukeException {
         Ui.showLine();
         Ui.dukePrintMultiple("Creating module folders...");
 
@@ -120,8 +121,13 @@ public class ModuleList extends ItemList<Module> {
             hasCreatedFolder |= new File(folderName + "/Tutorial/").mkdirs();
 
             if (hasCreatedFolder) {
-                createdFolderCount++;
-                Ui.dukePrintMultiple("Created folder/sub-folders for " + moduleName + " at " + folderName);
+                try {
+                    createdFolderCount++;
+                    String filePath = new File(folderName).getCanonicalPath();
+                    Ui.dukePrintMultiple("Created folder/sub-folders for " + moduleName + " at " + filePath);
+                } catch (IOException e) {
+                    throw new DukeException("Cannot get path");
+                }
             }
         }
         Ui.dukePrintMultiple("Created folder(s) for " + createdFolderCount + " module(s).");
