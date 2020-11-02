@@ -45,7 +45,11 @@ public class ModuleList extends ItemList<Module> {
     public void listTask() {
         Ui.showLine();
         Ui.dukePrintMultiple("Here is a list of your modules:");
-        items.forEach(module -> Ui.dukePrintMultiple(module.toString()));
+        int count = 1;
+        for (Module module: items) {
+            Ui.dukePrintMultiple(count + "." + module.toString());
+            count++;
+        }
 
         double actualCap = computeCapFromModules(items);
         int totalMcs = computeTotalMcs(items);
