@@ -157,6 +157,8 @@ public class CommandCreator {
 
             case "task":
                 return new DeleteCommand(Integer.parseInt(value));
+            case "module":
+                return new DeleteCommand(Integer.parseInt(value), ListType.MODULE_LIST);
             default:
                 throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
 
