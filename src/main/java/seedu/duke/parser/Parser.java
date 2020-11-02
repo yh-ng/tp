@@ -49,6 +49,7 @@ public class Parser {
         String commandString = fullCommand.replaceFirst(rootCommand, "").trim();
         String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
+        checkValidDescription(description);
 
         switch (rootCommand.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
@@ -158,6 +159,18 @@ public class Parser {
             if (!allowedArguments.contains(entry.getKey())) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
             }
+        }
+    }
+
+    /**
+     * Checks if the description contains illegal characters.
+     *
+     * @param description Description given by the user.
+     * @throws DukeException If the description contains illegal characters.
+     */
+    public static void checkValidDescription(String description) throws DukeException {
+        if (description.contains("/")) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
         }
     }
 
