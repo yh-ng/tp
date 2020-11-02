@@ -185,13 +185,15 @@ Output:
     ____________________________________________________________
 ```
 
-### Adding a book: `borrow`
+### Borrowing a book: `borrow`
 Loan a book and add into the book list 
 
 Format: `borrow <book name> <compulsory argument>`
 
 List of `<compulsory arguments>`:
 - `date/<DD-MM-YYYY>` date of borrow (`23/11/2020`).
+
+🚩: The due date will be fixed to **1 month** from the date of loan. 
 
 Example of usage:
 
@@ -265,7 +267,7 @@ Lists all the tasks.
 
 Format: `list tasks`
 
-🚩: Recurring tasks (inclusive)
+🚩: Lists all the tasks including recurring task.
 
 Example of usage:
 
@@ -280,6 +282,9 @@ Output:
      1.[T][N] tP meeting (p:1) (category: cs2113)
      2.[T][N] iP meeting (p:2) (category: cs2113)
      3.[T][N] assignment submission (p:2) (category: cg2028)
+     4.[T][N] board games club (p:1) (category: CCA) (date: 28 Oct 2020)
+     5.[T][N] board games club (p:1) (category: CCA) (date: 04 Nov 2020)
+     6.[T][N] board games club (p:1) (category: CCA) (date: 11 Nov 2020)
     ____________________________________________________________
 ```
 
@@ -361,7 +366,7 @@ Output:
      1.[B][L] cooking book
          (Loan Date: 11 Nov 2011)
          (Due Date: 11 Dec 2011)
-     2.[B][L] java book
+     2.[B][R] java book
          (Loan Date: 10 Oct 2020)
          (Due Date: 10 Nov 2020)
     ____________________________________________________________
@@ -655,6 +660,8 @@ Finds all tasks with matching description.
 Format: `find <keyword>`
 
 🚩: `<keyword>` is case-insensitive.
+🚩: `<keyword>` is a **whole word** from the task description, e.g `meeting`, `ip` etc.
+🚩: Incomplete keywords will not be accepted. e.g `meet`, `t` etc.
 
 Example of usage:
 
@@ -800,7 +807,7 @@ putting it in the same folder as `termiNus.jar`.
 
 Action | Command | Example
 ----- | ------ | ------
-Add task | `add <description> <optional arguments>` | `add tP meeting c/cs2113`
+Add task | `add task <description> <optional arguments>` | `add task tP meeting c/cs2113`
 Add recurring task | `addr <description> <optional/compulsory arguments>` | `addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
 Add module | `add module <module code> <compulsory arguments>` | `add module CS2113 g/A+ mc/4 ay/2021S1`
 Add web link | `add link m/<module code> <compulsory arguments>` | `add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`

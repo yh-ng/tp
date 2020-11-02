@@ -206,24 +206,22 @@ public class CommandCreator {
     }
 
     public static Command createFindCommand(String commandString) throws DukeException {
-        try {
-            return new FindCommand(commandString.trim());
-        } catch (IndexOutOfBoundsException e) {
+        if (commandString.isEmpty()) {
             throw new DukeException(Messages.EXCEPTION_FIND);
+        } else {
+            return new FindCommand(commandString.toLowerCase().trim());
         }
     }
 
     public static Command createBorrowCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
-        if (description.isEmpty()) {
-            throw new DukeException(Messages.EXCEPTION_EMPTY_BOOK_DESCRIPTION);
-        }
-        if (argumentsMap.isEmpty()) {
-            throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
+        if (description.isEmpty() | argumentsMap.isEmpty()) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_BORROW);
         }
         return new BorrowCommand(description, argumentsMap);
     }
 
+    // @@author MuhammadHoze
 
     /**
      * Creates and returns a ReturnCommand with given arguments.
@@ -243,6 +241,7 @@ public class CommandCreator {
     }
 
     // @@author GuoAi
+
     /**
      * Creates and returns a CategoryCommand with given arguments.
      *
