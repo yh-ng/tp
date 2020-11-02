@@ -146,7 +146,7 @@ Format: `add module <module code> <compulsory arguments>`
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module (`A+`, `A`, `A-`, etc).
 - `ay/<XXXXSY>` academic year of the module where `X` is an integer and `Y` is `1` or `2` (`2021S1`, `2021S2`, etc...).
-- `mc/<MCs>` modular credits of the module.
+- `mc/<MCs>` modular credits of the module. Valid for a range of 0 to 40 MCs.
 
 Example of usage:
 
