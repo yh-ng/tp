@@ -36,4 +36,34 @@ class ModuleTest {
         boolean result = Module.checkValidMcs(4);
         assertTrue(result);
     }
+
+    @Test
+    void checkValidAy_AY2021S1_returnsTrue() {
+        boolean result = Module.checkValidAy("2021S1");
+        assertTrue(result);
+    }
+
+    @Test
+    void checkValidAy_AY2021S2_returnsTrue() {
+        boolean result = Module.checkValidAy("2021S2");
+        assertTrue(result);
+    }
+
+    @Test
+    void checkValidAy_AY2021S3_returnsFalse() {
+        boolean result = Module.checkValidAy("2021S3");
+        assertFalse(result);
+    }
+
+    @Test
+    void checkValidAy_AY2021S0_returnsFalse() {
+        boolean result = Module.checkValidAy("2021S0");
+        assertFalse(result);
+    }
+
+    @Test
+    void checkValidAy_AY2011S1_returnsFalse() {
+        boolean result = Module.checkValidAy("2011S1");
+        assertFalse(result);
+    }
 }
