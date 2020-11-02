@@ -1,11 +1,9 @@
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
-import seedu.duke.task.BookList;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
-
-import java.util.Map;
+import seedu.duke.model.Model;
+import seedu.duke.model.itemlist.BookList;
+import seedu.duke.model.ListType;
 
 // @@author MuhammadHoze
 
@@ -24,8 +22,8 @@ public class ReturnCommand extends Command {
     }
 
     @Override
-    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
-        BookList books = (BookList) listMap.get(ListType.BOOK_LIST);
+    public void execute(Model model) throws DukeException {
+        BookList books = (BookList) model.getList(ListType.BOOK_LIST);
         books.markAsReturn(index);
     }
 }

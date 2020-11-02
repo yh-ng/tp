@@ -2,14 +2,13 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.TaskList;
+import seedu.duke.model.Model;
+import seedu.duke.model.ListType;
+import seedu.duke.model.itemlist.TaskList;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 public class SetCommand extends Command {
     public static final String COMMAND_WORD = "set";
@@ -27,14 +26,9 @@ public class SetCommand extends Command {
         this.argumentsMap = argumentsMap;
     }
 
-    /**
-     * Executes the command.
-     *
-     * @param listMap a Map object containing all lists
-     */
     @Override
-    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
-        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+    public void execute(Model model) throws DukeException {
+        TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
         int priority;
 
         try {

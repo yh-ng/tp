@@ -1,4 +1,6 @@
-package seedu.duke.task;
+package seedu.duke.model.itemlist;
+
+import seedu.duke.model.item.Credit;
 
 import java.util.ArrayList;
 

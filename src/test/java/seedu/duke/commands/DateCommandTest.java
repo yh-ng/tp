@@ -2,10 +2,11 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import seedu.duke.model.Model;
+import seedu.duke.model.itemlist.ItemList;
+import seedu.duke.model.ListType;
+import seedu.duke.model.item.Task;
+import seedu.duke.model.itemlist.TaskList;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -18,24 +19,22 @@ class DateCommandTest {
 
     @Test
     void execute_validDate_setsNewDate() throws DukeException {
-        Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
-        listMap.put(ListType.TASK_LIST, new TaskList());
-        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+        Model model = new Model();
+        TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
         HashMap<String, String> argumentsMap = new HashMap<>();
 
         tasks.addTodo("test description");
         argumentsMap.put("date", "13-05-2020");
         Command dateCommand = new DateCommand(1, argumentsMap);
 
-        dateCommand.execute(listMap);
+        dateCommand.execute(model);
         assertEquals("13 May 2020", tasks.get(0).getDateString(Task.DATETIME_PRINT_FORMAT));
     }
 
     @Test
-    void execute_invalidDate_throwsException() {
-        Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
-        listMap.put(ListType.TASK_LIST, new TaskList());
-        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+    void execute_invalidDate_throwsException() throws DukeException {
+        Model model = new Model();
+        TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
         HashMap<String, String> argumentsMap = new HashMap<>();
 
         tasks.addTodo("test description");
@@ -43,22 +42,21 @@ class DateCommandTest {
         Command dateCommand = new DateCommand(1, argumentsMap);
 
         assertThrows(DukeException.class, () -> {
-            dateCommand.execute(listMap);
+            dateCommand.execute(model);
         });
     }
 
     @Test
-    void execute_noDate_throwsException() {
-        Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
-        listMap.put(ListType.TASK_LIST, new TaskList());
-        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
+    void execute_noDate_throwsException() throws DukeException {
+        Model model = new Model();
+        TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
         HashMap<String, String> argumentsMap = new HashMap<>();
 
         tasks.addTodo("test description");
         Command dateCommand = new DateCommand(1, argumentsMap);
 
         assertThrows(DukeException.class, () -> {
-            dateCommand.execute(listMap);
+            dateCommand.execute(model);
         });
     }
 }
