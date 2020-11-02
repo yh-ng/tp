@@ -23,6 +23,7 @@ public class Messages {
     public static final String MESSAGE_STATUS_LAST = " items in the list.";
     public static final String MESSAGE_LINK_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_LINK_STATUS_LAST = " links in the list.";
+    public static final String MESSAGE_MODULE_STATUS_LAST = " modules in the list.";
 
     public static final String MESSAGE_TASK_LIST = "Here are the tasks in your list:\n";
     public static final String MESSAGE_BOOK_LIST = "Here are the books in your list:\n";
@@ -44,6 +45,7 @@ public class Messages {
     public static final String MESSAGE_DELETE_TASK_WITH_CATEGORY = "Noted. I've removed all these task(s) "
             + "with the same category:";
     public static final String MESSAGE_DELETE_LINK = "Noted. I've removed this link:\n       ";
+    public static final String MESSAGE_DELETE_MODULE = "Noted. I've removed this module:\n       ";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared all your tasks.";
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
     public static final String WARNING_NO_BOOK = "You do not have this book in the list.";

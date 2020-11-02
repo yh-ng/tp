@@ -38,6 +38,7 @@ public class DeleteCommand extends Command {
     private int index;
     private int priorityIndex;
     private boolean isLink;
+    private ListType deleteType;
 
 
     public DeleteCommand(int index) {
@@ -63,6 +64,11 @@ public class DeleteCommand extends Command {
         this.hasCategoryValue = false;
         this.isLink = isLink;
         this.index = index;
+    }
+
+    public DeleteCommand(int index, ListType deleteType) {
+        this.index = index;
+        this.deleteType = deleteType;
     }
 
     @Override
@@ -103,6 +109,8 @@ public class DeleteCommand extends Command {
             tasks.displayDeletedPriorityOrCategoryTask(taskDeleted, isCategory);
         } else if (isLink) {
             links.deleteLink(index);
+        } else if (deleteType == ListType.MODULE_LIST) {
+            model.getList(ListType.MODULE_LIST).deleteTask(index);
         } else {
             tasks.deleteTask(index);
         }
