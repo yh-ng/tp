@@ -1,6 +1,8 @@
 package seedu.duke.model.itemlist;
 
 import seedu.duke.DukeException;
+import seedu.duke.common.Messages;
+import seedu.duke.model.item.Item;
 import seedu.duke.model.item.Module;
 import seedu.duke.ui.Ui;
 
@@ -36,6 +38,18 @@ public class ModuleList extends ItemList<Module> {
     public void addItem(Module item) throws DukeException {
         checkModuleAlreadyExists(item);
         super.addItem(item);
+    }
+
+    @Override
+    public void deleteTask(int index) {
+        if (index > items.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            Item itemRemoved = items.get(index - 1);
+            Ui.dukePrint(Messages.MESSAGE_DELETE_MODULE + itemRemoved.toString() + Messages.MESSAGE_STATUS_FIRST
+                    + (items.size() - 1) + Messages.MESSAGE_MODULE_STATUS_LAST);
+            items.remove(index - 1);
+        }
     }
 
     /**
