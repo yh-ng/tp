@@ -5,6 +5,7 @@ import seedu.duke.DukeException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// @@author iamchenjiajun
 public class Module extends Item {
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("(^[A-Z]{2,3}[\\d]{4}[A-Z]?$)");
     public static final Pattern MODULE_SEM_PATTERN = Pattern.compile("(^[\\d]{4}S[12]$)");
@@ -36,11 +37,24 @@ public class Module extends Item {
         if (!matcher.find()) {
             throw new DukeException("Your semester code is wrong!");
         }
+        if (!checkValidMcs(mc)) {
+            throw new DukeException("Your number of MCs are invalid!");
+        }
     }
 
     @Override
     public String toString() {
         return String.format("[%s] %s (%d MC) (AY%s)", getGrade(), getDescription(), getMc(), getSemester());
+    }
+
+    /**
+     * Checks if the number of MCs is in a valid range.
+     *
+     * @param mc Number of MCs.
+     * @return Boolean corresponding to the conditions.
+     */
+    public static boolean checkValidMcs(int mc) {
+        return mc >= 0 && mc <= 40;
     }
 
     /**
