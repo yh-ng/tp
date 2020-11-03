@@ -11,6 +11,9 @@ import seedu.duke.model.itemlist.TaskList;
 import seedu.duke.model.item.Link;
 import seedu.duke.model.item.Task;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;

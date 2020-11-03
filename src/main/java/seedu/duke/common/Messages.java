@@ -20,9 +20,9 @@ public class Messages {
     public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
-    public static final String MESSAGE_STATUS_LAST = " items in the list.";
+    public static final String MESSAGE_STATUS_LAST = " item(s) in the list.";
     public static final String MESSAGE_LINK_STATUS_FIRST = "\n     Now you have ";
-    public static final String MESSAGE_LINK_STATUS_LAST = " links in the list.";
+    public static final String MESSAGE_LINK_STATUS_LAST = " link(s) in the list.";
 
     public static final String MESSAGE_TASK_LIST = "Here are the tasks in your list:\n";
     public static final String MESSAGE_BOOK_LIST = "Here are the books in your list:\n";
@@ -34,17 +34,19 @@ public class Messages {
             + "Your book list is empty.";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "There are no tasks of this priority in your list. ";
     public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "There are no tasks of this category in your list. ";
-    public static final String MESSAGE_LINK_LIST = "Here are the links in your list:";
+    public static final String MESSAGE_LINK_LIST = "Here are the links in your list:\n";
     public static final String MESSAGE_EMPTY_LINK_LIST = "There are no links in your list. "
             + "Your link list is empty.";
-
+    public static final String MESSAGE_EMPTY_MODULE_LIST = "There are no modules in your list. "
+            + "Your module list is empty.";
     public static final String MESSAGE_DELETE = "Noted. I've removed this task:\n       ";
     public static final String MESSAGE_DELETE_TASK_WITH_PRIORITY = "Noted. I've removed all these task(s) "
             + "with the same priority:";
     public static final String MESSAGE_DELETE_TASK_WITH_CATEGORY = "Noted. I've removed all these task(s) "
             + "with the same category:";
     public static final String MESSAGE_DELETE_LINK = "Noted. I've removed this link:\n       ";
-    public static final String MESSAGE_CLEAR = "Noted. I've cleared all your tasks.";
+    public static final String MESSAGE_CLEAR = "Noted. I've cleared everything.";
+    public static final String MESSAGE_CLEARED = "~Info~ Everything has already been cleared.";
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
     public static final String WARNING_NO_BOOK = "You do not have this book in the list.";
     public static final String WARNING_NO_LINK = "You do not have this link in the list.";
@@ -75,6 +77,7 @@ public class Messages {
     public static final String EXCEPTION_EMPTY_CATEGORY_BODY = "The body of a category command cannot be "
             + "empty.";
     public static final String EXCEPTION_INVALID_DATE = "~Error~ The format of your date should be DD-MM-YYYY.";
+    public static final String EXCEPTION_INVALID_CLEAR = "~Error~ The command is: clear all";
     public static final String EXCEPTION_INVALID_BORROW = "~Error~ The format is: borrow <description> "
             + "<date/DD-MM-YYYY>";
     public static final String EXCEPTION_INVALID_DAY = "The format of your day should be the first "

@@ -77,7 +77,7 @@ public class Parser {
             checkAllowedArguments(argumentsMap, BorrowCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createBorrowCommand(description, argumentsMap);
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommand(commandString);
         case DoneCommand.COMMAND_WORD:
             return CommandCreator.createDoneCommand(commandString);
         case ReturnCommand.COMMAND_WORD:

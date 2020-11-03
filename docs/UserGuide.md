@@ -679,17 +679,17 @@ Output:
 ### Clearing all tasks: `clear`
 Clears all tasks from the list 
 
-Format: `clear`
+Format: `clear all`
 
 Example of usage:
 
-`clear`
+`clear all`
 
 Output:
 
 ```
     ____________________________________________________________
-     Noted. I've cleared all your tasks.
+     Noted. I've cleared everything.
     ____________________________________________________________
 
 ```
@@ -833,6 +833,6 @@ Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c
 Set date of task | `date <taskIndexNumber> date/<dd-MM-yyyy>` | `date 1 date/11-11-2020`
 Print calendar | `calendar d/<daysToPrint>` | `calendar d/7`
 Find tasks with matching keyword | `find <keyword>` | `find meeting`
-Clear all tasks | `clear` | `clear`
+Clear everything | `clear all` | `clear all`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`

@@ -43,10 +43,14 @@ public class BookList extends ItemList<Book> {
 
     @Override
     public void addTodo(String description) {
-        Book newBook = new Book(description);
-        items.add(newBook);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newBook.toString() + Messages.MESSAGE_STATUS_FIRST
-                + items.size() + Messages.MESSAGE_STATUS_LAST);
+    }
+
+    /**
+     * Clears all the books in the list.
+     */
+    public void clearBook() {
+        items = new ArrayList<>();
+
     }
 
 
