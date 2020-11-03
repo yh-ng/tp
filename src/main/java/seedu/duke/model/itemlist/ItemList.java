@@ -37,7 +37,6 @@ public abstract class ItemList<T extends Item> {
      */
     public ItemList() {
         items = new ArrayList<>();
-       // links = new ArrayList<>();
     }
 
     /**
@@ -158,16 +157,8 @@ public abstract class ItemList<T extends Item> {
     /**
      * Clears all the tasks in the list.
      */
-//    public void clear() {
-//        items = new ArrayList<>();
-//        //links = new ArrayList<>();
-//
-//    }
-
     public void clearTask() {
         items = new ArrayList<>();
-
-
     }
 
     /**

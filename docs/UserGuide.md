@@ -1,4 +1,4 @@
-#<div align="center"> termiNus User Guide</div>
+# <div align="center"> termiNus User Guide</div>
 
 
 ## Table of Contents
@@ -150,6 +150,7 @@ Add modules to the module list.
 Format: `add module <module code> <compulsory arguments>`
 
 🚩: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix (characters in full caps).
+🚩: Duplicate module code in the same semester will not be allowed. 
 
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module (`A+`, `A`, `A-`, etc).
@@ -175,7 +176,7 @@ Add a link for lecture/tutorial sessions through zoom
 Format: `add link m/<module code> <compulsory arguments>`
 
 List of `<compulsory arguments>`:
-- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`, etc).
+- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`).
 - `u/<URL>`  the link.  
 
 Example of usage:
@@ -202,6 +203,7 @@ List of `<compulsory arguments>`:
 - `date/<DD-MM-YYYY>` date of borrow (`23/11/2020`).
 
 🚩: The due date will be fixed to **1 month** from the date of loan. 
+🚩: Duplicate book name will not be allowed. 
 
 Example of usage:
 

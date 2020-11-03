@@ -68,7 +68,7 @@ public class Messages {
             + "Please remove any unwanted spaces";
     public static final String EXCEPTION_DUPLICATE_ARGUMENTS = "You have duplicate arguments! ";
     public static final String EXCEPTION_INVALID_ARGUMENTS = "~Error~ You have invalid arguments. "
-            + "Please refer to User Guide ";
+            + "Please refer to User Guide";
     public static final String EXCEPTION_EMPTY_DESCRIPTION = "The description of a task cannot be empty.";
     public static final String EXCEPTION_EMPTY_BOOK_DESCRIPTION = ":( OOPS!!! "
             + "The description of a book cannot be empty.";
@@ -107,7 +107,12 @@ public class Messages {
             + "Type some commands and see it.";
     public static final String WARNING_DATETIME = "If you want your DateTime to be formatted, "
             + "you can input in this format: YYYY-MM-DD HH:mm";
-    public static final String EXCEPTION_FIND = "The keyword of a find command cannot be empty.";
+    public static final String EXCEPTION_FIND = "~Error~ The keyword of a find command cannot be empty.\n "
+            + "\t The format is: find <keyword>";
+    public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct type of lesson:\n "
+            + "\t t/lecture\n"
+            + "\t t/tutorial\n"
+            + "\t t/lab";
     public static final String EXCEPTION_INVALID_DELETE_COMMAND = "Please input a valid delete command "
             + "using the format: \n\n"
             + "     \"delete tasks p/PRIORITY\"\n"

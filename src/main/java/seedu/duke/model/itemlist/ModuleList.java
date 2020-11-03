@@ -176,7 +176,7 @@ public class ModuleList extends ItemList<Module> {
                 .filter(existingModule -> existingModule.getDescription().equals(module.getDescription()))
                 .count();
         if (count != 0) {
-            throw new DukeException("Module with same code and semester already exists!");
+            throw new DukeException("~Error~ Module with same code and semester already exists!");
         }
     }
 }

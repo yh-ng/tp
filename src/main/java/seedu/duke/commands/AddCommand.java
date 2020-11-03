@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 // @@author iamchenjiajun
+
 /**
  * Represents a command that adds a task to the task list.
  */
@@ -83,6 +84,10 @@ public class AddCommand extends Command {
         }
         String module = argumentsMap.get("m");
         String type = argumentsMap.get("t");
+        if (!type.toLowerCase().equals("lecture") & !type.toLowerCase().equals("tutorial")
+                & !type.toLowerCase().equals("lab")) {
+            throw new DukeException(Messages.EXCEPTION_LINK_TYPE);
+        }
         String url = argumentsMap.get("u");
         String[] schemes = {"http", "https"};
         UrlValidator urlValidator = new UrlValidator(schemes);
@@ -113,7 +118,7 @@ public class AddCommand extends Command {
     /**
      * Sets the properties of a given Task.
      *
-     * @param task Task to set the properties of.
+     * @param task         Task to set the properties of.
      * @param argumentsMap HashMap containing arguments to set the Task properties.
      * @throws DukeException If arguments in HashMap are invalid.
      */

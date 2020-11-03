@@ -325,19 +325,4 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
     }
-
-//    public static void unlockFile() {
-//        boolean unlock = file.setWritable(true);
-//        if (!unlock) {
-//            System.out.println("Error setting file to be writable");
-//        }
-//    }
-//
-//    public static void lockFile() {
-//        boolean lock = file.setReadOnly();
-//        if (!lock) {
-//            System.out.println("Error making data file read-only");
-//        }
-//    }
-
 }
