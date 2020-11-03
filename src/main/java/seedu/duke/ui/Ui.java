@@ -2,7 +2,7 @@ package seedu.duke.ui;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.task.Task;
+import seedu.duke.model.item.Task;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

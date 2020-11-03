@@ -1,10 +1,13 @@
-package seedu.duke.task;
+package seedu.duke.model.itemlist;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.model.item.Item;
 import seedu.duke.ui.Ui;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 // Renamed from previous Task.java with some modifications.
@@ -47,9 +50,9 @@ public abstract class ItemList<T extends Item> {
      *
      * @param item Item to be added to the item list.
      */
-    public void addItem(T item) {
+    public void addItem(T item) throws DukeException {
         items.add(item);
-        Ui.dukePrint(Messages.MESSAGE_ADD_LINK + item.toString() + Messages.MESSAGE_STATUS_FIRST
+        Ui.dukePrint(Messages.MESSAGE_ADD_TASK + item.toString() + Messages.MESSAGE_STATUS_FIRST
                 + items.size() + Messages.MESSAGE_STATUS_LAST);
     }
 
@@ -149,11 +152,11 @@ public abstract class ItemList<T extends Item> {
     }
 
     /**
-     * Clears all the items in the list.
+     * Clears all the tasks in the list.
      */
     public void clearTask() {
         items = new ArrayList<>();
-        Ui.dukePrint(Messages.MESSAGE_CLEAR);
+
     }
 
     /**
@@ -181,11 +184,14 @@ public abstract class ItemList<T extends Item> {
         ArrayList<T> matchingTasks = new ArrayList<>();
         int count = 0;
         String message = "";
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getDescription().toLowerCase().contains(keyword.toLowerCase())) {
-                matchingTasks.add(items.get(i));
+        for (T item : items) {
+            String[] description;
+            description = item.getDescription().toLowerCase().split(" ");
+            if (Arrays.asList(description).contains(keyword)) {
+                matchingTasks.add(item);
                 count++;
-                message = message + "\n     " + count + "." + items.get(i).toString();
+                message = message + "\n     " + count + "." + item.toString();
+
             }
         }
         if (!message.equals("")) {

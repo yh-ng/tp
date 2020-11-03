@@ -3,12 +3,12 @@ package seedu.duke.storage;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
-import seedu.duke.task.Book;
-import seedu.duke.task.Credit;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.Link;
-import seedu.duke.task.Task;
-import seedu.duke.task.Module;
+import seedu.duke.model.item.Book;
+import seedu.duke.model.item.Credit;
+import seedu.duke.model.itemlist.ItemList;
+import seedu.duke.model.item.Link;
+import seedu.duke.model.item.Task;
+import seedu.duke.model.item.Module;
 
 import java.io.File;
 import java.io.FileNotFoundException;

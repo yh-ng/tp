@@ -146,7 +146,7 @@ Format: `add module <module code> <compulsory arguments>`
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module (`A+`, `A`, `A-`, etc).
 - `ay/<XXXXSY>` academic year of the module where `X` is an integer and `Y` is `1` or `2` (`2021S1`, `2021S2`, etc...).
-- `mc/<MCs>` modular credits of the module.
+- `mc/<MCs>` modular credits of the module. Valid for a range of 0 to 40 MCs.
 
 Example of usage:
 
@@ -185,13 +185,15 @@ Output:
     ____________________________________________________________
 ```
 
-### Adding a book: `borrow`
+### Borrowing a book: `borrow`
 Loan a book and add into the book list 
 
 Format: `borrow <book name> <compulsory argument>`
 
 List of `<compulsory arguments>`:
 - `date/<DD-MM-YYYY>` date of borrow (`23/11/2020`).
+
+🚩: The due date will be fixed to **1 month** from the date of loan. 
 
 Example of usage:
 
@@ -265,7 +267,7 @@ Lists all the tasks.
 
 Format: `list tasks`
 
-🚩: Recurring tasks (inclusive)
+🚩: Lists all the tasks including recurring task.
 
 Example of usage:
 
@@ -280,6 +282,9 @@ Output:
      1.[T][N] tP meeting (p:1) (category: cs2113)
      2.[T][N] iP meeting (p:2) (category: cs2113)
      3.[T][N] assignment submission (p:2) (category: cg2028)
+     4.[T][N] board games club (p:1) (category: CCA) (date: 28 Oct 2020)
+     5.[T][N] board games club (p:1) (category: CCA) (date: 04 Nov 2020)
+     6.[T][N] board games club (p:1) (category: CCA) (date: 11 Nov 2020)
     ____________________________________________________________
 ```
 
@@ -361,7 +366,7 @@ Output:
      1.[B][L] cooking book
          (Loan Date: 11 Nov 2011)
          (Due Date: 11 Dec 2011)
-     2.[B][L] java book
+     2.[B][R] java book
          (Loan Date: 10 Oct 2020)
          (Due Date: 10 Nov 2020)
     ____________________________________________________________
@@ -502,6 +507,28 @@ Output:
     ____________________________________________________________
 
 ```
+
+### Deleting a module from the list: `delete`
+Deletes a module from the list 
+
+Format: `delete module <moduleIndexNumber>`
+
+🚩: `<moduleIndexNumber>` corresponds to the index given on `list module` command output.
+
+Example of usage:
+
+`delete module 2`
+
+Output: 
+
+```
+    ____________________________________________________________
+     Noted. I've removed this module:
+       [A+] CS1010 (4 MC) (AY1920S1)
+     Now you have 7 modules in the list.
+    ____________________________________________________________
+```
+
 ### Deleting an expense item from the list: `delete` (coming soon)
 Deletes an expense item from the list 
 
@@ -655,6 +682,8 @@ Finds all tasks with matching description.
 Format: `find <keyword>`
 
 🚩: `<keyword>` is case-insensitive.
+🚩: `<keyword>` is a **whole word** from the task description, e.g `meeting`, `ip` etc.
+🚩: Incomplete keywords will not be accepted. e.g `meet`, `t` etc.
 
 Example of usage:
 
@@ -672,17 +701,17 @@ Output:
 ### Clearing all tasks: `clear`
 Clears all tasks from the list 
 
-Format: `clear`
+Format: `clear all`
 
 Example of usage:
 
-`clear`
+`clear all`
 
 Output:
 
 ```
     ____________________________________________________________
-     Noted. I've cleared all your tasks.
+     Noted. I've cleared everything.
     ____________________________________________________________
 
 ```
@@ -800,7 +829,7 @@ putting it in the same folder as `termiNus.jar`.
 
 Action | Command | Example
 ----- | ------ | ------
-Add task | `add <description> <optional arguments>` | `add tP meeting c/cs2113`
+Add task | `add task <description> <optional arguments>` | `add task tP meeting c/cs2113`
 Add recurring task | `addr <description> <optional/compulsory arguments>` | `addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
 Add module | `add module <module code> <compulsory arguments>` | `add module CS2113 g/A+ mc/4 ay/2021S1`
 Add web link | `add link m/<module code> <compulsory arguments>` | `add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
@@ -818,6 +847,7 @@ Delete task | `delete task <taskIndexNumber>` | `delete task 2`
 Delete tasks by priority | `delete p/<priority>` | `delete tasks p/2`
 Delete tasks by category  | `delete c/<category>` | `delete tasks c/cs2113`
 Delete link | `delete link <taskIndexNumber>` | `delete link 2`
+Delete module | `delete module <moduleIndexNumber>` | `delete module 2`
 Delete expense items | `delete expense <expenseIndexNumber>` | `delete expense 2`
 Mark task as done | `done <taskIndexNumber>` | `done 1`
 Mark book as returned | `return <taskIndexNumber>` | `return 2`
@@ -826,6 +856,6 @@ Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c
 Set date of task | `date <taskIndexNumber> date/<dd-MM-yyyy>` | `date 1 date/11-11-2020`
 Print calendar | `calendar d/<daysToPrint>` | `calendar d/7`
 Find tasks with matching keyword | `find <keyword>` | `find meeting`
-Clear all tasks | `clear` | `clear`
+Clear everything | `clear all` | `clear all`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`

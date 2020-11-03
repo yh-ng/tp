@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package seedu.duke.model.item;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
@@ -49,7 +49,6 @@ public class Item implements Comparable<Item> {
 
     public Item(String description, boolean isReturn) {
         this.description = description;
-
     }
 
     /**

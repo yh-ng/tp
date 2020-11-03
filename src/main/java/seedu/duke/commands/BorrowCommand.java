@@ -2,15 +2,14 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 
-import seedu.duke.task.Book;
-import seedu.duke.task.BookList;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.ListType;
+import seedu.duke.model.Model;
+import seedu.duke.model.item.Book;
+import seedu.duke.model.itemlist.BookList;
+import seedu.duke.model.ListType;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 // @@author MuhammadHoze
 
@@ -30,9 +29,9 @@ public class BorrowCommand extends Command {
     }
 
     @Override
-    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
+    public void execute(Model model) throws DukeException {
 
-        BookList books = (BookList) listMap.get(ListType.BOOK_LIST);
+        BookList books = (BookList) model.getList(ListType.BOOK_LIST);
         Book newBook = new Book(description);
 
         if (argumentsMap.containsKey("date")) {

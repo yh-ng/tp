@@ -2,13 +2,12 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.task.ItemList;
-import seedu.duke.task.LinkList;
-import seedu.duke.task.ListType;
-import seedu.duke.task.TaskList;
-import seedu.duke.task.Task;
+import seedu.duke.model.Model;
+import seedu.duke.model.itemlist.LinkList;
+import seedu.duke.model.ListType;
+import seedu.duke.model.itemlist.TaskList;
+import seedu.duke.model.item.Task;
 
-import java.util.Map;
 import java.util.ArrayList;
 
 // @@author MuhammadHoze
@@ -39,6 +38,7 @@ public class DeleteCommand extends Command {
     private int index;
     private int priorityIndex;
     private boolean isLink;
+    private ListType deleteType;
 
 
     public DeleteCommand(int index) {
@@ -66,10 +66,15 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
+    public DeleteCommand(int index, ListType deleteType) {
+        this.index = index;
+        this.deleteType = deleteType;
+    }
+
     @Override
-    public void execute(Map<ListType, ItemList> listMap) throws DukeException {
-        TaskList tasks = (TaskList) listMap.get(ListType.TASK_LIST);
-        LinkList links = (LinkList) listMap.get(ListType.LINK_LIST);
+    public void execute(Model model) throws DukeException {
+        TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
+        LinkList links = (LinkList) model.getList(ListType.LINK_LIST);
         ArrayList<Task> taskDeleted = new ArrayList<Task>();
         boolean isCategory = false;
 
@@ -104,6 +109,8 @@ public class DeleteCommand extends Command {
             tasks.displayDeletedPriorityOrCategoryTask(taskDeleted, isCategory);
         } else if (isLink) {
             links.deleteLink(index);
+        } else if (deleteType == ListType.MODULE_LIST) {
+            model.getList(ListType.MODULE_LIST).deleteTask(index);
         } else {
             tasks.deleteTask(index);
         }

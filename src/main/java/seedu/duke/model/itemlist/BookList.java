@@ -1,6 +1,7 @@
-package seedu.duke.task;
+package seedu.duke.model.itemlist;
 
 import seedu.duke.common.Messages;
+import seedu.duke.model.item.Book;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -37,15 +38,18 @@ public class BookList extends ItemList<Book> {
      */
     public void addBook(Book book) {
         items.add(book);
-        Ui.dukePrint(Messages.MESSAGE_ADDBOOK + book.toString(false));
+        Ui.dukePrint(Messages.MESSAGE_ADD_BOOK + book.toString(false));
     }
 
     @Override
     public void addTodo(String description) {
-        Book newBook = new Book(description);
-        items.add(newBook);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newBook.toString() + Messages.MESSAGE_STATUS_FIRST
-                + items.size() + Messages.MESSAGE_STATUS_LAST);
+    }
+
+    /**
+     * Clears all the books in the list.
+     */
+    public void clearBook() {
+        items = new ArrayList<>();
     }
 
 
