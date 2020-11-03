@@ -41,6 +41,14 @@ public class LinkList extends ItemList<Link> {
     }
 
     /**
+     * Clears all the links in the list.
+     */
+    public void clearList() {
+        links = new ArrayList<>();
+
+    }
+
+    /**
      * Adds a link to the link list.
      *
      * @param link the link to be added in to the list.

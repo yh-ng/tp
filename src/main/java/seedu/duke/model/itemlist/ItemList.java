@@ -152,11 +152,11 @@ public abstract class ItemList<T extends Item> {
     }
 
     /**
-     * Clears all the items in the list.
+     * Clears all the tasks in the list.
      */
     public void clearTask() {
         items = new ArrayList<>();
-        Ui.dukePrint(Messages.MESSAGE_CLEAR);
+
     }
 
     /**

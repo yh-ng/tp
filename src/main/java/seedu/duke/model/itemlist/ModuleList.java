@@ -57,6 +57,10 @@ public class ModuleList extends ItemList<Module> {
      */
     @Override
     public void listTask() {
+        if (items.size() == 0) {
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_MODULE_LIST);
+            return;
+        }
         Ui.showLine();
         Ui.dukePrintMultiple("Here is a list of your modules:");
         int count = 1;
@@ -72,6 +76,14 @@ public class ModuleList extends ItemList<Module> {
         Ui.dukePrintMultiple(String.format("Total CAP: %.2f", actualCap));
         Ui.dukePrintMultiple(String.format("Total MCs completed: %d", totalMcs));
         Ui.showLine();
+    }
+
+    /**
+     * Clears all the links in the list.
+     */
+    public void clearModule() {
+        items = new ArrayList<>();
+
     }
 
     /**
@@ -98,7 +110,7 @@ public class ModuleList extends ItemList<Module> {
         double totalGrades = 0.0;
         int totalMcs = 0;
 
-        for (Module module: gradedModules) {
+        for (Module module : gradedModules) {
             totalMcs += module.getMc();
             totalGrades += module.getGradePoint() * module.getMc();
         }
@@ -130,7 +142,7 @@ public class ModuleList extends ItemList<Module> {
         Ui.dukePrintMultiple("Creating module folders...");
 
         int createdFolderCount = 0;
-        for (Module module: items) {
+        for (Module module : items) {
             String academicYear = module.getSemester();
             String moduleName = module.getDescription();
             String folderName = String.format("./modules/AY%s/%s/", academicYear, moduleName);
