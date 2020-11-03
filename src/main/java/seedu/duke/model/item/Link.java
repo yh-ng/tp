@@ -1,3 +1,4 @@
+// @@author Cao-Zeyu
 package seedu.duke.model.item;
 
 public class Link extends Item {

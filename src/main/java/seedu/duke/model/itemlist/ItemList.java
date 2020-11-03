@@ -52,7 +52,7 @@ public abstract class ItemList<T extends Item> {
      */
     public void addItem(T item) throws DukeException {
         items.add(item);
-        Ui.dukePrint(Messages.MESSAGE_ADD_LINK + item.toString() + Messages.MESSAGE_STATUS_FIRST
+        Ui.dukePrint(Messages.MESSAGE_ADD_TASK + item.toString() + Messages.MESSAGE_STATUS_FIRST
                 + items.size() + Messages.MESSAGE_STATUS_LAST);
     }
 
