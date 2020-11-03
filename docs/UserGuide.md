@@ -176,8 +176,10 @@ Add a link for lecture/tutorial sessions through zoom
 Format: `add link m/<module code> <compulsory arguments>`
 
 List of `<compulsory arguments>`:
-- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`).
+- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`, `project`).
 - `u/<URL>`  the link.  
+
+🚩: URL has to begin with either http:// or https:// 
 
 Example of usage:
 

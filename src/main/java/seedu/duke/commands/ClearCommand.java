@@ -26,8 +26,6 @@ public class ClearCommand extends Command {
         this.description = command;
     }
 
-
-
     public void execute(Model model) throws DukeException {
 
         TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);

@@ -31,9 +31,7 @@ public class Storage {
     public static final String CREDIT_STORAGE_FILEPATH = "credits.txt";
     public static final String LINK_STORAGE_FILEPATH = "links.txt";
     public static final String MODULE_STORAGE_FILEPATH = "modules.txt";
-
-    private File file;
-
+    
     /**
      * Loads the task list data from the storage, and then returns it.
      *

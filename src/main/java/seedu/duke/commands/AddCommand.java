@@ -85,7 +85,7 @@ public class AddCommand extends Command {
         String module = argumentsMap.get("m");
         String type = argumentsMap.get("t");
         if (!type.toLowerCase().equals("lecture") & !type.toLowerCase().equals("tutorial")
-                & !type.toLowerCase().equals("lab")) {
+                & !type.toLowerCase().equals("lab") & !type.toLowerCase().equals("project")) {
             throw new DukeException(Messages.EXCEPTION_LINK_TYPE);
         }
         String url = argumentsMap.get("u");

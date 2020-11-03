@@ -112,7 +112,8 @@ public class Messages {
     public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct type of lesson:\n "
             + "\t t/lecture\n"
             + "\t t/tutorial\n"
-            + "\t t/lab";
+            + "\t t/lab\n"
+            + "\t t/project";
     public static final String EXCEPTION_INVALID_DELETE_COMMAND = "Please input a valid delete command "
             + "using the format: \n\n"
             + "     \"delete tasks p/PRIORITY\"\n"
