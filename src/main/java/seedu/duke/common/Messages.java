@@ -14,8 +14,8 @@ public class Messages {
             + "     \\__| \\___||_|   |_| |_| |_||_|\\_| \\_/ \\__,_||___/\n";
 
     public static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
-    public static final String MESSAGE_ADDTASK = "Got it. I've added this task:\n       ";
-    public static final String MESSAGE_ADDBOOK = "Got it. I've added this book: ";
+    public static final String MESSAGE_ADD_TASK = "Got it. I've added this task:\n       ";
+    public static final String MESSAGE_ADD_BOOK = "Got it. I've added this book: ";
     public static final String MESSAGE_ADD_LINK = "Got it. I've added this link:\n       ";
     public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
@@ -117,4 +117,5 @@ public class Messages {
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
             + "     \"list books\"";
+    public static final String EXCEPTION_INVALID_URL = "Please input a valid url. ";
 }

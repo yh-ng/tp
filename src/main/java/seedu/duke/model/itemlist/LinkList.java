@@ -1,3 +1,5 @@
+// @@author Cao-Zeyu
+
 package seedu.duke.model.itemlist;
 
 import seedu.duke.common.Messages;
