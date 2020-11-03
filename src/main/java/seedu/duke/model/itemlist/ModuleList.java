@@ -1,15 +1,17 @@
 package seedu.duke.model.itemlist;
 
+import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.model.item.Item;
 import seedu.duke.model.item.Module;
 import seedu.duke.ui.Ui;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 // @@author iamchenjiajun
-
 /**
  * Represents a list of modules.
  */
@@ -31,6 +33,25 @@ public class ModuleList extends ItemList<Module> {
     public void addTodo(String description) {
     }
 
+
+    @Override
+    public void addItem(Module item) throws DukeException {
+        checkModuleAlreadyExists(item);
+        super.addItem(item);
+    }
+
+    @Override
+    public void deleteTask(int index) {
+        if (index > items.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_TASK);
+        } else {
+            Item itemRemoved = items.get(index - 1);
+            Ui.dukePrint(Messages.MESSAGE_DELETE_MODULE + itemRemoved.toString() + Messages.MESSAGE_STATUS_FIRST
+                    + (items.size() - 1) + Messages.MESSAGE_MODULE_STATUS_LAST);
+            items.remove(index - 1);
+        }
+    }
+
     /**
      * Lists all the modules in the module list.
      */
@@ -42,7 +63,11 @@ public class ModuleList extends ItemList<Module> {
         }
         Ui.showLine();
         Ui.dukePrintMultiple("Here is a list of your modules:");
-        items.forEach(module -> Ui.dukePrintMultiple(module.toString()));
+        int count = 1;
+        for (Module module: items) {
+            Ui.dukePrintMultiple(count + "." + module.toString());
+            count++;
+        }
 
         double actualCap = computeCapFromModules(items);
         int totalMcs = computeTotalMcs(items);
@@ -112,7 +137,7 @@ public class ModuleList extends ItemList<Module> {
     /**
      * Creates folders corresponding to the modules and academic year.
      */
-    public void createModuleFolders() {
+    public void createModuleFolders() throws DukeException {
         Ui.showLine();
         Ui.dukePrintMultiple("Creating module folders...");
 
@@ -126,11 +151,32 @@ public class ModuleList extends ItemList<Module> {
             hasCreatedFolder |= new File(folderName + "/Tutorial/").mkdirs();
 
             if (hasCreatedFolder) {
-                createdFolderCount++;
-                Ui.dukePrintMultiple("Created folder/sub-folders for " + moduleName + " at " + folderName);
+                try {
+                    createdFolderCount++;
+                    String filePath = new File(folderName).getCanonicalPath();
+                    Ui.dukePrintMultiple("Created folder/sub-folders for " + moduleName + " at " + filePath);
+                } catch (IOException e) {
+                    throw new DukeException("Cannot get path");
+                }
             }
         }
         Ui.dukePrintMultiple("Created folder(s) for " + createdFolderCount + " module(s).");
         Ui.showLine();
+    }
+
+    /**
+     * Checks if a module with the same code and semester already exists in the module list.
+     *
+     * @param module Module to check against.
+     * @throws DukeException If module already exists in the list.
+     */
+    private void checkModuleAlreadyExists(Module module) throws DukeException {
+        int count = (int) items.stream()
+                .filter(existingModule -> existingModule.getSemester().equals(module.getSemester()))
+                .filter(existingModule -> existingModule.getDescription().equals(module.getDescription()))
+                .count();
+        if (count != 0) {
+            throw new DukeException("Module with same code and semester already exists!");
+        }
     }
 }

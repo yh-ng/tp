@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import org.apache.commons.validator.routines.UrlValidator;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.Model;
@@ -83,6 +84,11 @@ public class AddCommand extends Command {
         String module = argumentsMap.get("m");
         String type = argumentsMap.get("t");
         String url = argumentsMap.get("u");
+        String[] schemes = {"http", "https"};
+        UrlValidator urlValidator = new UrlValidator(schemes);
+        if (!urlValidator.isValid(url)) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_URL);
+        }
         Link newLink = new Link(module, type, url);
         links.addLink(newLink);
     }

@@ -38,7 +38,7 @@ public class BookList extends ItemList<Book> {
      */
     public void addBook(Book book) {
         items.add(book);
-        Ui.dukePrint(Messages.MESSAGE_ADDBOOK + book.toString(false));
+        Ui.dukePrint(Messages.MESSAGE_ADD_BOOK + book.toString(false));
     }
 
     @Override
@@ -50,7 +50,6 @@ public class BookList extends ItemList<Book> {
      */
     public void clearBook() {
         items = new ArrayList<>();
-
     }
 
 

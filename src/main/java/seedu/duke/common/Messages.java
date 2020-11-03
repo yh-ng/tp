@@ -14,8 +14,8 @@ public class Messages {
             + "     \\__| \\___||_|   |_| |_| |_||_|\\_| \\_/ \\__,_||___/\n";
 
     public static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
-    public static final String MESSAGE_ADDTASK = "Got it. I've added this task:\n       ";
-    public static final String MESSAGE_ADDBOOK = "Got it. I've added this book: ";
+    public static final String MESSAGE_ADD_TASK = "Got it. I've added this task:\n       ";
+    public static final String MESSAGE_ADD_BOOK = "Got it. I've added this book: ";
     public static final String MESSAGE_ADD_LINK = "Got it. I've added this link:\n       ";
     public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
@@ -23,7 +23,7 @@ public class Messages {
     public static final String MESSAGE_STATUS_LAST = " item(s) in the list.";
     public static final String MESSAGE_LINK_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_LINK_STATUS_LAST = " link(s) in the list.";
-
+    public static final String MESSAGE_MODULE_STATUS_LAST = " module(s) in the list.";
     public static final String MESSAGE_TASK_LIST = "Here are the tasks in your list:\n";
     public static final String MESSAGE_BOOK_LIST = "Here are the books in your list:\n";
     public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the tasks of this priority in your list:";
@@ -47,6 +47,8 @@ public class Messages {
     public static final String MESSAGE_DELETE_LINK = "Noted. I've removed this link:\n       ";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared everything.";
     public static final String MESSAGE_CLEARED = "~Info~ Everything has already been cleared.";
+    public static final String MESSAGE_DELETE_MODULE = "Noted. I've removed this module:\n       ";
+  
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
     public static final String WARNING_NO_BOOK = "You do not have this book in the list.";
     public static final String WARNING_NO_LINK = "You do not have this link in the list.";
@@ -118,4 +120,5 @@ public class Messages {
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
             + "     \"list books\"";
+    public static final String EXCEPTION_INVALID_URL = "Please input a valid url. ";
 }
