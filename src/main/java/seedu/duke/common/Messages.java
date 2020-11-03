@@ -52,6 +52,7 @@ public class Messages {
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
     public static final String WARNING_NO_BOOK = "You do not have this book in the list.";
     public static final String WARNING_NO_LINK = "You do not have this link in the list.";
+    public static final String WARNING_NO_MODULE = "You do not have this module in the list.";
 
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
     public static final String MESSAGE_RETURNED = "Nice! I've marked this book as returned:\n       [R] ";
