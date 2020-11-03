@@ -117,4 +117,5 @@ public class Messages {
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
             + "     \"list books\"";
+    public static final String EXCEPTION_INVALID_URL = "Please input a valid url. ";
 }
