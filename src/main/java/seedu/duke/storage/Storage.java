@@ -32,6 +32,8 @@ public class Storage {
     public static final String LINK_STORAGE_FILEPATH = "links.txt";
     public static final String MODULE_STORAGE_FILEPATH = "modules.txt";
 
+    private File file;
+
     /**
      * Loads the task list data from the storage, and then returns it.
      *
@@ -168,10 +170,12 @@ public class Storage {
         try {
             fw.write(saveString);
             fw.close();
+
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
         }
     }
+
 
     /**
      * Returns a task corresponding to arguments from a line loaded from file.
@@ -321,5 +325,19 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
     }
+
+//    public static void unlockFile() {
+//        boolean unlock = file.setWritable(true);
+//        if (!unlock) {
+//            System.out.println("Error setting file to be writable");
+//        }
+//    }
+//
+//    public static void lockFile() {
+//        boolean lock = file.setReadOnly();
+//        if (!lock) {
+//            System.out.println("Error making data file read-only");
+//        }
+//    }
 
 }

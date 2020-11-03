@@ -3,6 +3,7 @@ package seedu.duke.model.itemlist;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.item.Item;
+import seedu.duke.model.item.Link;
 import seedu.duke.ui.Ui;
 
 import java.lang.reflect.Array;
@@ -18,6 +19,7 @@ import java.util.Collections;
 public abstract class ItemList<T extends Item> {
 
     protected ArrayList<T> items;
+    //protected ArrayList<Link> links;
 
 
     /**
@@ -27,6 +29,7 @@ public abstract class ItemList<T extends Item> {
      */
     public ItemList(ArrayList<T> items) {
         this.items = items;
+
     }
 
     /**
@@ -34,6 +37,7 @@ public abstract class ItemList<T extends Item> {
      */
     public ItemList() {
         items = new ArrayList<>();
+       // links = new ArrayList<>();
     }
 
     /**
@@ -154,8 +158,15 @@ public abstract class ItemList<T extends Item> {
     /**
      * Clears all the tasks in the list.
      */
+//    public void clear() {
+//        items = new ArrayList<>();
+//        //links = new ArrayList<>();
+//
+//    }
+
     public void clearTask() {
         items = new ArrayList<>();
+
 
     }
 

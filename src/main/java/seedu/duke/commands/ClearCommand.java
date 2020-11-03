@@ -41,6 +41,11 @@ public class ClearCommand extends Command {
             books.clearBook();
             links.clearList();
             modules.clearModule();
+
+//            tasks.clear();
+//            books.clear();
+//            links.clear();
+//            modules.clear();
             Ui.dukePrint(Messages.MESSAGE_CLEAR);
 
         } else {

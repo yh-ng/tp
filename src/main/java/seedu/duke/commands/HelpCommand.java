@@ -36,6 +36,7 @@ public class HelpCommand extends Command {
                 + "\n\n     " + ReturnCommand.MESSAGE_USAGE
                 + "\n\n     " + SetCommand.MESSAGE_USAGE;
 
+       
         Ui.dukePrint(message);
     }
 }

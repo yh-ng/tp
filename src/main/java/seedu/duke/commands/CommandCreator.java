@@ -160,7 +160,7 @@ public class CommandCreator {
             case "module":
                 return new DeleteCommand(Integer.parseInt(value), ListType.MODULE_LIST);
             default:
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+                throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
 
             }
         } catch (NumberFormatException e) {
