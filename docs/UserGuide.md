@@ -23,8 +23,10 @@
         * [Deleting all tasks of a certain priority](#deleting-all-tasks-of-a-certain-priority-delete): `delete`
         * [Deleting all tasks of a certain category](#deleting-all-tasks-of-a-certain-category-delete): `delete`
     * [Deleting a link from the list](#deleting-a-link-from-the-list-delete): `delete` 
+    * [Deleting a module from the list](#deleting-a-module-from-the-list-delete): `delete` 
     * [Deleting an expense item from the list](#deleting-an-expense-item-from-the-list-delete-coming-soon): `delete` (coming soon)
     * [Marking a task as done](#marking-a-task-as-done-done): `done`
+    * [Setting a module as complete](#setting-a-module-as-complete-done): `done`
     * [Marking a book as returned](#marking-a-book-as-returned-return): `return`
     * [Setting the priority of a task](#setting-the-priority-of-a-task-set): `set`
     * [Setting the category of a task](#setting-the-category-of-a-task-category): `category`
@@ -39,7 +41,12 @@
 
 ## Introduction
 
-termiNus is an interactive task manager for students in NUS.
+termiNus is an interactive Command Line Interface (CLI) task manager for undergraduate students in NUS. 
+This program will help them achieve a better grip on their school life as well as assist in better management of their 
+daily expenses and be reminded of any library loans. 
+
+Fear not, this guide contains all the features found in termiNus along with detailed explanations on the usage of each
+command. We hope this guide is user-friendly! 
 
 ## Quick Start
 
@@ -49,13 +56,14 @@ termiNus is an interactive task manager for students in NUS.
 
 3. Copy the jar file to a new folder.
 
-4. Navigate to the folder containing `termiNus.jar` using the command prompt.
+4. Navigate to the directory which contains `termiNus.jar` using the command prompt.
 
 5. Run termiNus by typing `java -jar termiNus.jar` and press enter.
 
 6. A greeting message will be displayed as shown below
 
 ```
+Hello from...
      _                           _  _   _
     | |                         (_)| \ | |
     | |_   ___  _ __  _ __ ___   _ |  \| | _   _  ___
@@ -64,9 +72,11 @@ termiNus is an interactive task manager for students in NUS.
      \__| \___||_|   |_| |_| |_||_|\_| \_/ \__,_||___/
 
     ____________________________________________________________
-     Hello there!
      How can termiNus assist you today?
+
+     Unsure what to type? Start of by typing <help> to see the commands and their usage.
     ____________________________________________________________
+
 ```
 
 7. Refer to the Features below for details of each command.
@@ -201,7 +211,7 @@ Output:
      Got it. I've added this link:
        CS2113 lecture
        https://cs2113Lecture.zoom.com
-     Now you have 1 links in the list.
+     Now you have 1 link(s) in the list.
     ____________________________________________________________
 ```
 
@@ -210,7 +220,7 @@ Loan a book and add into the book list
 
 Format: `borrow <book name> <compulsory argument>`
 
-List of `<compulsory arguments>`:
+List of `<compulsory argument>`:
 - `date/<DD-MM-YYYY>` date of borrow (`23/11/2020`).
 
 🚩: The due date will be fixed to **1 month** from the date of loan. 
@@ -258,7 +268,7 @@ Output:
     ____________________________________________________________
      Got it. I've added this expense item:
        lunch (5 SGD) (date: 28 Oct 2020)
-     Now you have 4 tasks in the list.
+     Now you have 4 expense(s) in the list.
     ____________________________________________________________
 ```
 
@@ -406,6 +416,7 @@ Output:
 ```
     ____________________________________________________________
      Here is a list of your modules:
+     
      1.[CM][A-] GER1000 (4 MC) (AY2021S1)
      2.[CM][A+] GET1029 (4 MC) (AY2021S1)
      3.[CM][A+] CS2113 (4 MC) (AY2021S1)
@@ -430,6 +441,7 @@ Output:
 ```
     ____________________________________________________________
      Here is a list of your expenses:
+     
      lunch (5 SGD) (date: 28 Oct 2020)
      dinner (10 USD)
     ____________________________________________________________
@@ -466,8 +478,6 @@ Delete tasks of the same priority
 
 Format: `delete tasks p/<priority>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
-
 Example of usage:
 
 `delete tasks p/2`
@@ -490,7 +500,7 @@ Delete tasks of the same category
 
 Format: `delete tasks c/<category>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<category>` is **case-sensitive**.
 
 Example of usage:
 
@@ -512,9 +522,9 @@ Output:
 ### Deleting a link from the list: `delete`
 Deletes a link from the list 
 
-Format: `delete link <taskIndexNumber>`
+Format: `delete link <linkIndexNumber>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<linkIndexNumber>` corresponds to the index given on `list links` command output.
 
 Example of usage:
 
@@ -527,7 +537,7 @@ Output:
      Noted. I've removed this link:
        CS2113 lecture
        https://cs2113Lecture.zoom.com
-     Now you have 0 links in the list.
+     Now you have 0 link(s) in the list.
     ____________________________________________________________
 
 ```
@@ -537,7 +547,7 @@ Deletes a module from the list
 
 Format: `delete module <moduleIndexNumber>`
 
-🚩: `<moduleIndexNumber>` corresponds to the index given on `list module` command output.
+🚩: `<moduleIndexNumber>` corresponds to the index given on `list modules` command output.
 
 Example of usage:
 
@@ -549,7 +559,7 @@ Output:
     ____________________________________________________________
      Noted. I've removed this module:
        [A+] CS1010 (4 MC) (AY1920S1)
-     Now you have 7 modules in the list.
+     Now you have 7 module(s) in the list.
     ____________________________________________________________
 ```
 
@@ -558,7 +568,7 @@ Deletes an expense item from the list
 
 Format: `delete expense <expenseIndexNumber>`
 
-🚩: `<expenseIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<expenseIndexNumber>` corresponds to the index given on `list expenses` command output.
 
 Example of usage:
 
@@ -570,7 +580,7 @@ Output:
     ____________________________________________________________
      Noted. I've removed this expense item:
        lunch (5 SGD)
-     Now you have 0 links in the list.
+     Now you have 0 expense(s) in the list.
     ____________________________________________________________
 
 ```
@@ -618,9 +628,9 @@ Output:
 ### Marking a book as returned: `return`
 Marks a given task as done.
 
-Format: `return <taskIndexNumber>`
+Format: `return <bookIndexNumber>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list books` command output.
+🚩: `<bookIndexNumber>` corresponds to the index given on `list books` command output.
 
 Example of usage:
 
@@ -661,6 +671,7 @@ Sets the category of an existing task.
 Format: `category <taskIndexNumber> c/<category>`
 
 🚩: `<taskIndexNumber>` corresponds to the index given on `list tasks` command output.
+🚩: `<category>` is **case-sensitive**
 
 Example of usage:
 
