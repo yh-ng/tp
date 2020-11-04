@@ -48,9 +48,8 @@ public class AddRecurringCommand extends AddCommand {
         final TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
         final LocalDate startDate;
         final LocalDate endDate;
-        LocalDate nearestDay;
+        LocalDate firstDate;
         DayOfWeek dayOfWeek;
-        ArrayList<Task> newTasks = new ArrayList<>();
 
         if (!argumentsMap.containsKey("day") || !argumentsMap.containsKey("s") || !argumentsMap.containsKey("e")) {
             throw new DukeException(Messages.EXCEPTION_RECURRING_ARGUMENTS);
@@ -59,7 +58,7 @@ public class AddRecurringCommand extends AddCommand {
             startDate = LocalDate.parse(argumentsMap.get("s"), Task.DATETIME_PARSE_FORMAT);
             endDate = LocalDate.parse(argumentsMap.get("e"), Task.DATETIME_PARSE_FORMAT);
             dayOfWeek = Parser.getDayFromString(argumentsMap.get("day"));
-            nearestDay = startDate.with(TemporalAdjusters.nextOrSame(dayOfWeek));
+            firstDate = startDate.with(TemporalAdjusters.nextOrSame(dayOfWeek));
         } catch (DateTimeParseException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
@@ -67,16 +66,29 @@ public class AddRecurringCommand extends AddCommand {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE_RANGE);
         }
 
-        while (nearestDay.until(endDate, ChronoUnit.DAYS) >= 0) {
-            Task newTask = new Task(description);
-            argumentsMap.put("date", nearestDay.format(Task.DATETIME_PARSE_FORMAT));
-            setTaskProperties(newTask, argumentsMap);
-            newTasks.add(newTask);
-            nearestDay = nearestDay.plusDays(Calendar.DAY_OF_WEEK);
-        }
+        ArrayList<Task> newTasks = generateWeeklyTasks(firstDate, endDate);
         if (newTasks.size() == 0) {
             throw new DukeException("There is no " + dayOfWeek + " between " + startDate + " and " + endDate + "!");
         }
         tasks.addTasksFromList(newTasks);
+    }
+
+    /**
+     * Generates a list of Tasks every 7 days from a starting date to an end date.
+     * @param firstDate Starting date to generate tasks.
+     * @param endDate End date of tasks.
+     * @return ArrayList of Tasks between starting date and ending date.
+     * @throws DukeException If Tasks have invalid arguments.
+     */
+    private ArrayList<Task> generateWeeklyTasks(LocalDate firstDate, LocalDate endDate) throws DukeException {
+        ArrayList<Task> newTasks = new ArrayList<>();
+        while (firstDate.until(endDate, ChronoUnit.DAYS) >= 0) {
+            Task newTask = new Task(description);
+            argumentsMap.put("date", firstDate.format(Task.DATETIME_PARSE_FORMAT));
+            setTaskProperties(newTask, argumentsMap);
+            newTasks.add(newTask);
+            firstDate = firstDate.plusDays(Calendar.DAY_OF_WEEK);
+        }
+        return newTasks;
     }
 }
