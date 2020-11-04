@@ -1,6 +1,7 @@
 # termiNus
 
 ```
+Hello from...
      _                           _  _   _
     | |                         (_)| \ | |
     | |_   ___  _ __  _ __ ___   _ |  \| | _   _  ___
@@ -9,9 +10,11 @@
      \__| \___||_|   |_| |_| |_||_|\_| \_/ \__,_||___/
 
     ____________________________________________________________
-     Hello there!
      How can termiNus assist you today?
+
+     Unsure what to type? Start of by typing <help> to see the commands and their usage.
     ____________________________________________________________
+
 ```
 
 termiNus is an interactive task manager for undergraduate students in NUS. It is ideal for keyboard-inclined students 
