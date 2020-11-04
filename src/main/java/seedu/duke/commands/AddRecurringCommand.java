@@ -75,6 +75,7 @@ public class AddRecurringCommand extends AddCommand {
 
     /**
      * Generates a list of Tasks every 7 days from a starting date to an end date.
+     * 
      * @param firstDate Starting date to generate tasks.
      * @param endDate End date of tasks.
      * @return ArrayList of Tasks between starting date and ending date.
