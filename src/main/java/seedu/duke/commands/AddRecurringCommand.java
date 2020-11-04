@@ -49,6 +49,7 @@ public class AddRecurringCommand extends AddCommand {
         final LocalDate startDate;
         final LocalDate endDate;
         LocalDate nearestDay;
+        DayOfWeek dayOfWeek;
         ArrayList<Task> newTasks = new ArrayList<>();
 
         if (!argumentsMap.containsKey("day") || !argumentsMap.containsKey("s") || !argumentsMap.containsKey("e")) {
@@ -57,16 +58,14 @@ public class AddRecurringCommand extends AddCommand {
         try {
             startDate = LocalDate.parse(argumentsMap.get("s"), Task.DATETIME_PARSE_FORMAT);
             endDate = LocalDate.parse(argumentsMap.get("e"), Task.DATETIME_PARSE_FORMAT);
+            dayOfWeek = Parser.getDayFromString(argumentsMap.get("day"));
+            nearestDay = startDate.with(TemporalAdjusters.nextOrSame(dayOfWeek));
         } catch (DateTimeParseException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
-
         if (endDate.isBefore(startDate)) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE_RANGE);
         }
-
-        DayOfWeek dayOfWeek = Parser.getDayFromString(argumentsMap.get("day"));
-        nearestDay = startDate.with(TemporalAdjusters.nextOrSame(dayOfWeek));
 
         while (nearestDay.until(endDate, ChronoUnit.DAYS) >= 0) {
             Task newTask = new Task(description);
