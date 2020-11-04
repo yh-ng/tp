@@ -26,6 +26,7 @@
     * [Deleting a module from the list](#deleting-a-module-from-the-list-delete): `delete` 
     * [Deleting an expense item from the list](#deleting-an-expense-item-from-the-list-delete-coming-soon): `delete` (coming soon)
     * [Marking a task as done](#marking-a-task-as-done-done): `done`
+    * [Setting a module as complete](#setting-a-module-as-complete-done): `done`
     * [Marking a book as returned](#marking-a-book-as-returned-return): `return`
     * [Setting the priority of a task](#setting-the-priority-of-a-task-set): `set`
     * [Setting the category of a task](#setting-the-category-of-a-task-category): `category`
