@@ -199,11 +199,21 @@ public class CommandCreator {
      */
     public static Command createDoneCommand(String commandString) throws DukeException {
         try {
-            return new DoneCommand(Integer.parseInt(commandString));
+            String[] arguments = commandString.split(" ", 2);
+            String type = arguments[0];
+            int index = Integer.parseInt(arguments[1]);
+            switch(type) {
+            case "task":
+                return new DoneCommand(index, ListType.TASK_LIST);
+            case "module":
+                return new DoneCommand(index, ListType.MODULE_LIST);
+            default:
+                throw new DukeException(Messages.EXCEPTION_INVALID_DONE_COMMAND);
+            }
         } catch (NumberFormatException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(Messages.WARNING_NO_TASK);
+            throw new DukeException(Messages.EXCEPTION_INVALID_DONE_COMMAND);
         }
     }
 

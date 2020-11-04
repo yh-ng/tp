@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import seedu.duke.DukeException;
 import seedu.duke.model.Model;
 import seedu.duke.model.ListType;
+import seedu.duke.model.itemlist.ModuleList;
 import seedu.duke.model.itemlist.TaskList;
 
 /**
@@ -16,15 +17,25 @@ public class DoneCommand extends Command {
             + "     Parameters: INDEX\n"
             + "     Example: " + COMMAND_WORD + " 1";
 
-    private int index;
+    private final ListType doneType;
+    private final int index;
 
-    public DoneCommand(int index) {
+    public DoneCommand(int index, ListType doneType) {
         this.index = index;
+        this.doneType = doneType;
     }
 
     @Override
     public void execute(Model model) throws DukeException {
         TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
-        tasks.markTaskAsDone(index);
+        ModuleList modules = (ModuleList) model.getList(ListType.MODULE_LIST);
+        switch (doneType) {
+        case TASK_LIST:
+            tasks.markTaskAsDone(index);
+            break;
+        case MODULE_LIST:
+            modules.markTaskAsDone(index);
+            break;
+        }
     }
 }

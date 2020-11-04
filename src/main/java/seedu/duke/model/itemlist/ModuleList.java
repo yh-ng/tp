@@ -183,4 +183,14 @@ public class ModuleList extends ItemList<Module> {
             throw new DukeException("~Error~ Module with same code and semester already exists!");
         }
     }
+
+    @Override
+    public void markTaskAsDone(int index) {
+        if (index > items.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_MODULE);
+        } else {
+            items.get(index - 1).markAsDone();
+            Ui.dukePrint(Messages.MESSAGE_MODULE_COMPLETE + items.get(index - 1));
+        }
+    }
 }
