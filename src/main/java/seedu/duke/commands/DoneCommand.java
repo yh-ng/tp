@@ -31,10 +31,10 @@ public class DoneCommand extends Command {
         ModuleList modules = (ModuleList) model.getList(ListType.MODULE_LIST);
         switch (doneType) {
         case TASK_LIST:
-            tasks.markTaskAsDone(index);
+            tasks.markItemAsDone(index);
             break;
         case MODULE_LIST:
-            modules.markTaskAsDone(index);
+            modules.markItemAsDone(index);
             break;
         }
     }

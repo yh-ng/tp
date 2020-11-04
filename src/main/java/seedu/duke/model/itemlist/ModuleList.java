@@ -185,7 +185,7 @@ public class ModuleList extends ItemList<Module> {
     }
 
     @Override
-    public void markTaskAsDone(int index) {
+    public void markItemAsDone(int index) {
         if (index > items.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_MODULE);
         } else {
