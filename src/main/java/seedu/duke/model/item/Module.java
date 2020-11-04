@@ -33,14 +33,9 @@ public class Module extends Item {
         this.isDone = isDone;
 
         Matcher matcher = MODULE_CODE_PATTERN.matcher(moduleCode);
-        if (!matcher.find()) {
-            throw new DukeException("~Error~ Your module code is wrong!");
-        }
-        if (!checkValidAy(semester)) {
-            throw new DukeException("~Error~ Your semester code is wrong!");
-        }
-        if (!checkValidMcs(mc)) {
-            throw new DukeException("~Error~ Your number of MCs are invalid!");
+
+        if (!matcher.find() || !checkValidAy(semester) || !checkValidMcs(mc)) {
+            throw new DukeException("~Error~ Format is incorrect. Please refer to the User Guide.");
         }
     }
 
