@@ -43,7 +43,7 @@ public class ModuleList extends ItemList<Module> {
     @Override
     public void deleteTask(int index) {
         if (index > items.size() || index < 1) {
-            Ui.dukePrint(Messages.WARNING_NO_TASK);
+            Ui.dukePrint(Messages.WARNING_NO_MODULE);
         } else {
             Item itemRemoved = items.get(index - 1);
             Ui.dukePrint(Messages.MESSAGE_DELETE_MODULE + itemRemoved.toString() + Messages.MESSAGE_STATUS_FIRST
@@ -176,7 +176,7 @@ public class ModuleList extends ItemList<Module> {
                 .filter(existingModule -> existingModule.getDescription().equals(module.getDescription()))
                 .count();
         if (count != 0) {
-            throw new DukeException("Module with same code and semester already exists!");
+            throw new DukeException("~Error~ Module with same code and semester already exists!");
         }
     }
 }

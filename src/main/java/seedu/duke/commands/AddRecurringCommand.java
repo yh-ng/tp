@@ -26,7 +26,7 @@ import java.util.HashSet;
 public class AddRecurringCommand extends AddCommand {
     public static final String COMMAND_WORD = "addr";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a task to the task list.\n"
+            + ": Adds multiple tasks to the list of tasks that occur weekly on a given day.\n"
             + "     Parameters: TASK_NAME <optional/compulsory arguments>\n"
             + "     List of <optional arguments>:\n"
             + "       - p/<number> sets the priority of the task.\n"
@@ -36,7 +36,7 @@ public class AddRecurringCommand extends AddCommand {
             + "       - s/<dd-MM-yyyy> start date of recurring tasks (inclusive)\n"
             + "       - e/<dd-MM-yyyy> end date of recurring tasks (inclusive).\n"
             + "       - day/<mon/tue/wed/thu/fri/sat/sun> day of recurring task.\n"
-            + "     Example: " + COMMAND_WORD + " example_task <optional arguments>";
+            + "     Example: " + COMMAND_WORD + " example_task <optional/compulsory arguments>";
     public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "day", "s", "e"));
 
     public AddRecurringCommand(String description, HashMap<String, String> argumentsMap) {
@@ -48,8 +48,8 @@ public class AddRecurringCommand extends AddCommand {
         final TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
         final LocalDate startDate;
         final LocalDate endDate;
-        LocalDate nearestDay;
-        ArrayList<Task> newTasks = new ArrayList<>();
+        LocalDate firstDate;
+        DayOfWeek dayOfWeek;
 
         if (!argumentsMap.containsKey("day") || !argumentsMap.containsKey("s") || !argumentsMap.containsKey("e")) {
             throw new DukeException(Messages.EXCEPTION_RECURRING_ARGUMENTS);
@@ -57,20 +57,39 @@ public class AddRecurringCommand extends AddCommand {
         try {
             startDate = LocalDate.parse(argumentsMap.get("s"), Task.DATETIME_PARSE_FORMAT);
             endDate = LocalDate.parse(argumentsMap.get("e"), Task.DATETIME_PARSE_FORMAT);
+            dayOfWeek = Parser.getDayFromString(argumentsMap.get("day"));
+            firstDate = startDate.with(TemporalAdjusters.nextOrSame(dayOfWeek));
         } catch (DateTimeParseException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
+        if (endDate.isBefore(startDate)) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_DATE_RANGE);
+        }
 
-        DayOfWeek dayOfWeek = Parser.getDayFromString(argumentsMap.get("day"));
-        nearestDay = startDate.with(TemporalAdjusters.nextOrSame(dayOfWeek));
-
-        while (nearestDay.until(endDate, ChronoUnit.DAYS) >= 0) {
-            Task newTask = new Task(description);
-            argumentsMap.put("date", nearestDay.format(Task.DATETIME_PARSE_FORMAT));
-            setTaskProperties(newTask, argumentsMap);
-            newTasks.add(newTask);
-            nearestDay = nearestDay.plusDays(Calendar.DAY_OF_WEEK);
+        ArrayList<Task> newTasks = generateWeeklyTasks(firstDate, endDate);
+        if (newTasks.size() == 0) {
+            throw new DukeException("There is no " + dayOfWeek + " between " + startDate + " and " + endDate + "!");
         }
         tasks.addTasksFromList(newTasks);
+    }
+
+    /**
+     * Generates a list of Tasks every 7 days from a starting date to an end date.
+     * 
+     * @param firstDate Starting date to generate tasks.
+     * @param endDate End date of tasks.
+     * @return ArrayList of Tasks between starting date and ending date.
+     * @throws DukeException If Tasks have invalid arguments.
+     */
+    private ArrayList<Task> generateWeeklyTasks(LocalDate firstDate, LocalDate endDate) throws DukeException {
+        ArrayList<Task> newTasks = new ArrayList<>();
+        while (firstDate.until(endDate, ChronoUnit.DAYS) >= 0) {
+            Task newTask = new Task(description);
+            argumentsMap.put("date", firstDate.format(Task.DATETIME_PARSE_FORMAT));
+            setTaskProperties(newTask, argumentsMap);
+            newTasks.add(newTask);
+            firstDate = firstDate.plusDays(Calendar.DAY_OF_WEEK);
+        }
+        return newTasks;
     }
 }

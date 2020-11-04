@@ -26,8 +26,8 @@
      \__| \___||_|   |_| |_| |_||_|\_| \_/ \__,_||___/
 
     ____________________________________________________________
-     Hello! I'm termiNus.
-     What can I do for you?
+     Hello there!
+     How can termiNus assist you today?
     ____________________________________________________________
 
     ____________________________________________________________
@@ -39,7 +39,7 @@
        - date/<dd-MM-yyyy> sets the date of the task.
      Example: add task example_task <optional arguments>
 
-     addr: Adds a task to the task list.
+     addr: Adds multiple tasks to the list of tasks that occur weekly on a given day.
      Parameters: TASK_NAME <optional/compulsory arguments>
      List of <optional arguments>:
        - p/<number> sets the priority of the task.
@@ -49,7 +49,7 @@
        - s/<dd-MM-yyyy> start date of recurring tasks (inclusive)
        - e/<dd-MM-yyyy> end date of recurring tasks (inclusive).
        - day/<mon/tue/wed/thu/fri/sat/sun> day of recurring task.
-     Example: addr example_task <optional arguments>
+     Example: addr example_task <optional/compulsory arguments>
 
      borrow: Adds a book to the book list.
      Example: borrow example_book  date/DD-MM-YYYY
@@ -160,7 +160,7 @@
     ____________________________________________________________
 
     ____________________________________________________________
-     You have invalid arguments
+     ~Error~ You have invalid arguments. Please refer to User Guide
     ____________________________________________________________
 
     ____________________________________________________________

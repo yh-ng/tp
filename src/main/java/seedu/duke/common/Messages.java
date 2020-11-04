@@ -52,6 +52,7 @@ public class Messages {
     public static final String WARNING_NO_TASK = "You do not have this task in the list.";
     public static final String WARNING_NO_BOOK = "You do not have this book in the list.";
     public static final String WARNING_NO_LINK = "You do not have this link in the list.";
+    public static final String WARNING_NO_MODULE = "You do not have this module in the list.";
 
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
     public static final String MESSAGE_RETURNED = "Nice! I've marked this book as returned:\n       [R] ";
@@ -67,7 +68,8 @@ public class Messages {
     public static final String EXCEPTION_EMPTY_SPACE = "Detected an empty spacing. "
             + "Please remove any unwanted spaces";
     public static final String EXCEPTION_DUPLICATE_ARGUMENTS = "You have duplicate arguments! ";
-    public static final String EXCEPTION_INVALID_ARGUMENTS = "You have invalid arguments";
+    public static final String EXCEPTION_INVALID_ARGUMENTS = "~Error~ You have invalid arguments. "
+            + "Please refer to User Guide";
     public static final String EXCEPTION_EMPTY_DESCRIPTION = "The description of a task cannot be empty.";
     public static final String EXCEPTION_EMPTY_BOOK_DESCRIPTION = ":( OOPS!!! "
             + "The description of a book cannot be empty.";
@@ -85,6 +87,7 @@ public class Messages {
     public static final String EXCEPTION_INVALID_DAY = "The format of your day should be the first "
             + "3 characters of the day!\n"
             + "     Example: mon, tue, wed, thu, fri, sat, sun";
+    public static final String EXCEPTION_INVALID_DATE_RANGE = "Your ending date is before your starting date!";
     public static final String EXCEPTION_EMPTY_PRIORITY = "The priority cannot be empty.";
     public static final String EXCEPTION_EMPTY_CATEGORY = "The category cannot be empty.";
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
@@ -106,12 +109,20 @@ public class Messages {
             + "Type some commands and see it.";
     public static final String WARNING_DATETIME = "If you want your DateTime to be formatted, "
             + "you can input in this format: YYYY-MM-DD HH:mm";
-    public static final String EXCEPTION_FIND = "The keyword of a find command cannot be empty.";
+    public static final String EXCEPTION_FIND = "~Error~ The keyword of a find command cannot be empty.\n "
+            + "\t The format is: find <keyword>";
+    public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct type of lesson:\n "
+            + "\t t/lecture\n"
+            + "\t t/tutorial\n"
+            + "\t t/lab\n"
+            + "\t t/project";
     public static final String EXCEPTION_INVALID_DELETE_COMMAND = "Please input a valid delete command "
             + "using the format: \n\n"
-            + "     \"delete tasks p/PRIORITY\", \"delete tasks c/CATEGORY\"\n"
+            + "     \"delete tasks p/PRIORITY\"\n"
+            + "     \"delete tasks c/CATEGORY\"\n"
             + "     \"delete task <index number>\"\n"
-            + "     \"delete link <index number>\"";
+            + "     \"delete link <index number>\"\n"
+            + "     \"delete module <index number>\"";
     public static final String EXCEPTION_INVALID_LIST_COMMAND = "Please input a valid list command "
             + "using the format: \n\n"
             + "     \"list tasks\"\n"
@@ -120,5 +131,5 @@ public class Messages {
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
             + "     \"list books\"";
-    public static final String EXCEPTION_INVALID_URL = "Please input a valid url. ";
+    public static final String EXCEPTION_INVALID_URL = "~Error~ Please input a valid url. ";
 }
