@@ -26,7 +26,7 @@ import java.util.HashSet;
 public class AddRecurringCommand extends AddCommand {
     public static final String COMMAND_WORD = "addr";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a task to the task list.\n"
+            + ": Adds multiple tasks to the list of tasks that occur weekly on a given day.\n"
             + "     Parameters: TASK_NAME <optional/compulsory arguments>\n"
             + "     List of <optional arguments>:\n"
             + "       - p/<number> sets the priority of the task.\n"
@@ -36,7 +36,7 @@ public class AddRecurringCommand extends AddCommand {
             + "       - s/<dd-MM-yyyy> start date of recurring tasks (inclusive)\n"
             + "       - e/<dd-MM-yyyy> end date of recurring tasks (inclusive).\n"
             + "       - day/<mon/tue/wed/thu/fri/sat/sun> day of recurring task.\n"
-            + "     Example: " + COMMAND_WORD + " example_task <optional arguments>";
+            + "     Example: " + COMMAND_WORD + " example_task <optional/compulsory arguments>";
     public static final HashSet<String> ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "day", "s", "e"));
 
     public AddRecurringCommand(String description, HashMap<String, String> argumentsMap) {
