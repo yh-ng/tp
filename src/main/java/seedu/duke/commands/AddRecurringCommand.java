@@ -61,6 +61,10 @@ public class AddRecurringCommand extends AddCommand {
             throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
         }
 
+        if (endDate.isBefore(startDate)) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_DATE_RANGE);
+        }
+
         DayOfWeek dayOfWeek = Parser.getDayFromString(argumentsMap.get("day"));
         nearestDay = startDate.with(TemporalAdjusters.nextOrSame(dayOfWeek));
 
