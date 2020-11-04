@@ -1,14 +1,15 @@
-# termiNus User Guide
+# <div align="center"> termiNus User Guide</div>
+
 
 ## Table of Contents
-* Introduction
-* Quick Start
-* Features
+* [Introduction](#introduction)   
+* [Quick Start](#quick-start) 
+* [Features](#features)
     * [Adding a task](#adding-a-task-add): `add`
     * [Adding recurring tasks](#adding-recurring-tasks-addr): `addr`
     * [Adding a module](#adding-a-module-add-module): `add module`
     * [Adding a WebLink](#adding-a-weblink-add-link): `add link`
-    * [Adding a book](#adding-a-book-borrow): `borrow`
+    * [Borrowing a book](#borrowing-a-book-borrow): `borrow`
     * [Adding an expense item](#adding-an-expense-item-spend-coming-soon): `spend` (coming soon)
     * [Creating module folders](#creating-module-folders-makefolders): `makefolders`
     * [Displaying tasks on list](#displaying-tasks-on-list-list): `list`
@@ -33,9 +34,26 @@
     * [Clearing all tasks](#clearing-all-tasks-clear): `clear`
     * [Getting help](#getting-help-help): `help`
     * [Exit and Save](#exiting-and-saving-the-program-bye): `bye`
-* Command Summary
+* [FAQ](#frequently-asked-questions)  
+* [Command Summary](#quick-command-reference)
 
 ## Introduction
+
+termiNus is an interactive task manager for students in NUS.
+
+## Quick Start
+
+1. Ensure that you have Java 11 or above installed.
+
+2. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest).
+
+3. Copy the jar file to a new folder.
+
+4. Navigate to the folder containing `termiNus.jar` using the command prompt.
+
+5. Run termiNus by typing `java -jar termiNus.jar` and press enter.
+
+6. A greeting message will be displayed as shown below
 
 ```
      _                           _  _   _
@@ -46,30 +64,20 @@
      \__| \___||_|   |_| |_| |_||_|\_| \_/ \__,_||___/
 
     ____________________________________________________________
-     Hello! I'm termiNus.
-     What can I do for you?
+     Hello there!
+     How can termiNus assist you today?
     ____________________________________________________________
 ```
 
-termiNus is an interactive task manager for students in NUS.
-
-## Quick Start
-
-1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest).
-3. Copy the file to the folder you want to use as the home folder for your termiNUS.
-4. Navigate to the folder containing `termiNus.jar` in the terminal or command prompt.
-5. Run termiNus by using `java -jar termiNus.jar`.
-6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will show a brief user guide.
-Some example commands you can try:
-* `add task tP meeting`: Adds a `Task` with description `tP meeting` to the task list
-* `list tasks`: Lists all tasks
-* `delete task 1`: Deletes the 1st task shown in the task list
-* `clear`: Clears all items in the list
-* `bye`: Exits the app
 7. Refer to the Features below for details of each command.
 
 ## Features 
+
+**Take note:**
+
+    1. 
+    2.
+    3.
 
 ### Adding a task: `add`
 Adds a new item to the list of todo tasks.
@@ -142,6 +150,7 @@ Add modules to the module list.
 Format: `add module <module code> <compulsory arguments>`
 
 🚩: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix (characters in full caps).
+🚩: Duplicate module code in the same semester will not be allowed. 
 
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module (`A+`, `A`, `A-`, etc).
@@ -167,8 +176,10 @@ Add a link for lecture/tutorial sessions through zoom
 Format: `add link m/<module code> <compulsory arguments>`
 
 List of `<compulsory arguments>`:
-- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`, etc).
+- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`, `project`).
 - `u/<URL>`  the link.  
+
+🚩: URL has to begin with either http:// or https:// 
 
 Example of usage:
 
@@ -194,6 +205,7 @@ List of `<compulsory arguments>`:
 - `date/<DD-MM-YYYY>` date of borrow (`23/11/2020`).
 
 🚩: The due date will be fixed to **1 month** from the date of loan. 
+🚩: Duplicate book name will not be allowed. 
 
 Example of usage:
 
@@ -822,8 +834,14 @@ Output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: `./tasks.txt` stores the user data, which can be transferred to another computer or instance of the program by
+**A**: `./tasks.txt`, `./books.txt`, `./links.txt` stores the user data, which can be transferred to another computer or instance of the program by
 putting it in the same folder as `termiNus.jar`.
+
+**Q**: Are all commands case-sensitive?
+
+**A**: 
+
+ 
 
 ## Quick Command Reference
 

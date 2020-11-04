@@ -1,10 +1,13 @@
 package seedu.duke.model.itemlist;
 
+import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.item.Book;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+
+// @@author MuhammadHoze
 
 /**
  * Represents a list of books.
@@ -36,7 +39,8 @@ public class BookList extends ItemList<Book> {
      *
      * @param book Book to be added to the book list.
      */
-    public void addBook(Book book) {
+    public void addBook(Book book) throws DukeException {
+        checkBookAlreadyExists(book);
         items.add(book);
         Ui.dukePrint(Messages.MESSAGE_ADD_BOOK + book.toString(false));
     }
@@ -72,6 +76,15 @@ public class BookList extends ItemList<Book> {
             message += "\n     " + (i + 1) + "." + items.get(i).toString(true);
         }
         Ui.dukePrint(Messages.MESSAGE_BOOK_LIST + message);
+    }
+
+    private void checkBookAlreadyExists(Book book) throws DukeException {
+        int count = (int) items.stream()
+                .filter(existingBook -> existingBook.getDescription().equals(book.getDescription()))
+                .count();
+        if (count != 0) {
+            throw new DukeException("~Error~ Book already exists!");
+        }
     }
 }
 

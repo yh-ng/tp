@@ -31,7 +31,7 @@ public class Storage {
     public static final String CREDIT_STORAGE_FILEPATH = "credits.txt";
     public static final String LINK_STORAGE_FILEPATH = "links.txt";
     public static final String MODULE_STORAGE_FILEPATH = "modules.txt";
-
+    
     /**
      * Loads the task list data from the storage, and then returns it.
      *
@@ -168,10 +168,12 @@ public class Storage {
         try {
             fw.write(saveString);
             fw.close();
+
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
         }
     }
+
 
     /**
      * Returns a task corresponding to arguments from a line loaded from file.
@@ -321,5 +323,4 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
     }
-
 }

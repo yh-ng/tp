@@ -31,13 +31,13 @@ public class Module extends Item {
 
         Matcher matcher = MODULE_CODE_PATTERN.matcher(moduleCode);
         if (!matcher.find()) {
-            throw new DukeException("Your module code is wrong!");
+            throw new DukeException("~Error~ Your module code is wrong!");
         }
         if (!checkValidAy(semester)) {
-            throw new DukeException("Your semester code is wrong!");
+            throw new DukeException("~Error~ Your semester code is wrong!");
         }
         if (!checkValidMcs(mc)) {
-            throw new DukeException("Your number of MCs are invalid!");
+            throw new DukeException("~Error~ Your number of MCs are invalid!");
         }
     }
 
@@ -128,7 +128,7 @@ public class Module extends Item {
         case "F":
             return 0.0;
         default:
-            throw new DukeException("Invalid grade!");
+            throw new DukeException("~Error~ Invalid grade!");
         }
     }
 }
