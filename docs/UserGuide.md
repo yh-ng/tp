@@ -580,11 +580,11 @@ Marks a given task as done.
 
 Format: `done task <taskIndexNumber>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list task` command output.
+🚩: `<taskIndexNumber>` corresponds to the index given on `list tasks` command output.
 
 Example of usage:
 
-`done 1`
+`done task 1`
 
 Output:
 
@@ -600,7 +600,7 @@ Sets a module as complete.
 
 Format: `done module <moduleIndexNumber>`
 
-🚩: `<moduleIndexNumber>` corresponds to the index given on `list module` command output.
+🚩: `<moduleIndexNumber>` corresponds to the index given on `list modules` command output.
 
 Example of usage:
 
@@ -620,7 +620,7 @@ Marks a given task as done.
 
 Format: `return <taskIndexNumber>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<taskIndexNumber>` corresponds to the index given on `list books` command output.
 
 Example of usage:
 
@@ -639,7 +639,7 @@ Sets the priority of an existing task.
 
 Format: `set <taskIndexNumber> p/<priority>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<taskIndexNumber>` corresponds to the index given on `list tasks` command output.
 
 Example of usage:
 
@@ -660,7 +660,7 @@ Sets the category of an existing task.
 
 Format: `category <taskIndexNumber> c/<category>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<taskIndexNumber>` corresponds to the index given on `list tasks` command output.
 
 Example of usage:
 
@@ -680,7 +680,7 @@ Sets the date of an existing task.
 
 Format: `date <taskIndexNumber> date/<dd-MM-yyyy>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<taskIndexNumber>` corresponds to the index given on `list tasks` command output.
 
 Example of usage:
 
