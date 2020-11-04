@@ -416,7 +416,7 @@ Output:
 ```
     ____________________________________________________________
      Here is a list of your modules:
-
+     
      1.[CM][A-] GER1000 (4 MC) (AY2021S1)
      2.[CM][A+] GET1029 (4 MC) (AY2021S1)
      3.[CM][A+] CS2113 (4 MC) (AY2021S1)
@@ -441,6 +441,7 @@ Output:
 ```
     ____________________________________________________________
      Here is a list of your expenses:
+     
      lunch (5 SGD) (date: 28 Oct 2020)
      dinner (10 USD)
     ____________________________________________________________
@@ -609,7 +610,7 @@ Sets a module as complete.
 
 Format: `done module <moduleIndexNumber>`
 
-🚩: `<moduleIndexNumber>` corresponds to the index given on `list module` command output.
+🚩: `<moduleIndexNumber>` corresponds to the index given on `list modules` command output.
 
 Example of usage:
 
@@ -623,7 +624,6 @@ Output:
        [CM][A-] GER1000 (4 MC) (AY2021S1)
     ____________________________________________________________
 ```
-
 
 ### Marking a book as returned: `return`
 Marks a given task as done.
@@ -649,7 +649,7 @@ Sets the priority of an existing task.
 
 Format: `set <taskIndexNumber> p/<priority>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<taskIndexNumber>` corresponds to the index given on `list tasks` command output.
 
 Example of usage:
 

@@ -56,6 +56,7 @@ public class Messages {
 
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
     public static final String MESSAGE_RETURNED = "Nice! I've marked this book as returned:\n       [R] ";
+    public static final String MESSAGE_MODULE_COMPLETE = "Nice! I've marked this module as complete:\n       ";
     public static final String MESSAGE_CATEGORY = "Nice! I have set the category of this task:\n       ";
     public static final String MESSAGE_DATE = "Nice! I have set the date of this task:\n       ";
     public static final String MESSAGE_SET_PRIORITY = "Nice! I've set the priority of this task to: ";
@@ -123,6 +124,10 @@ public class Messages {
             + "     \"delete task <index number>\"\n"
             + "     \"delete link <index number>\"\n"
             + "     \"delete module <index number>\"";
+    public static final String EXCEPTION_INVALID_DONE_COMMAND = "Please input a valid done command "
+            + "using the format: \n\n"
+            + "     \"done task <index number>\"\n"
+            + "     \"done module <index number>\"";
     public static final String EXCEPTION_INVALID_LIST_COMMAND = "Please input a valid list command "
             + "using the format: \n\n"
             + "     \"list tasks\"\n"
