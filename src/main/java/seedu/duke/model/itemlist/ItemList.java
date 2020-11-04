@@ -167,7 +167,7 @@ public abstract class ItemList<T extends Item> {
      *
      * @param index the index of the item in the list
      */
-    public void markTaskAsDone(int index) {
+    public void markItemAsDone(int index) {
         if (index > items.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_TASK);
         } else {

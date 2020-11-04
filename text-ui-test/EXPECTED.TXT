@@ -84,9 +84,10 @@
      Example: delete link 1
 
 
-     done: Marks the task identified by the index number used in the task listing as done.
-     Parameters: INDEX
-     Example: done 1
+     done: Marks the task/module identified by the index number used in the listing as done.
+     Parameters: <type> INDEX
+     Accepted <type>: task, module
+     Example: done task 1
 
      find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
      Parameters: KEYWORDS

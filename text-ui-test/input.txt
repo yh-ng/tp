@@ -3,8 +3,8 @@ add task iP meeting
 add task other meeting p/3
 add task tP meeting p/5 c/cs2113
 list tasks
-done 1
-done 4
+done task 1
+done task 4
 list tasks
 add task tP meeting p/2 c/cs2113 invalid/argument
 delete task 10
