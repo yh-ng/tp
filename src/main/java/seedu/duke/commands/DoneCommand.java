@@ -13,9 +13,10 @@ public class DoneCommand extends Command {
 
     public static final String COMMAND_WORD = "done";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the task identified by the index number used in the task listing as done.\n"
-            + "     Parameters: INDEX\n"
-            + "     Example: " + COMMAND_WORD + " 1";
+            + ": Marks the task/module identified by the index number used in the listing as done.\n"
+            + "     Parameters: <type> INDEX\n"
+            + "     Accepted <type>: task, module\n"
+            + "     Example: " + COMMAND_WORD + " task 1";
 
     private final ListType doneType;
     private final int index;

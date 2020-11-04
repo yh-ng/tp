@@ -147,10 +147,16 @@ Output:
 ### Adding a module: `add module`
 Add modules to the module list.
 
-Format: `add module <module code> <compulsory arguments>`
+Format: `add module <module code> <optional/compulsory arguments>`
 
 🚩: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix (characters in full caps).
 🚩: Duplicate module code in the same semester will not be allowed. 
+
+List of <optional arguments>:
+- `d/<1 or 0>` sets whether a module is completed or not (1 for completed, 0 for incomplete).
+
+🚩: Modules will be set to complete by default if `d/<1 or 0>` is not provided.
+🚩: This feature lets users add incomplete modules and compute a projected CAP when `list module` is entered (which includes modules already done).
 
 List of `<compulsory arguments>`:
 - `g/<grade>` grade of the module (`A+`, `A`, `A-`, etc).
@@ -165,11 +171,14 @@ Output:
 
 ```
     ____________________________________________________________
-     Got it. I've added this link:
-       [A+] CS2113 (4 MC) (AY2021S1)
-     Now you have 4 modules in the list.
+     Got it. I've added this module:
+       [CM][A+] CS2113 (4 MC) (AY2021S1)
+     Now you have 3 module(s) in the list.
     ____________________________________________________________
 ```
+
+🚩: `[CM]` indicates a completed module, and `[IC]` indicates an incomplete module.
+
 ### Adding a weblink: `add link`
 Add a link for lecture/tutorial sessions through zoom 
 
@@ -397,11 +406,14 @@ Output:
 ```
     ____________________________________________________________
      Here is a list of your modules:
-     [A+] CS2113 (4 MC) (AY2021S1)
-     [A-] CG2027 (2 MC) (AY2021S1)
+     1.[CM][A-] GER1000 (4 MC) (AY2021S1)
+     2.[CM][A+] GET1029 (4 MC) (AY2021S1)
+     3.[CM][A+] CS2113 (4 MC) (AY2021S1)
+     4.[IC][B] GES1041 (4 MC) (AY2021S2)
     ____________________________________________________________
-     Total CAP: 4.83
-     Total MCs completed: 6
+     Current CAP: 4.83
+     Projected CAP: 4.50
+     Total MCs completed: 12
     ____________________________________________________________
 ```
 ### Displaying expense items on list: `list` (coming soon)
@@ -566,9 +578,9 @@ Output:
 ### Marking a task as done: `done`
 Marks a given task as done.
 
-Format: `done <taskIndexNumber>`
+Format: `done task <taskIndexNumber>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<taskIndexNumber>` corresponds to the index given on `list task` command output.
 
 Example of usage:
 
@@ -582,6 +594,27 @@ Output:
        [Y] tP meeting
     ____________________________________________________________
 ```
+
+### Setting a module as complete: `done`
+Sets a module as complete.
+
+Format: `done module <moduleIndexNumber>`
+
+🚩: `<moduleIndexNumber>` corresponds to the index given on `list module` command output.
+
+Example of usage:
+
+`done module 1`
+
+Output:
+
+```
+    ____________________________________________________________
+     Nice! I've marked this module as complete:
+       [CM][A-] GER1000 (4 MC) (AY2021S1)
+    ____________________________________________________________
+```
+
 ### Marking a book as returned: `return`
 Marks a given task as done.
 
