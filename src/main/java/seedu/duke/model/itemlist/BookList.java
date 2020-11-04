@@ -1,10 +1,13 @@
 package seedu.duke.model.itemlist;
 
+import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.item.Book;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+
+// @@author MuhammadHoze
 
 /**
  * Represents a list of books.
@@ -36,17 +39,21 @@ public class BookList extends ItemList<Book> {
      *
      * @param book Book to be added to the book list.
      */
-    public void addBook(Book book) {
+    public void addBook(Book book) throws DukeException {
+        checkBookAlreadyExists(book);
         items.add(book);
-        Ui.dukePrint(Messages.MESSAGE_ADDBOOK + book.toString(false));
+        Ui.dukePrint(Messages.MESSAGE_ADD_BOOK + book.toString(false));
     }
 
     @Override
     public void addTodo(String description) {
-        Book newBook = new Book(description);
-        items.add(newBook);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newBook.toString() + Messages.MESSAGE_STATUS_FIRST
-                + items.size() + Messages.MESSAGE_STATUS_LAST);
+    }
+
+    /**
+     * Clears all the books in the list.
+     */
+    public void clearBook() {
+        items = new ArrayList<>();
     }
 
 
@@ -69,6 +76,15 @@ public class BookList extends ItemList<Book> {
             message += "\n     " + (i + 1) + "." + items.get(i).toString(true);
         }
         Ui.dukePrint(Messages.MESSAGE_BOOK_LIST + message);
+    }
+
+    private void checkBookAlreadyExists(Book book) throws DukeException {
+        int count = (int) items.stream()
+                .filter(existingBook -> existingBook.getDescription().equals(book.getDescription()))
+                .count();
+        if (count != 0) {
+            throw new DukeException("~Error~ Book already exists!");
+        }
     }
 }
 

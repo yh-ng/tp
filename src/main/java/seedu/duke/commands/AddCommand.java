@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import org.apache.commons.validator.routines.UrlValidator;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.Model;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 // @@author iamchenjiajun
+
 /**
  * Represents a command that adds a task to the task list.
  */
@@ -79,7 +81,16 @@ public class AddCommand extends Command {
         }
         String module = argumentsMap.get("m");
         String type = argumentsMap.get("t");
+        if (!type.toLowerCase().equals("lecture") & !type.toLowerCase().equals("tutorial")
+                & !type.toLowerCase().equals("lab") & !type.toLowerCase().equals("project")) {
+            throw new DukeException(Messages.EXCEPTION_LINK_TYPE);
+        }
         String url = argumentsMap.get("u");
+        String[] schemes = {"http", "https"};
+        UrlValidator urlValidator = new UrlValidator(schemes);
+        if (!urlValidator.isValid(url)) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_URL);
+        }
         Link newLink = new Link(module, type, url);
         links.addLink(newLink);
     }
@@ -104,7 +115,7 @@ public class AddCommand extends Command {
     /**
      * Sets the properties of a given Task.
      *
-     * @param task Task to set the properties of.
+     * @param task         Task to set the properties of.
      * @param argumentsMap HashMap containing arguments to set the Task properties.
      * @throws DukeException If arguments in HashMap are invalid.
      */

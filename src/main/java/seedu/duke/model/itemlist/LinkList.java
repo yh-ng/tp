@@ -1,3 +1,5 @@
+// @@author Cao-Zeyu
+
 package seedu.duke.model.itemlist;
 
 import seedu.duke.common.Messages;
@@ -36,6 +38,14 @@ public class LinkList extends ItemList<Link> {
      */
     public ArrayList<Link> getLinks() {
         return links;
+    }
+
+    /**
+     * Clears all the links in the list.
+     */
+    public void clearList() {
+        links = new ArrayList<>();
+
     }
 
     /**

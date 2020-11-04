@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+// @@author MuhammadHoze
+
 /**
  * Represents a task in the task list.
  */
@@ -89,8 +91,8 @@ public class Book extends Item {
             returnString = this.description + "\n";
         }
         if (date != null) {
-            returnString += "\t\t (Loan Date: " + getDateString(Task.DATETIME_PRINT_FORMAT) + ")\n";
-            returnString += "\t\t (Due Date: " + getFutureDateString(Task.DATETIME_PRINT_FORMAT) + ")";
+            returnString += "\t   (Loan Date: " + getDateString(Task.DATETIME_PRINT_FORMAT) + ")\n";
+            returnString += "\t   (Due Date: " + getFutureDateString(Task.DATETIME_PRINT_FORMAT) + ")";
         }
         return returnString;
     }

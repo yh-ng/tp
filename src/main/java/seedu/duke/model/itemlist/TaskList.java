@@ -85,7 +85,7 @@ public class TaskList extends ItemList<Task> {
     public void addTodo(String description) {
         Task newTask = new Task(description);
         items.add(newTask);
-        Ui.dukePrint(Messages.MESSAGE_ADDTASK + newTask.toString() + Messages.MESSAGE_STATUS_FIRST
+        Ui.dukePrint(Messages.MESSAGE_ADD_TASK + newTask.toString() + Messages.MESSAGE_STATUS_FIRST
                 + items.size() + Messages.MESSAGE_STATUS_LAST);
     }
 }

@@ -160,7 +160,7 @@ public class CommandCreator {
             case "module":
                 return new DeleteCommand(Integer.parseInt(value), ListType.MODULE_LIST);
             default:
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+                throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
 
             }
         } catch (NumberFormatException e) {
@@ -214,6 +214,8 @@ public class CommandCreator {
             return new FindCommand(commandString.toLowerCase().trim());
         }
     }
+
+    // @@author MuhammadHoze
 
     public static Command createBorrowCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
