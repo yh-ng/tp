@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 public class Module extends Item {
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("(^[A-Z]{2,3}[\\d]{4}[A-Z]?$)");
     public static final Pattern MODULE_SEM_PATTERN = Pattern.compile("(^[\\d]{4}S[12]$)");
+    public static final String MODULE_COMPLETED_STRING = "[CM]";
+    public static final String MODULE_INCOMPLETE_STRING = "[IC]";
 
     private final String grade;
     private final double gradePoint;
@@ -21,13 +23,14 @@ public class Module extends Item {
      *
      * @param moduleCode the description of the task
      */
-    public Module(String moduleCode, String grade, int mc, String semester) throws DukeException {
+    public Module(String moduleCode, String grade, int mc, String semester, boolean isDone) throws DukeException {
         super(moduleCode);
 
         this.grade = grade;
         this.mc = mc;
         this.semester = semester;
         gradePoint = getCapFromGrade(grade);
+        this.isDone = isDone;
 
         Matcher matcher = MODULE_CODE_PATTERN.matcher(moduleCode);
         if (!matcher.find()) {
@@ -43,7 +46,8 @@ public class Module extends Item {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s (%d MC) (AY%s)", getGrade(), getDescription(), getMc(), getSemester());
+        return String.format("%s[%s] %s (%d MC) (AY%s)", getCompletionString(), getGrade(), getDescription(), getMc(),
+                getSemester());
     }
 
     /**
@@ -80,7 +84,8 @@ public class Module extends Item {
      */
     @Override
     public String toFile() {
-        return getDescription() + " | " + getGrade() + " | " + getMc() + " | " + getSemester();
+        String isDoneString = (isDone) ? "1" : "0";
+        return getDescription() + " | " + getGrade() + " | " + getMc() + " | " + getSemester() + " | " + isDoneString;
     }
 
     public int getMc() {
@@ -97,6 +102,10 @@ public class Module extends Item {
 
     public String getSemester() {
         return semester;
+    }
+
+    public String getCompletionString() {
+        return (isDone) ? MODULE_COMPLETED_STRING : MODULE_INCOMPLETE_STRING;
     }
 
     private double getCapFromGrade(String grade) throws DukeException {
