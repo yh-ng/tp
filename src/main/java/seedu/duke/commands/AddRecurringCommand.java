@@ -75,6 +75,9 @@ public class AddRecurringCommand extends AddCommand {
             newTasks.add(newTask);
             nearestDay = nearestDay.plusDays(Calendar.DAY_OF_WEEK);
         }
+        if (newTasks.size() == 0) {
+            throw new DukeException("There is no " + dayOfWeek + " between " + startDate + " and " + endDate + "!");
+        }
         tasks.addTasksFromList(newTasks);
     }
 }
