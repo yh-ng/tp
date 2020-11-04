@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
+import seedu.duke.common.Messages;
 import seedu.duke.model.Model;
 import seedu.duke.model.ListType;
 import seedu.duke.model.itemlist.ModuleList;
@@ -37,6 +38,8 @@ public class DoneCommand extends Command {
         case MODULE_LIST:
             modules.markItemAsDone(index);
             break;
+        default:
+            throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
     }
 }

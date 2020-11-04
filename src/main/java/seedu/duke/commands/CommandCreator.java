@@ -202,7 +202,7 @@ public class CommandCreator {
             String[] arguments = commandString.split(" ", 2);
             String type = arguments[0];
             int index = Integer.parseInt(arguments[1]);
-            switch(type) {
+            switch (type) {
             case "task":
                 return new DoneCommand(index, ListType.TASK_LIST);
             case "module":
