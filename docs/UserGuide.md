@@ -110,7 +110,7 @@ Output:
 ```
 
 ### Adding recurring tasks: `addr`
-Adds multiple tasks to the list of todo tasks that occur weekly.
+Adds multiple tasks to the list of tasks that occur weekly on a given day.
 
 Format: `addr <description> <optional/compulsory arguments>`
 

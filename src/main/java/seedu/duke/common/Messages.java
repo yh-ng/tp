@@ -87,6 +87,7 @@ public class Messages {
     public static final String EXCEPTION_INVALID_DAY = "The format of your day should be the first "
             + "3 characters of the day!\n"
             + "     Example: mon, tue, wed, thu, fri, sat, sun";
+    public static final String EXCEPTION_INVALID_DATE_RANGE = "Your ending date is before your starting date!";
     public static final String EXCEPTION_EMPTY_PRIORITY = "The priority cannot be empty.";
     public static final String EXCEPTION_EMPTY_CATEGORY = "The category cannot be empty.";
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
