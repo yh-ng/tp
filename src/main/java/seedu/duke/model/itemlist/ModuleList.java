@@ -62,7 +62,7 @@ public class ModuleList extends ItemList<Module> {
             return;
         }
         Ui.showLine();
-        Ui.dukePrintMultiple("Here is a list of your modules:");
+        Ui.dukePrintMultiple("Here is a list of your module(s):\n");
         int count = 1;
         for (Module module: items) {
             Ui.dukePrintMultiple(count + "." + module.toString());

@@ -101,13 +101,17 @@ List of `<optional arguments>`:
 
 🚩: By default, there is no category and date, and the priority is set to 0.
 
+🚩: Optional arguments can be typed in any order.
+
 Example of usage: 
 
 `add task tP meeting`
 
-`add task tP meeting c/cs2113`
+`add task tP meeting c/cs2113 p/1`
 
-`add task tP meeting c/cs2113 p/1 date/13-05-2020`
+`add task tP meeting p/1 c/cs2113 date/13-05-2020`
+
+`add task tP meeting date/13-05-2020 p/1 c/cs2113`
 
 Output:
 
@@ -133,11 +137,19 @@ List of `<compulsory arguments>`:
 - `e/<dd-MM-yyyy>` end date of recurring tasks (inclusive).
 - `day/<mon/tue/wed/thu/fri/sat/sun>` day of recurring task.
 
+🚩: Optional and compulsory arguments can be typed in any order.
+
+🚩: Category is **case-sensitive**.
+
+🚩: day is **case-insensitive**.
+
 Example of usage:
 
 `addr tp meeting s/26-10-2020 e/27-11-2020 day/fri`
 
-`addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
+`addr board games club s/26-10-2020 e/27-11-2020 day/wed c/CCA`
+
+`addr board games club s/26-10-2020 day/wed e/27-11-2020 p/1 c/CCA`
 
 Output:
 
@@ -151,7 +163,7 @@ Output:
      [T][N] board games club (p:1) (category: CCA) (date: 18 Nov 2020)
      [T][N] board games club (p:1) (category: CCA) (date: 25 Nov 2020)
      
-     Now you have 31 tasks in the list.
+     Now you have 5 tasks in the list.
     ____________________________________________________________
 ```
 ### Adding a module: `add module`
@@ -159,23 +171,37 @@ Add modules to the module list.
 
 Format: `add module <module code> <optional/compulsory arguments>`
 
-🚩: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix (characters in full caps).
+🚩: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix.
+
+🚩: All characters in `<module code>` must be in caps. 
+
 🚩: Duplicate module code in the same semester will not be allowed. 
 
-List of <optional arguments>:
+List of `<optional arguments>`:
 - `d/<1 or 0>` sets whether a module is completed or not (1 for completed, 0 for incomplete).
 
-🚩: Modules will be set to complete by default if `d/<1 or 0>` is not provided.
-🚩: This feature lets users add incomplete modules and compute a projected CAP when `list module` is entered (which includes modules already done).
+🚩: Modules will be **set to complete by default** if `d/<1 or 0>` is not provided.
+
+🚩: This feature lets users add incomplete modules and compute a projected CAP when `list modules` is entered (which includes modules already done).
+
+🚩: Optional and compulsory arguments can be typed in any order
 
 List of `<compulsory arguments>`:
-- `g/<grade>` grade of the module (`A+`, `A`, `A-`, etc).
+- `g/<grade>` grade of the module **in caps** (`A+`, `A`, `A-`, etc).
 - `ay/<XXXXSY>` academic year of the module where `X` is an integer and `Y` is `1` or `2` (`2021S1`, `2021S2`, etc...).
 - `mc/<MCs>` modular credits of the module. Valid for a range of 0 to 40 MCs.
+
+🚩: All characters in Semester code must be in caps. 
+
+🚩: Grades must be in caps.
 
 Example of usage:
 
 `add module CS2113 g/A+ mc/4 ay/2021S1`
+
+`add module CS2117 mc/4 g/B+ d/0 ay/2021S2`
+
+`add module CS2119 g/C+ d/1 mc/4 ay/2021S2`
 
 Output:
 
@@ -199,6 +225,8 @@ List of `<compulsory arguments>`:
 - `u/<URL>`  the link.  
 
 🚩: URL has to begin with either http:// or https:// 
+
+🚩: All characters in `<module code>` must be in caps. (haven't implement yet)
 
 Example of usage:
 
@@ -224,6 +252,7 @@ List of `<compulsory argument>`:
 - `date/<DD-MM-YYYY>` date of borrow (`23/11/2020`).
 
 🚩: The due date will be fixed to **1 month** from the date of loan. 
+
 🚩: Duplicate book name will not be allowed. 
 
 Example of usage:
@@ -308,7 +337,7 @@ Output:
 
 ```
     ____________________________________________________________
-     Here are the tasks in your list:
+     Here are the task(s) in your list:
 
      1.[T][N] tP meeting (p:1) (category: cs2113)
      2.[T][N] iP meeting (p:2) (category: cs2113)
@@ -320,9 +349,11 @@ Output:
 ```
 
 ### Displaying tasks based on priority: `list`
-Lists all the tasks with the given priority.
+Lists all the tasks with the same priority.
 
 Format: `list tasks p/<priority>`
+
+🚩: `<priority>` must be **non-negative**.
 
 Example of usage:
 
@@ -332,7 +363,7 @@ Output:
 
 ```
     ____________________________________________________________
-     Here are the tasks of this priority in your list:
+     Here are the task(s) of this priority in your list:
 
      1.[T][N] iP meeting (p:2) (category: cs2113)
      2.[T][N] assignment submission (p:2) (category: cg2028)
@@ -340,9 +371,11 @@ Output:
 ```
 
 ### Displaying tasks based on category: `list`
-Lists all the tasks with the given category.
+Lists all the tasks with the same category.
 
 Format: `list tasks c/<category>`
+
+🚩: category is **case-sensitive**.
 
 Example of usage:
 
@@ -372,6 +405,7 @@ Output:
 ```
     ____________________________________________________________
      Here are the links in your list:
+
      1.CS2113 lecture
        https://cs2113Lecture.zoom.com
      2.cs2028 lecture
@@ -415,7 +449,7 @@ Output:
 
 ```
     ____________________________________________________________
-     Here is a list of your modules:
+     Here is a list of your module(s):
      
      1.[CM][A-] GER1000 (4 MC) (AY2021S1)
      2.[CM][A+] GET1029 (4 MC) (AY2021S1)
@@ -440,7 +474,7 @@ Output:
 
 ```
     ____________________________________________________________
-     Here is a list of your expenses:
+     Here is a list of your expense(s):
      
      lunch (5 SGD) (date: 28 Oct 2020)
      dinner (10 USD)
@@ -457,7 +491,7 @@ Deletes a task from the list
 
 Format: `delete task <taskIndexNumber>`
 
-🚩: `<taskIndexNumber>` corresponds to the index given on `list` command output.
+🚩: `<taskIndexNumber>` corresponds to the index given on `list tasks` command output.
 
 Example of usage:
 
@@ -469,7 +503,7 @@ Output:
     ____________________________________________________________
      Noted. I've removed this task:
        [T][N] iP meeting (p:2)
-     Now you have 5 tasks in the list.
+     Now you have 5 task(s) in the list.
     ____________________________________________________________
 
 ```
@@ -477,6 +511,8 @@ Output:
 Delete tasks of the same priority
 
 Format: `delete tasks p/<priority>`
+
+🚩: `<priority>` must be **non-negative**.
 
 Example of usage:
 
@@ -491,7 +527,7 @@ Output:
      [T][N] tP meeting (p:2)
      [T][N] iP meeting (p:2)
      
-     Now you have 3 tasks in the list.
+     Now you have 3 task(s) in the list.
     ____________________________________________________________
 
 ```
@@ -515,7 +551,7 @@ Output:
      [T][Y] tP meeting (p:0) (category: cs2113)
      [T][N] iP meeting (p:2) (category: cs2113)
      
-     Now you have 3 tasks in the list.
+     Now you have 3 task(s) in the list.
     ____________________________________________________________
 
 ```
@@ -537,7 +573,7 @@ Output:
      Noted. I've removed this link:
        CS2113 lecture
        https://cs2113Lecture.zoom.com
-     Now you have 0 link(s) in the list.
+     Now you have 2 link(s) in the list.
     ____________________________________________________________
 
 ```
@@ -651,6 +687,8 @@ Format: `set <taskIndexNumber> p/<priority>`
 
 🚩: `<taskIndexNumber>` corresponds to the index given on `list tasks` command output.
 
+🚩: `<priority>` must be **non-negative**.
+
 Example of usage:
 
 `set 1 p/3`
@@ -671,6 +709,7 @@ Sets the category of an existing task.
 Format: `category <taskIndexNumber> c/<category>`
 
 🚩: `<taskIndexNumber>` corresponds to the index given on `list tasks` command output.
+
 🚩: `<category>` is **case-sensitive**
 
 Example of usage:
@@ -709,6 +748,8 @@ Output:
 Prints a calendar with tasks from current date to given number of days.
 
 Format: `calendar d/<daysToPrint>`
+
+🚩: `<daysToPrint>` must be **non-negative** 
 
 Example of usage:
 
@@ -755,7 +796,7 @@ Output:
     ____________________________________________________________
 ```
 ### Clearing all tasks: `clear`
-Clears all tasks from the list 
+Clears all tasks,lists,books,modules from the list 
 
 Format: `clear all`
 
@@ -883,7 +924,7 @@ putting it in the same folder as `termiNus.jar`.
 
 **Q**: Are all commands case-sensitive?
 
-**A**: 
+**A**: The case-sensitivity has been stated for the applicable commands. 
 
  
 
@@ -893,17 +934,17 @@ Action | Command | Example
 ----- | ------ | ------
 Add task | `add task <description> <optional arguments>` | `add task tP meeting c/cs2113`
 Add recurring task | `addr <description> <optional/compulsory arguments>` | `addr board games club s/26-10-2020 e/27-11-2020 day/wed p/1 c/CCA`
-Add module | `add module <module code> <compulsory arguments>` | `add module CS2113 g/A+ mc/4 ay/2021S1`
+Add module | `add module <module code> <optional/compulsory arguments>` | `add module CS2113 g/A+ mc/4 ay/2021S1`
 Add web link | `add link m/<module code> <compulsory arguments>` | `add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
 Add book | `borrow <book name> <compulsory argument>` | `borrow cooking book date/11-11-2011`
 Add expense item | `spend <description> <compulsory arguments> <optional arguements>` | `spend lunch v/5 currency/SGD date/29-10-2020`
 Create module folders | `makefolders` | `makefolders`
 List tasks | `list` | `list tasks`
 List tasks with priority | `list p/<priority>` | `list p/2`
-List tasks with category | `list c/<category>` | `list c/2113`
+List tasks with category | `list c/<category>` | `list c/CS2113`
 List links | `list` | `list links`
 List books | `list` | `list books`
-List modules | `list` | `list module`
+List modules | `list` | `list modules`
 List expense items | `list` | `list expenses`
 Delete task | `delete task <taskIndexNumber>` | `delete task 2`
 Delete tasks by priority | `delete p/<priority>` | `delete tasks p/2`
@@ -911,7 +952,8 @@ Delete tasks by category  | `delete c/<category>` | `delete tasks c/cs2113`
 Delete link | `delete link <taskIndexNumber>` | `delete link 2`
 Delete module | `delete module <moduleIndexNumber>` | `delete module 2`
 Delete expense items | `delete expense <expenseIndexNumber>` | `delete expense 2`
-Mark task as done | `done <taskIndexNumber>` | `done 1`
+Mark task as done | `done task <taskIndexNumber>` | `done task 1`
+Mark module as complete | `done module <moduleIndexNumber>` | `done module 1`
 Mark book as returned | `return <taskIndexNumber>` | `return 2`
 Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
 Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c/CCA`
