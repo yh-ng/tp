@@ -1,5 +1,5 @@
 # <div align="center"> termiNus User Guide</div>
-
+{:.no_toc}
 
 * Table of contents
 {:toc}
