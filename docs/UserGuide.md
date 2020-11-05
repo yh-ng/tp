@@ -1,7 +1,7 @@
 # <div align="center"> termiNus User Guide</div>
 
 
-## Table of Contents
+* Table of contents
 {:toc}
 
 ## Introduction
