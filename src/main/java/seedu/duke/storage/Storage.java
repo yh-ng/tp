@@ -308,7 +308,7 @@ public class Storage {
         String paddedLine = line + " ";
         String[] arguments = paddedLine.split("\\|");
 
-        if (arguments.length != 4) {
+        if (arguments.length != 5) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
 
@@ -317,8 +317,9 @@ public class Storage {
             String grade = arguments[1].trim();
             int mc = Integer.parseInt(arguments[2].trim());
             String semester = arguments[3].trim();
+            boolean isDone = Utils.stringToBoolean(arguments[4].trim());
 
-            return new Module(description, grade, mc, semester);
+            return new Module(description, grade, mc, semester, isDone);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }

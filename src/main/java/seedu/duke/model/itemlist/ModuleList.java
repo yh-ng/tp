@@ -62,18 +62,20 @@ public class ModuleList extends ItemList<Module> {
             return;
         }
         Ui.showLine();
-        Ui.dukePrintMultiple("Here is a list of your modules:");
+        Ui.dukePrintMultiple("Here is a list of your module(s):\n");
         int count = 1;
         for (Module module: items) {
             Ui.dukePrintMultiple(count + "." + module.toString());
             count++;
         }
 
-        double actualCap = computeCapFromModules(items);
+        double actualCap = computeCapFromModules(items, true);
+        double projectedCap = computeCapFromModules(items, false);
         int totalMcs = computeTotalMcs(items);
 
         Ui.showLine();
-        Ui.dukePrintMultiple(String.format("Total CAP: %.2f", actualCap));
+        Ui.dukePrintMultiple(String.format("Current CAP: %.2f", actualCap));
+        Ui.dukePrintMultiple(String.format("Projected CAP: %.2f", projectedCap));
         Ui.dukePrintMultiple(String.format("Total MCs completed: %d", totalMcs));
         Ui.showLine();
     }
@@ -92,10 +94,11 @@ public class ModuleList extends ItemList<Module> {
      * @param modules A list of modules.
      * @return A list of graded modules.
      */
-    private ArrayList<Module> getGradedModules(ArrayList<Module> modules) {
+    private ArrayList<Module> getGradedModules(ArrayList<Module> modules, boolean isComplete) {
         return modules.stream()
                 .filter(task -> !task.getGrade().equals("S"))
                 .filter(task -> !task.getGrade().equals("U"))
+                .filter(task -> !isComplete || task.getIsDone())
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -105,8 +108,8 @@ public class ModuleList extends ItemList<Module> {
      * @param modules List of modules to compute the CAP from.
      * @return The computed CAP from the list of modules.
      */
-    private double computeCapFromModules(ArrayList<Module> modules) {
-        ArrayList<Module> gradedModules = getGradedModules(modules);
+    private double computeCapFromModules(ArrayList<Module> modules, boolean isComplete) {
+        ArrayList<Module> gradedModules = getGradedModules(modules, isComplete);
         double totalGrades = 0.0;
         int totalMcs = 0;
 
@@ -130,6 +133,7 @@ public class ModuleList extends ItemList<Module> {
      */
     private int computeTotalMcs(ArrayList<Module> modules) {
         return modules.stream()
+                .filter(Module::getIsDone)
                 .mapToInt(Module::getMc)
                 .sum();
     }
@@ -177,6 +181,16 @@ public class ModuleList extends ItemList<Module> {
                 .count();
         if (count != 0) {
             throw new DukeException("~Error~ Module with same code and semester already exists!");
+        }
+    }
+
+    @Override
+    public void markItemAsDone(int index) {
+        if (index > items.size() || index < 1) {
+            Ui.dukePrint(Messages.WARNING_NO_MODULE);
+        } else {
+            items.get(index - 1).markAsDone();
+            Ui.dukePrint(Messages.MESSAGE_MODULE_COMPLETE + items.get(index - 1));
         }
     }
 }
