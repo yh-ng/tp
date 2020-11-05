@@ -7,12 +7,12 @@ We were assigned a task to develop a program which would benefit our target audi
 
 termiNus is using Java and Object-Oriented Programming (OOP). My role was to implement the entire loan system as well as certain subtasks such as ensuring deletion of items were done correctly, clearing of all data and finding tasks. The following sections will provide a detailed explanation on my enchancements as well as my contributions towards the User Guide and Developer Guide. 
 
-### Summary of Contributions
+## Summary of Contributions
 This section gives a summary of my contributions towards our project.
 
 **Code contributed** [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=muhammadhoze&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=MuhammadHoze&tabRepo=AY2021S1-CS2113-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other) 
 
-##### Enhancement implemented
+##### Enhancement implemented:
 1. Added the loan system 
     * *what it does*: Allow students to keep track of their loan items from the library which will reduce overdue cases.  
     [BorrowCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/BorrowCommand.java)
