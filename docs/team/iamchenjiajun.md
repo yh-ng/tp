@@ -2,8 +2,7 @@
 
 ## Overview
 
-termiNus is an interactive task manager for students in NUS. The program uses a Command Line Interface (CLI) and is
-written in Java.
+termiNus is an interactive task manager for students in NUS. The program uses a Command Line Interface (CLI) and is written in Java.
 
 ## Summary of Contributions
 
@@ -18,11 +17,13 @@ Here are my contributions to the project.
   - Using the optional argument feature of the Parser, allow users to optionally label tasks with dates, priorities and categories.
     - Added setting of task priorities and dates after a task has been added.
   - Print a calendar in chronological order for the next X days, with a divider for each day.
-  - Add recurring weekly tasks to the task list with a simple command specifying a start and end date range.
+  - Add recurring weekly tasks to the task list with a simple command by specifying a start and end date range.
 
 - Added the Module List
-  - Add modules to a module list and compute the current CAP.
+  - Add modules to a module list with optional arguments.
   - Allow adding incomplete modules using optional arguments to compute the projected CAP.
+  - Print a list of modules with current CAP and projected CAP.
+  - Add functionality to automatically create folders for all the user's modules in the module list.
 
 - Code contributed: ~2.5k SLOC
   - [RepoSense Report](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=iamchenjiajun&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=iamchenjiajun&tabRepo=AY2021S1-CS2113-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
@@ -30,7 +31,7 @@ Here are my contributions to the project.
 - Code enhancements:
   - Apply SLAP and DRY principles to refactor duplicated code in the code base, moving code to new functions where necessary, thus reducing SLOC.
   - Applied software design patterns like facade to refactor and repackage code into new classes and make the code more OOP.
-  - Used functional programming to write declarative code where applicable.
+  - Used functional programming and wrote declarative code where applicable.
 
 - Project management:
   - Managed issue tracker on GitHub, adding issues where necessary.
