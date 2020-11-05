@@ -106,8 +106,7 @@ This command allow students to delete several tasks with the same priority and c
 
      *Example*
      The student wants to delete all tasks with highest priority (1) and all tasks under the category CS2113. The student can enter this commands:
-     **delete tasks p/1**,  
-     **delete tasks c/CS2113**
+     **delete tasks p/1**,   **delete tasks c/CS2113**
      
          Format: 
             delete tasks <p/priorityNumber>
