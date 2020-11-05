@@ -16,7 +16,7 @@ This section gives a summary of my contributions towards our project.
 1. Added the loan system 
     * *what it does*: Allow students to keep track of their loan items from the library which will reduce overdue cases.  
     [BorrowCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/BorrowCommand.java)
-    [ReturnCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/ReturnCommand.java)
+    , [ReturnCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/ReturnCommand.java)
 
 2. Deletion of tasks based on priority and category
     * *what it does*: Initially students could only delete their task one at a time. Now they are able to delete all **tasks** with the same priority and category in just one command. 
@@ -106,7 +106,7 @@ This command allow students to delete several tasks with the same priority and c
 
      *Example*
      The student wants to delete all tasks with highest priority (1) and all tasks under the category CS2113. The student can enter this commands:
-     **delete tasks p/1**
+     **delete tasks p/1**,  
      **delete tasks c/CS2113**
      
          Format: 
@@ -124,7 +124,7 @@ This command allow students to narrow down their search for a specific task. The
 
         Format: 
             find <keyword>
-             <keywordr> refers to the word to be matched with the tasks description.
+             <keyword> refers to the word to be matched with the tasks description.
 8. Clearing all data from system: `clear` 
 This command allow students to wipe off all their data.
 
