@@ -26,7 +26,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
     ____________________________________________________________
      How can termiNus assist you today?
 
- 	   Unsure what to type? Start of by typing <help> to see the commands and their usage.
+ 	 Unsure what to type? Start of by typing <help> to see the commands and their usage.
     ____________________________________________________________
    ```
 1. Type some word and press enter to let the execution proceed to the end.
