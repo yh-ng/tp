@@ -10,7 +10,7 @@ termiNus is using Java and Object-Oriented Programming (OOP). My role was to imp
 ### Summary of Contributions
 This section gives a summary of my contributions towards our project.
 
-**Code contributed** [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=muhammadhoze&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) 
+**Code contributed** [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=muhammadhoze&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=MuhammadHoze&tabRepo=AY2021S1-CS2113-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other) 
 
 ##### Enhancement implemented
 1. Added the loan system 
