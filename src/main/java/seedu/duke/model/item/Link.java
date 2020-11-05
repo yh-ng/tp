@@ -2,7 +2,13 @@
 
 package seedu.duke.model.item;
 
+import seedu.duke.DukeException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Link extends Item {
+    public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("(^[A-Z]{2,3}[\\d]{4}[A-Z]?$)");
     protected String module;
     protected String type;
     protected String url;
@@ -14,11 +20,16 @@ public class Link extends Item {
      * @param type the type of the zoom link.
      * @param url the Zoom link.
      */
-    public Link(String module, String type, String url) {
+    public Link(String module, String type, String url) throws DukeException {
         super(url);//this is weird
         this.module = module;
         this.type = type;
         this.url = url;
+        Matcher matcher = MODULE_CODE_PATTERN.matcher(module);
+
+        if (!matcher.find()) {
+            throw new DukeException("~Error~ Format of the module name is incorrect.");
+        }
     }
 
     public String getModule() {

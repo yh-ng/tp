@@ -115,7 +115,7 @@ public class Messages {
             + "you can input in this format: YYYY-MM-DD HH:mm";
     public static final String EXCEPTION_FIND = "~Error~ The keyword of a find command cannot be empty.\n "
             + "\t The format is: find <keyword>";
-    public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct type of lesson:\n "
+    public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct link type:\n "
             + "\t t/lecture\n"
             + "\t t/tutorial\n"
             + "\t t/lab\n"
