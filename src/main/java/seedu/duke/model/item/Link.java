@@ -21,7 +21,7 @@ public class Link extends Item {
      * @param url the Zoom link.
      */
     public Link(String module, String type, String url) throws DukeException {
-        super(url);//this is weird
+        super(url);
         this.module = module;
         this.type = type;
         this.url = url;
