@@ -1,6 +1,6 @@
 package seedu.duke.commands;
 
-import seedu.duke.task.TaskList;
+import seedu.duke.model.Model;
 import seedu.duke.ui.Ui;
 
 /**
@@ -19,7 +19,7 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks) {
+    public void execute(Model model) {
         Ui.exit();
     }
 }

@@ -2,10 +2,13 @@ package seedu.duke.ui;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.model.item.Task;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -39,11 +42,78 @@ public class Ui {
     }
 
     /**
+     * Prints a calendar from a given task list.
+     *
+     * @param currentDate Date of the current day.
+     * @param taskList ArrayList of Task to print the tasks from.
+     * @param daysToPrint Number of days of tasks being printed.
+     */
+    public static void dukePrintCalendar(LocalDate currentDate, ArrayList<Task> taskList, int daysToPrint) {
+        assert daysToPrint >= 0 : "Days should be a positive integer";
+        showLine();
+        dukePrintCalendarHeading(currentDate, taskList, daysToPrint);
+        dukePrintCalendarTasks(taskList);
+        showLine();
+    }
+
+    /**
+     * Prints the heading of the calendar.
+     *
+     * @param date Date to be printed in the heading.
+     * @param taskList ArrayList of Task to print the tasks from.
+     * @param daysToPrint Number of days of tasks being printed.
+     */
+    private static void dukePrintCalendarHeading(LocalDate date, ArrayList<Task> taskList, int daysToPrint) {
+        if (taskList.size() <= 0) {
+            dukePrintMultiple("You have no tasks for the next " + daysToPrint + " day(s).");
+            return;
+        }
+        dukePrintMultiple("Today's date is: " + date.format(Task.DATETIME_PRINT_FORMAT));
+        dukePrintMultiple("Here's your tasks for the next " + daysToPrint + " day(s).");
+        showLine();
+    }
+
+    /**
+     * Prints the tasks in the calendar.
+     *
+     * @param taskList ArrayList of Task to print the tasks from.
+     */
+    private static void dukePrintCalendarTasks(ArrayList<Task> taskList) {
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.get(i);
+
+            if (i == 0) {
+                dukePrintDayHeading(task.getDate());
+                dukePrintMultiple(task.toString());
+                continue;
+            }
+
+            LocalDate previousTaskDate = taskList.get(i - 1).getDate();
+            if (task.getDate().compareTo(previousTaskDate) != 0) {
+                showLine();
+                dukePrintDayHeading(task.getDate());
+            }
+            dukePrintMultiple(task.toString());
+        }
+    }
+
+    /**
+     * Prints the heading in the calendar for a certain date.
+     *
+     * @param date Date of the heading.
+     */
+    private static void dukePrintDayHeading(LocalDate date) {
+        dukePrintMultiple(date.getDayOfWeek().toString() + " - " + date.format(Task.DATETIME_PRINT_FORMAT));
+    }
+
+    /**
      * Generates and prints the welcome message upon the start of the application.
      */
     public static void showWelcome() {
+        System.out.println("Hello from...");
         System.out.println(Messages.LOGO);
-        dukePrint("Hello! I'm Duke.\n     What can I do for you?");
+        dukePrint("How can termiNus assist you today?\n\n \t Unsure what to type? Start of by typing <help> to see the "
+                + "commands and their usage.");
     }
 
     /**

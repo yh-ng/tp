@@ -1,6 +1,6 @@
-# Duke project template
+# termiNus project template
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+termiNus is a really simple all-in-one CLI based program for NUS undergraduate students. Whatcha waiting for! Download and start cruising with termiNus
 
 ## Setting up in Intellij
 
@@ -15,16 +15,21 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
    > Task :classes
    
    > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   
-   What is your name?
+   Hello from...
+     _                           _  _   _
+    | |                         (_)| \ | |
+    | |_   ___  _ __  _ __ ___   _ |  \| | _   _  ___
+    | __| / _ \| '__|| '_ ` _ \ | || . ` || | | |/ __|
+    | |_ |  __/| |   | | | | | || || |\  || |_| |\__ \
+     \__| \___||_|   |_| |_| |_||_|\_| \_/ \__,_||___/
+
+    ____________________________________________________________
+     How can termiNus assist you today?
+
+ 	 Unsure what to type? Start of by typing <help> to see the commands and their usage.
+    ____________________________________________________________
    ```
-   Type some word and press enter to let the execution proceed to the end.
+1. Type some word and press enter to let the execution proceed to the end.
 
 ## Build automation using Gradle
 

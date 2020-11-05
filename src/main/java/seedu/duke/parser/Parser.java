@@ -2,27 +2,41 @@ package seedu.duke.parser;
 
 import seedu.duke.DukeException;
 import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.AddRecurringCommand;
+import seedu.duke.commands.BorrowCommand;
 import seedu.duke.commands.ByeCommand;
+import seedu.duke.commands.CalendarCommand;
 import seedu.duke.commands.CategoryCommand;
 import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandCreator;
+import seedu.duke.commands.DateCommand;
+import seedu.duke.commands.DeductCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DoneCommand;
 import seedu.duke.commands.FindCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.MakeFolderCommand;
+import seedu.duke.commands.ReturnCommand;
 import seedu.duke.commands.SetCommand;
 import seedu.duke.common.Messages;
 
+import java.time.DayOfWeek;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Parses use input.
+ * Parses user input.
  */
 public class Parser {
-    public static final String ARGUMENT_REGEX = "([a-z]+/[:a-z0-9-]+)";
+    public static final String ARGUMENT_REGEX = "([\\w]+/[^\\s]+)";
+    public static final Logger parserLogger = Logger.getLogger(Parser.class.getName());
+    public static final Pattern argumentPattern = Pattern.compile(ARGUMENT_REGEX);
 
     /**
      * Parses user input into command for execution.
@@ -32,113 +46,60 @@ public class Parser {
      * @throws DukeException if user input commands are not in the standard format
      */
     public static Command parse(String fullCommand) throws DukeException {
-        String[] words = fullCommand.split(" ", 2);
-        String commandString = fullCommand.replaceFirst(words[0], "").trim();
+        String rootCommand = fullCommand.split(" ")[0];
+        String commandString = fullCommand.replaceFirst(rootCommand, "").trim();
         String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
+        checkValidDescription(description);
 
-        switch (words[0].toLowerCase()) {
+        switch (rootCommand.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
-            if (description.equals("")) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-            }
-            return new AddCommand(description, argumentsMap);
-
-
+            return CommandCreator.createAddCommand(commandString, description, argumentsMap);
+        case AddRecurringCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, AddRecurringCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createAddRecurringCommand(description, argumentsMap);
+        case SetCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createSetCommand(fullCommand, argumentsMap);
+        case DateCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, DateCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createDateCommand(commandString, argumentsMap);
+        case CalendarCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, CalendarCommand.ALLOWED_ARGUMENTS);
+            return new CalendarCommand(argumentsMap);
         case CategoryCommand.COMMAND_WORD:
-            int index;
-            try {
-                index = Integer.parseInt(commandString.split(" ")[0]);
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-            }
-            if (!argumentsMap.containsKey("c")) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_CATEGORY);
-            }
-            if (argumentsMap.get("c").trim().equals("")) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
-            }
-            return new CategoryCommand(index, argumentsMap.get("c"));
-
-
+            return CommandCreator.createCategoryCommand(commandString, argumentsMap);
         case ListCommand.COMMAND_WORD:
-            if (words.length == 1) {
-                return new ListCommand();
-            }
-            int priority;
-            if (!commandString.contains("p/")) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
-            }
-            if (argumentsMap.get("p") == null) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
-            }
-            try {
-                priority = Integer.parseInt(argumentsMap.get("p"));
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-            }
-            return new ListCommand(priority);
-
-
+            String subRootCommand = commandString.split(" ")[0];
+            commandString = commandString.replaceFirst(subRootCommand, "").trim();
+            return CommandCreator.createListCommand(fullCommand, subRootCommand, commandString);
         case DeleteCommand.COMMAND_WORD:
-            try {
-                if (words[1].contains("p")) {
-                    return new DeleteCommand(words[1]);
-                } else {
-                    return new DeleteCommand(Integer.parseInt(words[1]));
-                }
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.WARNING_NO_TASK);
-            }
-  
-  
+            return CommandCreator.createDeleteCommand(commandString);
+        case BorrowCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, BorrowCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createBorrowCommand(description, argumentsMap);
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-
+            return new ClearCommand(commandString);
         case DoneCommand.COMMAND_WORD:
-            try {
-                return new DoneCommand(Integer.parseInt(words[1]));
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.WARNING_NO_TASK);
-            }
-
-
+            return CommandCreator.createDoneCommand(commandString);
+        case ReturnCommand.COMMAND_WORD:
+            return CommandCreator.createReturnCommand(commandString);
+        case DeductCommand.COMMAND_WORD:
+            return CommandCreator.createDeductCommand(description);
         case FindCommand.COMMAND_WORD:
-            try {
-                return new FindCommand(words[1].trim());
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Messages.EXCEPTION_FIND);
-            }
-
-
+            return CommandCreator.createFindCommand(commandString);
+        case MakeFolderCommand.COMMAND_WORD:
+            return new MakeFolderCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-
-        case SetCommand.COMMAND_WORD:
-            try {
-                return new SetCommand(Integer.parseInt(fullCommand.split(" ")[1]),
-                        Integer.parseInt(argumentsMap.get("p")));
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
-            }
-
-
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
-
-
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
         }
     }
 
+    // @@author iamchenjiajun
     /**
      * Parses the command and obtain arguments in the form (keyword)/(argument).
      *
@@ -149,17 +110,34 @@ public class Parser {
     public static HashMap<String, String> getArgumentsFromRegex(String argumentString, String argumentRegex)
             throws DukeException {
         HashMap<String, String> argumentsMap = new HashMap<>();
-        Pattern argumentPattern = Pattern.compile(argumentRegex);
+        StringBuilder log = new StringBuilder("Optional arguments: ");
         Matcher matcher = argumentPattern.matcher(argumentString);
 
-        while (matcher.find()) {
-            String[] currentArgument = matcher.group().trim().split("/");
-            if (argumentsMap.containsKey(currentArgument[0])) {
-                throw new DukeException(Messages.EXCEPTION_DUPLICATE_ARGUMENTS);
-            }
-            argumentsMap.put(currentArgument[0], currentArgument[1]);
+        if (!matcher.find()) {
+            return argumentsMap;
         }
 
+        int argumentStartIndex = matcher.start();
+        String optionalArgumentString = argumentString.substring(argumentStartIndex).trim();
+        String[] arguments = optionalArgumentString.trim().split(" ");
+
+        for (String argument: arguments) {
+            if (argument.isEmpty()) {
+                continue;
+            }
+            log.append(argument).append(" ");
+            if (!argumentPattern.matcher(argument).find()) {
+                throw new DukeException("'" + argument + "' is not a valid argument!");
+            }
+            String argumentKey = argument.split("/", 2)[0];
+            String argumentValue = argument.split("/", 2)[1];
+            if (argumentsMap.containsKey(argumentKey)) {
+                throw new DukeException(Messages.EXCEPTION_DUPLICATE_ARGUMENTS);
+            }
+            argumentsMap.put(argumentKey, argumentValue);
+        }
+
+        parserLogger.log(Level.FINER, log.toString());
         return argumentsMap;
     }
 
@@ -171,7 +149,6 @@ public class Parser {
      * @return String with matched patterns removed.
      */
     public static String removeArgumentsFromCommand(String argumentString, String argumentRegex) {
-        Pattern argumentPattern = Pattern.compile(argumentRegex);
         Matcher matcher = argumentPattern.matcher(argumentString);
         String description = argumentString.replaceAll(argumentRegex, "").trim();
 
@@ -180,6 +157,63 @@ public class Parser {
             description = argumentString.substring(0, argumentStartIndex).trim();
         }
 
+        parserLogger.log(Level.FINER, "Description: " + description);
         return description;
+    }
+
+    /**
+     * Checks if the user passed in an invalid optional argument for a given command.
+     *
+     * @param argumentsMap     HashMap containing optional arguments.
+     * @param allowedArguments HashSet containing allowed arguments.
+     * @throws DukeException If argumentsMap contains invalid arguments not in allowedArguments.
+     */
+    public static void checkAllowedArguments(HashMap<String, String> argumentsMap, HashSet<String> allowedArguments)
+            throws DukeException {
+        for (HashMap.Entry<String, String> entry : argumentsMap.entrySet()) {
+            if (!allowedArguments.contains(entry.getKey())) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+            }
+        }
+    }
+
+    /**
+     * Checks if the description contains illegal characters.
+     *
+     * @param description Description given by the user.
+     * @throws DukeException If the description contains illegal characters.
+     */
+    public static void checkValidDescription(String description) throws DukeException {
+        if (description.contains("/")) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+        }
+    }
+
+    /**
+     * Parses a day string and returns a DayOfWeek enum corresponding to the day of the week.
+     *
+     * @param day String of the day to parse.
+     * @return DayOfWeek enum representing the corresponding day of the week.
+     * @throws DukeException If the string is invalid.
+     */
+    public static DayOfWeek getDayFromString(String day) throws DukeException {
+        switch (day.toLowerCase()) {
+        case "mon":
+            return DayOfWeek.MONDAY;
+        case "tue":
+            return DayOfWeek.TUESDAY;
+        case "wed":
+            return DayOfWeek.WEDNESDAY;
+        case "thu":
+            return DayOfWeek.THURSDAY;
+        case "fri":
+            return DayOfWeek.FRIDAY;
+        case "sat":
+            return DayOfWeek.SATURDAY;
+        case "sun":
+            return DayOfWeek.SUNDAY;
+        default:
+            throw new DukeException(Messages.EXCEPTION_INVALID_DAY);
+        }
     }
 }

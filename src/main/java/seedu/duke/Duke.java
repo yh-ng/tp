@@ -1,30 +1,24 @@
 package seedu.duke;
 
 import seedu.duke.commands.Command;
-import seedu.duke.common.Messages;
+import seedu.duke.model.Model;
 import seedu.duke.parser.Parser;
-import seedu.duke.storage.Storage;
-import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Entry point of the Duke application.
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
+    private final Model model;
+    private static final Logger dukeLogger = Logger.getLogger(Duke.class.getName());
 
-    private Storage storage;
-    private TaskList tasks;
-
-    public Duke(String filePath) {
-        storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (DukeException e) {
-            Ui.showError(e);
-            tasks = new TaskList();
-            Ui.dukePrint(Messages.MESSAGE_NEW_FILE);
-        }
+    public Duke() {
+        model = new Model();
+        model.load();
     }
 
     /**
@@ -37,16 +31,17 @@ public class Duke {
             try {
                 String fullCommand = Ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks);
+                c.execute(model);
                 isExit = c.isExit();
-                storage.save(tasks);
+                model.save();
             } catch (DukeException e) {
                 Ui.showError(e);
             }
         }
     }
-  
+
     public static void main(String[] args) {
-        new Duke(Storage.DEFAULT_STORAGE_FILEPATH).run();
+        dukeLogger.log(Level.INFO, "Logging started");
+        new Duke().run();
     }
 }

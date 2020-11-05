@@ -1,45 +1,95 @@
     ____________________________________________________________
-     The file cannot be loaded. Maybe this is your first time using Duke?
+     The file cannot be loaded. Maybe this is your first time using termiNus?
     ____________________________________________________________
 
     ____________________________________________________________
      I have created a new tasks.txt file for you. :) Type some commands and see it.
     ____________________________________________________________
 
- _                           _  _   _
-| |                         (_)| \ | |
-| |_   ___  _ __  _ __ ___   _ |  \| | _   _  ___
-| __| / _ \| '__|| '_ ` _ \ | || . ` || | | |/ __|
-| |_ |  __/| |   | | | | | || || |\  || |_| |\__ \
- \__| \___||_|   |_| |_| |_||_|\_| \_/ \__,_||___/
-
     ____________________________________________________________
-     Hello! I'm Duke.
-     What can I do for you?
+     I have created a new books.txt file for you. :) Type some commands and see it.
     ____________________________________________________________
 
     ____________________________________________________________
-     add: Adds a todo task to the task list.
-     Parameters: TASK_NAME
-     Example: add example_task
+     I have created a new links.txt file for you. :) Type some commands and see it.
+    ____________________________________________________________
+
+    ____________________________________________________________
+     I have created a new modules.txt file for you :) Type some commands and see it.
+    ____________________________________________________________
+
+Hello from...
+     _                           _  _   _
+    | |                         (_)| \ | |
+    | |_   ___  _ __  _ __ ___   _ |  \| | _   _  ___
+    | __| / _ \| '__|| '_ ` _ \ | || . ` || | | |/ __|
+    | |_ |  __/| |   | | | | | || || |\  || |_| |\__ \
+     \__| \___||_|   |_| |_| |_||_|\_| \_/ \__,_||___/
+
+    ____________________________________________________________
+     How can termiNus assist you today?
+
+ 	 Unsure what to type? Start of by typing <help> to see the commands and their usage.
+    ____________________________________________________________
+
+    ____________________________________________________________
+     add: Adds a task to the task list.
+     Parameters: TASK_NAME <optional arguments>
+     List of <optional arguments>
+       - p/<number> sets the priority of the task.
+       - c/<category> sets the category of the task.
+       - date/<dd-MM-yyyy> sets the date of the task.
+     Example: add task example_task <optional arguments>
+
+     addr: Adds multiple tasks to the list of tasks that occur weekly on a given day.
+     Parameters: TASK_NAME <optional/compulsory arguments>
+     List of <optional arguments>:
+       - p/<number> sets the priority of the task.
+       - c/<category> sets the category of the task.
+       - date/<dd-MM-yyyy> sets the date of the task.
+     List of `<compulsory arguments>
+       - s/<dd-MM-yyyy> start date of recurring tasks (inclusive)
+       - e/<dd-MM-yyyy> end date of recurring tasks (inclusive).
+       - day/<mon/tue/wed/thu/fri/sat/sun> day of recurring task.
+     Example: addr example_task <optional/compulsory arguments>
+
+     borrow: Adds a book to the book list.
+     Example: borrow example_book  date/DD-MM-YYYY
 
      bye: Exits the program.
      Example: bye
 
+     calendar: Sets the date of a given task in the list.
+     Example: calendar d/<daysToPrint>
+
      category: Sets the category of a task identified by the task index number in the task list
      Parameters: INDEX c/CATEGORY
-     Example: category 1 Academics
+     Example: category 1 c/Academics
 
      clear: Clears all tasks in the task list.
      Example: clear
 
+     date: Sets the date of a given task in the list.
+     Example: date <taskIndex> date/DD-MM-YYYY
+
      delete: Deletes the task identified by the index number used in the task listing.
      Parameters: INDEX
-     Example: delete 1
-
-     done: Marks the task identified by the index number used in the task listing as done.
+     Example: delete task 1
+          Optional parameter 1: p/PRIORITY
+             Deletes all the tasks with PRIORITY.
+             Example: delete tasks p/1
+          Optional parameter 2: c/CATEGORY
+             Deletes all the tasks with CATEGORY.
+             Example: delete tasks c/cs2113.
+     Deletes the link identified by the index number used in the link listing.
      Parameters: INDEX
-     Example: done 1
+     Example: delete link 1
+
+
+     done: Marks the task/module identified by the index number used in the listing as done.
+     Parameters: <type> INDEX
+     Accepted <type>: task, module
+     Example: done task 1
 
      find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
      Parameters: KEYWORDS
@@ -48,30 +98,51 @@
      help: Shows program usage instructions.
      Example: help
 
-     list: Displays all tasks in the task list as a list with index numbers.
-     Example: list
+     list: Displays all items in the list with index numbers.
+     Example: list all
+     Displays all items in the list.
+          Optional parameter 1: tasks p/PRIORITY
+             Displays all the tasks with PRIORITY as a list.
+             Example: list tasks p/1
+          Optional parameter 2: tasks c/CATEGORY
+             Displays all the tasks with CATEGORY as a list.
+             Example: list tasks c/cs2113
+          Optional parameter 3: tasks sorted
+             Displays all the tasks sorted by priority
+
+     return: Marks the book identified by the index number used in the book list as returned.
+     Parameters: INDEX
+     Example: return 2
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
-     Example: set 1 2
+     Example: set 1 p/2
     ____________________________________________________________
 
     ____________________________________________________________
      Got it. I've added this task:
        [T][N] iP meeting (p:0)
-     Now you have 1 tasks in the list.
+     Now you have 1 task(s) in the list.
     ____________________________________________________________
 
     ____________________________________________________________
      Got it. I've added this task:
-       [T][N] tP meeting (p:0)
-     Now you have 2 tasks in the list.
+       [T][N] other meeting (p:3)
+     Now you have 2 task(s) in the list.
     ____________________________________________________________
 
     ____________________________________________________________
-     Here are the tasks in your list:
+     Got it. I've added this task:
+       [T][N] tP meeting (p:5) (category: cs2113)
+     Now you have 3 task(s) in the list.
+    ____________________________________________________________
+
+    ____________________________________________________________
+     Here are the task(s) in your list:
+
      1.[T][N] iP meeting (p:0)
-     2.[T][N] tP meeting (p:0)
+     2.[T][N] other meeting (p:3)
+     3.[T][N] tP meeting (p:5) (category: cs2113)
     ____________________________________________________________
 
     ____________________________________________________________
@@ -80,35 +151,36 @@
     ____________________________________________________________
 
     ____________________________________________________________
-     You do not have this task in the list.
+     This task index does not exist. Please try again.
     ____________________________________________________________
 
     ____________________________________________________________
-     Here are the tasks in your list:
+     Here are the task(s) in your list:
+
      1.[T][Y] iP meeting (p:0)
-     2.[T][N] tP meeting (p:0)
+     2.[T][N] other meeting (p:3)
+     3.[T][N] tP meeting (p:5) (category: cs2113)
     ____________________________________________________________
 
     ____________________________________________________________
-     Got it. I've added this task:
-       [T][N] tP meeting (p:1)
-     Now you have 3 tasks in the list.
+     ~Error~ You have invalid argument(s). Please refer to the User Guide.
     ____________________________________________________________
 
     ____________________________________________________________
-     You do not have this task in the list.
+     This task index does not exist. Please try again.
     ____________________________________________________________
 
     ____________________________________________________________
      Noted. I've removed this task:
-       [T][N] tP meeting (p:0)
-     Now you have 2 tasks in the list.
+       [T][N] other meeting (p:3)
+     Now you have 2 task(s) in the list.
     ____________________________________________________________
 
     ____________________________________________________________
-     Here are the tasks in your list:
+     Here are the task(s) in your list:
+
      1.[T][Y] iP meeting (p:0)
-     2.[T][N] tP meeting (p:1)
+     2.[T][N] tP meeting (p:5) (category: cs2113)
     ____________________________________________________________
 
     ____________________________________________________________
@@ -116,7 +188,7 @@
     ____________________________________________________________
 
     ____________________________________________________________
-     :( OOPS!!! I'm sorry, but I don't know what that means. Please enter valid commands :-(
+     I'm sorry, but I don't know what that means. Please enter valid commands :-(
     ____________________________________________________________
 
     ____________________________________________________________
