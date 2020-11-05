@@ -1,6 +1,6 @@
-# Duke project template
+# termiNus project template
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+termiNus is a really simple all-in-one CLI based program for NUS undergraduate students. Whatcha waiting for! Download and start cruising with termiNus
 
 ## Setting up in Intellij
 
@@ -26,7 +26,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
     ____________________________________________________________
      How can termiNus assist you today?
 
- 	   Unsure what to type? Start of by typing <help> to see the commands and their usage.
+ 	 Unsure what to type? Start of by typing <help> to see the commands and their usage.
     ____________________________________________________________
    ```
 1. Type some word and press enter to let the execution proceed to the end.
