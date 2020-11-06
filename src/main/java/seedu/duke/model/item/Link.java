@@ -26,7 +26,8 @@ public class Link extends Item {
         Matcher matcher = Module.MODULE_CODE_PATTERN.matcher(module);
 
         if (!matcher.find()) {
-            throw new DukeException("~Error~ Format of the module name is incorrect.");
+            throw new DukeException("~Error~ Format of the module name is incorrect.\n "
+                    + "\t Please refer to the User Guide");
         }
     }
 
