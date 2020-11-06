@@ -59,7 +59,7 @@ public class LinkList extends ItemList<Link> {
     public void addLink(Link link) throws DukeException {
         checkLinkAlreadyExists(link);
         links.add(link);
-        Ui.dukePrint(Messages.MESSAGE_ADD_LINK + link.toString() + Messages.MESSAGE_LINK_STATUS_FIRST
+        Ui.dukePrint(Messages.MESSAGE_ADD_LINK + link.toString() + Messages.MESSAGE_STATUS_FIRST
                 + links.size() + Messages.MESSAGE_LINK_STATUS_LAST);
     }
 
@@ -107,7 +107,7 @@ public class LinkList extends ItemList<Link> {
             Ui.dukePrint(Messages.WARNING_NO_LINK);
         } else {
             Link linkRemoved = links.get(index - 1);
-            Ui.dukePrint(Messages.MESSAGE_DELETE_LINK + linkRemoved.toString() + Messages.MESSAGE_LINK_STATUS_FIRST
+            Ui.dukePrint(Messages.MESSAGE_DELETE_LINK + linkRemoved.toString() + Messages.MESSAGE_STATUS_FIRST
                     + (links.size() - 1) + Messages.MESSAGE_LINK_STATUS_LAST);
             links.remove(index - 1);
         }
