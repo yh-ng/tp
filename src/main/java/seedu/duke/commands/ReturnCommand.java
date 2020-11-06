@@ -10,8 +10,6 @@ import seedu.duke.model.ListType;
 public class ReturnCommand extends Command {
 
     public static final String COMMAND_WORD = "return";
-    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
-            + ": Marks the book identified by the index number used in the book list as returned.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the book identified by the index number used in the book list as returned.\n"
             + "     Parameters: INDEX\n"

@@ -91,7 +91,7 @@ public class Parser {
         case MakeFolderCommand.COMMAND_WORD:
             return new MakeFolderCommand();
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand(commandString);
+            return new HelpCommand();
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
         default:

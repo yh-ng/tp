@@ -140,6 +140,4 @@ public class Messages {
             + "     \"list modules\"\n"
             + "     \"list books\"";
     public static final String EXCEPTION_INVALID_URL = "~Error~ Invalid url entered. Please refer to the User Guide.";
-    public static final String EXCEPTION_INVALID_HELP = "~Error~ That command is not supported by help."
-            + "Please input \"help + [valid command name]\". ";
 }
