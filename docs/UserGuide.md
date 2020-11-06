@@ -68,7 +68,9 @@ List of `<optional arguments>`:
 
 🚩: Optional arguments can be typed in **any** order.
 
+
 🚩: Duplicate entry of tasks are **allowed**. 
+
 
 Example of usage: 
 
@@ -106,7 +108,9 @@ List of `<compulsory arguments>`:
 
 🚩: Optional and compulsory arguments can be typed in **any** order.
 
+
 🚩: Duplicate entry of recurring tasks are **allowed**. 
+
 
 Example of usage:
 
@@ -140,7 +144,7 @@ Format: `add module <module code> <optional/compulsory arguments>`
 
 🚩: All characters in `<module code>` must be in **caps**. 
 
-🚩: Duplicate module code in the same semester will **not be allowed**. 
+🚩: Duplicate module code in the same semester will not be allowed. 
 
 List of `<optional arguments>`:
 - `d/<1 or 0>` sets whether a module is completed or not *(1 for completed, 0 for incomplete)*.
@@ -184,12 +188,14 @@ Add a link for lecture/tutorial sessions through zoom
 Format: `add link m/<module code> <compulsory arguments>`
 
 List of `<compulsory arguments>`:
-- `t/<TYPE>` type of use (`lecture`, `tutorial`, `lab`, `project`).
+- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`, `project`).
 - `u/<URL>`  the link.  
 
 🚩: URL has to begin with either **http:// or https://**. 
 
+
 🚩: All characters in `<module code>` must be in **caps**. 
+
 
 Example of usage:
 
@@ -216,7 +222,7 @@ List of `<compulsory argument>`:
 
 🚩: The due date will be fixed to **1 month** from the date of loan. 
 
-🚩: Duplicate book name will **not be allowed**. 
+🚩: Duplicate book name will not be allowed. 
 
 Example of usage:
 
