@@ -1,4 +1,4 @@
-# <div align="center"> termiNus User Guide</div>
+<h1 align="center">termiNus User Guide</h1>
 {:.no_toc}
 
 * Table of contents
