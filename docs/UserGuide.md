@@ -1,43 +1,8 @@
-# <div align="center"> termiNus User Guide</div>
+<h1 align="center">termiNus User Guide</h1>
+{:.no_toc}
 
-
-## Table of Contents
-* [Introduction](#introduction)   
-* [Quick Start](#quick-start) 
-* [Features](#features)
-    * [Adding a task](#adding-a-task-add): `add`
-    * [Adding recurring tasks](#adding-recurring-tasks-addr): `addr`
-    * [Adding a module](#adding-a-module-add-module): `add module`
-    * [Adding a WebLink](#adding-a-weblink-add-link): `add link`
-    * [Borrowing a book](#borrowing-a-book-borrow): `borrow`
-    * [Adding an expense item](#adding-an-expense-item-spend-coming-soon): `spend` (coming soon)
-    * [Creating module folders](#creating-module-folders-makefolders): `makefolders`
-    * [Displaying tasks on list](#displaying-tasks-on-list-list): `list`
-        * [Displaying tasks based on priority](#displaying-tasks-based-on-priority-list): `list`
-        * [Displaying tasks based on category](#displaying-tasks-based-on-category-list): `list`
-    * [Displaying WebLinks on list](#displaying-weblinks-on-list-list): `list`
-    * [Displaying books borrowed and returned on list](#displaying-books-borrowed-and-returned-on-list-list): `list`
-    * [Displaying modules on list](#displaying-modules-on-list-list): `list`
-    * [Displaying expense items on list](#displaying-expense-items-on-list-list-coming-soon): `list` (coming soon)
-    * [Deleting a task from the list](#deleting-a-task-from-the-list-delete): `delete`
-        * [Deleting all tasks of a certain priority](#deleting-all-tasks-of-a-certain-priority-delete): `delete`
-        * [Deleting all tasks of a certain category](#deleting-all-tasks-of-a-certain-category-delete): `delete`
-    * [Deleting a link from the list](#deleting-a-link-from-the-list-delete): `delete` 
-    * [Deleting a module from the list](#deleting-a-module-from-the-list-delete): `delete` 
-    * [Deleting an expense item from the list](#deleting-an-expense-item-from-the-list-delete-coming-soon): `delete` (coming soon)
-    * [Marking a task as done](#marking-a-task-as-done-done): `done`
-    * [Setting a module as complete](#setting-a-module-as-complete-done): `done`
-    * [Marking a book as returned](#marking-a-book-as-returned-return): `return`
-    * [Setting the priority of a task](#setting-the-priority-of-a-task-set): `set`
-    * [Setting the category of a task](#setting-the-category-of-a-task-category): `category`
-    * [Setting the date of a task](#setting-the-date-of-a-task-date): `date`
-    * [Printing task calendar](#printing-task-calendar-calendar): `calendar`
-    * [Searching for tasks with keyword](#searching-for-tasks-with-keyword-find): `find`
-    * [Clearing all tasks](#clearing-all-tasks-clear): `clear`
-    * [Getting help](#getting-help-help): `help`
-    * [Exit and Save](#exiting-and-saving-the-program-bye): `bye`
-* [FAQ](#frequently-asked-questions)  
-* [Command Summary](#quick-command-reference)
+* Table of contents
+{:toc}
 
 ## Introduction
 
@@ -99,9 +64,11 @@ List of `<optional arguments>`:
 - `c/<category>` sets the category of the task.
 - `date/<dd-MM-yyyy>` sets the date of the task.
 
-🚩: By default, there is no category and date, and the priority is set to 0.
+🚩: By default, there is **no category and date**, and the **priority is set to 0**.
 
-🚩: Optional arguments can be typed in any order.
+🚩: Optional arguments can be typed in **any** order.
+
+🚩: Duplicate entry of tasks are **allowed**. 
 
 Example of usage: 
 
@@ -137,11 +104,9 @@ List of `<compulsory arguments>`:
 - `e/<dd-MM-yyyy>` end date of recurring tasks (inclusive).
 - `day/<mon/tue/wed/thu/fri/sat/sun>` day of recurring task.
 
-🚩: Optional and compulsory arguments can be typed in any order.
+🚩: Optional and compulsory arguments can be typed in **any** order.
 
-🚩: Category is **case-sensitive**.
-
-🚩: day is **case-insensitive**.
+🚩: Duplicate entry of recurring tasks are **allowed**. 
 
 Example of usage:
 
@@ -173,27 +138,25 @@ Format: `add module <module code> <optional/compulsory arguments>`
 
 🚩: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix.
 
-🚩: All characters in `<module code>` must be in caps. 
+🚩: All characters in `<module code>` must be in **caps**. 
 
-🚩: Duplicate module code in the same semester will not be allowed. 
+🚩: Duplicate module code in the same semester will **not be allowed**. 
 
 List of `<optional arguments>`:
-- `d/<1 or 0>` sets whether a module is completed or not (1 for completed, 0 for incomplete).
+- `d/<1 or 0>` sets whether a module is completed or not *(1 for completed, 0 for incomplete)*.
 
-🚩: Modules will be **set to complete by default** if `d/<1 or 0>` is not provided.
+🚩: Modules will be **set to complete by default** if `d/<1 or 0>` is not provided. This feature lets users add incomplete modules and compute a projected CAP when `list modules` is entered.
 
-🚩: This feature lets users add incomplete modules and compute a projected CAP when `list modules` is entered (which includes modules already done).
-
-🚩: Optional and compulsory arguments can be typed in any order
+🚩: Optional and compulsory arguments can be typed in **any** order
 
 List of `<compulsory arguments>`:
-- `g/<grade>` grade of the module **in caps** (`A+`, `A`, `A-`, etc).
+- `g/<grade>` grade of the module in **caps** (`A+`, `A`, `A-`, etc).
 - `ay/<XXXXSY>` academic year of the module where `X` is an integer and `Y` is `1` or `2` (`2021S1`, `2021S2`, etc...).
 - `mc/<MCs>` modular credits of the module. Valid for a range of 0 to 40 MCs.
 
-🚩: All characters in Semester code must be in caps. 
+🚩: All characters in academic year must be in **caps**. 
 
-🚩: Grades must be in caps.
+🚩: Grades must be in **caps**.
 
 Example of usage:
 
@@ -221,16 +184,16 @@ Add a link for lecture/tutorial sessions through zoom
 Format: `add link m/<module code> <compulsory arguments>`
 
 List of `<compulsory arguments>`:
-- `t/<TYPE>` type of lesson (`lecture`, `tutorial`, `lab`, `project`).
+- `t/<TYPE>` type of use (`lecture`, `tutorial`, `lab`, `project`).
 - `u/<URL>`  the link.  
 
-🚩: URL has to begin with either http:// or https:// 
+🚩: URL has to begin with either **http:// or https://**. 
 
-🚩: All characters in `<module code>` must be in caps. (haven't implement yet)
+🚩: All characters in `<module code>` must be in **caps**. 
 
 Example of usage:
 
-`add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
+`add link m/CS2113 t/lecture u/https://CS2113Lecture.zoom.com`
 
 Output:
 
@@ -253,7 +216,7 @@ List of `<compulsory argument>`:
 
 🚩: The due date will be fixed to **1 month** from the date of loan. 
 
-🚩: Duplicate book name will not be allowed. 
+🚩: Duplicate book name will **not be allowed**. 
 
 Example of usage:
 
@@ -327,7 +290,7 @@ Lists all the tasks.
 
 Format: `list tasks`
 
-🚩: Lists all the tasks including recurring task.
+🚩: Lists all the tasks **including** recurring task.
 
 Example of usage:
 
@@ -408,7 +371,7 @@ Output:
 
      1.CS2113 lecture
        https://cs2113Lecture.zoom.com
-     2.cs2028 lecture
+     2.CS2028 lecture
        https://zoom.com.sg
     ____________________________________________________________
 
@@ -437,7 +400,7 @@ Output:
     ____________________________________________________________
 ```
 ### Displaying modules on list: `list`
-List all the modules in the module list and shows computed CAP and completed MCs.
+List all the modules in the module list and shows the computed, projected CAP and completed MCs.
 
 Format: `list modules`
 
@@ -616,7 +579,7 @@ Output:
     ____________________________________________________________
      Noted. I've removed this expense item:
        lunch (5 SGD)
-     Now you have 0 expense(s) in the list.
+     Now you have 1 expense(s) in the list.
     ____________________________________________________________
 
 ```
@@ -662,7 +625,7 @@ Output:
 ```
 
 ### Marking a book as returned: `return`
-Marks a given task as done.
+Marks a given book as returned.
 
 Format: `return <bookIndexNumber>`
 
@@ -778,9 +741,11 @@ Finds all tasks with matching description.
 
 Format: `find <keyword>`
 
-🚩: `<keyword>` is case-insensitive.
+🚩: `<keyword>` is **case-insensitive**.
+
 🚩: `<keyword>` is a **whole word** from the task description, e.g `meeting`, `ip` etc.
-🚩: Incomplete keywords will not be accepted. e.g `meet`, `t` etc.
+
+🚩: Incomplete keywords will **not be allowed**. e.g `meet`, `t` etc.
 
 Example of usage:
 
@@ -796,7 +761,7 @@ Output:
     ____________________________________________________________
 ```
 ### Clearing all tasks: `clear`
-Clears all tasks,lists,books,modules from the list 
+Clears all tasks, lists, books, modules from the list 
 
 Format: `clear all`
 
@@ -813,7 +778,7 @@ Output:
 
 ```
 ### Getting help: `help`
-Prints the help message for commands.
+list all the available commands and their usage.
 
 Format: `help`
 
@@ -899,7 +864,7 @@ Output:
 ```
 
 ### Exiting and saving the program: `bye`
-Terminates and saves the program in different text files.
+Terminates and saves the program in the respective text files.
 
 Format: `bye`
 
