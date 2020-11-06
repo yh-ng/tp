@@ -99,11 +99,11 @@ List of `<optional arguments>`:
 - `c/<category>` sets the category of the task.
 - `date/<dd-MM-yyyy>` sets the date of the task.
 
-🚩: By default, there is no category and date, and the priority is set to 0.
+🚩: By default, there is **no category and date**, and the **priority is set to 0**.
 
-🚩: Optional arguments can be typed in any order.
+🚩: Optional arguments can be typed in **any** order.
 
-🚩: Duplicate task descriptions are allowed. 
+🚩: Duplicate entry of tasks are **allowed**. 
 
 Example of usage: 
 
@@ -139,13 +139,9 @@ List of `<compulsory arguments>`:
 - `e/<dd-MM-yyyy>` end date of recurring tasks (inclusive).
 - `day/<mon/tue/wed/thu/fri/sat/sun>` day of recurring task.
 
-🚩: Optional and compulsory arguments can be typed in any order.
+🚩: Optional and compulsory arguments can be typed in **any** order.
 
-🚩: Category is **case-sensitive**.
-
-🚩: day is **case-insensitive**.
-
-🚩: Duplicate task descriptions are **allowed**. 
+🚩: Duplicate entry of recurring tasks are **allowed**. 
 
 Example of usage:
 
@@ -177,27 +173,25 @@ Format: `add module <module code> <optional/compulsory arguments>`
 
 🚩: `<module code>` matches 2 or 3 prefix characters, followed by 4 digits and optional suffix.
 
-🚩: All characters in `<module code>` must be in caps. 
+🚩: All characters in `<module code>` must be in **caps**. 
 
 🚩: Duplicate module code in the same semester will **not be allowed**. 
 
 List of `<optional arguments>`:
-- `d/<1 or 0>` sets whether a module is completed or not (1 for completed, 0 for incomplete).
+- `d/<1 or 0>` sets whether a module is completed or not *(1 for completed, 0 for incomplete)*.
 
-🚩: Modules will be **set to complete by default** if `d/<1 or 0>` is not provided.
+🚩: Modules will be **set to complete by default** if `d/<1 or 0>` is not provided. This feature lets users add incomplete modules and compute a projected CAP when `list modules` is entered.
 
-🚩: This feature lets users add incomplete modules and compute a projected CAP when `list modules` is entered (which includes modules already done).
-
-🚩: Optional and compulsory arguments can be typed in any order
+🚩: Optional and compulsory arguments can be typed in **any** order
 
 List of `<compulsory arguments>`:
-- `g/<grade>` grade of the module **in caps** (`A+`, `A`, `A-`, etc).
+- `g/<grade>` grade of the module in **caps** (`A+`, `A`, `A-`, etc).
 - `ay/<XXXXSY>` academic year of the module where `X` is an integer and `Y` is `1` or `2` (`2021S1`, `2021S2`, etc...).
 - `mc/<MCs>` modular credits of the module. Valid for a range of 0 to 40 MCs.
 
-🚩: All characters in Semester code must be in caps. 
+🚩: All characters in academic year must be in **caps**. 
 
-🚩: Grades must be in caps.
+🚩: Grades must be in **caps**.
 
 Example of usage:
 
@@ -228,13 +222,13 @@ List of `<compulsory arguments>`:
 - `t/<TYPE>` type of use (`lecture`, `tutorial`, `lab`, `project`).
 - `u/<URL>`  the link.  
 
-🚩: URL has to begin with either http:// or https:// 
+🚩: URL has to begin with either **http:// or https://**. 
 
-🚩: All characters in `<module code>` must be in caps. 
+🚩: All characters in `<module code>` must be in **caps**. 
 
 Example of usage:
 
-`add link m/CS2113 t/lecture u/https://cs2113Lecture.zoom.com`
+`add link m/CS2113 t/lecture u/https://CS2113Lecture.zoom.com`
 
 Output:
 
@@ -331,7 +325,7 @@ Lists all the tasks.
 
 Format: `list tasks`
 
-🚩: Lists all the tasks including recurring task.
+🚩: Lists all the tasks **including** recurring task.
 
 Example of usage:
 
@@ -412,7 +406,7 @@ Output:
 
      1.CS2113 lecture
        https://cs2113Lecture.zoom.com
-     2.cs2028 lecture
+     2.CS2028 lecture
        https://zoom.com.sg
     ____________________________________________________________
 
@@ -441,7 +435,7 @@ Output:
     ____________________________________________________________
 ```
 ### Displaying modules on list: `list`
-List all the modules in the module list and shows computed CAP and completed MCs.
+List all the modules in the module list and shows the computed, projected CAP and completed MCs.
 
 Format: `list modules`
 
@@ -620,7 +614,7 @@ Output:
     ____________________________________________________________
      Noted. I've removed this expense item:
        lunch (5 SGD)
-     Now you have 0 expense(s) in the list.
+     Now you have 1 expense(s) in the list.
     ____________________________________________________________
 
 ```
@@ -666,7 +660,7 @@ Output:
 ```
 
 ### Marking a book as returned: `return`
-Marks a given task as done.
+Marks a given book as returned.
 
 Format: `return <bookIndexNumber>`
 
@@ -782,9 +776,11 @@ Finds all tasks with matching description.
 
 Format: `find <keyword>`
 
-🚩: `<keyword>` is case-insensitive.
+🚩: `<keyword>` is **case-insensitive**.
+
 🚩: `<keyword>` is a **whole word** from the task description, e.g `meeting`, `ip` etc.
-🚩: Incomplete keywords will not be accepted. e.g `meet`, `t` etc.
+
+🚩: Incomplete keywords will **not be allowed**. e.g `meet`, `t` etc.
 
 Example of usage:
 
@@ -800,7 +796,7 @@ Output:
     ____________________________________________________________
 ```
 ### Clearing all tasks: `clear`
-Clears all tasks,lists,books,modules from the list 
+Clears all tasks, lists, books, modules from the list 
 
 Format: `clear all`
 
@@ -817,7 +813,7 @@ Output:
 
 ```
 ### Getting help: `help`
-Prints the help message for commands.
+list all the available commands and their usage.
 
 Format: `help`
 
@@ -903,7 +899,7 @@ Output:
 ```
 
 ### Exiting and saving the program: `bye`
-Terminates and saves the program in different text files.
+Terminates and saves the program in the respective text files.
 
 Format: `bye`
 
