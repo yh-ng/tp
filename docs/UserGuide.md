@@ -1,43 +1,8 @@
-# <div align="center"> termiNus User Guide</div>
+<h1 align="center">termiNus User Guide</h1>
+{:.no_toc}
 
-
-## Table of Contents
-* [Introduction](#introduction)   
-* [Quick Start](#quick-start) 
-* [Features](#features)
-    * [Adding a task](#adding-a-task-add): `add`
-    * [Adding recurring tasks](#adding-recurring-tasks-addr): `addr`
-    * [Adding a module](#adding-a-module-add-module): `add module`
-    * [Adding a WebLink](#adding-a-weblink-add-link): `add link`
-    * [Borrowing a book](#borrowing-a-book-borrow): `borrow`
-    * [Adding an expense item](#adding-an-expense-item-spend-coming-soon): `spend` (coming soon)
-    * [Creating module folders](#creating-module-folders-makefolders): `makefolders`
-    * [Displaying tasks on list](#displaying-tasks-on-list-list): `list`
-        * [Displaying tasks based on priority](#displaying-tasks-based-on-priority-list): `list`
-        * [Displaying tasks based on category](#displaying-tasks-based-on-category-list): `list`
-    * [Displaying WebLinks on list](#displaying-weblinks-on-list-list): `list`
-    * [Displaying books borrowed and returned on list](#displaying-books-borrowed-and-returned-on-list-list): `list`
-    * [Displaying modules on list](#displaying-modules-on-list-list): `list`
-    * [Displaying expense items on list](#displaying-expense-items-on-list-list-coming-soon): `list` (coming soon)
-    * [Deleting a task from the list](#deleting-a-task-from-the-list-delete): `delete`
-        * [Deleting all tasks of a certain priority](#deleting-all-tasks-of-a-certain-priority-delete): `delete`
-        * [Deleting all tasks of a certain category](#deleting-all-tasks-of-a-certain-category-delete): `delete`
-    * [Deleting a link from the list](#deleting-a-link-from-the-list-delete): `delete` 
-    * [Deleting a module from the list](#deleting-a-module-from-the-list-delete): `delete` 
-    * [Deleting an expense item from the list](#deleting-an-expense-item-from-the-list-delete-coming-soon): `delete` (coming soon)
-    * [Marking a task as done](#marking-a-task-as-done-done): `done`
-    * [Setting a module as complete](#setting-a-module-as-complete-done): `done`
-    * [Marking a book as returned](#marking-a-book-as-returned-return): `return`
-    * [Setting the priority of a task](#setting-the-priority-of-a-task-set): `set`
-    * [Setting the category of a task](#setting-the-category-of-a-task-category): `category`
-    * [Setting the date of a task](#setting-the-date-of-a-task-date): `date`
-    * [Printing task calendar](#printing-task-calendar-calendar): `calendar`
-    * [Searching for tasks with keyword](#searching-for-tasks-with-keyword-find): `find`
-    * [Clearing all tasks](#clearing-all-tasks-clear): `clear`
-    * [Getting help](#getting-help-help): `help`
-    * [Exit and Save](#exiting-and-saving-the-program-bye): `bye`
-* [FAQ](#frequently-asked-questions)  
-* [Command Summary](#quick-command-reference)
+* Table of contents
+{:toc}
 
 ## Introduction
 
