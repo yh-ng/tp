@@ -279,10 +279,4 @@ public class CommandCreator {
         }
         return new CategoryCommand(index, argumentsMap.get("c"));
     }
-
-    // @@author
-    public static Command createDeductCommand(String value)
-            throws DukeException {
-        return new DeductCommand(value);
-    }
 }

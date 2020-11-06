@@ -13,8 +13,6 @@ import seedu.duke.model.itemlist.TaskList;
 public class DoneCommand extends Command {
 
     public static final String COMMAND_WORD = "done";
-    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
-            + ": Marks the task/module identified by the index number used in the listing as done.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task/module identified by the index number used in the listing as done.\n"
             + "     Parameters: <type> INDEX\n"

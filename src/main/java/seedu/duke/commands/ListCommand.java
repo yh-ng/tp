@@ -21,8 +21,6 @@ import java.util.Collections;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
-            + ": Displays all items in the list with index numbers.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays all items in the list with index numbers.\n"
             + "     Example: " + COMMAND_WORD + " all\n"

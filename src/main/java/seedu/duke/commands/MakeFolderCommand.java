@@ -7,8 +7,6 @@ import seedu.duke.model.itemlist.ModuleList;
 
 public class MakeFolderCommand extends Command {
     public static final String COMMAND_WORD = "makefolders";
-    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
-            + ": Make folders for your modules in the modulelist";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Make folders for your modules in the modulelist";
 
     @Override

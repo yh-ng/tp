@@ -19,6 +19,14 @@ public class Link extends Item {
         this.module = module;
         this.type = type;
         this.url = url;
+
+        Matcher matcher = Module.MODULE_CODE_PATTERN.matcher(module);
+
+        if (!matcher.find()) {
+            throw new DukeException("~Error~ Format of the module name is incorrect.\n "
+                    + "\t Please refer to the User Guide");
+        }
+
     }
 
     public String getModule() {
