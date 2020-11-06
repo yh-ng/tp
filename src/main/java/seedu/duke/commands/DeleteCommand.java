@@ -18,6 +18,8 @@ import java.util.ArrayList;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
+            + ": Deletes the task identified by the index number used in the task listing.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the task listing.\n"
             + "     Parameters: INDEX\n"
