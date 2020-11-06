@@ -46,7 +46,7 @@ Hello from...
      done: Marks the task/module identified by the index number used in the listing as done.
      find: Finds all tasks whose descriptions contain any of
            the specified keywords (case-insensitive) and displays them as a list with index numbers.
-     help: Shows program usage instructions.
+     help: Shows program or command usage instructions.
      list: Displays all items in the list with index numbers.
      return: Marks the book identified by the index number used in the book list as returned.
      set: Sets the task identified by the index number used in the task listing to the new priority.
