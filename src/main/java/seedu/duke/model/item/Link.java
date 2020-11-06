@@ -5,10 +5,8 @@ package seedu.duke.model.item;
 import seedu.duke.DukeException;
 
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Link extends Item {
-    public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("(^[A-Z]{2,3}[\\d]{4}[A-Z]?$)");
     protected String module;
     protected String type;
     protected String url;
@@ -25,7 +23,7 @@ public class Link extends Item {
         this.module = module;
         this.type = type;
         this.url = url;
-        Matcher matcher = MODULE_CODE_PATTERN.matcher(module);
+        Matcher matcher = Module.MODULE_CODE_PATTERN.matcher(module);
 
         if (!matcher.find()) {
             throw new DukeException("~Error~ Format of the module name is incorrect.");
