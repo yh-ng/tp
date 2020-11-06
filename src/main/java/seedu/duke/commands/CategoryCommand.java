@@ -10,8 +10,6 @@ import seedu.duke.model.itemlist.TaskList;
  */
 public class CategoryCommand extends Command {
     public static final String COMMAND_WORD = "category";
-    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
-            + ": Sets the category of a task identified by the task index number in the task list\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets the category of a task identified by the task index number in the task list\n"
             + "     Parameters: INDEX c/CATEGORY\n"

@@ -12,8 +12,6 @@ import java.util.HashSet;
 
 public class DateCommand extends Command {
     public static final String COMMAND_WORD = "date";
-    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
-            + ": Sets the date of a given task in the list.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets the date of a given task in the list.\n"
             + "     Example: " + COMMAND_WORD + " <taskIndex>" + " date/DD-MM-YYYY";
