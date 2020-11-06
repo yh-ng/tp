@@ -11,7 +11,6 @@ import seedu.duke.commands.ClearCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandCreator;
 import seedu.duke.commands.DateCommand;
-import seedu.duke.commands.DeductCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DoneCommand;
 import seedu.duke.commands.FindCommand;
@@ -84,8 +83,6 @@ public class Parser {
             return CommandCreator.createDoneCommand(commandString);
         case ReturnCommand.COMMAND_WORD:
             return CommandCreator.createReturnCommand(commandString);
-        case DeductCommand.COMMAND_WORD:
-            return CommandCreator.createDeductCommand(description);
         case FindCommand.COMMAND_WORD:
             return CommandCreator.createFindCommand(commandString);
         case MakeFolderCommand.COMMAND_WORD:

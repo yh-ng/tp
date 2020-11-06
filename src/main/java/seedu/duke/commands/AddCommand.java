@@ -118,7 +118,7 @@ public class AddCommand extends Command {
         }
 
         Module module = new Module(description, argumentsMap.get("g"), mc, argumentsMap.get("ay"), isDone);
-        modules.addItem(module);
+        modules.addModule(module);
     }
 
     /**
