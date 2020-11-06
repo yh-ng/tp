@@ -34,23 +34,89 @@ Hello from...
 
     ____________________________________________________________
      add: Adds a task to the task list.
-     addr: Adds multiple tasks to the list of tasks that occur weekly on a given day.
-     borrow: Adds a book to the book list.
-     bye: Exits the program.
-     calendar: Sets the date of a given task in the list.
-     category: Sets the category of a task identified by the task index number in the task list
-     clear: Clears all tasks in the task list.
-     date: Sets the date of a given task in the list.
-     deduct: Deduct meal credit.
-     delete: Deletes the task identified by the index number used in the task listing.
-     done: Marks the task/module identified by the index number used in the listing as done.
-     find: Finds all tasks whose descriptions contain any of
-           the specified keywords (case-insensitive) and displays them as a list with index numbers.
-     help: Shows program or command usage instructions.
-     list: Displays all items in the list with index numbers.
-     return: Marks the book identified by the index number used in the book list as returned.
-     set: Sets the task identified by the index number used in the task listing to the new priority.
+     Parameters: TASK_NAME <optional arguments>
+     List of <optional arguments>
+       - p/<number> sets the priority of the task.
+       - c/<category> sets the category of the task.
+       - date/<dd-MM-yyyy> sets the date of the task.
+     Example: add task example_task <optional arguments>
 
+     addr: Adds multiple tasks to the list of tasks that occur weekly on a given day.
+     Parameters: TASK_NAME <optional/compulsory arguments>
+     List of <optional arguments>:
+       - p/<number> sets the priority of the task.
+       - c/<category> sets the category of the task.
+       - date/<dd-MM-yyyy> sets the date of the task.
+     List of `<compulsory arguments>
+       - s/<dd-MM-yyyy> start date of recurring tasks (inclusive)
+       - e/<dd-MM-yyyy> end date of recurring tasks (inclusive).
+       - day/<mon/tue/wed/thu/fri/sat/sun> day of recurring task.
+     Example: addr example_task <optional/compulsory arguments>
+
+     borrow: Adds a book to the book list.
+     Example: borrow example_book  date/DD-MM-YYYY
+
+     bye: Exits the program.
+     Example: bye
+
+     calendar: Sets the date of a given task in the list.
+     Example: calendar d/<daysToPrint>
+
+     category: Sets the category of a task identified by the task index number in the task list
+     Parameters: INDEX c/CATEGORY
+     Example: category 1 c/Academics
+
+     clear: Clears all tasks in the task list.
+     Example: clear
+
+     date: Sets the date of a given task in the list.
+     Example: date <taskIndex> date/DD-MM-YYYY
+
+     delete: Deletes the task identified by the index number used in the task listing.
+     Parameters: INDEX
+     Example: delete task 1
+          Optional parameter 1: p/PRIORITY
+             Deletes all the tasks with PRIORITY.
+             Example: delete tasks p/1
+          Optional parameter 2: c/CATEGORY
+             Deletes all the tasks with CATEGORY.
+             Example: delete tasks c/cs2113.
+     Deletes the link identified by the index number used in the link listing.
+     Parameters: INDEX
+     Example: delete link 1
+
+
+     done: Marks the task/module identified by the index number used in the listing as done.
+     Parameters: <type> INDEX
+     Accepted <type>: task, module
+     Example: done task 1
+
+     find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
+     Parameters: KEYWORDS
+     Example: find book
+
+     help: Shows program usage instructions.
+     Example: help
+
+     list: Displays all items in the list with index numbers.
+     Example: list all
+     Displays all items in the list.
+          Optional parameter 1: tasks p/PRIORITY
+             Displays all the tasks with PRIORITY as a list.
+             Example: list tasks p/1
+          Optional parameter 2: tasks c/CATEGORY
+             Displays all the tasks with CATEGORY as a list.
+             Example: list tasks c/cs2113
+          Optional parameter 3: tasks sorted
+             Displays all the tasks sorted by priority
+
+     return: Marks the book identified by the index number used in the book list as returned.
+     Parameters: INDEX
+     Example: return 2
+
+     set: Sets the task identified by the index number used in the task listing to the new priority.
+     Parameters: INDEX p/PRIORITY
+     Example: set 1 p/2
     ____________________________________________________________
 
     ____________________________________________________________

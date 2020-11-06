@@ -16,8 +16,6 @@ import java.util.HashSet;
 public class BorrowCommand extends Command {
 
     public static final String COMMAND_WORD = "borrow";
-    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
-            + ": Adds a book to the book list.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a book to the book list.\n"
             + "     Example: " + COMMAND_WORD + " example_book  date/DD-MM-YYYY";

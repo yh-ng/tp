@@ -7,8 +7,6 @@ public class DeductCommand extends Command {
 
 
     public static final String COMMAND_WORD = "deduct";
-    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
-            + ": Deduct meal credit.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deduct meal credit.\n"
             + "     Parameter: value\n"

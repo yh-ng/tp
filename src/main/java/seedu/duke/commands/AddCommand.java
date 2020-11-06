@@ -24,8 +24,6 @@ import java.util.HashSet;
  */
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
-            + ": Adds a task to the task list.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the task list.\n"
             + "     Parameters: TASK_NAME <optional arguments>\n"
