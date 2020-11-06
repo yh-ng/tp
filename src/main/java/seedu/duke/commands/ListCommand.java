@@ -73,6 +73,7 @@ public class ListCommand extends Command {
             this.hasPriority = false;
             this.hasCategory = false;
             this.isLink = true;
+
         }
     }
 
