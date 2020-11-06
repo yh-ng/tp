@@ -15,7 +15,7 @@ public class Messages {
 
     public static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
     public static final String MESSAGE_ADD_TASK = "Got it. I've added this task:\n       ";
-    public static final String MESSAGE_ADD_BOOK = "Got it. I've added this book: ";
+    public static final String MESSAGE_ADD_BOOK = "Got it. I've added this book: \n";
     public static final String MESSAGE_ADD_LINK = "Got it. I've added this link:\n       ";
     public static final String MESSAGE_ADD_MODULE = "Got it. I've added this module:\n       ";
     public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
@@ -27,15 +27,15 @@ public class Messages {
     public static final String MESSAGE_MODULE_STATUS_LAST = " module(s) in the list.";
     public static final String MESSAGE_TASK_LIST = "Here are the task(s) in your list:\n";
     public static final String MESSAGE_BOOK_LIST = "Here are the book(s) in your list:\n";
-    public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the task(s) of this priority in your list:";
-    public static final String MESSAGE_LIST_WITH_CATEGORY = "Here are the task(s) of this category in your list:";
+    public static final String MESSAGE_LINK_LIST = "Here are the links in your list:\n";
+    public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the task(s) of this priority in your list:\n";
+    public static final String MESSAGE_LIST_WITH_CATEGORY = "Here are the task(s) of this category in your list:\n";
     public static final String MESSAGE_EMPTY_TASK_LIST = "There are no tasks in your list. "
             + "Your task list is empty.";
     public static final String MESSAGE_EMPTY_BOOK_LIST = "There are no books in your list. "
             + "Your book list is empty.";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "There are no tasks of this priority in your list. ";
     public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "There are no tasks of this category in your list. ";
-    public static final String MESSAGE_LINK_LIST = "Here are the links in your list:\n";
     public static final String MESSAGE_EMPTY_LINK_LIST = "There are no links in your list. "
             + "Your link list is empty.";
     public static final String MESSAGE_EMPTY_MODULE_LIST = "There are no modules in your list. "
@@ -115,7 +115,7 @@ public class Messages {
             + "you can input in this format: YYYY-MM-DD HH:mm";
     public static final String EXCEPTION_FIND = "~Error~ The keyword of a find command cannot be empty.\n "
             + "\t The format is: find <keyword>";
-    public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct type of lesson:\n "
+    public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct link type:\n "
             + "\t t/lecture\n"
             + "\t t/tutorial\n"
             + "\t t/lab\n"
