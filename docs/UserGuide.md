@@ -325,7 +325,7 @@ Lists all the tasks.
 
 Format: `list tasks`
 
-🚩: Lists all the tasks *including* recurring task.
+🚩: Lists all the tasks **including** recurring task.
 
 Example of usage:
 
