@@ -10,6 +10,8 @@ import seedu.duke.ui.Ui;
 public class ByeCommand extends Command {
 
     public static final String COMMAND_WORD = "bye";
+    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
+            + ": Exits the program.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits the program.\n"
             + "     Example: " + COMMAND_WORD;
 

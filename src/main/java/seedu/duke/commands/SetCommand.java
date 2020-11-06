@@ -12,6 +12,8 @@ import java.util.HashSet;
 
 public class SetCommand extends Command {
     public static final String COMMAND_WORD = "set";
+    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
+            + ": Sets the task identified by the index number used in the task listing to the new priority.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets the task identified by the index number used in the task listing to the new priority.\n"
             + "     Parameters: INDEX p/PRIORITY\n"

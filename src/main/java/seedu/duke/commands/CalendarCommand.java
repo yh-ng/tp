@@ -23,6 +23,8 @@ import java.util.stream.Collectors;
  */
 public class CalendarCommand extends Command {
     public static final String COMMAND_WORD = "calendar";
+    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
+            + ": Sets the date of a given task in the list.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets the date of a given task in the list.\n"
             + "     Example: " + COMMAND_WORD + " d/<daysToPrint>";

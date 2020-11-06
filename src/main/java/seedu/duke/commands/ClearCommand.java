@@ -18,6 +18,8 @@ import seedu.duke.ui.Ui;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
+    public static final String MESSAGE_DESCRIPTION = COMMAND_WORD
+            + ": Clears all tasks in the task list.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all tasks in the task list.\n"
             + "     Example: " + COMMAND_WORD;
     private String description = "";
