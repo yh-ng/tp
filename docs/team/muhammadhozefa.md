@@ -13,20 +13,20 @@ This section gives a summary of my contributions towards our project.
 **Code contributed** [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=muhammadhoze&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=MuhammadHoze&tabRepo=AY2021S1-CS2113-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other) 
 
 ##### Enhancement implemented:
-1. Added the loan system 
+1. Added the loan system (BookList and Book class)
     * *what it does*: Allow students to keep track of their loan items from the library which will reduce overdue cases.  
     [BorrowCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/BorrowCommand.java)
     , [ReturnCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/ReturnCommand.java)
 
-2. Deletion of tasks based on priority and category
+2. Deletion of tasks based on priority and category (DeleteCommand class)
     * *what it does*: Initially students could only delete their task one at a time. Now they are able to delete all **tasks** with the same priority and category in just one command. 
     [DeleteCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/DeleteCommand.java)
 
-3. Finding **tasks** based on a keyword
+3. Finding **tasks** based on a keyword (FindCommand class)
     * *what it does*: Allow students to find their tasks easily with the help of this command rather than manually searching through the list.
     [FindCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/FindCommand.java)
 
-4. Clearing **all** data which includes tasks, modules, web links, books
+4. Clearing **all** data which includes tasks, modules, web links, books (ClearCommand class)
     * *what it does*: Allow students to clear everything and start afresh every new semester.
     [ClearCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/ClearCommand.java)
 

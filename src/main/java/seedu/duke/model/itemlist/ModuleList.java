@@ -2,6 +2,7 @@ package seedu.duke.model.itemlist;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.model.item.Book;
 import seedu.duke.model.item.Item;
 import seedu.duke.model.item.Module;
 import seedu.duke.ui.Ui;
@@ -34,10 +35,11 @@ public class ModuleList extends ItemList<Module> {
     }
 
 
-    @Override
-    public void addItem(Module item) throws DukeException {
-        checkModuleAlreadyExists(item);
-        super.addItem(item);
+    public void addModule(Module module) throws DukeException {
+        checkModuleAlreadyExists(module);
+        items.add(module);
+        Ui.dukePrint(Messages.MESSAGE_ADD_MODULE + module.toString() + Messages.MESSAGE_STATUS_FIRST
+                + items.size() + Messages.MESSAGE_MODULE_STATUS_LAST);
     }
 
     @Override

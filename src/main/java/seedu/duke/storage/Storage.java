@@ -4,7 +4,6 @@ import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
 import seedu.duke.model.item.Book;
-import seedu.duke.model.item.Credit;
 import seedu.duke.model.itemlist.ItemList;
 import seedu.duke.model.item.Link;
 import seedu.duke.model.item.Task;
@@ -100,29 +99,6 @@ public class Storage {
             links.add(newLink);
         }
         return links;
-    }
-
-    /**
-     * Loads the credit list data from the storage, and then returns it.
-     *
-     * @return ArrayList of {@code Credit} from the storage file.
-     * @throws DukeException if the storage file does not exist, or is not a regular file.
-     */
-    public ArrayList<Credit> loadCredit() throws DukeException {
-        File file = new File(CREDIT_STORAGE_FILEPATH);
-        Scanner sc;
-        try {
-            sc = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
-        }
-        ArrayList<Credit> mealCredit = new ArrayList<>();
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
-            Credit newCredit = loadCreditFromLine(line);
-            mealCredit.add(newCredit);
-        }
-        return mealCredit;
     }
 
     /**
@@ -247,31 +223,6 @@ public class Storage {
         return newBook;
     }
 
-    /**
-     * Returns mealCredit corresponding to arguments from a line loaded from file.
-     *
-     * @param line A line loaded from the save file.
-     * @return Credit corresponding to the loaded line.
-     * @throws DukeException If there is an error parsing the save file.
-     */
-    private Credit loadCreditFromLine(String line) throws DukeException {
-        Credit newCredit;
-        String[] arguments = line.split("\\|");
-
-        if (arguments.length != EXPECTED_DIVIDER_COUNT - 4) {
-            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
-        }
-
-        try {
-            String description = arguments[1].trim();
-            newCredit = new Credit(description);
-
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
-        }
-
-        return newCredit;
-    }
 
     /**
      * Returns a link corresponding to arguments from a line loaded from file.
